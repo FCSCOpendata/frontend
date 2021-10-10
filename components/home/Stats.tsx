@@ -28,25 +28,31 @@ const Stats: React.FC = () => {
   ];
 
   return (
-    <div className="p-4">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        DataHub Stats
-      </h3>
-      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        {stats.map((item) => (
-          <div
-            key={item.name}
-            className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6"
-          >
-            <dt className="text-sm font-medium text-gray-500 truncate">
-              {item.name}
-            </dt>
-            <dd className="mt-1 text-3xl font-semibold text-gray-900">
-              {item.stat}
-            </dd>
+    <div className="flex justify-between px-10 bg-transparent text-white border border-white border-opacity-30 rounded-md py-10">
+      {stats.map((item) => (
+        <div key={item.name} className="flex flex-row flex-wrap">
+          <div className="">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-10 mr-2 mt-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="white"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+              />
+            </svg>
           </div>
-        ))}
-      </dl>
+          <div className="text-2xl">
+            {' '}
+            {item.stat} <div className="text-sm uppercase"> {item.name} </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
