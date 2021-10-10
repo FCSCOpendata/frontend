@@ -17,7 +17,7 @@ const Home: React.FC<{ locale: any; locales: any }> = ({
   const { t } = useTranslation();
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container max-w-full mx-auto">
         <Head>
           <title>{t(`common:title`)}</title>
           <link rel="icon" href="/favicon.ico" />
