@@ -1574,7 +1574,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "JSON"
+              "value": "String"
             }
           }
         }
@@ -2357,7 +2357,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "JSON"
+              "value": "String"
             }
           }
         }

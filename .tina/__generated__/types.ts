@@ -186,7 +186,7 @@ export type Post = {
   __typename?: 'Post';
   title?: Maybe<Scalars['String']>;
   topic?: Maybe<Array<Maybe<Scalars['String']>>>;
-  body?: Maybe<Scalars['JSON']>;
+  body?: Maybe<Scalars['String']>;
 };
 
 export type PostDocument = Node &
@@ -274,7 +274,7 @@ export type PageMutation = {
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']>;
   topic?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  body?: InputMaybe<Scalars['JSON']>;
+  body?: InputMaybe<Scalars['String']>;
 };
 
 export type PagePartsFragment = {
@@ -286,7 +286,7 @@ export type PostPartsFragment = {
   __typename?: 'Post';
   title?: string | null | undefined;
   topic?: Array<string | null | undefined> | null | undefined;
-  body?: any | null | undefined;
+  body?: string | null | undefined;
 };
 
 export type GetPageDocumentQueryVariables = Exact<{
@@ -373,7 +373,7 @@ export type GetPostDocumentQuery = {
       __typename?: 'Post';
       title?: string | null | undefined;
       topic?: Array<string | null | undefined> | null | undefined;
-      body?: any | null | undefined;
+      body?: string | null | undefined;
     };
   };
 };
@@ -409,7 +409,7 @@ export type GetPostListQuery = {
                         | Array<string | null | undefined>
                         | null
                         | undefined;
-                      body?: any | null | undefined;
+                      body?: string | null | undefined;
                     };
                   }
                 | null

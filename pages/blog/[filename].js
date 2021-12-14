@@ -44,6 +44,12 @@ const BlogPage = (props) => {
       <Head>
         <title>Portal | Blog | {props.data.getPostDocument.data.title}</title>
         <link rel="icon" href="/favicon.ico" />
+        {/* Marked CDN */}
+        <script
+          type="text/javascript"
+          crossOrigin="anonymous"
+          src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.0/marked.min.js"
+        />
       </Head>
       <Nav />
       <div>
@@ -57,7 +63,9 @@ const BlogPage = (props) => {
           </h1>
           {typeof window !== 'undefined' && (
             <ContentSection
-              content={props.data.getPostDocument.data.body}
+              content={window.marked.parse(
+                props.data.getPostDocument.data.body
+              )}
             ></ContentSection>
           )}
         </div>
@@ -129,7 +137,7 @@ const ContentSection = ({ content }) => {
     <div className="relative py-16 bg-white overflow-hidden">
       <div className="relative px-4 sm:px-6 lg:px-8">
         <div className="text-lg max-w-prose mx-auto">
-          {JSON.stringify(content)}
+          <div dangerouslySetInnerHTML={{ __html: content }}></div>
           <GlobalStyle />
         </div>
       </div>

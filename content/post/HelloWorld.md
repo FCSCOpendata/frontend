@@ -2,9 +2,7 @@
 title: Awesome CMS built into Portal.JS
 ---
 
-# Welcome to the blog.
-
-> To edit this site head over to the [`/admin`](/admin) route. Then click the pencil icon in the bottom lefthand corner to start editing 🦙.
+> Welcome to the blog! For now editing via UI isn't working and you need to edit content right in the github: https://github.com/datopian/ckan-enterprise-frontend/tree/main/content
 
 # Dixi gaude Arethusa
 

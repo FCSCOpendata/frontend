@@ -34,7 +34,7 @@ export default defineSchema({
           list: true,
         },
         {
-          type: 'rich-text',
+          type: 'string',
           label: 'Blog Post Body',
           name: 'body',
           isBody: true,
