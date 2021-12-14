@@ -1,8 +1,6 @@
 <h1 align="center">
 
-🌀 Portal.JS<br/>
-The javascript framework for<br/>
-data portals
+This is a data portal developed using 🌀 [Portal.JS](https://github.com/datopian/portal.js)
 
 </h1>
 
@@ -13,7 +11,9 @@ data portals
 [ckan]: https://ckan.org/
 [next.js]: https://nextjs.com/
 
-Live DEMO: https://catalog-portal-js.vercel.app
+## Live demo
+
+https://ckan-enterprise-frontend.vercel.app/
 
 ## Features
 

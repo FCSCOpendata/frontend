@@ -8,7 +8,7 @@ import useTranslation from 'next-translate/useTranslation';
 import NavBar from '../components/home/Nav';
 import Hero from '../components/home/Hero';
 import Footer from '../components/home/Footer';
-import Stats from '../components/home/Stats';
+import MainOptions from '../components/home/MainOptions';
 
 const Home: React.FC<{ locale: any; locales: any }> = ({
   locale,
@@ -17,14 +17,14 @@ const Home: React.FC<{ locale: any; locales: any }> = ({
   const { t } = useTranslation();
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container max-w-full mx-auto">
         <Head>
           <title>{t(`common:title`)}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <NavBar />
         <Hero />
-        <Stats />
+        <MainOptions />
         <RecentDataset />
         <Footer />
       </div>

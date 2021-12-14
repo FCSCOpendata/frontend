@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-cover {
+  background-size: cover;
+  background-image: url('/images/hero.svg');
+  background-position: 40% 50%;
+  min-height: 800px;
+}
+
+.vertical-text {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+}

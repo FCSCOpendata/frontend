@@ -8,7 +8,7 @@ const NavBar: React.FC = () => {
     { title: 'GitHub', path: 'https://github.com/datopian/portal.js' },
   ];
 
-  return <Template menu={navMenu} logo={'/images/logo.svg'} />;
+  return <Template menu={navMenu} logo={'/images/logopjs.svg'} />;
 };
 
 export default NavBar;
