@@ -19,7 +19,10 @@
     "format": "prettier --single-quote --write .",
     "pre-commit": "yarn lint:fix && prettier --single-quote --write",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "tina-dev": "yarn tinacms server:start -c \"next dev\"",
+    "tina-build": "yarn tinacms server:start -c \"next build\"",
+    "tina-start": "yarn tinacms server:start -c \"next start\""
   },
   "dependencies": {
     "@apollo/client": "^3.0.2",
@@ -27,6 +30,7 @@
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
+    "@tinacms/cli": "^0.58.4",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
@@ -47,7 +51,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "slugify": "^1.4.0",
-    "timeago.js": "^4.0.2"
+    "styled-components": "^5.3.3",
+    "timeago.js": "^4.0.2",
+    "tinacms": "^0.61.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.3",
@@ -90,5 +96,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,html,md}": "yarn pre-commit"
+  },
+  "resolutions": {
+    "graphql": "^15.1.0"
   }
 }
