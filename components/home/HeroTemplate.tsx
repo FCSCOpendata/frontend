@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import SearchForm from '../search/Form';
 import Stats from './Stats';
 
-export default function Example() {
+export default function Footer() {
   const { t } = useTranslation();
 
   return (

@@ -128,7 +128,8 @@ export const GET_STATS_QUERY = gql`
 
 export const GET_POSTS_QUERY = gql`
   query posts {
-    posts @rest(type: "Posts", path: "", endpoint: "wordpress-posts") {
+    posts
+      @rest(type: "Posts", path: "", endpoint: "wordpress-posts?number=3") {
       found
       posts
       meta
@@ -161,6 +162,28 @@ export const GET_POST_QUERY = gql`
       slug
       date
       modified
+    }
+  }
+`;
+
+export const GET_POPULAR_DATASETS_QUERY = gql`
+  query popular {
+    popular @rest(type: "Search", path: "package_search?rows=3") {
+      result {
+        results {
+          title
+          metadata_modified
+        }
+      }
+    }
+  }
+`;
+
+export const GET_CATEGORIES_QUERY = gql`
+  query categories {
+    categories(sort: "package_count desc", all_fields: True)
+      @rest(type: "Response", path: "group_list?{args}") {
+      result
     }
   }
 `;

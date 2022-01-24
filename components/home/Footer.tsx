@@ -2,18 +2,21 @@ const Footer: React.FC = () => {
   const navigation = {
     about: [
       { name: 'About Us', href: 'https://www.datopian.com/about/' },
-      { name: 'Our Technology', href: 'https://www.datopian.com/products/' },
+      {
+        name: 'Our Technology',
+        href: 'https://github.com/datopian/portal.js',
+      },
       { name: 'Playbook', href: 'https://playbook.datopian.com' },
     ],
     useful: [
       { name: 'Organisations', href: '/organization' },
-      { name: 'Request Data', href: '/' },
+      { name: 'Request Data', href: 'https://www.datopian.com/contact/' },
       { name: 'Login', href: '/' },
     ],
     started: [
-      { name: 'Find Data', href: 'https://datahub.io/search' },
-      { name: 'Publish Data', href: 'https://datahub.io/tools' },
-      { name: 'Get Help', href: '/' },
+      { name: 'Find Data', href: '/search' },
+      { name: 'Publish Data', href: 'https://www.datopian.com/contact/' },
+      { name: 'Get Help', href: 'https://www.datopian.com/contact/' },
     ],
     social: [
       {

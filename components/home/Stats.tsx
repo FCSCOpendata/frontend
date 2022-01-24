@@ -47,7 +47,7 @@ const Stats: React.FC = () => {
               />
             </svg>
           </div>
-          <div className="text-2xl">
+          <div className="text-2xl text-left xs:text-center">
             {' '}
             {item.stat} <div className="text-sm uppercase"> {item.name} </div>
           </div>
