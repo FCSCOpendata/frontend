@@ -7,37 +7,28 @@ import {
 } from '../../../graphql/queries';
 
 const popularDatasets: React.FC = () => {
-  const queryMultiple = () => {
-    const popularDatasets = useQuery(GET_POPULAR_DATASETS_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
-    const categoryData = useQuery(GET_CATEGORIES_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
+  //   const queryMultiple = () => {
+  //     const popularDatasets = useQuery(GET_POPULAR_DATASETS_QUERY, {
+  //       notifyOnNetworkStatusChange: true,
+  //     });
+  //     const categoryData = useQuery(GET_CATEGORIES_QUERY, {
+  //       notifyOnNetworkStatusChange: true,
+  //     });
 
-    return [popularDatasets, categoryData];
-  };
+  //     return [popularDatasets, categoryData];
+  //   };
 
-  const [
-    { loading: loadingDatasets, error: errorDatasets, data: dataDatasets },
-    {
-      loading: loadingCategories,
-      error: errorCategories,
-      data: dataCategories,
-    },
-  ] = queryMultiple();
+  // const [
+  //   { loading: loadingDatasets, error: errorDatasets, data: dataDatasets },
+  //   {
+  //     loading: loadingCategories,
+  //     error: errorCategories,
+  //     data: dataCategories,
+  //   },
+  // ] = queryMultiple();
 
-  if (errorDatasets) return <ErrorMessage message="Error loading datasets." />;
-  if (loadingDatasets) return <div>Loading Datasets</div>;
-  if (errorCategories)
-    return <ErrorMessage message="Error loading categories." />;
-  if (loadingCategories) return <div>Loading Categories</div>;
-  const popular = dataDatasets.popular.result.results;
-  const categories = dataCategories.categories.result.slice(0, 4);
-
-  const dd = new Date(popular[0].metadata_modified);
-  console.log(dd.getFullYear());
-
+  // if (errorDatasets) return <ErrorMessage message="Error loading datasets." />;
+  // if (loadingDatasets) return <div>Loading Datasets</div>;
   return (
     <div>
       <Link href="/category">
@@ -57,10 +48,11 @@ const popularDatasets: React.FC = () => {
                 Highlights
               </h1>
               <div className="mt-16">
-                {popular.map((dataset) => (
-                  <div key={dataset.title} className="mt-4">
+                <a href="https://datahub.io/core/bond-yields-us-10y">
+                  <div className="mt-4">
                     <h3 className="font-inter font-semibold text-xl">
-                      {dataset.title}
+                      10 year US Government Bond Yields (long-term interest
+                      rate)
                     </h3>
                     <span className="font-roboto font-light text-xs">
                       <img
@@ -68,43 +60,122 @@ const popularDatasets: React.FC = () => {
                         src="/images/download-icon.svg"
                         alt="download-icon"
                       />
-                      &nbsp; Downloads 6100+ &nbsp; &nbsp;
+                      &nbsp; Downloads: 428 &nbsp; &nbsp;
                       <img
                         className="inline"
                         src="/images/update-icon.svg"
                         alt="update-icon"
                       />
-                      &nbsp; Last updated:{' '}
-                      {new Intl.DateTimeFormat('en-GB', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      }).format(new Date(dataset.metadata_modified))}
+                      &nbsp; Last updated: January 25, 2022
                     </span>
                   </div>
-                ))}
+                </a>
+                <a href="https://datahub.io/core/world-cities">
+                  <div className="mt-4">
+                    <h3 className="font-inter font-semibold text-xl">
+                      Major cities of the world
+                    </h3>
+                    <span className="font-roboto font-light text-xs">
+                      <img
+                        className="inline"
+                        src="/images/download-icon.svg"
+                        alt="download-icon"
+                      />
+                      &nbsp; Downloads: 855 &nbsp; &nbsp;
+                      <img
+                        className="inline"
+                        src="/images/update-icon.svg"
+                        alt="update-icon"
+                      />
+                      &nbsp; Last updated: November 12, 2021
+                    </span>
+                  </div>
+                </a>
+                <a href="https://datahub.io/core/country-list">
+                  <div className="mt-4">
+                    <h3 className="font-inter font-semibold text-xl">
+                      List of all countries with their 2 digit codes (ISO
+                      3166-1)
+                    </h3>
+                    <span className="font-roboto font-light text-xs">
+                      <img
+                        className="inline"
+                        src="/images/download-icon.svg"
+                        alt="download-icon"
+                      />
+                      &nbsp; Downloads: 855 &nbsp; &nbsp;
+                      <img
+                        className="inline"
+                        src="/images/update-icon.svg"
+                        alt="update-icon"
+                      />
+                      &nbsp; Last updated: August 30, 2021
+                    </span>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
-          {categories.map((category) => (
-            <div
-              className="bg-white p-8 col-span-3 rounded-lg"
-              key={category.name}
-            >
-              <img src={category.image_display_url} alt="category-icon" />
-              <h3 className="font-inter font-semibold text-lg mt-4">
-                {category.display_name}
-              </h3>
-              <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-3">
-                {category.description}
-              </p>
-              <Link href={'/category/' + category.id}>
-                <span className="font-inter font-medium text-sm text-accent cursor-pointer">
-                  View collection -&gt;
-                </span>
-              </Link>
-            </div>
-          ))}
+          <div className="bg-white p-8 col-span-3 rounded-lg">
+            <img src="/images/groups/climate.svg" alt="climate category" />
+            <h3 className="font-inter font-semibold text-lg mt-4">
+              Climate Change
+            </h3>
+            <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-3">
+              The most important &quot;general&quot; datasets on climate
+              change.
+            </p>
+            <Link href="/category/">
+              <span className="font-inter font-medium text-sm text-accent cursor-pointer">
+                View collection -&gt;
+              </span>
+            </Link>
+          </div>
+          <div className="bg-white p-8 col-span-3 rounded-lg">
+            <img src="/images/groups/education.svg" alt="education category" />
+            <h3 className="font-inter font-semibold text-lg mt-4">
+              Education
+            </h3>
+            <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-3">
+              Ready-to-use datasets on US education data.
+            </p>
+            <Link href="/category/">
+              <span className="font-inter font-medium text-sm text-accent cursor-pointer">
+                View collection -&gt;
+              </span>
+            </Link>
+          </div>
+          <div className="bg-white p-8 col-span-3 rounded-lg">
+            <img src="/images/groups/economic.svg" alt="economic category" />
+            <h3 className="font-inter font-semibold text-lg mt-4">
+              Economic Data
+            </h3>
+            <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-3">
+              A collection of economic indicators available on Portal.
+            </p>
+            <Link href="/category/">
+              <span className="font-inter font-medium text-sm text-accent cursor-pointer">
+                View collection -&gt;
+              </span>
+            </Link>
+          </div>
+          <div className="bg-white p-8 col-span-3 rounded-lg">
+            <img
+              src="/images/groups/machine.svg"
+              alt="Machine Learning category"
+            />
+            <h3 className="font-inter font-semibold text-lg mt-4">
+              Machine Learning
+            </h3>
+            <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-3">
+              Examples of machine learning datasets.
+            </p>
+            <Link href="/category/">
+              <span className="font-inter font-medium text-sm text-accent cursor-pointer">
+                View collection -&gt;
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

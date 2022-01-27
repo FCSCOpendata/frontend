@@ -7,6 +7,9 @@ export default function mostDownloaded() {
           <div className="inline-block font-roboto text-sm text-left pl-4">
             &nbsp; MOST DOWNLOADED
           </div>
+          <p className="font-inter font-medium text-xl mt-4">
+            Natural gas prices over time 1880-2010
+          </p>
         </div>
         <img
           className="object-cover rounded-lg"

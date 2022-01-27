@@ -181,7 +181,7 @@ export const GET_POPULAR_DATASETS_QUERY = gql`
 
 export const GET_CATEGORIES_QUERY = gql`
   query categories {
-    categories(sort: "package_count desc", all_fields: True)
+    categories(all_fields: True)
       @rest(type: "Response", path: "group_list?{args}") {
       result
     }
