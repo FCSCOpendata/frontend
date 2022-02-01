@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <div className="relative bg-hero hero-pattern overflow-hidden min-h-screen">
+    <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
       {/* <div className="bg-accent block absolute top-1/3 left-0 py-2 px-12 vertical-text sm:hidden md:block">rectangle</div> */}
       <div className="flex flex-row">
         <div className="flex-initial w-24 sm:w-16 md:w-16 lg:w-20 xl:w-20 relative">

@@ -17,8 +17,6 @@ module.exports = {
         inter: ['Inter', 'sans-serif'],
       },
       backgroundImage: (theme) => ({
-        mainbg:
-          'linear-gradient(180deg, rgba(222, 222, 222, 0.72) 0%, rgba(0, 187, 194, 0.08) 45.73%, rgba(239, 239, 239, 0.468504) 68.65%, #FFFFFF 100%)',
         blog1:
           "url('/images/blog/blog1.jpg'); box-shadow: inset 0 0 0 50vw rgba(0,28,49,0.76)",
         blog2:

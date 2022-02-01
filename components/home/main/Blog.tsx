@@ -10,9 +10,9 @@ export default function blog() {
       <h1 className="mt-8 font-inter font-black text-4xl md:text-left text-center mx-2">
         Latest News
       </h1>
-      <div className="mt-8 py-10 md:inline-flex items-center justify-between">
-        <div className="bg-blog1 mt-4 sm:mx-2 md:w-1/3 rounded-lg">
-          <div className="p-8">
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-9 grid-rows-1 gap-6 w-auto py-10">
+        <div className="bg-blog1 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+          <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE
             </p>
@@ -47,8 +47,8 @@ export default function blog() {
             </div>
           </div>
         </div>
-        <div className="bg-blog2 bg-no-repeat bg-cover mt-4 sm:mx-2 md:w-1/3 lg:mx-4 xl:mx-4 rounded-lg">
-          <div className="p-8">
+        <div className="bg-blog2 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+          <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE
             </p>
@@ -81,8 +81,8 @@ export default function blog() {
             </div>
           </div>
         </div>
-        <div className="bg-blog3 mt-4 sm:mx-2 md:w-1/3 lg:mx-4 xl:mx-4 rounded-lg">
-          <div className="p-8">
+        <div className="bg-blog3 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+          <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE
             </p>
@@ -122,7 +122,7 @@ export default function blog() {
           </div>
         </div>
       </div>
-      <div className="px-2 font-inter -mt-6 uppercase text-sm md:text-right text-center mr-2 cursor-pointer">
+      <div className="px-2 font-inter -mt-8 uppercase text-sm md:text-right text-center mr-2 cursor-pointer">
         <a href="https://" target={'_blank'} rel={'noreferrer'}>
           Read More -&gt;
         </a>

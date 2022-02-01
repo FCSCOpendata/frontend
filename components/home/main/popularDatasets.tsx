@@ -36,7 +36,7 @@ const popularDatasets: React.FC = () => {
           View all categories -&gt;
         </div>
       </Link>
-      <div className="flex flex-row flex-wrap sm:flex-no-wrap mt-2">
+      <div>
         <div className="grid grid-cols-1 md:grid-cols-10 grid-rows-2 gap-6 w-auto">
           <div className="bg-white p-8 rounded-lg shadow-lg row-span-2 col-span-4">
             <div>
