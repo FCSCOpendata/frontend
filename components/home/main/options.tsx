@@ -1,7 +1,7 @@
 export default function options() {
   return (
     <div className="px-4">
-      <div className="grid grid-cols-1 md:grid-cols-9 grid-rows-1 gap-6 w-auto sm:-mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-9 grid-rows-1 gap-6 w-auto sm:-mt-20">
         <div className="bg-white rounded-lg shadow-md sm:z-10 py-20 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
           <img className="m-auto" src="/images/search.svg" alt="Search icon" />
           <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
