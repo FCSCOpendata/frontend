@@ -40,14 +40,14 @@ const popularDatasets: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-10 grid-rows-2 gap-6 w-auto">
           <div className="bg-white p-8 rounded-lg shadow-lg row-span-2 col-span-4">
             <div>
-              <div className="inline-block align-middle w-12 border border-green-500" />
+              <div className="inline-block align-middle w-12 h-0.5 border border-accent" />
               <span className="inline-block font-roboto text-sm text-center pl-2">
                 &nbsp; MOST POPULAR DATASETS
               </span>
               <h1 className="font-inter font-black text-4xl mt-6">
                 Highlights
               </h1>
-              <div className="mt-16">
+              <div className="flex flex-col mt-16">
                 <a href="https://datahub.io/core/bond-yields-us-10y">
                   <div className="mt-4">
                     <h3 className="font-inter font-semibold text-xl">

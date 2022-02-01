@@ -1,8 +1,8 @@
 export default function options() {
   return (
-    <ul className="flex flex-row flex-wrap sm:flex-no-wrap justify-between">
-      <li className="bg-white w-96 py-16 md:-mt-20 mt-4 sm:w-1/4 z-10 sm:mx-2 xl:mx-4 rounded-lg shadow-lg">
-        <div>
+    <div>
+      <div className="flex flex-wrap justify-between">
+        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 sm:-mx-2 sm:-mt-20 sm:z-10 py-16 sm:w-96 lg:py-24 hover:bg-darkaccent cursor-pointer">
           <img className="m-auto" src="/images/search.svg" alt="Search icon" />
           <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
             {' '}
@@ -13,9 +13,7 @@ export default function options() {
             Find, share, use and gain <br /> insights from data.
           </p>
         </div>
-      </li>
-      <li className="bg-white w-96 py-16 md:-mt-20 mt-4 sm:w-1/4 sm:mx-2 lg:mx-6 xl:mx-4 z-10 rounded-lg shadow-lg">
-        <div>
+        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 sm:-mx-2 sm:-mt-20 sm:z-10 py-16 sm:w-96 lg:py-24 hover:bg-darkaccent cursor-pointer">
           <img className="m-auto" src="/images/upload.svg" alt="Upload icon" />
           <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
             {' '}
@@ -26,9 +24,7 @@ export default function options() {
             Make your dataset <br /> available on Portal.
           </p>
         </div>
-      </li>
-      <li className="bg-white w-96 py-16 md:-mt-20 mt-4 sm:w-1/4 sm:mx-2 lg:mx-6 xl:mx-4 z-10 rounded-lg shadow-lg">
-        <div>
+        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 sm:-mx-2 sm:-mt-20 sm:z-10 py-16 sm:w-96 hover:bg-darkaccent cursor-pointer">
           <img
             className="m-auto"
             src="/images/request.svg"
@@ -43,7 +39,7 @@ export default function options() {
             Send us a request for <br /> the data you didn’t find.
           </p>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
