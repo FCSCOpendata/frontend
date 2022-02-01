@@ -30,13 +30,13 @@ const popularDatasets: React.FC = () => {
   // if (errorDatasets) return <ErrorMessage message="Error loading datasets." />;
   // if (loadingDatasets) return <div>Loading Datasets</div>;
   return (
-    <div>
+    <div className="px-2">
       <Link href="/category">
-        <div className="px-2 font-inter uppercase text-xs mt-24 md:text-right text-center mr-2 cursor-pointer">
+        <div className="font-inter uppercase text-xs mt-24 md:text-right text-center mr-2 cursor-pointer">
           View all categories -&gt;
         </div>
       </Link>
-      <div className="px-2 flex flex-row flex-wrap sm:flex-no-wrap mt-2">
+      <div className="flex flex-row flex-wrap sm:flex-no-wrap mt-2">
         <div className="grid grid-cols-1 md:grid-cols-10 grid-rows-2 gap-6 w-auto">
           <div className="bg-white p-8 rounded-lg shadow-lg row-span-2 col-span-4">
             <div>
