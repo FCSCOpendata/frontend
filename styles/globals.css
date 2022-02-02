@@ -1,8 +1,11 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=Roboto:wght@300;400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.bg-cover {
+.bg-hero {
   background-size: cover;
   background-image: url('/images/hero.svg');
   background-position: 40% 50%;

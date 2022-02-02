@@ -18,15 +18,19 @@ describe('Home Page', () => {
     cy.get('.text-3xl').and('contain.text', 'results found');
   });
 
-  it('shows the recent datasets', () => {
-    cy.contains('Recent Datasets');
+  it('shows the most popular datasets', () => {
+    cy.contains('MOST POPULAR DATASETS');
   });
 
-  it('returns the expected number of recent datasets', () => {
-    cy.get('ul.grid')
-      .find('li')
-      .should(($li) => {
-        expect($li).to.have.length.of.at.least(2);
-      });
+  it('shows the ckan categories', () => {
+    cy.contains('View collection');
+  });
+
+  it('shows the latest news from blog', () => {
+    cy.contains('ARTICLE');
+  });
+
+  it('shows the most downloaded graph', () => {
+    cy.contains('MOST DOWNLOADED');
   });
 });

@@ -20,7 +20,7 @@ const restLink = new RestLink({
     }/posts/slug:`,
     'wordpress-posts': `https://public-api.wordpress.com/rest/v1.1/sites/${
       getConfig().publicRuntimeConfig.CMS
-    }/posts/`,
+    }/posts`,
   },
   typePatcher: {
     Search: (data: any): any => {

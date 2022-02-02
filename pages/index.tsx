@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-import RecentDataset from '../components/home/Recent';
+// import RecentDataset from '../components/home/Recent';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
@@ -25,7 +25,7 @@ const Home: React.FC<{ locale: any; locales: any }> = ({
         <NavBar />
         <Hero />
         <MainOptions />
-        <RecentDataset />
+        {/* <RecentDataset /> */}
         <Footer />
       </div>
     </>
