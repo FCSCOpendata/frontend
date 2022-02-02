@@ -7,7 +7,7 @@
 
 .bg-hero {
   background-size: cover;
-  background-image: url('/images/hero.svg');
+  background-image: url('/images/hero-bg.jpg');
   background-position: 40% 50%;
   min-height: 800px;
 }
