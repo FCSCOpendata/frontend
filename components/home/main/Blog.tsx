@@ -2,7 +2,7 @@ export default function blog() {
   return (
     <div>
       <div className="mt-32 mx-2">
-        <div className="inline-block align-middle w-12 h-0.5  border border-accent" />
+        <div className="inline-block align-middle w-12 h-0.5  border border-darkbrown" />
         <div className="inline-block font-roboto text-sm text-center pl-2">
           &nbsp; BLOG
         </div>

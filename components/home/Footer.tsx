@@ -147,7 +147,7 @@ const Footer: React.FC = () => {
               className="w-full h-auto p-3 outline-none text-sm border border-grey-light text-grey dark rounded"
               placeholder="Enter your email"
             />
-            <button className="h-auto py-3 px-7 text-sm text-white bg-accent rounded-xl font-roboto font-bold focus:outline-none focus:bg-darkaccent hover:bg-darkaccent">
+            <button className="h-auto py-3 px-7 text-sm text-white bg-darkbrown rounded-xl font-roboto font-bold focus:outline-none focus:bg-darkerbrown hover:bg-darkerbrown">
               SUBSCRIBE
             </button>
           </div>

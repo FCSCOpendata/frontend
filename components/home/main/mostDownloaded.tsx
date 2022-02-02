@@ -3,7 +3,7 @@ export default function mostDownloaded() {
     <div className="flex flex-row flex-wrap sm:flex-no-wrap mt-10 px-2">
       <div className="bg-white w-full p-4 rounded-lg shadow-lg">
         <div className="px-12">
-          <hr className="inline-block align-middle w-28 h-0.5 border border-accent" />
+          <hr className="inline-block align-middle w-28 h-0.5 border border-darkbrown" />
           <div className="inline-block font-roboto text-sm text-left pl-4">
             &nbsp; MOST DOWNLOADED
           </div>

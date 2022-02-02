@@ -40,7 +40,7 @@ const popularDatasets: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-10 grid-rows-2 gap-6 w-auto">
           <div className="bg-white p-8 rounded-lg shadow-lg row-span-2 col-span-4">
             <div>
-              <div className="inline-block align-middle w-12 h-0.5 border border-accent" />
+              <div className="inline-block align-middle w-12 h-0.5 border border-darkbrown" />
               <span className="inline-block font-roboto text-sm text-center pl-2">
                 &nbsp; MOST POPULAR DATASETS
               </span>

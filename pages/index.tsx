@@ -22,8 +22,11 @@ const Home: React.FC<{ locale: any; locales: any }> = ({
           <title>{t(`common:title`)}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <NavBar />
-        <Hero />
+        <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
+          <NavBar />
+          <Hero />
+        </div>
+
         <MainOptions />
         {/* <RecentDataset /> */}
         <Footer />
