@@ -1,13 +1,14 @@
 import useTranslation from 'next-translate/useTranslation';
 import SearchForm from '../search/Form';
 import Stats from './Stats';
+import FloatingParticles from './FloatingParticles';
 
 export default function Footer() {
   const { t } = useTranslation();
 
   return (
     <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
-      {/* <div className="bg-accent block absolute top-1/3 left-0 py-2 px-12 vertical-text sm:hidden md:block">rectangle</div> */}
+      <FloatingParticles />
       <div className="flex flex-row">
         <div className="flex-initial w-24 sm:w-16 md:w-16 lg:w-20 xl:w-20 relative">
           <p className="absolute top-1/2 left-3 vertical-text px-6 pb-20">
@@ -32,8 +33,8 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <div className="flex-1 w-2/3 relative pt-6 pb-16 sm:pb-24 lg:pb-32 z-50">
-          <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-10 lg:mt-32">
+        <div className="flex-1 w-2/3 relative pt-2 pb-16 sm:pb-24 lg:pb-32 z-50">
+          <main className="mt-4 mx-auto max-w-7xl px-4 sm:mt-16 sm:px-10 lg:mt-20">
             <div className="lg:grid lg:grid-cols-12 lg:gap-8">
               <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
                 <h1>
