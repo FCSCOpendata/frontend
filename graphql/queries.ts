@@ -47,6 +47,17 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORGS_QUERY = gql`
+  query orgs {
+    orgs(all_fields: True)
+      @rest(type: "Response", path: "organization_list?{args}") {
+      result @type(title: "Organization") {
+        title
+      }
+    }
+  }
+`;
+
 export const GET_DATASET_QUERY = gql`
   query dataset($id: String) {
     dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
@@ -86,6 +97,7 @@ export const SEARCH_QUERY = gql`
         results {
           name
           title
+          notes
           updated: metadata_modified
           organization {
             name

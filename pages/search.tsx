@@ -3,7 +3,7 @@ import { initializeApollo } from '../lib/apolloClient';
 import utils from '../utils';
 import Head from 'next/head';
 import Nav from '../components/home/Nav';
-import Form from '../components/search/Form';
+import Form from '../components/search/NewForm';
 import Total from '../components/search/Total';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
@@ -19,9 +19,9 @@ const Search: React.FC<Props> = ({ variables }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Nav />
-    <main className="p-6">
+    <main className="px-20 py-12">
       <Form />
-      <Total variables={variables} />
+      {/* <Total variables={variables} /> */}
       <List variables={variables} />
     </main>
   </>
