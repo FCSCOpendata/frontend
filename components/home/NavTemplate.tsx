@@ -17,7 +17,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   };
 
   return (
-    <Disclosure as="nav" className="bg-black shadow">
+    <Disclosure as="nav">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">

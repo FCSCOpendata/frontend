@@ -7,13 +7,13 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
+    <div>
       <FloatingParticles />
       <div className="flex flex-row">
         <div className="flex-initial w-24 sm:w-16 md:w-16 lg:w-20 xl:w-20 relative">
           <p className="absolute top-1/2 left-3 vertical-text px-6 pb-20">
             <a href="/">
-              <div className="absolute py-4 px-6 bg-accent flex flex-row">
+              <div className="absolute py-4 px-6 bg-darkbrown flex flex-row">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-4 mr-3"
