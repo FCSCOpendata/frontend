@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_ORGS_QUERY, GET_CATEGORIES_QUERY } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 
-export default function Sidebar(variables) {
+export default function Sidebar() {
   const queryMultiple = () => {
     const orgs_query = useQuery(GET_ORGS_QUERY, {
       notifyOnNetworkStatusChange: true,
@@ -72,7 +72,7 @@ export default function Sidebar(variables) {
                   id={`checkbox-${index}`}
                   name={category.name}
                   value={category.name}
-                  className="rounded"
+                  className="rounded outline-none focus:outline-none"
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
@@ -94,6 +94,7 @@ export default function Sidebar(variables) {
         <h3 className="font-bold text-gray-900 capitalize mb-4">
           Refine By Keywords
         </h3>
+        <div className="max-h-64"></div>
       </div>
     </div>
   );
