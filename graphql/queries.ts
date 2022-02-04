@@ -171,8 +171,10 @@ export const GET_POPULAR_DATASETS_QUERY = gql`
     popular @rest(type: "Search", path: "package_search?rows=3") {
       result {
         results {
+          name
           title
           metadata_modified
+          organization
         }
       }
     }

@@ -1,18 +1,25 @@
+import Link from 'next/link';
 export default function options() {
   return (
     <div className="px-4">
       <div className="grid grid-cols-1 md:grid-cols-9 grid-rows-1 gap-6 w-auto sm:-mt-24">
-        <div className="bg-white rounded-lg shadow-md sm:z-10 py-20 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
-          <img className="m-auto" src="/images/search.svg" alt="Search icon" />
-          <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
-            {' '}
-            Find data{' '}
-          </h1>
-          <p className="text-center font-inter pt-2">
-            {' '}
-            Find, share, use and gain <br /> insights from data.
-          </p>
-        </div>
+        <Link href="/search">
+          <div className="bg-white rounded-lg shadow-md sm:z-10 py-20 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
+            <img
+              className="m-auto"
+              src="/images/search.svg"
+              alt="Search icon"
+            />
+            <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
+              {' '}
+              Find data{' '}
+            </h1>
+            <p className="text-center font-inter pt-2">
+              {' '}
+              Find, share, use and gain <br /> insights from data.
+            </p>
+          </div>
+        </Link>
 
         <div className="bg-white p-8 rounded-lg shadow-md sm:z-10 py-16 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
           <img className="m-auto" src="/images/upload.svg" alt="Upload icon" />
