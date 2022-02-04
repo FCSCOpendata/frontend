@@ -65,6 +65,9 @@ export const GET_DATASET_QUERY = gql`
         name
         title
         size
+        notes
+        private
+        license_title
         created: metadata_created
         updated: metadata_modified
         resources {

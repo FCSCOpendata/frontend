@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
+import Dataset from '../../pages/[org]/[dataset]';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -17,16 +18,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
 
   const { result } = data.dataset;
 
+  console.log(result);
   const stats = [
-    { name: 'Files', stat: result.resources.length },
-    { name: 'Size', stat: result.size || 'N/A' },
     {
       name: 'Formats',
       stat: result.resources.map((item) => item.format).join(', '),
-    },
-    {
-      name: 'Created',
-      stat: result.created && timeago.format(result.created),
     },
     {
       name: 'Updated',
@@ -50,33 +46,42 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   ];
 
   return (
-    <>
-      <div className="pb-5 border-b border-gray-200">
-        <h1 className="text-3xl leading-6 font-medium text-gray-900">
-          {result.title || result.name}
+    <div>
+      <div className="flex flex-col flex-wrap px-4">
+        <h1 className="text-2xl font-bold text-purple-800 capitalize">
+          {result.title}
         </h1>
-        <p className="mt-2 max-w-4xl text-sm text-gray-500">
-          {result.description || 'This dataset does not have a description.'}
-        </p>
+        <div className="inline-flex mt-4 space-x-3">
+          <img src="/images/dataset-page/location.svg" alt="location-icon" />
+          <span className="font-medium text-sm text-gray-500">Dubai, UAE</span>
+        </div>
+        <div className="inline-flex mt-4 space-x-3">
+          <img src="/images/dataset-page/category.svg" alt="category-icon" />
+          <span className="font-medium text-sm text-gray-500">
+            {result.organization.title}
+          </span>
+        </div>
+        <div className="inline-flex mt-4 space-x-5">
+          <img src="/images/dataset-page/time.svg" alt="time-icon" />
+          <span className="font-medium text-sm text-gray-500">
+            Last Updated: {timeago.format(result.updated)}
+          </span>
+        </div>
+        <div className="inline-flex mt-4 space-x-5">
+          <img src="/images/dataset-page/downloads.svg" alt="download-icon" />
+          <span className="font-medium text-sm text-gray-500">
+            Downloads: 2048
+          </span>
+        </div>
+        <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
+        <span className="mt-8 text-sm">rating goes here</span>
+        <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
+        <div className="mt-4 text-sm sm:w-3/4 line-clamp-6">
+          {result.notes || 'This dataset does not have a description'}
+        </div>
+        <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
       </div>
-      <div className="mb-5">
-        <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          {stats.map((item) => (
-            <div
-              key={item.name}
-              className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6"
-            >
-              <dt className="text-sm font-medium text-gray-500 truncate">
-                {item.name}
-              </dt>
-              <dd className="mt-1 text-3xl font-semibold text-gray-900">
-                {item.stat}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </>
+    </div>
   );
 };
 
