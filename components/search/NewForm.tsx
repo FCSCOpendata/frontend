@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 
 const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {

@@ -4,8 +4,12 @@ import { ErrorMessage } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
 import * as timeago from 'timeago.js';
 import Sidebar from './Sidebar';
+import Pagination from './Pagination';
 
-const List: React.FC<{ variables: any }> = ({ variables }) => {
+const List: React.FC<{ variables: any; setQvariables: any }> = ({
+  variables,
+  setQvariables,
+}) => {
   const {
     loading: loadSearch,
     error: errorSearch,
@@ -18,7 +22,7 @@ const List: React.FC<{ variables: any }> = ({ variables }) => {
   if (errorSearch)
     return <ErrorMessage message="Error loading search results." />;
   if (loadSearch) return <div>Loading</div>;
-  const search_results = dataSearch.search.result;
+  const searchResults = dataSearch.search.result;
 
   return (
     <div>
@@ -28,10 +32,10 @@ const List: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         <div className="p-4 col-span-2">
           <div className="bg-gradient-to-r from-red-500 to-pink-700 bg-clip-text text-4xl font-bold capitalize px-2 mb-4">
-            {search_results.count} Datasets
+            {searchResults.count} Datasets
           </div>
           <ul className="mb-10">
-            {search_results.results.map((dataset, index) => (
+            {searchResults.results.map((dataset, index) => (
               <li
                 key={index}
                 className="flex items-center flex-wrap sm:flex-nowrap p-4"
@@ -105,6 +109,7 @@ const List: React.FC<{ variables: any }> = ({ variables }) => {
               </li>
             ))}
           </ul>
+          <Pagination count={searchResults.count} variables={setQvariables} />
         </div>
       </div>
     </div>

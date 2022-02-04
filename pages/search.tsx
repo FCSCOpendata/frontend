@@ -15,6 +15,7 @@ type Props = {
 
 const Search: React.FC<Props> = ({ variables }) => {
   const [qvariables, setQvariables] = useState(variables);
+  console.log('qvariables', qvariables);
   return (
     <>
       <Head>
@@ -25,7 +26,7 @@ const Search: React.FC<Props> = ({ variables }) => {
       <main className="px-20 py-12">
         <Form variables={setQvariables} />
         {/* <Total variables={variables} /> */}
-        <List variables={qvariables} />
+        <List variables={qvariables} setQvariables={setQvariables} />
       </main>
     </>
   );
