@@ -1,18 +1,28 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 
-const SearchForm: React.FC = () => {
+const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
+  const searchQueryRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e) => {
     if (e) {
       e.preventDefault();
     }
-    router.push({
-      pathname: '/search',
-      query: { q: searchQuery },
+
+    variables((prev) => {
+      const newdata = { ...prev, q: searchQueryRef.current.value };
+      return newdata;
     });
+  };
+
+  const handlekeyEvent = (event) => {
+    if (event.key === 'Enter') {
+      variables((prev) => {
+        const newdata = { ...prev, q: searchQueryRef.current.value };
+        return newdata;
+      });
+    }
   };
 
   return (
@@ -29,7 +39,10 @@ const SearchForm: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-wrap bg-gray-50 rounded-2xl mb-20 px-4 py-4 w-10/12 sm:-mt-20 sm:ml-24">
-        <form className="flex flex-1 relative sm:w-1/2">
+        <form
+          className="flex flex-1 relative sm:w-1/2"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="flex items-center absolute left-0 inset-y-0">
             <svg
               width="17"
@@ -48,11 +61,10 @@ const SearchForm: React.FC = () => {
           </div>
           <input
             id="search2"
-            type="search"
+            type="text"
             name="search"
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
+            ref={searchQueryRef}
+            onKeyPress={handlekeyEvent}
             placeholder="Search Data"
             className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
           />

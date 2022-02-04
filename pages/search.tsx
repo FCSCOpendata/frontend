@@ -7,28 +7,33 @@ import Form from '../components/search/NewForm';
 import Total from '../components/search/Total';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
+import { useState } from 'react';
 
 type Props = {
   variables: any;
 };
 
-const Search: React.FC<Props> = ({ variables }) => (
-  <>
-    <Head>
-      <title>Portal | Search</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <Nav />
-    <main className="px-20 py-12">
-      <Form />
-      {/* <Total variables={variables} /> */}
-      <List variables={variables} />
-    </main>
-  </>
-);
+const Search: React.FC<Props> = ({ variables }) => {
+  const [qvariables, setQvariables] = useState(variables);
+  return (
+    <>
+      <Head>
+        <title>Portal | Search</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Nav />
+      <main className="px-20 py-12">
+        <Form variables={setQvariables} />
+        {/* <Total variables={variables} /> */}
+        <List variables={qvariables} />
+      </main>
+    </>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
+
   const variables = utils.convertToCkanSearchQuery(query);
 
   const apolloClient = initializeApollo();
