@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 
-const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {
-  const router = useRouter();
+const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
+  variables,
+  setQvariables,
+}) => {
   const searchQueryRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e) => {
@@ -9,7 +11,7 @@ const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {
       e.preventDefault();
     }
 
-    variables((prev) => {
+    setQvariables((prev) => {
       const newdata = { ...prev, q: searchQueryRef.current.value };
       return newdata;
     });
@@ -17,7 +19,7 @@ const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {
 
   const handlekeyEvent = (event) => {
     if (event.key === 'Enter') {
-      variables((prev) => {
+      setQvariables((prev) => {
         const newdata = { ...prev, q: searchQueryRef.current.value };
         return newdata;
       });
@@ -64,7 +66,8 @@ const SearchForm: React.FC<{ variables: any }> = ({ variables }) => {
             name="search"
             ref={searchQueryRef}
             onKeyPress={handlekeyEvent}
-            placeholder="Search Data"
+            placeholder="Type your search terms and hit enter"
+            defaultValue={variables.q}
             className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
           />
         </form>

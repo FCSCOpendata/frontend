@@ -23,8 +23,7 @@ const Search: React.FC<Props> = ({ variables }) => {
       </Head>
       <Nav />
       <main className="px-20 py-12">
-        <Form variables={setQvariables} />
-        {/* <Total variables={variables} /> */}
+        <Form variables={qvariables} setQvariables={setQvariables} />
         <List variables={qvariables} setQvariables={setQvariables} />
       </main>
     </>
