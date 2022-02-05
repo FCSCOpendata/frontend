@@ -19,10 +19,10 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
 
   return (
     <div>
-      <div className="flex bg-gray-300 rounded-lg px-12 py-20 mt-8">
-        <div className="grid grid-cols-2 grid-rows-3 gap-x-32 gap-y-12">
+      <div className="flex bg-gray-300 rounded-lg px-12 py-8 mt-8">
+        <div className="grid grid-cols-2 grid-rows-3 gap-x-32 gap-y-6">
           <div>
-            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
               ORGANIZATION
             </h4>
             <span className="text-base font-bold text-gray-900">
@@ -30,7 +30,7 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
             </span>
           </div>
           <div>
-            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
               VISIBILITY
             </h4>
             <span className="text-base font-bold text-gray-900">
@@ -38,13 +38,13 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
             </span>
           </div>
           <div>
-            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
               CONTRIBUTOR
             </h4>
             <span className="text-base font-bold text-gray-900">N/A</span>
           </div>
           <div>
-            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
               EXPECTED UPDATE FREQUENCY
             </h4>
             <span className="text-base font-bold text-gray-900">
@@ -52,7 +52,7 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
             </span>
           </div>
           <div>
-            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
               DATASET DATE
             </h4>
             <span className="text-base font-bold text-gray-900">

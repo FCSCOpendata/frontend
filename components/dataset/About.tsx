@@ -19,36 +19,16 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { result } = data.dataset;
 
   console.log(result);
-  const stats = [
-    {
-      name: 'Formats',
-      stat: result.resources.map((item) => item.format).join(', '),
-    },
-    {
-      name: 'Updated',
-      stat: result.updated && timeago.format(result.updated),
-    },
-    {
-      name: 'Licenses',
-      stat: result.licenses?.length
-        ? result.licenses.map((item, index) => (
-            <a
-              className="text-yellow-600"
-              href={item.path || '#'}
-              title={item.title || ''}
-              key={index}
-            >
-              {item.name}
-            </a>
-          ))
-        : 'N/A',
-    },
+  const resource_formats = [
+    result.resources.map((item) => item.format).join(', '),
   ];
+
+  console.log(resource_formats);
 
   return (
     <div>
-      <div className="flex flex-col flex-wrap px-4">
-        <h1 className="text-2xl font-bold text-purple-800 capitalize">
+      <div className="flex flex-col flex-wrap sm:pr-16">
+        <h1 className="text-4xl font-bold text-purple-800 capitalize">
           {result.title}
         </h1>
         <div className="inline-flex mt-4 space-x-3">
@@ -76,10 +56,20 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
         <span className="mt-8 text-sm">rating goes here</span>
         <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
-        <div className="mt-4 text-sm sm:w-3/4 line-clamp-6">
+        <div className="mt-4 text-sm sm:w-3/4 leading-relaxed line-clamp-6">
           {result.notes || 'This dataset does not have a description'}
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
+        <div className="flex flex-1 mt-6">
+          {resource_formats.map((format, index) => (
+            <div
+              key={index}
+              className="bg-green-400 rounded-2xl text-white uppercase px-4 py-1 "
+            >
+              {format}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

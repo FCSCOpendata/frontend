@@ -10,6 +10,7 @@ import Footer from '../../../components/home/Footer';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import Information from '../../../components/dataset/Information';
 import Metrics from '../../../components/dataset/Metrics';
+import SimilarDatasets from '../../../components/dataset/SimilarDatasets';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -31,6 +32,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <div className="flex flex-col sm:w-1/2">
           <Metrics />
           <Information variables={variables} />
+          <SimilarDatasets />
           {/* <Resources variables={variables} /> */}
         </div>
       </main>
