@@ -31,8 +31,9 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
           <Sidebar />
         </div>
         <div className="p-4 col-span-2">
-          <div className="bg-gradient-to-r from-red-500 to-pink-700 bg-clip-text text-4xl font-bold capitalize px-2 mb-4">
-            {searchResults.count} Datasets
+          <div className="bg-gradient-to-r from-red-500 to-pink-700 bg-clip-text text-4xl font-bold px-2 mb-4">
+            {searchResults.count}{' '}
+            {searchResults.count > 1 ? 'datasets found' : 'dataset found'}
           </div>
           <ul className="mb-10">
             {searchResults.results.map((dataset, index) => (
@@ -81,7 +82,9 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
                       </svg>
 
                       <span className="text-xs text-yellow-700 capitalize">
-                        &nbsp; {dataset.organization.title}
+                        &nbsp;{' '}
+                        {dataset.organization.title ||
+                          dataset.organization.name}
                       </span>
                     </div>
                     <div className="bg-red-100 px-2 py-0.5 rounded-2xl items-center">
