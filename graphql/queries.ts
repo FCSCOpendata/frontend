@@ -65,7 +65,7 @@ export const GET_DATASET_QUERY = gql`
         name
         title
         size
-        notes
+        description: notes
         private
         license_title
         created: metadata_created
@@ -100,7 +100,7 @@ export const SEARCH_QUERY = gql`
         results {
           name
           title
-          notes
+          description: notes
           updated: metadata_modified
           organization {
             name

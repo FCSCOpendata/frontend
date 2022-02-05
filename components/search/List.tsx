@@ -59,7 +59,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
                         {dataset.title}
                       </h1>
                       <p className="text-sm font-medium text-gray-500 line-clamp-2">
-                        {dataset.notes}
+                        {dataset.description}
                       </p>
                     </a>
                   </Link>

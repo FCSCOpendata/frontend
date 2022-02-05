@@ -57,7 +57,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         <span className="mt-8 text-sm">rating goes here</span>
         <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
         <div className="mt-4 text-sm sm:w-3/4 leading-relaxed line-clamp-6">
-          {result.notes || 'This dataset does not have a description'}
+          {result.description || 'This dataset does not have a description'}
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
         <div className="flex flex-1 mt-6">
