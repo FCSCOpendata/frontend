@@ -4,13 +4,13 @@ import Head from 'next/head';
 import { initializeApollo } from '../../../lib/apolloClient';
 import Nav from '../../../components/home/Nav';
 import About from '../../../components/dataset/About';
-import Org from '../../../components/dataset/Org';
-import Resources from '../../../components/dataset/Resources';
 import Footer from '../../../components/home/Footer';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import Information from '../../../components/dataset/Information';
 import Metrics from '../../../components/dataset/Metrics';
 import SimilarDatasets from '../../../components/dataset/SimilarDatasets';
+import BottomBanner from '../../../components/_shared/BottomBanner';
+import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -25,6 +25,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
+      <NavBreadCrumbs />
       <main className="flex flex-wrap p-8 justify-center">
         <div className="sm:w-1/3">
           <About variables={variables} />
@@ -36,6 +37,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           {/* <Resources variables={variables} /> */}
         </div>
       </main>
+      <BottomBanner />
       <Footer />
     </>
   );

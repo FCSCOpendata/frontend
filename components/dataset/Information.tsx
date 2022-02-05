@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/react-hooks';
-import * as timeago from 'timeago.js';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 

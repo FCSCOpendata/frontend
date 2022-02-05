@@ -17,13 +17,9 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-
-  console.log(result);
   const resource_formats = [
     result.resources.map((item) => item.format).join(', '),
   ];
-
-  console.log(resource_formats);
 
   return (
     <div>

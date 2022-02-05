@@ -7,8 +7,6 @@ const Pagination: React.FC<{ variables: any; count: number }> = ({
     pages.push(i);
   }
 
-  console.log(pages);
-
   const handleClick = (i) => {
     variables((prev) => {
       const newVar = { ...prev, start: i };
