@@ -4,7 +4,6 @@ import utils from '../utils';
 import Head from 'next/head';
 import Nav from '../components/home/Nav';
 import Form from '../components/search/NewForm';
-import Total from '../components/search/Total';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
@@ -15,7 +14,7 @@ type Props = {
 
 const Search: React.FC<Props> = ({ variables }) => {
   const [qvariables, setQvariables] = useState(variables);
-  console.log('qvariables', qvariables);
+
   return (
     <>
       <Head>
