@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ErrorMessage } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
 import * as timeago from 'timeago.js';
-import Sidebar from './Sidebar';
 import Pagination from './Pagination';
 
 const List: React.FC<{ variables: any; setQvariables: any }> = ({
