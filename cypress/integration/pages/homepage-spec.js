@@ -15,7 +15,7 @@ describe('Home Page', () => {
     cy.get('form').find('[type="search"]').type('gdp');
     cy.get('form').submit();
     cy.url().should('include', '/search?q=gdp');
-    cy.get('.text-4xl').and('contain.text', 'Datasets');
+    cy.get('.text-4xl').and('contain.text', 'datasets');
   });
 
   it('shows the most popular datasets', () => {

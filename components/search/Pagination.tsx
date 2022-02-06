@@ -18,7 +18,7 @@ const Pagination: React.FC<{ variables: any; count: number }> = ({
       {pages.map((val, key) => {
         return (
           <button
-            className="btn btn-primary text-blue"
+            className="mx-1"
             key={key}
             onClick={() => {
               handleClick(val);

@@ -7,6 +7,10 @@ import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
+import SearchSuggestions from '../components/search/SearchSuggestions';
+import Footer from '../components/home/Footer';
+import BottomBanner from '../components/_shared/BottomBanner';
+import Sidebar from '../components/search/Sidebar';
 
 type Props = {
   variables: any;
@@ -24,8 +28,18 @@ const Search: React.FC<Props> = ({ variables }) => {
       <Nav />
       <main className="px-20 py-12">
         <Form variables={qvariables} setQvariables={setQvariables} />
-        <List variables={qvariables} setQvariables={setQvariables} />
+        <div className="flex flex-wrap">
+          <div className="sm:w-1/4">
+            <Sidebar />
+          </div>
+          <div className="sm:w-3/4">
+            <List variables={qvariables} setQvariables={setQvariables} />
+            <SearchSuggestions />
+          </div>
+        </div>
       </main>
+      <BottomBanner />
+      <Footer />
     </>
   );
 };

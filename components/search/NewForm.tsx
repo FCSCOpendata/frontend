@@ -39,7 +39,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
           </span>
         </div>
       </div>
-      <div className="flex flex-wrap bg-gray-50 rounded-2xl mb-20 px-4 py-4 w-10/12 sm:-mt-20 sm:ml-24">
+      <div className="flex flex-wrap bg-gray-50 rounded-2xl mb-20 px-4 py-4 sm:w-10/12 sm:-mt-20 sm:ml-24">
         <form
           className="flex flex-1 relative sm:w-1/2"
           onSubmit={(e) => e.preventDefault()}
@@ -71,7 +71,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
             className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
           />
         </form>
-        <div className="flex sm:w-1/2 justify-between">
+        <div className="flex flex-wrap sm:w-1/2 justify-center sm:justify-between">
           <div className="">
             <select
               name="themes"
