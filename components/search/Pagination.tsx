@@ -3,7 +3,7 @@ const Pagination: React.FC<{ variables: any; count: number }> = ({
   count,
 }) => {
   const pages = [];
-  for (let i = 0; i < count; i += 10) {
+  for (let i = 0; i < count; i += 5) {
     pages.push(i);
   }
 
