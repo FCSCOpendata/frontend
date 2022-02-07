@@ -1,6 +1,6 @@
 export default function DatasetNav() {
   return (
-    <div className="flex flex-nowrap">
+    <div className="flex">
       <div className="border-b-8 border-gray-100 px-8 py-4">
         <span className="font-medium tracking-wide text-gray-400">
           Overview

@@ -12,6 +12,7 @@ import SimilarDatasets from '../../../components/dataset/SimilarDatasets';
 import BottomBanner from '../../../components/_shared/BottomBanner';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import DatasetNav from '../../../components/dataset/DatasetNav';
+import Resources from '../../../components/dataset/Resources';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
