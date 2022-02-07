@@ -214,7 +214,20 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
         <h3 className="font-bold text-gray-900 capitalize mb-4">
           Refine By Keywords
         </h3>
-        <div className="max-h-64"></div>
+        <div className="grid grid-cols-2 grid-rows-auto gap-4">
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Data JSON</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Environment Data</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Respiratory Diseases</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Covid-19</span>
+          </div>
+        </div>
       </div>
     </div>
   );
