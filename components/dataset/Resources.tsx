@@ -15,7 +15,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-
+  console.log(result.resources);
   return (
     <div className="flex flex-col p-8 bg-gray-200 rounded-xl mt-10">
       <div className="flex justify-end">
@@ -71,7 +71,12 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                 </span>
               </button>
               <button className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5">
-                <span className="text-xs font-bold text-white">Download</span>
+                <a
+                  className="text-xs font-bold text-white"
+                  href={resource.path}
+                >
+                  Download
+                </a>
               </button>
             </div>
           </li>
