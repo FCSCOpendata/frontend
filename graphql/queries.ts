@@ -53,6 +53,7 @@ export const GET_ORGS_QUERY = gql`
       @rest(type: "Response", path: "organization_list?{args}") {
       result @type(title: "Organization") {
         title
+        name
       }
     }
   }

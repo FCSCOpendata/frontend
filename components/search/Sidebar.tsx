@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { GET_ORGS_QUERY, GET_CATEGORIES_QUERY } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 
-export default function Sidebar() {
+export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
   const [showMore, setShowMore] = useState({ orgs: 5, category: 5 });
+
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, {
       notifyOnNetworkStatusChange: true,
@@ -56,6 +57,53 @@ export default function Sidebar() {
     }
   };
 
+  const filterSearch = (event, btnType, name) => {
+    if (event.target.checked) {
+      setSideFilter((prev) => {
+        const newFilter = { ...prev };
+        newFilter[btnType].push(name);
+
+        const fq = generateFq(newFilter);
+
+        setQvariables((prev) => {
+          const newQ = { ...prev, fq: fq };
+          return newQ;
+        });
+        return newFilter;
+      });
+    } else {
+      setSideFilter((prev) => {
+        const newFilter = { ...prev };
+        const index = newFilter[btnType].indexOf(name);
+        newFilter[btnType].splice(index, 1);
+
+        const fq = generateFq(newFilter);
+
+        setQvariables((prev) => {
+          const newQ = { ...prev, fq: fq };
+          console.log(newQ);
+          return newQ;
+        });
+        return newFilter;
+      });
+    }
+  };
+
+  const generateFq = (sideFilter) => {
+    let fq = '';
+    for (const key of Object.keys(sideFilter)) {
+      if (sideFilter[key].length > 0) {
+        let innerFq = `'${key}:${sideFilter[key][0]}`;
+        for (let i = 1; i < sideFilter[key].length; i++) {
+          innerFq += ` OR ${key}:${sideFilter[key][i]}`;
+        }
+
+        fq += ' ' + innerFq + "'";
+      }
+    }
+    return fq.trim();
+  };
+
   return (
     <div className="p-4">
       <div className="bg-gray-50 rounded-lg p-4">
@@ -72,6 +120,7 @@ export default function Sidebar() {
                   name={org.title}
                   value={org.title}
                   className="rounded"
+                  onChange={(e) => filterSearch(e, 'organization', org.name)}
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
@@ -123,6 +172,7 @@ export default function Sidebar() {
                     id={`checkbox-${index}`}
                     name={category.name}
                     value={category.name}
+                    onChange={(e) => filterSearch(e, 'groups', category.name)}
                     className="rounded outline-none focus:outline-none"
                   />
                   <label

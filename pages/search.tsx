@@ -18,6 +18,10 @@ type Props = {
 
 const Search: React.FC<Props> = ({ variables }) => {
   const [qvariables, setQvariables] = useState(variables);
+  const [sideFilter, setSideFilter] = useState({
+    organization: [],
+    groups: [],
+  });
 
   return (
     <>
@@ -30,7 +34,11 @@ const Search: React.FC<Props> = ({ variables }) => {
         <Form variables={qvariables} setQvariables={setQvariables} />
         <div className="flex flex-wrap">
           <div className="sm:w-1/4">
-            <Sidebar />
+            <Sidebar
+              setQvariables={setQvariables}
+              sideFilter={sideFilter}
+              setSideFilter={setSideFilter}
+            />
           </div>
           <div className="sm:w-3/4">
             <List variables={qvariables} setQvariables={setQvariables} />
