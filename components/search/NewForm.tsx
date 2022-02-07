@@ -1,16 +1,18 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useRef } from 'react';
 import { GET_CATEGORIES_QUERY } from '../../graphql/queries';
+import { ErrorMessage } from '../_shared';
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   variables,
   setQvariables,
 }) => {
-  const { loading: loadingCategories, data: dataCategories } = useQuery(
-    GET_CATEGORIES_QUERY,
-    {
-      notifyOnNetworkStatusChange: true,
-    }
-  );
+  const {
+    loading: loadCategories,
+    error: errorCategories,
+    data: dataCategories,
+  } = useQuery(GET_CATEGORIES_QUERY, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   const searchQueryRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +35,10 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
       });
     }
   };
+
+  if (errorCategories)
+    return <ErrorMessage message="Error loading Categories" />;
+  if (loadCategories) return <div>Loading Categories</div>;
 
   return (
     <div>
@@ -86,14 +92,12 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
               id="themes"
               className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:border-gray-100"
             >
-              <option disabled selected>
-                Theme
-              </option>
-              {/* {dataCategories.categories.result.map((theme, index) => (
+              <option>Filter By group</option>
+              {dataCategories.categories.result.map((theme, index) => (
                 <option key={index} value={theme.name}>
                   {theme.display_name}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
           <div className="">
