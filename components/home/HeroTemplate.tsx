@@ -10,7 +10,7 @@ export default function Footer() {
     <div>
       <FloatingParticles />
       <div className="flex flex-row">
-        <div className="flex-initial w-24 sm:w-16 md:w-16 lg:w-20 xl:w-20 relative">
+        {/* <div className="flex-initial w-24 sm:w-16 md:w-16 lg:w-20 xl:w-20 relative">
           <p className="absolute top-1/2 left-3 vertical-text px-6 pb-20">
             <a href="/">
               <div className="absolute py-4 px-6 bg-darkbrown flex flex-row">
@@ -32,7 +32,7 @@ export default function Footer() {
               </div>
             </a>
           </p>
-        </div>
+        </div> */}
         <div className="flex-1 w-2/3 relative pt-2 pb-16 sm:pb-24 lg:pb-32 z-50">
           <main className="mt-4 mx-auto max-w-7xl px-4 sm:mt-16 sm:px-10 lg:mt-20">
             <div className="lg:grid lg:grid-cols-12 lg:gap-8">
@@ -48,7 +48,7 @@ export default function Footer() {
                     </span>
                   </span>
                 </h1>
-                <p className="mt-3 pr-10 text-base text-white sm:mt-8 sm:text-xl lg:text-lg xl:text-xl">
+                <p className="mt-3 pr-10 text-base text-gray-300 sm:mt-8 sm:text-xl lg:text-lg xl:text-xl">
                   {t(`common:description`)}
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 mb-8">

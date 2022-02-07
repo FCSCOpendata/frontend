@@ -50,37 +50,6 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                   ))}
                 </div>
               </div>
-              {/* <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
-                <div className="max-w-lg w-full lg:max-w-xs">
-                  <label htmlFor="search" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <SearchIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <form
-                      onSubmit={(e) => handleSubmit(e)}
-                      className="items-center"
-                    >
-                      <input
-                        id="search"
-                        type="search"
-                        name="search"
-                        onChange={(e) => {
-                          setSearchQuery(e.target.value);
-                        }}
-                        placeholder="Search"
-                        aria-label="Search"
-                        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </div> */}
               <div className="flex items-center lg:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
