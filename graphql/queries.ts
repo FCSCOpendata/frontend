@@ -93,8 +93,14 @@ export const GET_DATASET_QUERY = gql`
 `;
 
 export const SEARCH_QUERY = gql`
-  query search($q: String, $sort: String, $rows: Int, $start: Int) {
-    search(q: $q, sort: $sort, rows: $rows, start: $start)
+  query search(
+    $q: String
+    $sort: String
+    $rows: Int
+    $start: Int
+    $fq: String
+  ) {
+    search(q: $q, sort: $sort, rows: $rows, start: $start, fq: $fq)
       @rest(type: "Search", path: "package_search?{args}") {
       result {
         count

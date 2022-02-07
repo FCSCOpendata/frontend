@@ -91,14 +91,21 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
 
   const generateFq = (sideFilter) => {
     let fq = '';
+    let keyIndex = 0;
     for (const key of Object.keys(sideFilter)) {
       if (sideFilter[key].length > 0) {
-        let innerFq = `'${key}:${sideFilter[key][0]}`;
+        let innerFq;
+        if (keyIndex > 0) {
+          innerFq = `+${key}:(${sideFilter[key][0]}`;
+        } else {
+          innerFq = `${key}:(${sideFilter[key][0]}`;
+        }
         for (let i = 1; i < sideFilter[key].length; i++) {
-          innerFq += ` OR ${key}:${sideFilter[key][i]}`;
+          innerFq += ` OR ${sideFilter[key][i]}`;
         }
 
-        fq += ' ' + innerFq + "'";
+        fq += ' ' + innerFq + ')';
+        keyIndex += 1;
       }
     }
     return fq.trim();
