@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
+import Metrics from './Metrics';
 
 const Information: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -18,6 +19,7 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
 
   return (
     <div>
+      <Metrics />
       <div className="flex bg-gray-300 rounded-lg px-12 py-8 mt-8">
         <div className="grid grid-cols-2 grid-rows-3 gap-x-32 gap-y-6">
           <div>
