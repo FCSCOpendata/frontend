@@ -1,9 +1,17 @@
+import { useQuery } from '@apollo/react-hooks';
 import { useRef } from 'react';
-
+import { GET_CATEGORIES_QUERY } from '../../graphql/queries';
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   variables,
   setQvariables,
 }) => {
+  const { loading: loadingCategories, data: dataCategories } = useQuery(
+    GET_CATEGORIES_QUERY,
+    {
+      notifyOnNetworkStatusChange: true,
+    }
+  );
+
   const searchQueryRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e) => {
@@ -71,16 +79,21 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
             className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
           />
         </form>
-        <div className="flex flex-wrap sm:w-1/2 justify-center sm:justify-between">
+        <div className="flex flex-wrap lg:flex-nowrap sm:w-1/2 justify-center sm:justify-between">
           <div className="">
             <select
               name="themes"
               id="themes"
               className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:border-gray-100"
             >
-              <option value="theme1">Theme 1</option>
-              <option value="theme2">Theme 2</option>
-              <option value="theme3">Theme 3</option>
+              <option disabled selected>
+                Theme
+              </option>
+              {/* {dataCategories.categories.result.map((theme, index) => (
+                <option key={index} value={theme.name}>
+                  {theme.display_name}
+                </option>
+              ))} */}
             </select>
           </div>
           <div className="">
@@ -89,9 +102,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
               id="lastUpdated"
               className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:outline-none focus:border-gray-100"
             >
-              <option value="update1">One Week</option>
-              <option value="update2">Two Weeks</option>
-              <option value="update3">Three Weeks</option>
+              <option value="update1">Last Updated</option>
             </select>
           </div>
           <button

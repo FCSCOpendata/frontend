@@ -71,7 +71,7 @@ export default function Sidebar() {
                   id={`checkbox-${index}`}
                   name={org.title}
                   value={org.title}
-                  className="rounded"
+                  className="rounded appearance-none focus:border-0 focus:ring-0"
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
@@ -123,7 +123,7 @@ export default function Sidebar() {
                     id={`checkbox-${index}`}
                     name={category.name}
                     value={category.name}
-                    className="rounded outline-none focus:outline-none"
+                    className="rounded appearance-none focus:border-0 focus:ring-0"
                   />
                   <label
                     htmlFor={`checkbox-${index}`}
@@ -164,7 +164,20 @@ export default function Sidebar() {
         <h3 className="font-bold text-gray-900 capitalize mb-4">
           Refine By Keywords
         </h3>
-        <div className="max-h-64"></div>
+        <div className="grid grid-cols-2 grid-rows-auto gap-4">
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Data JSON</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Environment Data</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Respiratory Diseases</span>
+          </div>
+          <div className="bg-gray-100 rounded-2xl capitalize text-center">
+            <span className="text-xs">Covid-19</span>
+          </div>
+        </div>
       </div>
     </div>
   );

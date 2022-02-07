@@ -1,6 +1,6 @@
 export default function SearchSuggestions() {
   return (
-    <div className="mt-24">
+    <div className="mt-32 px-16">
       <h3 className="text-2xl font-bold text-gray-900 capitalize mb-8">
         Search Suggestions
       </h3>
