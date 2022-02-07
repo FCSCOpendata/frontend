@@ -19,15 +19,15 @@ export default function DatasetNav({ setNavBody }) {
         </span>
       </div>
       <div className="border-b-8 border-gray-100 px-8 py-4">
-        <span className="font-medium tracking-wide text-gray-400" onClick={() => handleNav('activitystream')}>
+        <span className="font-medium tracking-wide text-gray-400" >
           Activity Stream
         </span>
       </div>
-      <div className="border-b-8 border-gray-100 px-8 py-4" onClick={() => handleNav('stats')}>
+      <div className="border-b-8 border-gray-100 px-8 py-4" >
         <span className="font-medium tracking-wide text-gray-400">Stats</span>
       </div>
       <div className="border-b-8 border-gray-100 px-8 py-4">
-        <span className="font-medium tracking-wide text-gray-400" onClick={() => handleNav('more')}>More</span>
+        <span className="font-medium tracking-wide text-gray-400" >More</span>
       </div>
     </div>
   );
