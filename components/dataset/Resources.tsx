@@ -13,6 +13,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
     notifyOnNetworkStatusChange: true,
   });
   const [downloadInfo, setDownloadInfo] = useState([]);
+  const [activateSelect, setActivateSelect] = useState(false);
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
@@ -79,36 +80,52 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
     zip: '/images/resources/zip.svg',
   };
 
+  const checkAllBox = () => {
+    const boxes = document.querySelectorAll('input[type="checkbox"]');
+    for (let i = 1; i < boxes.length; i++) {
+      const b: HTMLInputElement = boxes[i] as HTMLInputElement;
+      b.checked = !b.checked;
+    }
+  };
+
   return (
     <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
       <div className="flex flex-1">
-        <div className="flex w-1/2">
-          <input
-            type="checkbox"
-            id="select-all"
-            name="select-all"
-            value="select-all"
-            className="rounded focus:ring-0 ring-offset-0"
-          />
-          <label
-            htmlFor="select-all-checkbox"
-            className="text-xs font-medium text-gray-500 pl-2"
-          >
-            Select all
-          </label>
-        </div>
+        {activateSelect && (
+          <div className="flex w-1/2">
+            <input
+              type="checkbox"
+              id="select-all"
+              name="select-all"
+              value="select-all"
+              className="rounded focus:ring-0 ring-offset-0"
+              onClick={() => {
+                checkAllBox();
+              }}
+            />
+            <label
+              htmlFor="select-all-checkbox"
+              className="text-xs font-medium text-gray-500 pl-2"
+            >
+              Select all
+            </label>
+          </div>
+        )}
         <div className="flex w-1/2 items-end justify-end">
           <div className="flex mr-4">
             <img src="/images/resources/select.svg" alt="select-icon" />
-            <span className="text-xs font-medium text-gray-500">
+            <button
+              className="text-xs font-medium text-gray-500 appearance-none focus:outline-none"
+              onClick={() => setActivateSelect(!activateSelect)}
+            >
               &nbsp;Select
-            </span>
+            </button>
           </div>
           <div className="flex">
             <img src="/images/resources/download.svg" alt="download-icon" />
-            <span className="text-xs font-medium text-gray-500">
+            <button className="text-xs font-medium text-gray-500 appearance-none focus:outline-none">
               &nbsp;Download all
-            </span>
+            </button>
           </div>
         </div>
       </div>
@@ -119,13 +136,15 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
             key={index}
             className="flex flex-col sm:flex-row items-center flex-wrap sm:flex-nowrap p-2 mt-8"
           >
-            <input
-              type="checkbox"
-              id={`checkbox-${index}`}
-              name={resource.name}
-              value={resource.name}
-              className="rounded focus:ring-0 ring-offset-0"
-            />
+            {activateSelect && (
+              <input
+                type="checkbox"
+                id={`checkbox-${index}`}
+                name={resource.name}
+                value={resource.name}
+                className="rounded focus:ring-0 ring-offset-0"
+              />
+            )}
             <img
               src={
                 fileIcons[String(resource.format).toLowerCase()] ||
