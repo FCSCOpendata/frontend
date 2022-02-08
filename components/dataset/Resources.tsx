@@ -12,30 +12,30 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
     // more data
     notifyOnNetworkStatusChange: true,
   });
-  const [downloadInfo, setDownloadInfo] = useState({
-    progress: 0,
-    completed: false,
-    total: 0,
-    loaded: 0,
-  });
+  const [downloadInfo, setDownloadInfo] = useState([]);
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
 
-  const downloadClick = (url) => {
+  const downloadClick = (url, index) => {
     axios
       .get(url, {
         responseType: 'blob',
         onDownloadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
 
-          setDownloadInfo({
+          const temp = {
             progress: Math.floor((loaded * 100) / total),
             loaded,
             total,
             completed: false,
+          };
+          setDownloadInfo((prev) => {
+            const newData = [...prev];
+            newData[index] = { ...newData[index], ...temp };
+            return newData;
           });
         },
       })
@@ -52,14 +52,19 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         document.body.appendChild(a);
         a.click();
 
-        setDownloadInfo((progressInfo) => ({
-          ...progressInfo,
-          completed: true,
-        }));
+        setDownloadInfo((progressInfo) => {
+          const newData = [...progressInfo];
+          newData[index] = { ...newData[index], completed: true };
+          return newData;
+        });
 
-        // setTimeout(() => {
-        //   browser.downloads.removeFile();
-        // }, 4000)
+        setTimeout(() => {
+          setDownloadInfo((progressInfo) => {
+            const newData = [...progressInfo];
+            newData[index] = undefined;
+            return newData;
+          });
+        }, 4000);
       });
   };
 
@@ -145,7 +150,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
               </button>
               <button
                 className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5"
-                onClick={() => downloadClick(resource.path)}
+                onClick={() => downloadClick(resource.path, index)}
               >
                 {/* <a
                   className="text-xs font-bold text-white"
@@ -155,12 +160,18 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                 {/* </a> */}
               </button>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-              <div
-                className="bg-blue-600 h-2.5 rounded-full"
-                style={{ width: 45 }}
-              ></div>
-            </div>
+            {downloadInfo[index] && (
+              <div className="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700 text-center">
+                <div
+                  className="bg-blue-600 h-4 rounded-full text-center text-xs"
+                  style={{ width: `${downloadInfo[index].progress}%` }}
+                >
+                  {`${downloadInfo[index].progress}% (${formatBytes(
+                    downloadInfo[index].loaded
+                  )} / ${formatBytes(downloadInfo[index].total)})`}
+                </div>
+              </div>
+            )}
           </li>
         ))}
       </ul>

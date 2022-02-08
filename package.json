@@ -37,6 +37,7 @@
     "apollo-link": "^1.2.14",
     "apollo-link-rest": "0.7.3",
     "apollo-server-testing": "^2.16.0",
+    "axios": "^0.25.0",
     "bytes": "^3.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-15": "^1.4.1",
