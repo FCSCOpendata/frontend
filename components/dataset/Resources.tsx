@@ -70,6 +70,15 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
 
   const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 
+  const fileIcons = {
+    html: '/images/resources/html.svg',
+    pdf: '/images/resources/pdf.svg',
+    xls: '/images/resources/xls.svg',
+    xlsx: '/images/resources/xls.svg',
+    api: '/images/resources/json.svg',
+    zip: '/images/resources/zip.svg',
+  };
+
   return (
     <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
       <div className="flex flex-1">
@@ -104,7 +113,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
       </div>
       <hr className="inline-block align-middle mt-4 h-0.5 border bg-gray-100 rounded" />
-      <ul className="mb-10">
+      <ul className="mb-10 overflow-y-auto max-h-72">
         {result.resources.map((resource, index) => (
           <li
             key={index}
@@ -117,7 +126,13 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
               value={resource.name}
               className="rounded focus:ring-0 ring-offset-0"
             />
-            <img src="/images/resources/pdf.svg" alt="resource-icon" />
+            <img
+              src={
+                fileIcons[String(resource.format).toLowerCase()] ||
+                '/images/resources/unknown.svg'
+              }
+              alt="resource-icon"
+            />
             <div className="ml-2 flex flex-col flex-1">
               <h1 className="font-semibold capitalize">
                 {resource.name} (
