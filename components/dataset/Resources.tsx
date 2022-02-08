@@ -157,36 +157,35 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                 )}
               </p>
             </div>
-            <div className="flex ml-6 space-x-3.5">
-              <button className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-gray-50 border rounded-xl border-gray-900 px-5">
-                <span className="text-xs font-bold text-gray-900">
-                  Preview
-                </span>
-              </button>
-              <button
-                className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5"
-                onClick={() => downloadClick(resource.path, index)}
-              >
-                {/* <a
-                  className="text-xs font-bold text-white"
-                  href={resource.path}
-                > */}
-                Download
-                {/* </a> */}
-              </button>
-            </div>
-            {downloadInfo[index] && (
-              <div className="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700 text-center">
-                <div
-                  className="bg-blue-600 h-4 rounded-full text-center text-xs"
-                  style={{ width: `${downloadInfo[index].progress}%` }}
+            <div className="flex flex-col">
+              <div className="flex ml-6 space-x-3.5">
+                <button className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-gray-50 border rounded-xl border-gray-900 px-5">
+                  <span className="text-xs font-bold text-gray-900">
+                    Preview
+                  </span>
+                </button>
+                <button
+                  className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5"
+                  onClick={() => downloadClick(resource.path, index)}
                 >
-                  {`${downloadInfo[index].progress}% (${formatBytes(
-                    downloadInfo[index].loaded
-                  )} / ${formatBytes(downloadInfo[index].total)})`}
-                </div>
+                  <span className="text-xs font-bold text-white">
+                    Download
+                  </span>
+                </button>
               </div>
-            )}
+              {downloadInfo[index] && (
+                <div className="w-full bg-gray-200 rounded-xl h-4 dark:bg-gray-700 text-center text-white text-sm mt-2">
+                  <div
+                    className="bg-blue-600 h-4 rounded-full text-center text-xs"
+                    style={{ width: `${downloadInfo[index].progress}%` }}
+                  >
+                    {`${downloadInfo[index].progress}% (${formatBytes(
+                      downloadInfo[index].loaded
+                    )} / ${formatBytes(downloadInfo[index].total)})`}
+                  </div>
+                </div>
+              )}
+            </div>
           </li>
         ))}
       </ul>
