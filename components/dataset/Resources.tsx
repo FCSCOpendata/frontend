@@ -17,27 +17,52 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   const { result } = data.dataset;
   console.log(result.resources);
   return (
-    <div className="flex flex-col p-8 bg-gray-200 rounded-xl mt-10">
-      <div className="flex justify-center sm:justify-end">
-        <div className="flex mr-4">
-          <img src="/images/resources/select.svg" alt="select-icon" />
-          <span className="text-xs font-medium text-gray-500">
-            &nbsp;Select
-          </span>
+    <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
+      <div className="flex flex-1">
+        <div className="flex w-1/2">
+          <input
+            type="checkbox"
+            id="select-all"
+            name="select-all"
+            value="select-all"
+            className="rounded focus:ring-0 ring-offset-0"
+          />
+          <label
+            htmlFor="select-all-checkbox"
+            className="text-xs font-medium text-gray-500 pl-2"
+          >
+            Select all
+          </label>
         </div>
-        <div className="flex">
-          <img src="/images/resources/download.svg" alt="download-icon" />
-          <span className="text-xs font-medium text-gray-500">
-            &nbsp;Download all
-          </span>
+        <div className="flex w-1/2 items-end justify-end">
+          <div className="flex mr-4">
+            <img src="/images/resources/select.svg" alt="select-icon" />
+            <span className="text-xs font-medium text-gray-500">
+              &nbsp;Select
+            </span>
+          </div>
+          <div className="flex">
+            <img src="/images/resources/download.svg" alt="download-icon" />
+            <span className="text-xs font-medium text-gray-500">
+              &nbsp;Download all
+            </span>
+          </div>
         </div>
       </div>
+      <hr className="inline-block align-middle mt-4 h-0.5 border bg-gray-100 rounded" />
       <ul className="mb-10">
         {result.resources.map((resource, index) => (
           <li
             key={index}
             className="flex flex-col sm:flex-row items-center flex-wrap sm:flex-nowrap p-2 mt-8"
           >
+            <input
+              type="checkbox"
+              id={`checkbox-${index}`}
+              name={resource.name}
+              value={resource.name}
+              className="rounded focus:ring-0 ring-offset-0"
+            />
             <img src="/images/resources/pdf.svg" alt="resource-icon" />
             <div className="ml-2 flex flex-col flex-1">
               <h1 className="font-semibold capitalize">

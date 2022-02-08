@@ -126,7 +126,7 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
                   id={`checkbox-${index}`}
                   name={org.title}
                   value={org.title}
-                  className="rounded"
+                  className="rounded focus:ring-0 ring-offset-0"
                   onChange={(e) => filterSearch(e, 'organization', org.name)}
                 />
                 <label
@@ -180,7 +180,7 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
                     name={category.name}
                     value={category.name}
                     onChange={(e) => filterSearch(e, 'groups', category.name)}
-                    className="rounded outline-none focus:outline-none"
+                    className="rounded focus:ring-0 ring-offset-0"
                   />
                   <label
                     htmlFor={`checkbox-${index}`}
