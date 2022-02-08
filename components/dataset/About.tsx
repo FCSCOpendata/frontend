@@ -17,9 +17,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-  const resource_formats = [
-    result.resources.map((item) => item.format).join(', '),
-  ];
+  const resource_formats = result.resources.map((item) => item.format);
 
   return (
     <div>
@@ -56,16 +54,17 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           {result.description || 'This dataset does not have a description'}
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
-        <div className="flex flex-1 mt-6">
+
+        <ul className="mt-6 grid grid-cols-3 w-3/4 auto-rows-auto gap-2">
           {resource_formats.map((format, index) => (
-            <div
+            <li
               key={index}
-              className="bg-green-400 rounded-2xl text-white uppercase px-4 py-1 "
+              className="bg-green-400 rounded-xl text-white uppercase text-center"
             >
               {format}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
