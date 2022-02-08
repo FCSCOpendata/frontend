@@ -35,7 +35,7 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
               VISIBILITY
             </h4>
             <span className="text-base font-bold text-gray-900">
-              {result.private ? 'Private' : 'Public'}
+              {String(result.private) == 'true' ? 'Private' : 'Public'}
             </span>
           </div>
           <div>

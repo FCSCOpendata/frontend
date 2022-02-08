@@ -90,7 +90,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
 
   return (
     <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
-      <div className="flex flex-1">
+      <div className="relative flex flex-1">
         {activateSelect && (
           <div className="flex w-1/2">
             <input
@@ -111,7 +111,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
             </label>
           </div>
         )}
-        <div className="flex w-1/2 items-end justify-end">
+        <div className="flex absolute top-0 right-0">
           <div className="flex mr-4">
             <img src="/images/resources/select.svg" alt="select-icon" />
             <button
@@ -129,7 +129,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
         </div>
       </div>
-      <hr className="inline-block align-middle mt-4 h-0.5 border bg-gray-100 rounded" />
+      <hr className="inline-block align-middle mt-6 h-0.5 border bg-gray-100 rounded" />
       <ul className="mb-10 overflow-y-auto max-h-72">
         {result.resources.map((resource, index) => (
           <li
