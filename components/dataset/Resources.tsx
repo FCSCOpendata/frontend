@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -10,12 +12,59 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
     // more data
     notifyOnNetworkStatusChange: true,
   });
+  const [downloadInfo, setDownloadInfo] = useState({
+    progress: 0,
+    completed: false,
+    total: 0,
+    loaded: 0,
+  });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-  console.log(result.resources);
+
+  const downloadClick = (url) => {
+    axios
+      .get(url, {
+        responseType: 'blob',
+        onDownloadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+
+          setDownloadInfo({
+            progress: Math.floor((loaded * 100) / total),
+            loaded,
+            total,
+            completed: false,
+          });
+        },
+      })
+      .then((res) => {
+        const blobUrl = window.URL.createObjectURL(
+          new Blob([res.data], {
+            type: res.headers['content-type'],
+          })
+        );
+        const filename = url.split('/').slice(-1)[0];
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.setAttribute('download', filename);
+        document.body.appendChild(a);
+        a.click();
+
+        setDownloadInfo((progressInfo) => ({
+          ...progressInfo,
+          completed: true,
+        }));
+
+        // setTimeout(() => {
+        //   browser.downloads.removeFile();
+        // }, 4000)
+      });
+  };
+
+  const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+
   return (
     <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
       <div className="flex flex-1">
@@ -94,14 +143,23 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                   Preview
                 </span>
               </button>
-              <button className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5">
-                <a
+              <button
+                className="flex sm:h-1/3 sm:w-1/2 items-center justify-center bg-blue-900 border rounded-xl border-gray-900 px-5"
+                onClick={() => downloadClick(resource.path)}
+              >
+                {/* <a
                   className="text-xs font-bold text-white"
                   href={resource.path}
-                >
-                  Download
-                </a>
+                > */}
+                Download
+                {/* </a> */}
               </button>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+              <div
+                className="bg-blue-600 h-2.5 rounded-full"
+                style={{ width: 45 }}
+              ></div>
             </div>
           </li>
         ))}
