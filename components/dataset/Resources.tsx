@@ -18,7 +18,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   console.log(result.resources);
   return (
     <div className="flex flex-col p-8 bg-gray-200 rounded-xl mt-10">
-      <div className="flex justify-end">
+      <div className="flex justify-center sm:justify-end">
         <div className="flex mr-4">
           <img src="/images/resources/select.svg" alt="select-icon" />
           <span className="text-xs font-medium text-gray-500">
@@ -36,11 +36,10 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         {result.resources.map((resource, index) => (
           <li
             key={index}
-            className="flex justify-center sm:justify-start flex-wrap sm:flex-nowrap p-2 mt-8"
+            className="flex flex-col sm:flex-row items-center flex-wrap sm:flex-nowrap p-2 mt-8"
           >
             <img src="/images/resources/pdf.svg" alt="resource-icon" />
-            <div className="ml-2 flex flex-col">
-              {/* eslint-disable-next-line */}
+            <div className="ml-2 flex flex-col flex-1">
               <h1 className="font-semibold capitalize">
                 {resource.name} (
                 {resource.size ? `${resource.size} KB` : 'Size N/A'})
