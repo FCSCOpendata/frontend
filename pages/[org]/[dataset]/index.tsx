@@ -29,7 +29,13 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <NavBreadCrumbs />
+      <NavBreadCrumbs
+        navInfo={{
+          datasetTitle: result.title,
+          orgName: result.organization.name,
+          orgTitle: result.organization.title,
+        }}
+      />
       <main className="flex flex-wrap p-8 justify-center">
         <div className="sm:w-1/3">
           <About variables={variables} />
