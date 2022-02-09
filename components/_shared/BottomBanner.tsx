@@ -1,6 +1,6 @@
 export default function BottomBanner() {
   return (
-    <div className="relative pb-32 pt-24">
+    <div className="relative pb-32 mt-32">
       <div className="bg-red-50 px-8 py-20 rounded-2xl w-1/2">
         <span className="text-4xl font-semibold mx-4 text-red-500">
           Still not found <br /> what you&apos;re looking for ...?

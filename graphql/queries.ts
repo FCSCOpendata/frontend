@@ -47,6 +47,22 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORG_WITH_PACKAGES_QUERY = gql`
+  query org($id: String) {
+    org(id: $id, include_datasets: True)
+      @rest(type: "Response", path: "organization_show?{args}") {
+      result {
+        name
+        title
+        packages {
+          title
+          name
+        }
+      }
+    }
+  }
+`;
+
 export const GET_ORGS_QUERY = gql`
   query orgs {
     orgs(all_fields: True)

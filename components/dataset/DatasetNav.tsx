@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 export default function DatasetNav({ setNavBody }) {
   const handleNav = (navType) => {
     setNavBody(navType);

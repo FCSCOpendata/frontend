@@ -37,7 +37,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <div className="flex flex-col sm:w-1/2">
           <DatasetNav setNavBody={setNavBody} />
           <NavBody navtype={navBody} variables={variables} />
-          <SimilarDatasets />
+          <SimilarDatasets organization={result.organization} />
           {/* <Resources variables={variables} /> */}
         </div>
       </main>
