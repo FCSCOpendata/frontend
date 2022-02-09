@@ -82,6 +82,8 @@ export const GET_DATASET_QUERY = gql`
         name
         title
         size
+        author
+        nresources: num_resources
         description: notes
         private
         license_title

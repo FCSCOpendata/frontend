@@ -16,7 +16,8 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-
+  console.log('DATASET');
+  console.log(result);
   return (
     <div>
       <Metrics />
@@ -32,17 +33,19 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
           <div>
             <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
-              VISIBILITY
+              Resource No
             </h4>
             <span className="text-base font-bold text-gray-900">
-              {String(result.private) == 'true' ? 'Private' : 'Public'}
+              {result.nresources ? result.nresources : 0}
             </span>
           </div>
           <div>
             <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
-              CONTRIBUTOR
+              Author
             </h4>
-            <span className="text-base font-bold text-gray-900">N/A</span>
+            <span className="text-base font-bold text-gray-900">
+              {result.author ? result.author : 'N/A'}
+            </span>
           </div>
           <div>
             <h4 className="text-xs font-medium tracking-widest text-gray-500 mb-2">
