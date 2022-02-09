@@ -175,9 +175,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
               alt="resource-icon"
             />
             <div className="ml-2 flex flex-col flex-1">
-              <h1 className="font-semibold capitalize">
-                {resource.name} {resource.size ? `(${resource.size} KB)` : ''}
-              </h1>
+              <h1 className="font-semibold capitalize">{resource.name}</h1>
               <p className="text-sm font-medium text-gray-500 text-left line-clamp-1">
                 {resource.description ||
                   'This resource does not have a description'}
