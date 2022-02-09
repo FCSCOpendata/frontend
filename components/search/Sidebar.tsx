@@ -1,6 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
-import { GET_ORGS_QUERY, GET_CATEGORIES_QUERY } from '../../graphql/queries';
+import {
+  GET_ORGS_QUERY,
+  GET_CATEGORIES_QUERY,
+  GET_KEYWORDS_QUERY,
+} from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 
 export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
@@ -14,11 +18,16 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
       notifyOnNetworkStatusChange: true,
     });
 
-    return [orgsQuery, categoriesQuery];
+    const keywordsQuery = useQuery(GET_KEYWORDS_QUERY, {
+      notifyOnNetworkStatusChange: true,
+    });
+
+    return [orgsQuery, categoriesQuery, keywordsQuery];
   };
   const [
     { loading: loadOrgs, error: errorOrg, data: dataOrgs },
     { loading: loadCategories, error: errorCategories, data: dataCategories },
+    { loading: loadingKeywords, error: errorKeywords, data: dataKeywords },
   ] = queryMultiple();
 
   if (errorOrg) return <ErrorMessage message="Error loading organizations" />;
@@ -28,6 +37,10 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
   if (loadCategories) return <div>Loading Categories</div>;
   const orgsResults = dataOrgs.orgs.result;
   const categoriesResults = dataCategories.categories.result;
+  const keywordsResults =
+    dataKeywords.keywords.result.search_facets.tags.items;
+
+  console.log(keywordsResults);
 
   const showMoreEvt = (btnType) => {
     if (btnType === 'orgs') {
@@ -222,18 +235,14 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
           Refine By Keywords
         </h3>
         <div className="grid grid-cols-2 grid-rows-auto gap-4">
-          <div className="bg-gray-100 rounded-2xl capitalize text-center">
-            <span className="text-xs">Data JSON</span>
-          </div>
-          <div className="bg-gray-100 rounded-2xl capitalize text-center">
-            <span className="text-xs">Environment Data</span>
-          </div>
-          <div className="bg-gray-100 rounded-2xl capitalize text-center">
-            <span className="text-xs">Respiratory Diseases</span>
-          </div>
-          <div className="bg-gray-100 rounded-2xl capitalize text-center">
-            <span className="text-xs">Covid-19</span>
-          </div>
+          {keywordsResults.map((keyword, index) => (
+            <button
+              key={index}
+              className="bg-gray-100 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
+            >
+              <span className="text-xs">{keyword.display_name}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>

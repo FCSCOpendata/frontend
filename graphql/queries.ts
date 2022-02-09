@@ -227,3 +227,21 @@ export const GET_CATEGORIES_QUERY = gql`
     }
   }
 `;
+
+export const GET_KEYWORDS_QUERY = gql`
+  query keywords {
+    keywords
+      @rest(
+        type: "Response"
+        path: "package_search?facet.field=[%22tags%22]&facet.limit=6&rows=0"
+      ) {
+      result {
+        search_facets {
+          tags {
+            items
+          }
+        }
+      }
+    }
+  }
+`;
