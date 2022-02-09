@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -14,7 +14,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
   });
   const [downloadInfo, setDownloadInfo] = useState([]);
   const [activateSelect, setActivateSelect] = useState(false);
-
+  const countRef = useRef<HTMLInputElement>(null);
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
 
@@ -27,12 +27,15 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         onDownloadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
 
+          const count = parseInt(countRef.current.value) + 2;
+          countRef.current.value = String(count);
           const temp = {
-            progress: Math.floor((loaded * 100) / total),
+            progress: count,
             loaded,
-            total,
+            total: total,
             completed: false,
           };
+
           setDownloadInfo((prev) => {
             const newData = [...prev];
             newData[index] = { ...newData[index], ...temp };
@@ -41,6 +44,18 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         },
       })
       .then((res) => {
+        const total = true;
+        if (total) {
+          setDownloadInfo((prev) => {
+            const newData = [...prev];
+            newData[index] = {
+              ...newData[index],
+              progress: 100,
+              completed: true,
+            };
+            return newData;
+          });
+        }
         const blobUrl = window.URL.createObjectURL(
           new Blob([res.data], {
             type: res.headers['content-type'],
@@ -53,11 +68,13 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
         document.body.appendChild(a);
         a.click();
 
-        setDownloadInfo((progressInfo) => {
-          const newData = [...progressInfo];
-          newData[index] = { ...newData[index], completed: true };
-          return newData;
-        });
+        //comment out for now if possible solution
+        // to make total !=0 exists
+        // setDownloadInfo((progressInfo) => {
+        //   const newData = [...progressInfo];
+        //   newData[index] = { ...newData[index], completed: true };
+        //   return newData;
+        // });
 
         setTimeout(() => {
           setDownloadInfo((progressInfo) => {
@@ -90,6 +107,11 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
 
   return (
     <div className="flex flex-col p-8 bg-gray-50 rounded-xl mt-10">
+      <input
+        ref={countRef}
+        value={countRef.current ? countRef.current.value : 10}
+        className="hidden"
+      />
       <div className="relative flex flex-1">
         {activateSelect && (
           <div className="flex w-1/2">
@@ -154,8 +176,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
             />
             <div className="ml-2 flex flex-col flex-1">
               <h1 className="font-semibold capitalize">
-                {resource.name} (
-                {resource.size ? `${resource.size} KB` : 'Size N/A'})
+                {resource.name} {resource.size ? `(${resource.size} KB)` : ''}
               </h1>
               <p className="text-sm font-medium text-gray-500 text-left line-clamp-1">
                 {resource.description ||
@@ -193,15 +214,11 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                 </button>
               </div>
               {downloadInfo[index] && (
-                <div className="w-full bg-gray-200 rounded-xl h-4 dark:bg-gray-700 text-center text-white text-sm mt-2">
+                <div className="w-full bg-gray-200 rounded-xl h-1.5 dark:bg-gray-700 text-center text-white text-sm mt-2">
                   <div
-                    className="bg-blue-600 h-4 rounded-full text-center text-xs"
+                    className="bg-blue-600 h-1.5 rounded-full text-center text-xs"
                     style={{ width: `${downloadInfo[index].progress}%` }}
-                  >
-                    {`${downloadInfo[index].progress}% (${formatBytes(
-                      downloadInfo[index].loaded
-                    )} / ${formatBytes(downloadInfo[index].total)})`}
-                  </div>
+                  ></div>
                 </div>
               )}
             </div>
