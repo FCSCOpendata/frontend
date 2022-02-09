@@ -16,8 +16,6 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
-  console.log('DATASET');
-  console.log(result);
   return (
     <div>
       <Metrics />

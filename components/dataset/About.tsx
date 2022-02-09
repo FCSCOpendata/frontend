@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
-import Dataset from '../../pages/[org]/[dataset]';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -17,6 +16,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
 
   const { result } = data.dataset;
+  const tags = data.dataset.result.tags;
   const resource_formats = result.resources.map((item) => item.format);
 
   return (
@@ -52,6 +52,21 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
         <div className="mt-4 text-sm sm:w-3/4 leading-relaxed line-clamp-6">
           {result.description || 'This dataset does not have a description'}
+        </div>
+        <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
+        <div className="grid grid-cols-2 grid-rows-auto gap-4 mt-4 w-3/4">
+          {tags
+            ? tags.map((keyword, index) => (
+                <button
+                  key={index}
+                  className="bg-blue-200 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
+                >
+                  <span className="text-xs text-blue-800 font-semibold">
+                    {keyword.display_name}
+                  </span>
+                </button>
+              ))
+            : 'No keywords for this dataset'}
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
 

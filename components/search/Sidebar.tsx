@@ -35,12 +35,12 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
   if (errorCategories)
     return <ErrorMessage message="Error loading Categories" />;
   if (loadCategories) return <div>Loading Categories</div>;
+  if (errorKeywords) return <ErrorMessage message="Error loading keywords" />;
+  if (loadingKeywords) return <div>Loading Keywords</div>;
   const orgsResults = dataOrgs.orgs.result;
   const categoriesResults = dataCategories.categories.result;
   const keywordsResults =
     dataKeywords.keywords.result.search_facets.tags.items;
-
-  console.log(keywordsResults);
 
   const showMoreEvt = (btnType) => {
     if (btnType === 'orgs') {
@@ -235,14 +235,16 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
           Refine By Keywords
         </h3>
         <div className="grid grid-cols-2 grid-rows-auto gap-4">
-          {keywordsResults.map((keyword, index) => (
-            <button
-              key={index}
-              className="bg-gray-100 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
-            >
-              <span className="text-xs">{keyword.display_name}</span>
-            </button>
-          ))}
+          {keywordsResults
+            ? keywordsResults.map((keyword, index) => (
+                <button
+                  key={index}
+                  className="bg-gray-100 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
+                >
+                  <span className="text-xs">{keyword.display_name}</span>
+                </button>
+              ))
+            : 'N/A'}
         </div>
       </div>
     </div>
