@@ -55,8 +55,9 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
         <div className="grid grid-cols-2 grid-rows-auto gap-4 mt-4 w-3/4">
-          {tags
-            ? tags.map((keyword, index) => (
+          {tags.length == 0
+            ? 'No tags available'
+            : tags.map((keyword, index) => (
                 <button
                   key={index}
                   className="bg-blue-200 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
@@ -65,8 +66,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
                     {keyword.display_name}
                   </span>
                 </button>
-              ))
-            : 'No keywords for this dataset'}
+              ))}
         </div>
         <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
 
