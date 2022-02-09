@@ -26,7 +26,7 @@ const Information: React.FC<{ variables: any }> = ({ variables }) => {
               ORGANIZATION
             </h4>
             <span className="text-base font-bold text-gray-900">
-              {result.title}
+              {result.organization.title}
             </span>
           </div>
           <div>
