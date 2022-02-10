@@ -10,10 +10,7 @@ import Hero from '../components/home/Hero';
 import Footer from '../components/home/Footer';
 import MainOptions from '../components/home/MainOptions';
 
-const Home: React.FC<{ locale: any; locales: any }> = ({
-  locale,
-  locales,
-}) => {
+const Home: React.FC<{ locale: any; locales: any }> = () => {
   const { t } = useTranslation();
   return (
     <>

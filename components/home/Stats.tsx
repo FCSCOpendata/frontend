@@ -2,7 +2,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../_shared';
 import { GET_STATS_QUERY } from '../../graphql/queries';
-import Link from 'next/link';
 
 const Stats: React.FC = () => {
   const { loading, error, data } = useQuery(GET_STATS_QUERY, {
