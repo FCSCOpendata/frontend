@@ -86,7 +86,7 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
       });
   };
 
-  const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  // const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 
   const fileIcons = {
     html: '/images/resources/html.svg',

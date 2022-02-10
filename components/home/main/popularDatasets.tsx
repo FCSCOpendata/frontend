@@ -1,8 +1,10 @@
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 import {
-  GET_POPULAR_DATASETS_QUERY,
   GET_CATEGORIES_QUERY,
+  GET_POPULAR_DATASETS_QUERY,
 } from '../../../graphql/queries';
+import { ErrorMessage } from '../../_shared';
 
 const popularDatasets: React.FC = () => {
   const queryMultiple = () => {

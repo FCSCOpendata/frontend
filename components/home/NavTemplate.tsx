@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useState } from 'react';
+// import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
-import { SearchIcon } from '@heroicons/react/solid';
+// import { SearchIcon } from '@heroicons/react/solid';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
+  // const router = useRouter();
+  // const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    router.push({
-      pathname: '/search',
-      query: { q: searchQuery },
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   router.push({
+  //     pathname: '/search',
+  //     query: { q: searchQuery },
+  //   });
+  // };
 
   return (
     <Disclosure as="nav" className="bg-black shadow">

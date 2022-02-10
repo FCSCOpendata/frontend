@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import { PlotlyChart, Table } from 'portal';
+import { Table } from 'portal';
 import { ErrorMessage } from '../_shared';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 
