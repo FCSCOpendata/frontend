@@ -289,7 +289,7 @@ module.exports.convertToCkanSearchQuery = (query) => {
   }
 
   // standard 'size' => ckan 'rows'
-  ckanQuery.rows = query.size || '';
+  ckanQuery.rows = query.size || '5';
 
   // standard 'from' => ckan 'start'
   ckanQuery.start = query.from || '';

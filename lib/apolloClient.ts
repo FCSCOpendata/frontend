@@ -59,7 +59,7 @@ const restLink = new RestLink({
 function createApolloClient() {
   return new ApolloClient({
     link: restLink,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({ addTypename: false }), // Work on this later by adding a typePatcher
   });
 }
 

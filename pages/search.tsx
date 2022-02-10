@@ -3,32 +3,58 @@ import { initializeApollo } from '../lib/apolloClient';
 import utils from '../utils';
 import Head from 'next/head';
 import Nav from '../components/home/Nav';
-import Form from '../components/search/Form';
-import Total from '../components/search/Total';
+import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
+import { useState } from 'react';
+import SearchSuggestions from '../components/search/SearchSuggestions';
+import Footer from '../components/home/Footer';
+import BottomBanner from '../components/_shared/BottomBanner';
+import Sidebar from '../components/search/Sidebar';
 
 type Props = {
   variables: any;
 };
 
-const Search: React.FC<Props> = ({ variables }) => (
-  <>
-    <Head>
-      <title>Portal | Search</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <Nav />
-    <main className="p-6">
-      <Form />
-      <Total variables={variables} />
-      <List variables={variables} />
-    </main>
-  </>
-);
+const Search: React.FC<Props> = ({ variables }) => {
+  const [qvariables, setQvariables] = useState(variables);
+  const [sideFilter, setSideFilter] = useState({
+    organization: [],
+    groups: [],
+  });
+
+  return (
+    <>
+      <Head>
+        <title>Portal | Search</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Nav />
+      <main className="px-20 py-12">
+        <Form variables={qvariables} setQvariables={setQvariables} />
+        <div className="flex flex-wrap">
+          <div className="sm:w-1/4">
+            <Sidebar
+              setQvariables={setQvariables}
+              sideFilter={sideFilter}
+              setSideFilter={setSideFilter}
+            />
+          </div>
+          <div className="sm:w-3/4">
+            <List variables={qvariables} setQvariables={setQvariables} />
+            <SearchSuggestions />
+          </div>
+        </div>
+      </main>
+      <BottomBanner />
+      <Footer />
+    </>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
+
   const variables = utils.convertToCkanSearchQuery(query);
 
   const apolloClient = initializeApollo();

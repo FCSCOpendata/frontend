@@ -4,13 +4,20 @@ import Head from 'next/head';
 import { initializeApollo } from '../../../lib/apolloClient';
 import Nav from '../../../components/home/Nav';
 import About from '../../../components/dataset/About';
-import Org from '../../../components/dataset/Org';
-import Resources from '../../../components/dataset/Resources';
 import Footer from '../../../components/home/Footer';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
+import SimilarDatasets from '../../../components/dataset/SimilarDatasets';
+import BottomBanner from '../../../components/_shared/BottomBanner';
+import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
+import DatasetNav from '../../../components/dataset/DatasetNav';
+import NavBody from '../../../components/dataset/NavBody';
+import { useState } from 'react';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
+
+  // single page navbar rendering without change in route
+  const [navBody, setNavBody] = useState('overview');
 
   if (loading) return <div>Loading</div>;
   const { result } = data.dataset;
@@ -22,11 +29,26 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <main className="p-8">
-        <About variables={variables} />
-        <Resources variables={variables} />
-        <Footer />
+      <NavBreadCrumbs
+        navInfo={{
+          datasetTitle: result.title,
+          orgName: result.organization.name,
+          orgTitle: result.organization.title,
+        }}
+      />
+      <main className="flex flex-wrap p-8 justify-center">
+        <div className="sm:w-1/3">
+          <About variables={variables} />
+        </div>
+        <div className="flex flex-col sm:w-1/2">
+          <DatasetNav setNavBody={setNavBody} />
+          <NavBody navtype={navBody} variables={variables} />
+          <SimilarDatasets organization={result.organization} />
+          {/* <Resources variables={variables} /> */}
+        </div>
       </main>
+      <BottomBanner />
+      <Footer />
     </>
   );
 };

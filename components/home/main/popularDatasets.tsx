@@ -1,5 +1,3 @@
-import { useQuery } from '@apollo/react-hooks';
-import { ErrorMessage } from '../../_shared';
 import Link from 'next/link';
 import {
   GET_POPULAR_DATASETS_QUERY,

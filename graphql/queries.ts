@@ -47,6 +47,34 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORG_WITH_PACKAGES_QUERY = gql`
+  query org($id: String) {
+    org(id: $id, include_datasets: True)
+      @rest(type: "Response", path: "organization_show?{args}") {
+      result {
+        name
+        title
+        packages {
+          title
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const GET_ORGS_QUERY = gql`
+  query orgs {
+    orgs(all_fields: True)
+      @rest(type: "Response", path: "organization_list?{args}") {
+      result @type(title: "Organization") {
+        title
+        name
+      }
+    }
+  }
+`;
+
 export const GET_DATASET_QUERY = gql`
   query dataset($id: String) {
     dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
@@ -54,6 +82,11 @@ export const GET_DATASET_QUERY = gql`
         name
         title
         size
+        author
+        nresources: num_resources
+        description: notes
+        private
+        license_title
         created: metadata_created
         updated: metadata_modified
         resources {
@@ -72,20 +105,28 @@ export const GET_DATASET_QUERY = gql`
           title
           image: image_url
         }
+        tags
       }
     }
   }
 `;
 
 export const SEARCH_QUERY = gql`
-  query search($q: String, $sort: String, $rows: Int, $start: Int) {
-    search(q: $q, sort: $sort, rows: $rows, start: $start)
+  query search(
+    $q: String
+    $sort: String
+    $rows: Int
+    $start: Int
+    $fq: String
+  ) {
+    search(q: $q, sort: $sort, rows: $rows, start: $start, fq: $fq)
       @rest(type: "Search", path: "package_search?{args}") {
       result {
         count
         results {
           name
           title
+          description: notes
           updated: metadata_modified
           organization {
             name
@@ -186,6 +227,24 @@ export const GET_CATEGORIES_QUERY = gql`
     categories(all_fields: True)
       @rest(type: "Response", path: "group_list?{args}") {
       result
+    }
+  }
+`;
+
+export const GET_KEYWORDS_QUERY = gql`
+  query keywords {
+    keywords
+      @rest(
+        type: "Response"
+        path: "package_search?facet.field=[%22tags%22]&facet.limit=6&rows=0"
+      ) {
+      result {
+        search_facets {
+          tags {
+            items
+          }
+        }
+      }
     }
   }
 `;

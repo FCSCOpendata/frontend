@@ -12,6 +12,11 @@
   min-height: 900px;
 }
 
+.bg-banner {
+  background-size: cover;
+  background-image: url('/images/banner.jpg');
+}
+
 .vertical-text {
   transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
