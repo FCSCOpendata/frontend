@@ -84,6 +84,13 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
         });
         return newFilter;
       });
+    } else if (btnType === 'keyword') {
+      console.log(name);
+      const fq = `tags:${name}`;
+      setQvariables((prev) => ({
+        ...prev,
+        fq: fq,
+      }));
     } else {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
@@ -94,7 +101,7 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
 
         setQvariables((prev) => {
           const newQ = { ...prev, fq: fq };
-          console.log(newQ);
+
           return newQ;
         });
         return newFilter;
@@ -239,9 +246,10 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
             ? keywordsResults.map((keyword, index) => (
                 <button
                   key={index}
-                  className="bg-gray-100 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
+                  className="bg-gray-100 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400 text-xs"
+                  onClick={(e) => filterSearch(e, 'keyword', keyword.name)}
                 >
-                  <span className="text-xs">{keyword.display_name}</span>
+                  {keyword.display_name}
                 </button>
               ))
             : 'N/A'}
