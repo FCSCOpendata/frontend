@@ -128,6 +128,7 @@ export const SEARCH_QUERY = gql`
           title
           description: notes
           updated: metadata_modified
+          resources
           organization {
             name
             title
