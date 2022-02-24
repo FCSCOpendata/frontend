@@ -1,14 +1,14 @@
-import React from 'react';
 import Information from './Information';
 import Resources from './Resources';
-const NavBody: React.FC<{ variables: any; navtype: string }> = ({
-  variables,
+
+const NavBody: React.FC<{ datasetData: any; navtype: string }> = ({
+  datasetData,
   navtype,
 }) => {
   if (navtype === 'overview') {
-    return <Information variables={variables} />;
+    return <Information datasetData={datasetData} />;
   } else if (navtype === 'resources') {
-    return <Resources variables={variables} />;
+    return <Resources datasetData={datasetData} />;
   }
 };
 
