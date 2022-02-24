@@ -100,7 +100,9 @@ const popularDatasets: React.FC = () => {
             <div className="bg-white p-8 col-span-3 rounded-lg" key={index}>
               <img
                 src={category.image_display_url}
-                alt={`{category.name}-category`}
+                alt={`${category.name}-category`}
+                width="43"
+                height="43"
               />
               <h3 className="font-inter font-semibold text-lg mt-4">
                 {category.display_name}
