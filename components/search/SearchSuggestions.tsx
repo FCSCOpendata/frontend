@@ -13,8 +13,6 @@ const SearchSuggestions: React.FC = () => {
 
   const result = data.popular.result.results;
 
-  console.log(result);
-
   return (
     <div className="mt-16 mb-32">
       <h3 className="text-2xl font-bold text-gray-900 capitalize mb-8">

@@ -35,7 +35,6 @@ const popularDatasets: React.FC = () => {
 
   const category_results = dataCategories.categories.result.slice(0, 4);
   const popular_datasets = dataDatasets.popular.result.results;
-  console.log(popular_datasets);
   return (
     <div className="px-2">
       <Link href="/category">

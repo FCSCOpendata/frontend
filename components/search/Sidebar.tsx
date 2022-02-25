@@ -7,7 +7,7 @@ import {
 } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 
-export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
+export default function Sidebar({ setQvariables, setSideFilter }) {
   const [showMore, setShowMore] = useState({ orgs: 5, category: 5 });
 
   const queryMultiple = () => {
@@ -85,7 +85,6 @@ export default function Sidebar({ setQvariables, sideFilter, setSideFilter }) {
         return newFilter;
       });
     } else if (btnType === 'keyword') {
-      console.log(name);
       const fq = `tags:${name}`;
       setQvariables((prev) => ({
         ...prev,
