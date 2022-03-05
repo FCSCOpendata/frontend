@@ -19,6 +19,7 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         roboto: ['Roboto', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        raleway: ['raleway', 'sans-serif'],
       },
       boxShadow: {
         blogImg: 'inset 0 0 0 50vw rgba(0,28,49,0.76)',

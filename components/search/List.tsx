@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
+import { useState } from 'react';
 import Link from 'next/link';
 import { ErrorMessage } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
@@ -33,7 +34,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
 
   return (
     <div>
-      <div className="mt-8 ml-6">
+      <div className="mt-8 sm:ml-6">
         <div className="text-center text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#e66433] to-[#94368C] font-bold px-2 mb-4">
           {searchResults.count}{' '}
           {searchResults.count === 1 ? 'dataset found' : 'datasets found'}
@@ -149,7 +150,10 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
           ))}
         </ul>
         <div className="flex justify-center">
-          <Pagination count={searchResults.count} variables={setQvariables} />
+          <Pagination
+            count={searchResults.count}
+            setQvariables={setQvariables}
+          />
         </div>
       </div>
     </div>
