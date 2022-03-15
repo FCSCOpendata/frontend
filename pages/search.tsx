@@ -36,7 +36,6 @@ const Search: React.FC<Props> = ({ variables }) => {
           <div className="sm:w-1/4">
             <Sidebar
               setQvariables={setQvariables}
-              sideFilter={sideFilter}
               setSideFilter={setSideFilter}
             />
           </div>

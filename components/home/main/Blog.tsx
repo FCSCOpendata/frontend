@@ -11,7 +11,7 @@ export default function blog() {
         Latest News
       </h1>
       <div className="mt-14 grid grid-cols-1 md:grid-cols-9 grid-rows-1 gap-6 w-auto py-10">
-        <div className="bg-blog1 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+        <div className="bg-blog1 bg-no-repeat shadow-blogImg bg-cover rounded-lg py-12 col-span-3">
           <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE
@@ -47,7 +47,7 @@ export default function blog() {
             </div>
           </div>
         </div>
-        <div className="bg-blog2 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+        <div className="bg-blog2 shadow-blogImg bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
           <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE
@@ -81,7 +81,7 @@ export default function blog() {
             </div>
           </div>
         </div>
-        <div className="bg-blog3 bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
+        <div className="bg-blog3 shadow-blogImg bg-no-repeat bg-cover rounded-lg py-12 col-span-3">
           <div className="px-8">
             <p className="text-xs font-inter font-black tracking-widest text-white pb-40 mb-10">
               ARTICLE

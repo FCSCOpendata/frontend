@@ -1,5 +1,5 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=Roboto:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=Raleway:wght@600&family=Roboto:wght@300;400;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,11 +10,6 @@
   background-image: url('/images/hero-bg.jpg');
   background-position: 40% 50%;
   min-height: 900px;
-}
-
-.bg-banner {
-  background-size: cover;
-  background-image: url('/images/banner.jpg');
 }
 
 .vertical-text {

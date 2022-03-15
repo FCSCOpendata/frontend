@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-onchange */ //This is for the Filter Group because OnBlur doesn't work.
 import { useQuery } from '@apollo/react-hooks';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { GET_CATEGORIES_QUERY } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
+
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   variables,
   setQvariables,
@@ -15,6 +17,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   });
 
   const searchQueryRef = useRef<HTMLInputElement>(null);
+  const [searchTheme, setSearchTheme] = useState('');
 
   const handleSubmit = (e) => {
     if (e) {
@@ -22,19 +25,15 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
     }
 
     setQvariables((prev) => {
-      const newdata = { ...prev, q: searchQueryRef.current.value };
+      const newdata = {
+        ...prev,
+        q: searchQueryRef.current.value,
+        fq: searchTheme,
+      };
       return newdata;
     });
   };
-
-  const handlekeyEvent = (event) => {
-    if (event.key === 'Enter') {
-      setQvariables((prev) => {
-        const newdata = { ...prev, q: searchQueryRef.current.value };
-        return newdata;
-      });
-    }
-  };
+  const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
   if (errorCategories)
     return <ErrorMessage message="Error loading Categories" />;
@@ -88,11 +87,14 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
         <div className="flex flex-wrap lg:flex-nowrap sm:w-1/2 justify-center sm:justify-between">
           <div className="">
             <select
-              name="themes"
               id="themes"
+              value={searchTheme}
+              onChange={(e) => setSearchTheme(e.target.value)}
+              onKeyPress={handlekeyEvent}
               className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:border-gray-100"
             >
-              <option>Filter By group</option>
+              <option value="">Filter By group (None)</option>
+
               {dataCategories.categories.result.map((theme, index) => (
                 <option key={index} value={theme.name}>
                   {theme.display_name}
