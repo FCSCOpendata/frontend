@@ -1,87 +1,65 @@
-import { defineSchema } from '@tinacms/cli';
+
+import { defineSchema, defineConfig } from "tinacms";
 
 export default defineSchema({
   collections: [
     {
-      label: 'Page Content',
-      name: 'page',
-      path: 'content/page',
+      label: "Blog Posts",
+      name: "posts",
+      path: "content/post",
       fields: [
         {
-          name: 'body',
-          label: 'Main Content',
-          type: 'rich-text',
+          type: "string",
+          label: "Title",
+          name: "title",
+        },
+        {
+          type: "string",
+          label: "Blog Post Body",
+          name: "body",
           isBody: true,
-        },
-      ],
-    },
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/post',
-      format: 'md',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Topic',
-          name: 'topic',
-          options: ['programming', 'blacksmithing'],
-          list: true,
-        },
-        {
-          type: 'string',
-          label: 'Blog Post Body',
-          name: 'body',
-          isBody: true,
-          templates: [
-            {
-              name: 'Gallery',
-              label: 'Gallery',
-              fields: [
-                {
-                  label: 'Images',
-                  name: 'images',
-                  type: 'object',
-                  list: true,
-                  fields: [
-                    {
-                      type: 'image',
-                      name: 'src',
-                      label: 'Source',
-                    },
-                    {
-                      type: 'string',
-                      name: 'width',
-                      label: 'Width',
-                    },
-                    {
-                      type: 'string',
-                      name: 'height',
-                      label: 'Height',
-                    },
-                  ],
-                },
-                {
-                  type: 'string',
-                  name: 'alignment',
-                  label: 'Alignment',
-                  options: ['left', 'center', 'right'],
-                },
-                {
-                  type: 'string',
-                  name: 'gap',
-                  label: 'Gap',
-                },
-              ],
-            },
-          ],
+          ui: {
+            component: "textarea"
+          },
         },
       ],
     },
   ],
+});
+
+
+
+
+// Your tina config
+// ==============
+const branch = 'main'
+// When working locally, hit our local filesystem.
+// On a Vercel deployment, hit the Tina Cloud API
+const apiURL =
+  process.env.NODE_ENV == 'development'
+    ? 'http://localhost:4001/graphql'
+    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`
+
+export const tinaConfig = defineConfig({
+  apiURL,
+  cmsCallback: (cms) => {
+    //  add your CMS callback code here (if you want)
+
+    // The Route Mapper
+    /**
+     * 1. Import `tinacms` and `RouteMappingPlugin`
+     **/
+    import("tinacms").then(({ RouteMappingPlugin }) => {
+      /**
+       * 2. Define the `RouteMappingPlugin` see https://tina.io/docs/tinacms-context/#the-routemappingplugin for more details
+       **/
+      const RouteMapping = new RouteMappingPlugin((collection, document) => {
+        return undefined;
+      });
+      /**
+       * 3. Add the `RouteMappingPlugin` to the `cms`.
+       **/
+      cms.plugins.add(RouteMapping);
+    });
+  },
 });

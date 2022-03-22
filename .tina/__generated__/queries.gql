@@ -1,5 +1,5 @@
-query getPageDocument($relativePath: String!) {
-  getPageDocument(relativePath: $relativePath) {
+query getPostsDocument($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
     sys {
       filename
       basename
@@ -10,13 +10,13 @@ query getPageDocument($relativePath: String!) {
     }
     id
     data {
-      ...PageParts
+      ...PostsParts
     }
   }
 }
 
-query getPageList {
-  getPageList {
+query getPostsList {
+  getPostsList {
     totalCount
     edges {
       node {
@@ -30,46 +30,7 @@ query getPageList {
           extension
         }
         data {
-          ...PageParts
-        }
-      }
-    }
-  }
-}
-
-query getPostDocument($relativePath: String!) {
-  getPostDocument(relativePath: $relativePath) {
-    sys {
-      filename
-      basename
-      breadcrumbs
-      path
-      relativePath
-      extension
-    }
-    id
-    data {
-      ...PostParts
-    }
-  }
-}
-
-query getPostList {
-  getPostList {
-    totalCount
-    edges {
-      node {
-        id
-        sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
-        }
-        data {
-          ...PostParts
+          ...PostsParts
         }
       }
     }

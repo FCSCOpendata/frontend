@@ -1,9 +1,4 @@
-fragment PageParts on Page {
-  body
-}
-
-fragment PostParts on Post {
+fragment PostsParts on Posts {
   title
-  topic
   body
 }

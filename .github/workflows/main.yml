@@ -11,5 +11,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: yarn tina-build
-          start: yarn tina-start
+          build: npm run build
+          start: npm run start

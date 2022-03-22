@@ -6,9 +6,7 @@ import { applyTheme } from '../themes/utils';
 import I18nProvider from 'next-translate/I18nProvider';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
-import dynamic from 'next/dynamic';
-import { TinaEditProvider } from 'tinacms/dist/edit-state';
-const TinaCMS = dynamic(() => import('tinacms'), { ssr: false });
+import Tina from '../.tina/components/TinaDynamicProvider.js'
 
 interface I8nObject {
   [property: string]: any;
@@ -49,15 +47,9 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
   return (
     <I18nProvider lang={router.locale} namespaces={pageProps._ns}>
       <ApolloProvider client={apolloClient}>
-        <TinaEditProvider
-          editMode={
-            <TinaCMS isLocalClient={true} {...pageProps}>
-              {(livePageProps) => <Component {...livePageProps} />}
-            </TinaCMS>
-          }
-        >
+        <Tina>
           <Component {...pageProps} />
-        </TinaEditProvider>
+        </Tina>
       </ApolloProvider>
     </I18nProvider>
   );

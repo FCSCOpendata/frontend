@@ -3,13 +3,9 @@
 import { gql } from 'tinacms';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -33,6 +29,7 @@ export type SystemInfo = {
   template: Scalars['String'];
   collection: Collection;
 };
+
 
 export type SystemInfoBreadcrumbsArgs = {
   excludeExtension?: InputMaybe<Scalars['Boolean']>;
@@ -59,7 +56,7 @@ export type Document = {
 
 /** A relay-compliant pagination connection */
 export type Connection = {
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
 };
 
 export type Query = {
@@ -70,52 +67,45 @@ export type Query = {
   getDocument: DocumentNode;
   getDocumentList: DocumentConnection;
   getDocumentFields: Scalars['JSON'];
-  getPageDocument: PageDocument;
-  getPageList: PageConnection;
-  getPostDocument: PostDocument;
-  getPostList: PostConnection;
+  getPostsDocument: PostsDocument;
+  getPostsList: PostsConnection;
 };
+
 
 export type QueryGetCollectionArgs = {
   collection?: InputMaybe<Scalars['String']>;
 };
 
+
 export type QueryNodeArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
+
 
 export type QueryGetDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
+
 export type QueryGetDocumentListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
-export type QueryGetPageDocumentArgs = {
+
+export type QueryGetPostsDocumentArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
-export type QueryGetPageListArgs = {
+
+export type QueryGetPostsListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-};
-
-export type QueryGetPostDocumentArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryGetPostListArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
 export type DocumentConnectionEdges = {
@@ -127,7 +117,7 @@ export type DocumentConnectionEdges = {
 export type DocumentConnection = Connection & {
   __typename?: 'DocumentConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocumentConnectionEdges>>>;
 };
 
@@ -135,7 +125,7 @@ export type Collection = {
   __typename?: 'Collection';
   name: Scalars['String'];
   slug: Scalars['String'];
-  label: Scalars['String'];
+  label?: Maybe<Scalars['String']>;
   path: Scalars['String'];
   format?: Maybe<Scalars['String']>;
   matches?: Maybe<Scalars['String']>;
@@ -144,73 +134,43 @@ export type Collection = {
   documents: DocumentConnection;
 };
 
+
 export type CollectionDocumentsArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
-export type DocumentNode = PageDocument | PostDocument;
+export type DocumentNode = PostsDocument;
 
-export type Page = {
-  __typename?: 'Page';
-  body?: Maybe<Scalars['JSON']>;
-};
-
-export type PageDocument = Node &
-  Document & {
-    __typename?: 'PageDocument';
-    id: Scalars['ID'];
-    sys: SystemInfo;
-    data: Page;
-    form: Scalars['JSON'];
-    values: Scalars['JSON'];
-    dataJSON: Scalars['JSON'];
-  };
-
-export type PageConnectionEdges = {
-  __typename?: 'PageConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
-  node?: Maybe<PageDocument>;
-};
-
-export type PageConnection = Connection & {
-  __typename?: 'PageConnection';
-  pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
-  edges?: Maybe<Array<Maybe<PageConnectionEdges>>>;
-};
-
-export type Post = {
-  __typename?: 'Post';
+export type Posts = {
+  __typename?: 'Posts';
   title?: Maybe<Scalars['String']>;
-  topic?: Maybe<Array<Maybe<Scalars['String']>>>;
   body?: Maybe<Scalars['String']>;
 };
 
-export type PostDocument = Node &
-  Document & {
-    __typename?: 'PostDocument';
-    id: Scalars['ID'];
-    sys: SystemInfo;
-    data: Post;
-    form: Scalars['JSON'];
-    values: Scalars['JSON'];
-    dataJSON: Scalars['JSON'];
-  };
-
-export type PostConnectionEdges = {
-  __typename?: 'PostConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
-  node?: Maybe<PostDocument>;
+export type PostsDocument = Node & Document & {
+  __typename?: 'PostsDocument';
+  id: Scalars['ID'];
+  sys: SystemInfo;
+  data: Posts;
+  form: Scalars['JSON'];
+  values: Scalars['JSON'];
+  dataJSON: Scalars['JSON'];
 };
 
-export type PostConnection = Connection & {
-  __typename?: 'PostConnection';
+export type PostsConnectionEdges = {
+  __typename?: 'PostsConnectionEdges';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<PostsDocument>;
+};
+
+export type PostsConnection = Connection & {
+  __typename?: 'PostsConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
-  edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<PostsConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -218,11 +178,10 @@ export type Mutation = {
   addPendingDocument: DocumentNode;
   updateDocument: DocumentNode;
   createDocument: DocumentNode;
-  updatePageDocument: PageDocument;
-  createPageDocument: PageDocument;
-  updatePostDocument: PostDocument;
-  createPostDocument: PostDocument;
+  updatePostsDocument: PostsDocument;
+  createPostsDocument: PostsDocument;
 };
+
 
 export type MutationAddPendingDocumentArgs = {
   collection: Scalars['String'];
@@ -230,11 +189,13 @@ export type MutationAddPendingDocumentArgs = {
   template?: InputMaybe<Scalars['String']>;
 };
 
+
 export type MutationUpdateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
   params: DocumentMutation;
 };
+
 
 export type MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
@@ -242,380 +203,125 @@ export type MutationCreateDocumentArgs = {
   params: DocumentMutation;
 };
 
-export type MutationUpdatePageDocumentArgs = {
+
+export type MutationUpdatePostsDocumentArgs = {
   relativePath: Scalars['String'];
-  params: PageMutation;
+  params: PostsMutation;
 };
 
-export type MutationCreatePageDocumentArgs = {
-  relativePath: Scalars['String'];
-  params: PageMutation;
-};
 
-export type MutationUpdatePostDocumentArgs = {
+export type MutationCreatePostsDocumentArgs = {
   relativePath: Scalars['String'];
-  params: PostMutation;
-};
-
-export type MutationCreatePostDocumentArgs = {
-  relativePath: Scalars['String'];
-  params: PostMutation;
+  params: PostsMutation;
 };
 
 export type DocumentMutation = {
-  page?: InputMaybe<PageMutation>;
-  post?: InputMaybe<PostMutation>;
+  posts?: InputMaybe<PostsMutation>;
 };
 
-export type PageMutation = {
-  body?: InputMaybe<Scalars['JSON']>;
-};
-
-export type PostMutation = {
+export type PostsMutation = {
   title?: InputMaybe<Scalars['String']>;
-  topic?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   body?: InputMaybe<Scalars['String']>;
 };
 
-export type PagePartsFragment = {
-  __typename?: 'Page';
-  body?: any | null | undefined;
-};
+export type PostsPartsFragment = { __typename?: 'Posts', title?: string | null, body?: string | null };
 
-export type PostPartsFragment = {
-  __typename?: 'Post';
-  title?: string | null | undefined;
-  topic?: Array<string | null | undefined> | null | undefined;
-  body?: string | null | undefined;
-};
-
-export type GetPageDocumentQueryVariables = Exact<{
+export type GetPostsDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
-export type GetPageDocumentQuery = {
-  __typename?: 'Query';
-  getPageDocument: {
-    __typename?: 'PageDocument';
-    id: string;
-    sys: {
-      __typename?: 'SystemInfo';
-      filename: string;
-      basename: string;
-      breadcrumbs: Array<string>;
-      path: string;
-      relativePath: string;
-      extension: string;
-    };
-    data: { __typename?: 'Page'; body?: any | null | undefined };
-  };
-};
 
-export type GetPageListQueryVariables = Exact<{ [key: string]: never }>;
+export type GetPostsDocumentQuery = { __typename?: 'Query', getPostsDocument: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: string | null } } };
 
-export type GetPageListQuery = {
-  __typename?: 'Query';
-  getPageList: {
-    __typename?: 'PageConnection';
-    totalCount: number;
-    edges?:
-      | Array<
-          | {
-              __typename?: 'PageConnectionEdges';
-              node?:
-                | {
-                    __typename?: 'PageDocument';
-                    id: string;
-                    sys: {
-                      __typename?: 'SystemInfo';
-                      filename: string;
-                      basename: string;
-                      breadcrumbs: Array<string>;
-                      path: string;
-                      relativePath: string;
-                      extension: string;
-                    };
-                    data: {
-                      __typename?: 'Page';
-                      body?: any | null | undefined;
-                    };
-                  }
-                | null
-                | undefined;
-            }
-          | null
-          | undefined
-        >
-      | null
-      | undefined;
-  };
-};
+export type GetPostsListQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetPostDocumentQueryVariables = Exact<{
-  relativePath: Scalars['String'];
-}>;
 
-export type GetPostDocumentQuery = {
-  __typename?: 'Query';
-  getPostDocument: {
-    __typename?: 'PostDocument';
-    id: string;
-    sys: {
-      __typename?: 'SystemInfo';
-      filename: string;
-      basename: string;
-      breadcrumbs: Array<string>;
-      path: string;
-      relativePath: string;
-      extension: string;
-    };
-    data: {
-      __typename?: 'Post';
-      title?: string | null | undefined;
-      topic?: Array<string | null | undefined> | null | undefined;
-      body?: string | null | undefined;
-    };
-  };
-};
+export type GetPostsListQuery = { __typename?: 'Query', getPostsList: { __typename?: 'PostsConnection', totalCount: number, edges?: Array<{ __typename?: 'PostsConnectionEdges', node?: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: string | null } } | null } | null> | null } };
 
-export type GetPostListQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetPostListQuery = {
-  __typename?: 'Query';
-  getPostList: {
-    __typename?: 'PostConnection';
-    totalCount: number;
-    edges?:
-      | Array<
-          | {
-              __typename?: 'PostConnectionEdges';
-              node?:
-                | {
-                    __typename?: 'PostDocument';
-                    id: string;
-                    sys: {
-                      __typename?: 'SystemInfo';
-                      filename: string;
-                      basename: string;
-                      breadcrumbs: Array<string>;
-                      path: string;
-                      relativePath: string;
-                      extension: string;
-                    };
-                    data: {
-                      __typename?: 'Post';
-                      title?: string | null | undefined;
-                      topic?:
-                        | Array<string | null | undefined>
-                        | null
-                        | undefined;
-                      body?: string | null | undefined;
-                    };
-                  }
-                | null
-                | undefined;
-            }
-          | null
-          | undefined
-        >
-      | null
-      | undefined;
-  };
-};
-
-export const PagePartsFragmentDoc = gql`
-  fragment PageParts on Page {
-    body
-  }
-`;
-export const PostPartsFragmentDoc = gql`
-  fragment PostParts on Post {
-    title
-    topic
-    body
-  }
-`;
-export const GetPageDocumentDocument = gql`
-  query getPageDocument($relativePath: String!) {
-    getPageDocument(relativePath: $relativePath) {
-      sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-      data {
-        ...PageParts
-      }
-    }
-  }
-  ${PagePartsFragmentDoc}
-`;
-export const GetPageListDocument = gql`
-  query getPageList {
-    getPageList {
-      totalCount
-      edges {
-        node {
-          id
-          sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          data {
-            ...PageParts
-          }
-        }
-      }
-    }
-  }
-  ${PagePartsFragmentDoc}
-`;
-export const GetPostDocumentDocument = gql`
-  query getPostDocument($relativePath: String!) {
-    getPostDocument(relativePath: $relativePath) {
-      sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-      data {
-        ...PostParts
-      }
-    }
-  }
-  ${PostPartsFragmentDoc}
-`;
-export const GetPostListDocument = gql`
-  query getPostList {
-    getPostList {
-      totalCount
-      edges {
-        node {
-          id
-          sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          data {
-            ...PostParts
-          }
-        }
-      }
-    }
-  }
-  ${PostPartsFragmentDoc}
-`;
-export type Requester<C = {}> = <R, V>(
-  doc: DocumentNode,
-  vars?: V,
-  options?: C
-) => Promise<R>;
-export function getSdk<C>(requester: Requester<C>) {
-  return {
-    getPageDocument(
-      variables: GetPageDocumentQueryVariables,
-      options?: C
-    ): Promise<{
-      data: GetPageDocumentQuery;
-      variables: GetPageDocumentQueryVariables;
-      query: string;
-    }> {
-      return requester<
-        {
-          data: GetPageDocumentQuery;
-          variables: GetPageDocumentQueryVariables;
-          query: string;
-        },
-        GetPageDocumentQueryVariables
-      >(GetPageDocumentDocument, variables, options);
-    },
-    getPageList(
-      variables?: GetPageListQueryVariables,
-      options?: C
-    ): Promise<{
-      data: GetPageListQuery;
-      variables: GetPageListQueryVariables;
-      query: string;
-    }> {
-      return requester<
-        {
-          data: GetPageListQuery;
-          variables: GetPageListQueryVariables;
-          query: string;
-        },
-        GetPageListQueryVariables
-      >(GetPageListDocument, variables, options);
-    },
-    getPostDocument(
-      variables: GetPostDocumentQueryVariables,
-      options?: C
-    ): Promise<{
-      data: GetPostDocumentQuery;
-      variables: GetPostDocumentQueryVariables;
-      query: string;
-    }> {
-      return requester<
-        {
-          data: GetPostDocumentQuery;
-          variables: GetPostDocumentQueryVariables;
-          query: string;
-        },
-        GetPostDocumentQueryVariables
-      >(GetPostDocumentDocument, variables, options);
-    },
-    getPostList(
-      variables?: GetPostListQueryVariables,
-      options?: C
-    ): Promise<{
-      data: GetPostListQuery;
-      variables: GetPostListQueryVariables;
-      query: string;
-    }> {
-      return requester<
-        {
-          data: GetPostListQuery;
-          variables: GetPostListQueryVariables;
-          query: string;
-        },
-        GetPostListQueryVariables
-      >(GetPostListDocument, variables, options);
-    },
-  };
+export const PostsPartsFragmentDoc = gql`
+    fragment PostsParts on Posts {
+  title
+  body
 }
-export type Sdk = ReturnType<typeof getSdk>;
+    `;
+export const GetPostsDocumentDocument = gql`
+    query getPostsDocument($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...PostsParts
+    }
+  }
+}
+    ${PostsPartsFragmentDoc}`;
+export const GetPostsListDocument = gql`
+    query getPostsList {
+  getPostsList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...PostsParts
+        }
+      }
+    }
+  }
+}
+    ${PostsPartsFragmentDoc}`;
+export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
+  export function getSdk<C>(requester: Requester<C>) {
+    return {
+      getPostsDocument(variables: GetPostsDocumentQueryVariables, options?: C): Promise<{data: GetPostsDocumentQuery, variables: GetPostsDocumentQueryVariables, query: string}> {
+        return requester<{data: GetPostsDocumentQuery, variables: GetPostsDocumentQueryVariables, query: string}, GetPostsDocumentQueryVariables>(GetPostsDocumentDocument, variables, options);
+      },
+    getPostsList(variables?: GetPostsListQueryVariables, options?: C): Promise<{data: GetPostsListQuery, variables: GetPostsListQueryVariables, query: string}> {
+        return requester<{data: GetPostsListQuery, variables: GetPostsListQueryVariables, query: string}, GetPostsListQueryVariables>(GetPostsListDocument, variables, options);
+      }
+    };
+  }
+  export type Sdk = ReturnType<typeof getSdk>;
 
 // TinaSDK generated code
-import { getStaticPropsForTina } from 'tinacms';
-const requester: (
-  doc: any,
-  vars?: any,
-  options?: any
-) => Promise<any> = async (doc, vars, _options) => {
-  // const data = await tinaClient.request(doc, { variables: vars });
-  const res = await await getStaticPropsForTina({
-    query: doc,
-    variables: vars,
-  });
-  return res;
-};
+import { staticRequest } from 'tinacms'
+const requester: (doc: any, vars?: any, options?: any) => Promise<any> = async (
+  doc,
+  vars,
+  _options
+) => {
+  let data = {}
+  try {
+    data = await staticRequest({
+      query: doc,
+      variables: vars,
+    })
+  } catch (e) {
+    // swallow errors related to document creation
+    console.warn('Warning: There was an error when fetching data')
+    console.warn(e)
+  }
+
+  return { data, query: doc, variables: vars || {} }
+}
 
 /**
  * @experimental this class can be used but may change in the future
  **/
-export const ExperimentalGetTinaClient = () => getSdk(requester);
+export const ExperimentalGetTinaClient = ()=>getSdk(requester)
+
