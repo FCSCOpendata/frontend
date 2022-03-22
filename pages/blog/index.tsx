@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 import Head from 'next/head';
 import Nav from '../../components/home/Nav';
-import { staticRequest, gql } from "tinacms";
+import { staticRequest, gql } from 'tinacms';
 
 export default function Home(props) {
   const postsList = props.data;
@@ -33,7 +33,7 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async () => {
-  const postsListData = (await staticRequest({
+  const postsListData: any = await staticRequest({
     query: gql`
       query GetPostsList {
         getPostsList {
@@ -50,12 +50,12 @@ export const getStaticProps = async () => {
         }
       }
     `,
-  }));
+  });
 
   const data = postsListData.getPostsList.edges.map((post) => ({
     filename: post.node.sys.filename,
     title: post.node.data.title,
-  }))
+  }));
 
   return {
     props: { data },

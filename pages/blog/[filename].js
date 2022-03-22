@@ -1,21 +1,21 @@
 // THIS FILE HAS BEEN GENERATED WITH THE TINA CLI.
 // This is a demo file once you have tina setup feel free to delete this file
 
-import { staticRequest, gql } from "tinacms";
-import Head from "next/head";
-import { createGlobalStyle } from "styled-components";
-import { useTina } from "tinacms/dist/edit-state";
+import { staticRequest, gql } from 'tinacms';
+import Head from 'next/head';
+import { createGlobalStyle } from 'styled-components';
+import { useTina } from 'tinacms/dist/edit-state';
 
 const query = gql`
   query BlogPostQuery($relativePath: String!) {
     getPostsDocument(relativePath: $relativePath) {
       data {
-      title
+        title
         body
       }
     }
   }
-`
+`;
 
 // Styles for markdown
 const GlobalStyle = createGlobalStyle`
@@ -80,14 +80,14 @@ const BlogPage = (props) => {
       <div>
         <div
           style={{
-            textAlign: "center",
+            textAlign: 'center',
           }}
         >
           <h1 className="text-3xl m-8 text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             {data.getPostsDocument.data.title}
           </h1>
           {/* Convert markdown to html in the browser only */}
-          {typeof window !== "undefined" && (
+          {typeof window !== 'undefined' && (
             <ContentSection
               content={window.marked.parse(data.getPostsDocument.data.body)}
             ></ContentSection>
@@ -99,13 +99,13 @@ const BlogPage = (props) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const variables = { relativePath: `${params.filename}.md` }
-  let data = {}
+  const variables = { relativePath: `${params.filename}.md` };
+  let data = {};
   try {
     data = await staticRequest({
       query,
       variables,
-    })
+    });
   } catch {
     // swallow errors related to document creation
   }
@@ -116,11 +116,11 @@ export const getStaticProps = async ({ params }) => {
       data,
       //myOtherProp: 'some-other-data',
     },
-  }
+  };
 };
 
 export const getStaticPaths = async () => {
-  const postsListData = (await staticRequest({
+  const postsListData = await staticRequest({
     query: gql`
       query GetPostsList {
         getPostsList {
@@ -134,7 +134,7 @@ export const getStaticPaths = async () => {
         }
       }
     `,
-  }));
+  });
 
   return {
     paths: postsListData.getPostsList.edges.map((post) => ({

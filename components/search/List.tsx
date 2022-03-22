@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/react-hooks';
-import { useState } from 'react';
 import Link from 'next/link';
 import { ErrorMessage } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';

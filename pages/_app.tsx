@@ -6,7 +6,7 @@ import { applyTheme } from '../themes/utils';
 import I18nProvider from 'next-translate/I18nProvider';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
-import Tina from '../.tina/components/TinaDynamicProvider.js'
+import Tina from '../.tina/components/TinaDynamicProvider.js';
 
 interface I8nObject {
   [property: string]: any;
