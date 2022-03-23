@@ -17,7 +17,7 @@
     "cypress:ci": "cypress run --config video=false",
     "e2e": "cypress run",
     "format": "prettier --single-quote --write .",
-    "pre-commit": "npm run lint:fix && prettier --single-quote --write",
+    "pre-commit": "npm run lint:fix && npm run format",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint --fix",
     "prepare": "husky install"

@@ -1,25 +1,24 @@
-
-import { defineSchema, defineConfig } from "tinacms";
+import { defineSchema, defineConfig } from 'tinacms';
 
 export default defineSchema({
   collections: [
     {
-      label: "Blog Posts",
-      name: "posts",
-      path: "content/post",
+      label: 'Blog Posts',
+      name: 'posts',
+      path: 'content/post',
       fields: [
         {
-          type: "string",
-          label: "Title",
-          name: "title",
+          type: 'string',
+          label: 'Title',
+          name: 'title',
         },
         {
-          type: "string",
-          label: "Blog Post Body",
-          name: "body",
+          type: 'string',
+          label: 'Blog Post Body',
+          name: 'body',
           isBody: true,
           ui: {
-            component: "markdown"
+            component: 'markdown',
           },
         },
       ],
@@ -27,31 +26,28 @@ export default defineSchema({
   ],
 });
 
-
-
-
 // Your tina config
 // ==============
-const branch = 'main'
+const branch = 'main';
 // When working locally, hit our local filesystem.
 // On a Vercel deployment, hit the Tina Cloud API
 const apiURL =
   process.env.NODE_ENV == 'development'
     ? 'http://localhost:4001/graphql'
-    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`
+    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const tinaConfig = defineConfig({
   apiURL,
   cmsCallback: (cms) => {
     //  add your CMS callback code here (if you want)
-    import('react-tinacms-editor').then((field)=> {
-      cms.plugins.add(field.MarkdownFieldPlugin)
+    import('react-tinacms-editor').then((field) => {
+      cms.plugins.add(field.MarkdownFieldPlugin);
     });
     // The Route Mapper
     /**
      * 1. Import `tinacms` and `RouteMappingPlugin`
      **/
-    import("tinacms").then(({ RouteMappingPlugin }) => {
+    import('tinacms').then(({ RouteMappingPlugin }) => {
       /**
        * 2. Define the `RouteMappingPlugin` see https://tina.io/docs/tinacms-context/#the-routemappingplugin for more details
        **/
