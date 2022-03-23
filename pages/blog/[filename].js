@@ -62,14 +62,6 @@ const BlogPage = (props) => {
   return (
     <>
       <Head>
-        {/* Tailwind CDN */}
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
-          integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
         {/* Marked CDN */}
         <script
           type="text/javascript"
