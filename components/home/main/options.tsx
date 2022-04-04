@@ -22,31 +22,47 @@ export default function options() {
         </Link>
 
         <div className="bg-white p-8 rounded-lg shadow-md sm:z-10 py-16 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
-          <img className="m-auto" src="/images/upload.svg" alt="Upload icon" />
-          <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
-            {' '}
-            Add data{' '}
-          </h1>
-          <p className="text-center text-black font-sans pt-2">
-            {' '}
-            Make your dataset <br /> available on Portal.
-          </p>
+          <a
+            href="https://www.datopian.com/contact"
+            target={'_blank'}
+            rel={'noreferrer'}
+          >
+            <img
+              className="m-auto"
+              src="/images/upload.svg"
+              alt="Upload icon"
+            />
+            <h1 className="text-2xl uppercase font-black pt-4 font-inter text-center">
+              {' '}
+              Add data{' '}
+            </h1>
+            <p className="text-center text-black font-sans pt-2">
+              {' '}
+              Make your dataset <br /> available on Portal.
+            </p>
+          </a>
         </div>
 
         <div className="bg-white p-8 rounded-lg shadow-md sm:z-10 py-16 mt-6 hover:bg-darkaccent cursor-pointer col-span-3">
-          <img
-            className="m-auto"
-            src="/images/request.svg"
-            alt="Request icon"
-          />
-          <h1 className="text-2xl uppercase font-black text-black pt-4 font-inter text-center">
-            {' '}
-            Request data{' '}
-          </h1>
-          <p className="text-center text-black font-inter pt-2">
-            {' '}
-            Send us a request for <br /> the data you didn’t find.
-          </p>
+          <a
+            href="https://www.datopian.com/contact"
+            target={'_blank'}
+            rel={'noreferrer'}
+          >
+            <img
+              className="m-auto"
+              src="/images/request.svg"
+              alt="Request icon"
+            />
+            <h1 className="text-2xl uppercase font-black text-black pt-4 font-inter text-center">
+              {' '}
+              Request data{' '}
+            </h1>
+            <p className="text-center text-black font-inter pt-2">
+              {' '}
+              Send us a request for <br /> the data you didn’t find.
+            </p>
+          </a>
         </div>
       </div>
       {/* <div className="flex flex-wrap justify-between">
