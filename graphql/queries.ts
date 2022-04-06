@@ -249,3 +249,19 @@ export const GET_KEYWORDS_QUERY = gql`
     }
   }
 `;
+
+export const GET_RESOURCE_FORMATS_QUERY = gql`
+  query formats {
+    formats
+      @rest(
+        type: "Response"
+        path: "package_search?facet.field=[%22res_format%22]&rows=0"
+      ) {
+      result {
+        facets {
+          res_format
+        }
+      }
+    }
+  }
+`;
