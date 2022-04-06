@@ -34,7 +34,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
   return (
     <div>
       <div className="mt-8 sm:ml-6">
-        <div className="text-center text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#e66433] to-[#94368C] font-bold px-2 mb-4">
+        <div className="text-center md:text-left text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#e66433] to-[#94368C] font-bold px-2 mb-4">
           {searchResults.count}{' '}
           {searchResults.count === 1 ? 'dataset found' : 'datasets found'}
         </div>
@@ -74,7 +74,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
 
                 <div className="pt-4 px-6 md:px-0 space-x-3">
                   <div
-                    className="inline-block px-2 py-0.5 rounded-2xl mb-1"
+                    className="inline-block px-4 py-1 rounded-2xl mb-1"
                     style={{ backgroundColor: getColor(index).divBg }}
                   >
                     <svg
@@ -100,7 +100,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
                     </span>
                   </div>
                   <div
-                    className="inline-block px-2 py-0.5 rounded-2xl mb-1"
+                    className="inline-block px-4 py-1 rounded-2xl mb-1"
                     style={{ backgroundColor: getColor(index).divBg }}
                   >
                     <svg
@@ -128,7 +128,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
                     </span>
                   </div>
                   <div
-                    className="inline-block px-2 py-0.5 rounded-2xl mb-1"
+                    className="inline-block px-4 py-1 rounded-2xl mb-1"
                     style={{ backgroundColor: getColor(index).divBg }}
                   >
                     <img
