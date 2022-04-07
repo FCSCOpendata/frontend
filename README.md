@@ -82,10 +82,12 @@ These are the default routes set up in the "starter" app.
 
 - Home `/`
 - Search `/search`
-- Dataset `/@org/dataset`
-- Resource `/@org/dataset/r/resource`
-- Organization `/@org`
-- Collection (aka group in CKAN) (?) - suggest to merge into org
+- Organizations `/organization`
+- Organization `organization/@org`
+- Dataset `organization/@org/dataset`
+- Resource `organization/@org/dataset/r/resource`
+- Collections (aka group in CKAN or categories here) - `/collection`
+- Collection - `/collection/collection_name`
 - Static pages, eg, `/about` etc. from CMS or can do it without external CMS, e.g., in Next.js
 
 ### New Routes

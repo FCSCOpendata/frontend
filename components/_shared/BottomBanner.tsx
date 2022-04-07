@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function BottomBanner() {
   return (
@@ -19,9 +20,12 @@ export default function BottomBanner() {
           <span className="bg-green-500 rounded-full w-24 h-6 px-2">
             Next Stop
           </span>
-          <span className="text-3xl sm:text-6xl font-bold text-white mt-4">
-            Themes -&gt;
-          </span>
+
+          <Link href="/search">
+            <span className="text-3xl sm:text-6xl font-bold text-white mt-4 cursor-pointer">
+              Themes -&gt;
+            </span>
+          </Link>
           <span className="text-sm font-bold text-gray-100 sm:w-2/3 mt-4">
             Explore the world of open data on bayanat. We provide the best
             exprience to data anlysists, students and developers

@@ -54,7 +54,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
               </div>
               <div className="px-6">
                 <Link
-                  href={`/@${
+                  href={`/organization/@${
                     dataset.organization
                       ? dataset.organization.name
                       : 'dataset'
