@@ -13,7 +13,9 @@ export default function NavBreadCrumbs({ navInfo }) {
           </li>
           <li>
             {/* eslint-disable-next-line */}
-            <Link href={`/organization/@${navInfo.orgName}`}>{navInfo.orgTitle}</Link>
+            <Link href={`/organization/@${navInfo.orgName}`}>
+              {navInfo.orgTitle}
+            </Link>
           </li>
           <li>
             <span>&gt;</span>

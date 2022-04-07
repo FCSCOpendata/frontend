@@ -1,11 +1,11 @@
 // import { useState } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
 // import { SearchIcon } from '@heroicons/react/solid';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
-  // const router = useRouter();
+  const router = useRouter();
   // const [searchQuery, setSearchQuery] = useState('');
 
   // const handleSubmit = (e) => {
@@ -17,7 +17,10 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   // };
 
   return (
-    <Disclosure as="nav" className="bg-black shadow">
+    <Disclosure
+      as="nav"
+      className={`shadow ${router.pathname != '/' ? 'bg-black' : null}`}
+    >
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
