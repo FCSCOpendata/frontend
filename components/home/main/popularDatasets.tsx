@@ -37,9 +37,9 @@ const popularDatasets: React.FC = () => {
   const popular_datasets = dataDatasets.popular.result.results;
   return (
     <div className="px-2">
-      <Link href="/category">
+      <Link href="/collection">
         <div className="font-inter uppercase text-xs mt-24 md:text-right text-center mr-2 cursor-pointer">
-          View all categories -&gt;
+          View all collections -&gt;
         </div>
       </Link>
       <div>
@@ -57,7 +57,7 @@ const popularDatasets: React.FC = () => {
                 {popular_datasets.map((dataset, index) => (
                   <Link
                     key={index}
-                    href={`/@${
+                    href={`/organization/@${
                       dataset.organization
                         ? dataset.organization.name
                         : 'dataset'
@@ -99,7 +99,7 @@ const popularDatasets: React.FC = () => {
             <div className="bg-white p-8 col-span-3 rounded-lg" key={index}>
               <img
                 src={category.image_display_url}
-                alt={`${category.name}-category`}
+                alt={`${category.name}-collection`}
                 width="43"
                 height="43"
               />
@@ -109,7 +109,7 @@ const popularDatasets: React.FC = () => {
               <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-2">
                 {category.description}
               </p>
-              <Link href={`/category/{category.name}`}>
+              <Link href={`/collection/${category.name}`}>
                 <span className="font-inter font-medium text-sm text-accent cursor-pointer">
                   View collection -&gt;
                 </span>

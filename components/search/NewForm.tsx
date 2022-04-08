@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/no-onchange */ //This is for the Filter Group because OnBlur doesn't work.
 import { useQuery } from '@apollo/react-hooks';
+import { GetServerSideProps } from 'next';
 import { useRef, useState } from 'react';
-import { GET_CATEGORIES_QUERY } from '../../graphql/queries';
+import { GET_RESOURCE_FORMATS_QUERY } from '../../graphql/queries';
+import { initializeApollo } from '../../lib/apolloClient';
 import { ErrorMessage } from '../_shared';
 
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
@@ -9,15 +11,15 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   setQvariables,
 }) => {
   const {
-    loading: loadCategories,
-    error: errorCategories,
-    data: dataCategories,
-  } = useQuery(GET_CATEGORIES_QUERY, {
+    loading: loadFormats,
+    error: errorFormats,
+    data: dataFormats,
+  } = useQuery(GET_RESOURCE_FORMATS_QUERY, {
     notifyOnNetworkStatusChange: true,
   });
 
   const searchQueryRef = useRef<HTMLInputElement>(null);
-  const [searchTheme, setSearchTheme] = useState('');
+  const [searchFormat, setSearchFormat] = useState('');
 
   const handleSubmit = (e) => {
     if (e) {
@@ -28,16 +30,15 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
       const newdata = {
         ...prev,
         q: searchQueryRef.current.value,
-        fq: searchTheme,
+        fq: searchFormat ? `res_format:(${searchFormat})` : '',
       };
       return newdata;
     });
   };
   const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
-  if (errorCategories)
-    return <ErrorMessage message="Error loading Categories" />;
-  if (loadCategories) return <div>Loading Categories</div>;
+  if (errorFormats) return <ErrorMessage message="Error loading Categories" />;
+  if (loadFormats) return <div>Loading Formats</div>;
 
   return (
     <div>
@@ -84,31 +85,24 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
             className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
           />
         </form>
-        <div className="flex flex-wrap lg:flex-nowrap sm:w-1/2 justify-center sm:justify-between">
+        <div className="flex flex-wrap lg:flex-nowrapjustify-center sm:justify-between">
           <div className="">
             <select
-              id="themes"
-              value={searchTheme}
-              onChange={(e) => setSearchTheme(e.target.value)}
+              id="formats"
+              value={searchFormat}
+              onChange={(e) => setSearchFormat(e.target.value)}
               onKeyPress={handlekeyEvent}
               className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:border-gray-100"
             >
-              <option value="">Filter By group (None)</option>
+              <option value="">Format</option>
 
-              {dataCategories.categories.result.map((theme, index) => (
-                <option key={index} value={theme.name}>
-                  {theme.display_name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="">
-            <select
-              name="lastUpdated"
-              id="lastUpdated"
-              className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:outline-none focus:border-gray-100"
-            >
-              <option value="update1">Last Updated</option>
+              {Object.keys(dataFormats.formats.result.facets.res_format).map(
+                (format, index) => (
+                  <option key={index} value={format}>
+                    {format}
+                  </option>
+                )
+              )}
             </select>
           </div>
           <button
@@ -122,6 +116,23 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo();
+  const variables = {};
+
+  await apolloClient.query({
+    query: GET_RESOURCE_FORMATS_QUERY,
+    variables,
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      variables,
+    },
+  };
 };
 
 export default SearchForm;

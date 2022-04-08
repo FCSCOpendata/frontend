@@ -20,7 +20,7 @@ export default function SimilarDatasets({ organization }) {
       </h3>
       <div className="flex flex-1 space-x-5">
         {orgPackages.map((dataset, index) => (
-          <Link key={index} href={`/@${orgName}/${dataset.name}`}>
+          <Link key={index} href={`/organization/@${orgName}/${dataset.name}`}>
             {/* eslint-disable-next-line */}
             <a className="flex bg-blue-100 rounded-2xl capitalize px-6 py-2 text-center">
               <span className="flex-1 text-xs text-blue-800 font-bold">

@@ -4,7 +4,7 @@ const NavBar: React.FC = () => {
   const navMenu = [
     { title: 'Datasets', path: '/search' },
     { title: 'Organizations', path: '/organization' },
-    { title: 'Groups', path: '/group' },
+    { title: 'Groups', path: '/collection' },
     { title: 'About', path: '/about' },
   ];
 
