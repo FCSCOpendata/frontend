@@ -57,7 +57,7 @@ const Stats: React.FC = () => {
       stat: data.orgs.result ? data.orgs.result.length : 0,
     },
     {
-      name: 'Groups',
+      name: 'Collections',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -2,19 +2,19 @@ import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
 import {
   GET_ORGS_QUERY,
-  GET_CATEGORIES_QUERY,
+  GET_COLLECTIONS_QUERY,
   GET_KEYWORDS_QUERY,
 } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 
 export default function Sidebar({ setQvariables, setSideFilter }) {
-  const [showMore, setShowMore] = useState({ orgs: 5, category: 5 });
+  const [showMore, setShowMore] = useState({ orgs: 5, collections: 5 });
 
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, {
       notifyOnNetworkStatusChange: true,
     });
-    const categoriesQuery = useQuery(GET_CATEGORIES_QUERY, {
+    const collectionsQuery = useQuery(GET_COLLECTIONS_QUERY, {
       notifyOnNetworkStatusChange: true,
     });
 
@@ -22,23 +22,27 @@ export default function Sidebar({ setQvariables, setSideFilter }) {
       notifyOnNetworkStatusChange: true,
     });
 
-    return [orgsQuery, categoriesQuery, keywordsQuery];
+    return [orgsQuery, collectionsQuery, keywordsQuery];
   };
   const [
     { loading: loadOrgs, error: errorOrg, data: dataOrgs },
-    { loading: loadCategories, error: errorCategories, data: dataCategories },
+    {
+      loading: loadCollections,
+      error: errorCollections,
+      data: dataCollections,
+    },
     { loading: loadingKeywords, error: errorKeywords, data: dataKeywords },
   ] = queryMultiple();
 
   if (errorOrg) return <ErrorMessage message="Error loading organizations" />;
   if (loadOrgs) return <div>Loading Organizations</div>;
-  if (errorCategories)
-    return <ErrorMessage message="Error loading Categories" />;
-  if (loadCategories) return <div>Loading Categories</div>;
+  if (errorCollections)
+    return <ErrorMessage message="Error loading Collections" />;
+  if (loadCollections) return <div>Loading Collections</div>;
   if (errorKeywords) return <ErrorMessage message="Error loading keywords" />;
   if (loadingKeywords) return <div>Loading Keywords</div>;
   const orgsResults = dataOrgs.orgs.result;
-  const categoriesResults = dataCategories.categories.result;
+  const collectionsResults = dataCollections.collections.result;
   const keywordsResults =
     dataKeywords.keywords.result.search_facets.tags.items;
 
@@ -50,7 +54,7 @@ export default function Sidebar({ setQvariables, setSideFilter }) {
       });
     } else {
       setShowMore((prev) => {
-        const newShow = { ...prev, category: orgsResults.length };
+        const newShow = { ...prev, collections: orgsResults.length };
         return newShow;
       });
     }
@@ -64,7 +68,7 @@ export default function Sidebar({ setQvariables, setSideFilter }) {
       });
     } else {
       setShowMore((prev) => {
-        const newShow = { ...prev, category: 5 };
+        const newShow = { ...prev, collections: 5 };
         return newShow;
       });
     }
@@ -185,37 +189,39 @@ export default function Sidebar({ setQvariables, setSideFilter }) {
       </div>
       <div className="bg-gray-50 rounded-lg p-4 mt-12 mb-12">
         <h3 className="font-bold text-gray-900 capitalize mb-4">
-          Refine By Themes
+          Refine By Collections
         </h3>
         <div className="flex flex-col sm:h-3/4 overflow-y-scroll">
           <ul className="max-h-64 pb-4">
-            {categoriesResults
-              .slice(0, showMore.category)
-              .map((category, index) => (
+            {collectionsResults
+              .slice(0, showMore.collections)
+              .map((collections, index) => (
                 <li key={index} className="mb-4">
                   <input
                     type="checkbox"
                     id={`checkbox-${index}`}
-                    name={category.name}
-                    value={category.name}
-                    onChange={(e) => filterSearch(e, 'groups', category.name)}
+                    name={collections.name}
+                    value={collections.name}
+                    onChange={(e) =>
+                      filterSearch(e, 'groups', collections.name)
+                    }
                     className="rounded focus:ring-0 ring-offset-0"
                   />
                   <label
                     htmlFor={`checkbox-${index}`}
                     className="text-sm font-medium text-center text-gray-600 capitalize pl-4"
                   >
-                    {category.display_name}
+                    {collections.display_name}
                   </label>
                 </li>
               ))}
           </ul>
         </div>
-        {categoriesResults.length > 5 && showMore.category === 5 ? (
+        {collectionsResults.length > 5 && showMore.collections === 5 ? (
           <div className="mt-4">
             <button
               className="bg-gray-200 rounded px-2 py-1 text-xs text-gray-500"
-              onClick={() => showMoreEvt('category')}
+              onClick={() => showMoreEvt('collections')}
             >
               Show More
             </button>
@@ -223,11 +229,11 @@ export default function Sidebar({ setQvariables, setSideFilter }) {
         ) : (
           ''
         )}
-        {categoriesResults.length > 5 && showMore.category > 5 ? (
+        {collectionsResults.length > 5 && showMore.collections > 5 ? (
           <div className="mt-4">
             <button
               className="bg-gray-200 rounded px-2 py-1 text-xs text-gray-500"
-              onClick={() => showLessEvt('category')}
+              onClick={() => showLessEvt('collections')}
             >
               Show Less
             </button>

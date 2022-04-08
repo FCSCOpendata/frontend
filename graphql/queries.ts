@@ -223,9 +223,9 @@ export const GET_POPULAR_DATASETS_QUERY = gql`
   }
 `;
 
-export const GET_CATEGORIES_QUERY = gql`
-  query categories {
-    categories(all_fields: True)
+export const GET_COLLECTIONS_QUERY = gql`
+  query collections {
+    collections(all_fields: True)
       @rest(type: "Response", path: "group_list?{args}") {
       result
     }

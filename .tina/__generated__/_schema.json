@@ -16,7 +16,10 @@
           "type": "string",
           "label": "Title",
           "name": "title",
-          "namespace": ["posts", "title"]
+          "namespace": [
+            "posts",
+            "title"
+          ]
         },
         {
           "type": "string",
@@ -26,10 +29,15 @@
           "ui": {
             "component": "markdown"
           },
-          "namespace": ["posts", "body"]
+          "namespace": [
+            "posts",
+            "body"
+          ]
         }
       ],
-      "namespace": ["posts"]
+      "namespace": [
+        "posts"
+      ]
     }
   ]
 }

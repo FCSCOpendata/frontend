@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 import {
-  GET_CATEGORIES_QUERY,
+  GET_COLLECTIONS_QUERY,
   GET_POPULAR_DATASETS_QUERY,
 } from '../../../graphql/queries';
 import { ErrorMessage } from '../../_shared';
@@ -11,30 +11,30 @@ const popularDatasets: React.FC = () => {
     const popularDatasets = useQuery(GET_POPULAR_DATASETS_QUERY, {
       notifyOnNetworkStatusChange: true,
     });
-    const categoryData = useQuery(GET_CATEGORIES_QUERY, {
+    const collectionData = useQuery(GET_COLLECTIONS_QUERY, {
       notifyOnNetworkStatusChange: true,
     });
 
-    return [popularDatasets, categoryData];
+    return [popularDatasets, collectionData];
   };
 
   const [
     { loading: loadingDatasets, error: errorDatasets, data: dataDatasets },
     {
-      loading: loadingCategories,
-      error: errorCategories,
-      data: dataCategories,
+      loading: loadingCollections,
+      error: errorCollections,
+      data: dataCollections,
     },
   ] = queryMultiple();
 
   if (errorDatasets) return <ErrorMessage message="Error loading datasets." />;
   if (loadingDatasets) return <div>Loading Datasets</div>;
-  if (errorCategories)
-    return <ErrorMessage message="Error loading categories." />;
-  if (loadingCategories) return <div>Loading Categories</div>;
+  if (errorCollections)
+    return <ErrorMessage message="Error loading collections." />;
+  if (loadingCollections) return <div>Loading Collections</div>;
 
-  const category_results = dataCategories.categories.result.slice(0, 4);
-  const popular_datasets = dataDatasets.popular.result.results;
+  const collectionResults = dataCollections.collections.result.slice(0, 4);
+  const popularDatasets = dataDatasets.popular.result.results;
   return (
     <div className="px-2">
       <Link href="/collection">
@@ -54,7 +54,7 @@ const popularDatasets: React.FC = () => {
                 Highlights
               </h1>
               <div className="flex flex-col mt-14">
-                {popular_datasets.map((dataset, index) => (
+                {popularDatasets.map((dataset, index) => (
                   <Link
                     key={index}
                     href={`/organization/@${
@@ -95,21 +95,21 @@ const popularDatasets: React.FC = () => {
               </div>
             </div>
           </div>
-          {category_results.map((category, index) => (
+          {collectionResults.map((collection, index) => (
             <div className="bg-white p-8 col-span-3 rounded-lg" key={index}>
               <img
-                src={category.image_display_url}
-                alt={`${category.name}-collection`}
+                src={collection.image_display_url}
+                alt={`${collection.name}-collection`}
                 width="43"
                 height="43"
               />
               <h3 className="font-inter font-semibold text-lg mt-4">
-                {category.display_name}
+                {collection.display_name}
               </h3>
               <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-2">
-                {category.description}
+                {collection.description}
               </p>
-              <Link href={`/collection/${category.name}`}>
+              <Link href={`/collection/${collection.name}`}>
                 <span className="font-inter font-medium text-sm text-accent cursor-pointer">
                   View collection -&gt;
                 </span>
