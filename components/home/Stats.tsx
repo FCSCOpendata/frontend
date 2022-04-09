@@ -21,7 +21,7 @@ const Stats: React.FC = () => {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-10 mr-2 mt-2"
+          className="w-10 sm:mr-2 mt-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="white"
@@ -41,7 +41,7 @@ const Stats: React.FC = () => {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-10 mr-2 mt-2"
+          className="w-10 sm:mr-2 mt-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="white"
@@ -57,11 +57,11 @@ const Stats: React.FC = () => {
       stat: data.orgs.result ? data.orgs.result.length : 0,
     },
     {
-      name: 'Groups',
+      name: 'Collections',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-10 mr-2 mt-2"
+          className="w-10 sm:mr-2 mt-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="white"
@@ -79,10 +79,10 @@ const Stats: React.FC = () => {
   ];
 
   return (
-    <div className="flex justify-between px-2 bg-transparent text-white border border-white border-opacity-30 rounded-md py-10 space-x-5">
+    <div className="flex flex-col sm:flex-row justify-center px-2 bg-transparent text-white border border-white border-opacity-30 rounded-md py-10 space-x-5">
       {stats.map((item) => (
-        <div key={item.name} className="flex">
-          <div className="">{item.icon}</div>
+        <div key={item.name} className="flex flex-col sm:flex-row">
+          <div className="flex justify-center">{item.icon}</div>
           <div className="text-2xl text-center">
             {' '}
             {item.stat} <div className="text-sm uppercase"> {item.name} </div>

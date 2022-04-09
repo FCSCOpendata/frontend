@@ -6,15 +6,6 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   const router = useRouter();
-  // const [searchQuery, setSearchQuery] = useState('');
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   router.push({
-  //     pathname: '/search',
-  //     query: { q: searchQuery },
-  //   });
-  // };
 
   return (
     <Disclosure
@@ -41,7 +32,6 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                   </a>
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                  {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   {menu.map((item, index) => (
                     <a
                       key={'menu-link' + index}
@@ -69,7 +59,6 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
 
           <Disclosure.Panel className="lg:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
               {menu.map((item, index) => (
                 <a
                   key={'mobile-menu-link' + index}
