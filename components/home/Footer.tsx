@@ -3,12 +3,12 @@ import Link from 'next/link';
 const Footer: React.FC = () => {
   const navigation = {
     menu: [
-      { name: 'Datasets', href: '/datasets' },
-      { name: 'Organizations', href: '/organizations' },
-      { name: 'Themes', href: '/themes' },
-      { name: 'Open Data 101', href: '/organization' },
-      { name: 'Applications', href: '/Open-data-101' },
-      { name: 'Community', href: 'community' },
+      { name: 'Datasets', href: '/search' },
+      { name: 'Organizations', href: '/organization' },
+      { name: 'Topics', href: '/topic' },
+      { name: 'Open Data 101', href: '/open-data-101' },
+      { name: 'Applications', href: '/application' },
+      { name: 'Community', href: '/community' },
       { name: 'About', href: '/about' },
       { name: 'Contact', href: '/contact' },
     ],
