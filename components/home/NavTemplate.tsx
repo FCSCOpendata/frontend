@@ -2,7 +2,6 @@ import { MouseEvent, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
-import { SearchIcon } from '@heroicons/react/outline';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const languages = ['AR', 'EN'];
@@ -62,7 +61,6 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                 </div>
               </div>
               <div className="flex items-center space-x-8">
-                <SearchIcon className="w-6" />
                 <div className="space-x-2 text-[#525252]">
                   {languages.map((name) => (
                     <input
