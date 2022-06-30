@@ -2,13 +2,11 @@ import { GetServerSideProps } from 'next';
 import { initializeApollo } from '../lib/apolloClient';
 import utils from '../utils';
 import Head from 'next/head';
-import Nav from '../components/home/Nav';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
 import SearchSuggestions from '../components/search/SearchSuggestions';
-import Footer from '../components/home/Footer';
 import BottomBanner from '../components/_shared/BottomBanner';
 import Sidebar from '../components/search/Sidebar';
 
@@ -18,6 +16,7 @@ type Props = {
 
 const Search: React.FC<Props> = ({ variables }) => {
   const [qvariables, setQvariables] = useState(variables);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sideFilter, setSideFilter] = useState({
     organization: [],
     groups: [],
@@ -29,7 +28,6 @@ const Search: React.FC<Props> = ({ variables }) => {
         <title>Portal | Search</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
       <main className="px-20 py-12">
         <Form variables={qvariables} setQvariables={setQvariables} />
         <div className="flex flex-wrap">
@@ -46,7 +44,6 @@ const Search: React.FC<Props> = ({ variables }) => {
         </div>
       </main>
       <BottomBanner />
-      <Footer />
     </>
   );
 };
