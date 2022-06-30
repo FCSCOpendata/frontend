@@ -7,6 +7,7 @@ import I18nProvider from 'next-translate/I18nProvider';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
 import Tina from '../.tina/components/TinaDynamicProvider.js';
+import Layout from '../components/home/Layout';
 
 interface I8nObject {
   [property: string]: any;
@@ -48,7 +49,9 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
     <I18nProvider lang={router.locale} namespaces={pageProps._ns}>
       <ApolloProvider client={apolloClient}>
         <Tina>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </Tina>
       </ApolloProvider>
     </I18nProvider>
