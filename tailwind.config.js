@@ -20,6 +20,8 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
         raleway: ['raleway', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       boxShadow: {
         blogImg: 'inset 0 0 0 50vw rgba(0,28,49,0.76)',
@@ -28,6 +30,12 @@ module.exports = {
         blog1: "url('/images/blog/blog1.jpg')",
         blog2: "url('/images/blog/blog2.jpg')",
         blog3: "url('/images/blog/blog3.jpg')",
+        'lang-gradient':
+          'linear-gradient(90deg, #5EC7F7 -56.31%, #1F356C 192.69%)',
+        'nav-underline':
+          'linear-gradient(90deg, #5EC7F7 9.73%, #1F356C 90.96%)',
+        'footer-background':
+          'linear-gradient(180deg, #FFFFFF 16.93%, rgba(255, 255, 255, 0) 96.66%), url(/images/footer-background.png)',
       }),
     },
   },

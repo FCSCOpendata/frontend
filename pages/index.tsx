@@ -5,9 +5,7 @@ import { initializeApollo } from '../lib/apolloClient';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
-import NavBar from '../components/home/Nav';
 import Hero from '../components/home/Hero';
-import Footer from '../components/home/Footer';
 import MainOptions from '../components/home/MainOptions';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
@@ -17,16 +15,13 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
       <div className="container max-w-full mx-auto">
         <Head>
           <title>{t(`common:title`)}</title>
-          <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
-          <NavBar />
           <Hero />
         </div>
 
         <MainOptions />
         {/* <RecentDataset /> */}
-        <Footer />
       </div>
     </>
   );

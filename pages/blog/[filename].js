@@ -50,6 +50,7 @@ a {
   text-decoration: underline;
 }
 `;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultMarked = (markdown) => markdown;
 // Use the props returned by get static props (this can be deleted when the edit provider and tina-wrapper are moved to _app.js)
 const BlogPage = (props) => {
