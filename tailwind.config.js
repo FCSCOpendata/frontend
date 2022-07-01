@@ -14,6 +14,9 @@ module.exports = {
         darkaccent: '#00a8ae',
         darkbrown: '#A75001',
         darkerbrown: '#964800',
+        lightestblue: '#F7FAFC',
+        black: '#4D4D4D',
+        gray: '#7C7C7C',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
