@@ -17,7 +17,7 @@ const TopicCarousel: React.FC<TopicCarouselProps> = (
   const handleClick = (i) => {
     setActiveIdx(i);
     props.topicChangeCallback(topics[i], i);
-  }
+  };
 
   return (
     <>

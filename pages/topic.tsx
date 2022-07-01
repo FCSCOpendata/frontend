@@ -22,8 +22,6 @@ const Topics: React.FC = () => {
 
   const topics = data.collections.result;
 
-  console.log(topics);
-
   return (
     <>
       <Head>
