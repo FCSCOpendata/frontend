@@ -1,4 +1,0 @@
-fragment PostsParts on Posts {
-  title
-  body
-}
