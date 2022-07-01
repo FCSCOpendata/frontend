@@ -14,8 +14,8 @@ export default function Footer() {
           <main className="mt-4 mx-auto max-w-7xl px-4 sm:mt-16 sm:px-10 lg:mt-20">
             <div className="lg:grid lg:grid-cols-12 lg:gap-8">
               <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                <h1 className="font-poppins">
-                  <span className="mt-1 block text-4xl font-semibold sm:text-5xl xl:text-5xl">
+                <h1 className="mt-24 font-poppins">
+                  <span className="mt-1 block text-3xl font-semibold sm:text-4xl xl:text-4xl leading-[3.5rem]">
                     <span className="block text-black">
                       Welcome to the world
                     </span>

@@ -7,10 +7,12 @@
 
 .bg-hero {
   background-size: cover;
-  background-image: url('/images/hero.svg');
+  background-image: url('/images/dashed.svg'), url('/images/hero.svg');
   background-position: 40% 50%;
   height: 750px;
 }
+
+
 
 .vertical-text {
   transform: rotate(-90deg);

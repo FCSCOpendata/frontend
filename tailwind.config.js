@@ -26,6 +26,9 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      fontSize: {
+        '4xl': '2.5rem',
+      },
       boxShadow: {
         blogImg: 'inset 0 0 0 50vw rgba(0,28,49,0.76)',
       },
