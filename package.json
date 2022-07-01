@@ -53,6 +53,7 @@
     "react-tsparticles": "^1.39.2",
     "slugify": "^1.4.0",
     "styled-components": "^5.3.3",
+    "swiper": "^8.2.6",
     "timeago.js": "^4.0.2",
     "tinacms": "^0.66.8"
   },
