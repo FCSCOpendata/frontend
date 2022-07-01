@@ -1,54 +1,29 @@
 <h1 align="center">
 
-This is a data portal developed using 🌀 [Portal.JS](https://github.com/datopian/portal.js)
+🌀 UAE Open Data
 
 </h1>
 
-🌀 `Portal` is a framework for rapidly building rich data portal frontends using a modern frontend approach (javascript, React, SSR).
-
-`Portal` assumes a "decoupled" approach where the frontend is a separate service from the backend and interacts with backend(s) via an API. It can be used with any backend and has out of the box support for [CKAN][]. `portal` is built in Javascript and React on top of the popular [Next.js][] framework.
-
-[ckan]: https://ckan.org/
-[next.js]: https://nextjs.com/
+🌀 This is a `Portal.js` project: https://github.com/datopian/portal.js
 
 ## Live demo
 
-https://ckan-enterprise-frontend.vercel.app/
-
-## Features
-
-- 🗺️ Unified sites: present data and content in one seamless site, pulling datasets from a DMS (e.g. CKAN) and content from a CMS (e.g. wordpress) with a common internal API.
-- 👩‍💻 Developer friendly: built with familiar frontend tech Javascript, React etc
-- 🔋 Batteries included: Full set of portal components out of the box e.g. catalog search, dataset showcase, blog etc.
-- 🎨 Easy to theme and customize: installable themes, use standard CSS and React+CSS tooling. Add new routes quickly.
-- 🧱 Extensible: quickly extend and develop/import your own React components
-- 📝 Well documented: full set of documentation plus the documentation of NextJS and Apollo.
-
-### For developers
-
-- 🏗 Build with modern, familiar frontend tech such as Javascript and React.
-- 🚀 NextJS framework: so everything in NextJS for free React, SSR, static site generation, huge number of examples and integrations etc.
-  - SSR => unlimited number of pages, SEO etc whilst still using React.
-  - Static Site Generation (SSG) (good for small sites) => ultra-simple deployment, great performance and lighthouse scores etc
-- 📋 Typescript support
+https://fcsc-demo.vercel.app/
 
 ## Getting Started
 
 ### Setup
 
-Install a recent version of Node. You'll need Node 10.13 or later.
+Install a recent version of Node. We recommend using Node v14.
 
-### Create a Portal app
-
-To create a Portal app, open your terminal, cd into the directory you'd like to create the app in, and run the following command:
-
-```console
-npm init portal-app my-data-portal
+```
+npm i # install dependencies
+npm run dev # starts dev mode
 ```
 
-> NB: Under the hood, this uses the tool called create-next-app, which bootstraps a Next.js app for you. It uses this template through the --example flag.
->
-> If it doesn’t work, please open an issue.
+Open [http://localhost:3000](http://localhost:3000) to see the home page 🎉
+
+You can start editing the page by modifying `/pages/index.tsx`. The page auto-updates as you edit the file.
 
 ## Guide
 
@@ -260,49 +235,29 @@ export default function Org({ variables }) {
 
 TODO
 
-## Developers
-
-### Boot the local instance
-
-Install the dependencies:
-
-```bash
-yarn # or npm i
-```
-
-Boot the demo portal:
-
-```console
-$ yarn dev # or npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the home page 🎉
-
-You can start editing the page by modifying `/pages/index.tsx`. The page auto-updates as you edit the file.
-
 ### Tests
 
 We use Jest for running tests:
 
 ```bash
-yarn test # or npm run test
+npm run test # or npm run test
 
 # turn on watching
-yarn test --watch
+npm run test --watch
 ```
 
 We use Cypress tests as well
 
 ```
-yarn run e2e
+npm run e2e
 ```
 
 ### Architecture
 
-- Language: Javascript
-- Framework: NextJS - https://nextjs.org/
-- Data layer API: GraphQL using Apollo. So controllers access data using GraphQL “gatsby like”
+- Language: Javascript.
+- Framework: NextJS - https://nextjs.org/.
+- Data layer API: GraphQL using Apollo. So controllers access data using GraphQL “gatsby like”.
 
 ### Key Pages
 
-See https://tech.datopian.com/frontend/
+See https://tech.datopian.com/frontend/.
