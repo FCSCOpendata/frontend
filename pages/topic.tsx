@@ -71,13 +71,7 @@ const Topics: React.FC = () => {
             topics={topics}
             topicChangeCallback={(topic, idx) => setActiveTopicIdx(idx)}
           />
-          <TopicHeader
-            title={topics[activeTopicIdx].name}
-            text="test"
-            icon_url="trest"
-            dataset_qty={2}
-            image_url="dsa"
-          />
+          <TopicHeader topic={topics[activeTopicIdx]} />
         </div>
       </main>
     </>
