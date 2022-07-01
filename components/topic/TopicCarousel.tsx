@@ -24,10 +24,7 @@ const TopicCarousel: React.FC<TopicCarouselProps> = (
       <Swiper slidesPerView={10}>
         {topics.map((topic, index) => (
           <SwiperSlide key={index} onClick={() => handleClick(index)}>
-            <TopicIcon
-              display_name={topic.display_name}
-              image_display_url={topic.image_display_url}
-            />
+            <TopicIcon topic={topic} />
           </SwiperSlide>
         ))}
       </Swiper>

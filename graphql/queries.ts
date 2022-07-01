@@ -233,9 +233,9 @@ export const GET_COLLECTIONS_QUERY = gql`
 `;
 
 export const GET_TOPICS_QUERY = gql`
-  query collections {
-    collections(all_fields: True)
-      @rest(type: "Response", path: "group_tree?type=group") {
+  query topics {
+    topics(all_fields: False)
+      @rest(type: "Response", path: "group_tree?type=group&{args}") {
       result
     }
   }
