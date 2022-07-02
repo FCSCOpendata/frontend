@@ -1,3 +1,5 @@
+import TopicDatasetButton from './TopicDatasetButton';
+
 const TopicHeader: React.FC<any> = ({ topic }) => {
   return (
     <>
@@ -34,9 +36,54 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
           overflow-visible
           "
           >
-            {/* 5rem (ml) + 5rem (body padding) = 10rem */}
+            {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div className="bg-[#F7FAFC] h-full w-[calc(100%+10rem)]  ml-[-5rem] pl-[5rem] pr-[5rem]">
-              <div>{topic.title}</div>
+              <div className="pt-[3rem]">
+                <h1 className="text-3xl text-bold flex items-center mb-6">
+                  <span
+                    className="
+                      bg-[#464646] 
+                      rounded-full 
+                      inline-block 
+                      overflow-hidden 
+                      w-[40px] 
+                      h-[40px] 
+                      p-[9px] 
+                      mr-4
+                    "
+                  >
+                    <img
+                      src={topic.image_display_url}
+                      alt={`${topic.name}--topic`}
+                      className="block"
+                      width={100}
+                    />
+                  </span>
+                  {topic.title}
+                </h1>
+                <p className="mb-6">
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam Lorem ipsum dolor sit amet, consectetuer adipiscing
+                  elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+                  dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                  veniam, quis nostrud exerci tation ullamcorper suscipit
+                  <br />
+                  <br />
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam Lorem ipsum dolor sit amet, consectetuer adipiscing
+                  elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+                  dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                  veniam, quis nostrud exerci tation ullamcorper suscipit
+                  <br />
+                  <br />
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam Lorem ipsum dolor sit amet, consectetuer adipiscing
+                  elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+                  dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                  veniam, quis nostrud exerci tation ullamcorper suscipit
+                </p>
+                <TopicDatasetButton text={`23 datasets`} />
+              </div>
             </div>
           </div>
         </div>
