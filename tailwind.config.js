@@ -17,6 +17,7 @@ module.exports = {
         lightestblue: '#F7FAFC',
         black: '#4D4D4D',
         gray: '#7C7C7C',
+        primaryGreen: '#22B373',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],

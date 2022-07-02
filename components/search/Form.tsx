@@ -27,14 +27,14 @@ const SearchForm: React.FC = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
-        placeholder="GDP data..."
+        placeholder="Search by keyword"
         aria-label="Search"
-        className="inline-block w-3/4 pr-3 py-4 border border-accent rounded-md leading-none bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-accent focus:border-accent"
+        className="inline-block w-3/4 pr-3 py-4 border-0 rounded-md leading-none bg-white placeholder:text-slate-400"
       />
       <button
         onClick={() => handleSubmit(false)}
         type="button"
-        className="inline-block text-lg uppercase font-medium px-10 py-4 ml-4 leading-none border bg-accent rounded-md text-white border-accent lg:mt-0 focus:bg-darkaccent hover:bg-darkaccent"
+        className="inline-block text-lg uppercase font-medium px-10 py-4 ml-4 leading-none border bg-primaryGreen rounded-md text-white border-primaryGreen lg:mt-0"
       >
         Search
       </button>
