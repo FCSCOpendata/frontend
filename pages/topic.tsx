@@ -112,7 +112,11 @@ const Topics: React.FC = () => {
                 Developer Experience
               </h1>
             </button>
-            <div className={devExperience.expanded ? '' : ''}>
+            <div
+              className={`transition-all overflow-hidden ${
+                devExperience.expanded ? 'max-h-max' : 'max-h-0'
+              }`}
+            >
               <DeveloperExperience />
             </div>
           </div>

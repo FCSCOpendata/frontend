@@ -14,6 +14,18 @@ const DeveloperExperience: React.FC = () => {
       id: 'js',
       name: 'JavaScript',
     },
+    {
+      id: 'R',
+      name: 'R',
+    },
+    {
+      id: 'curl',
+      name: 'Curl',
+    },
+    {
+      id: 'pandas',
+      name: 'Pandas',
+    },
   ];
 
   const switchTechRender = () => {
@@ -59,7 +71,7 @@ const DeveloperExperience: React.FC = () => {
 
   return (
     <>
-      <div className="bg-[#F7FAFC] px-10 py-8 rounded-3xl">
+      <div className="bg-[#F7FAFC] px-16 py-14 rounded-3xl">
         <div className="mb-8">
           {technologies.map((tech, index) => (
             <button
