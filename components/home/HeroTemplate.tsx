@@ -8,7 +8,6 @@ export default function Footer() {
 
   return (
     <div>
-      <FloatingParticles />
       <div className="flex flex-row">
         <div className="flex-1 w-2/3 relative pt-2 pb-16 sm:pb-24 lg:pb-32 z-50">
           <main className="mt-4 mx-auto max-w-7xl px-4 sm:mt-16 sm:px-10 lg:mt-20">
