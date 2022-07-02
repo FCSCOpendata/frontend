@@ -1,20 +1,11 @@
 const TopicHeader: React.FC<any> = ({ topic }) => {
   return (
     <>
-      <div className="grid grid-cols-2 relative">
-        <div
-          className="
-          absolute 
-          h-full 
-          w-full 
-          pt-[50px] 
-          pb-[50px] 
-          ml-[5rem] 
-          z-0
-          "
-        >
-          <div className="bg-[#F7FAFC] h-full w-full"></div>
-        </div>
+      <div className="grid grid-cols-2">
+        {/* NOTE: depending of the mobile design this
+            background could fit  better  under  the 
+            text element*/}
+
         <div className="w-full z-10">
           {/* WIP */}
           <div
@@ -32,7 +23,22 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
           ></div>
         </div>
         <div className="w-full">
-          <div>{topic.title}</div>
+          <div
+            className="
+          h-full 
+          w-full 
+          pt-[50px] 
+          pb-[50px]
+          mr-[10rem]
+          z-0
+          overflow-visible
+          "
+          >
+            {/* 5rem (ml) + 5rem (body padding) = 10rem */}
+            <div className="bg-[#F7FAFC] h-full w-[calc(100%+10rem)]  ml-[-5rem] pl-[5rem] pr-[5rem]">
+              <div>{topic.title}</div>
+            </div>
+          </div>
         </div>
       </div>
     </>
