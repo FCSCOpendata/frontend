@@ -24,11 +24,12 @@
   height: 12px;
   display: inline-block;
   border-radius: 50%;
-  background: #CFCFCF;
+  background: #cfcfcf;
   opacity: 1;
   margin: 3px;
+  cursor: pointer;
 }
 
 .swiper-bullet-active {
-  background: #22B373 !important;
+  background: #22b373 !important;
 }
