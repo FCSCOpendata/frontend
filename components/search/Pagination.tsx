@@ -79,7 +79,7 @@ const Pagination: React.FC<{
             }}
             className={`mx-2 ${
               pageNum === currentPage
-                ? 'px-2 py-0.5 border-2 rounded-md bg-blue-100'
+                ? 'px-3 py-0 rounded-md bg-blue-100'
                 : null
             }`}
           >

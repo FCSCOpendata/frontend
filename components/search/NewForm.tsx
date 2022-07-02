@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { GET_RESOURCE_FORMATS_QUERY } from '../../graphql/queries';
 import { initializeApollo } from '../../lib/apolloClient';
 import { ErrorMessage } from '../_shared';
+import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
 
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   variables,
@@ -37,81 +38,54 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   };
   const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
-  if (errorFormats) return <ErrorMessage message="Error loading Categories" />;
-  if (loadFormats) return <div>Loading Formats</div>;
+  // if (errorFormats) return <ErrorMessage message="Error loading Categories" />;
+  // if (loadFormats) return <div>Loading Formats</div>;
 
   return (
-    <div>
-      <div className="bg-gradient-to-r from-red-500 to-pink-700 rounded-2xl w-full h-64 mb-8">
-        <div className="text-center pt-20">
-          <h1 className="text-5xl font-bold text-white">
-            Search Datasets
-            <br />
-          </h1>
-          <span className="text-lg font-semibold text-center text-white">
-            Interested in data around specific subjects or topics?
-          </span>
-        </div>
-      </div>
-      <div className="flex flex-wrap bg-gray-50 rounded-2xl mb-20 px-4 py-4 sm:w-10/12 sm:-mt-20 sm:ml-24">
+    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full h-64 space-y-8 overflow-hidden">
+      <div className="absolute bg-waves bg-contain bg-no-repeat bg-bottom left-[-1%] right-[-9%] top-[-227%] bottom-[-109%] z-0" />
+      <h1 className="text-3xl text-center font-extrabold capitalize !mt-0 z-10">
+        Search Data
+      </h1>
+      <div className="flex flex-wrap items-center sm:w-9/12 space-x-4 z-10">
         <form
-          className="flex flex-1 relative sm:w-1/2"
+          className="flex flex-1 relative sm:w-1/2 bg-white rounded-xl px-4 py-2 items-center"
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="flex items-center absolute left-0 inset-y-0">
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 50 50"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20.6054 40.8045C9.45038 40.8045 0.375 31.7356 0.375 20.5897C0.375 9.44388 9.45038 0.375 20.6054 0.375C31.7605 0.375 40.8359 9.44388 40.8359 20.5897C40.8359 31.7356 31.7605 40.8045 20.6054 40.8045ZM20.6054 3.52827C11.1906 3.52827 3.53125 11.1814 3.53125 20.5897C3.53125 29.9981 11.1906 37.6512 20.6054 37.6512C30.0203 37.6512 37.6797 29.9981 37.6797 20.5897C37.6797 11.1814 30.0203 3.52827 20.6054 3.52827ZM49.1629 46.9336C49.779 47.5492 49.779 48.5474 49.1629 49.1632L49.1629 49.1632C48.8546 49.4712 48.4515 49.625 48.0469 49.625C47.6423 49.625 47.239 49.4711 46.9308 49.1632L38.1906 40.4296C37.5745 39.814 37.5745 38.8158 38.1906 38.2001C38.8069 37.5842 39.8063 37.5842 40.4227 38.2001L49.1629 46.9336Z"
-                fill="#ABABAB"
-                stroke="white"
-                strokeWidth="0.75"
-              />
-            </svg>
-          </div>
+          <SearchIcon className="w-4 text-[#858585]" />
           <input
             id="search2"
             type="text"
             name="search"
             ref={searchQueryRef}
             onKeyPress={handlekeyEvent}
-            placeholder="Type your search terms and hit enter"
+            placeholder="Search by keyword"
             defaultValue={variables.q}
-            className="flex-1 border-0 md:border-r-2 border-gray-100 focus:border-gray-100 bg-gray-50 appearance-none focus:border-0 focus:ring-0 ml-6"
+            className="flex-1 bg-white appearance-none focus:ring-0 border-0 ml-2 rounded-xl"
           />
         </form>
-        <div className="flex flex-wrap lg:flex-nowrapjustify-center sm:justify-between">
-          <div className="">
-            <select
-              id="formats"
-              value={searchFormat}
-              onChange={(e) => setSearchFormat(e.target.value)}
-              onKeyPress={handlekeyEvent}
-              className="border-0 md:border-r-2 bg-gray-50 border-gray-100 appearance-none focus:border-0 focus:ring-0 focus:border-gray-100"
-            >
-              <option value="">Format</option>
-
-              {Object.keys(dataFormats.formats.result.facets.res_format).map(
-                (format, index) => (
-                  <option key={index} value={format}>
-                    {format}
-                  </option>
-                )
-              )}
-            </select>
+        <p className="text-lg bg-button-gradient bg-clip-text text-transparent">
+          Filter by
+        </p>
+        <div className="flex flex-wrap lg:flex-nowrapjustify-center sm:justify-between bg-white px-2 py-2 rounded-xl">
+          <div className="flex text-sm">
+            <div className="flex space-x-1 text-white bg-button-gradient rounded-xl px-10 py-2">
+              <ViewGridIcon className="w-5 mb-0.5" />
+              <input type="button" value="Themes" className="cursor-pointer" />
+            </div>
+            <div className="flex space-x-2 rounded-xl px-10 py-2">
+              <img
+                src="/images/library-icon.svg"
+                alt="orgs"
+                className="w-5 mb-1"
+              />
+              <input
+                type="button"
+                value="Organizations"
+                className="cursor-pointer"
+              />
+            </div>
           </div>
-          <button
-            onClick={() => handleSubmit(false)}
-            type="button"
-            className="text-lg font-medium px-10 py-2 leading-none border bg-purple-800 rounded-2xl text-white appearance-none focus:border-0 focus:ring-0 focus:outline-none"
-          >
-            Search
-          </button>
         </div>
       </div>
     </div>
