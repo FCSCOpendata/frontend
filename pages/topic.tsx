@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import React from 'react';
 import SubtopicCarousel from '../components/subtopic/SubtopicCarousel';
+import SubtopicTopDatasets from '../components/subtopic/SubtopicTopDatasets';
 import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
 import TopicCarousel from '../components/topic/TopicCarousel';
 import TopicHeader from '../components/topic/TopicHeader';
@@ -14,6 +15,7 @@ const Topics: React.FC = () => {
     idx: 0,
   });
   const [activeTopicIdx, setActiveTopicIdx] = React.useState(0);
+  const [activeSubtopicId, setActiveSubtopicId] = React.useState(0);
 
   //  Topics  holds  hierarchical  information
   //  about `groups` and `subgroups`.
@@ -91,12 +93,16 @@ const Topics: React.FC = () => {
           </div>
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
-            <SubtopicCarousel subtopics={topics[activeTopicIdx].children} />
+            <SubtopicCarousel
+              subtopics={topics[activeTopicIdx].children}
+              subtopicChangeCallback={setActiveSubtopicId}
+            />
           </div>
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">
               Explore Top Datasets In This Theme (32)
             </h1>
+            <SubtopicTopDatasets subtopic={{ id: activeTopicIdx }} />
           </div>
           <div className="mb-20">
             <button onClick={() => toggleDevExp()}>

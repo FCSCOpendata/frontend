@@ -9,6 +9,7 @@ import SwiperNavButton from './SwiperNavButton';
 
 const SubtopicCarousel: React.FC = (props: any) => {
   const subtopics = props.subtopics;
+  const subtopicOnChange = props.subtopicChangeCallback;
 
   return (
     <>
@@ -37,8 +38,13 @@ const SubtopicCarousel: React.FC = (props: any) => {
           className="w-[98%] mb-6"
         >
           {subtopics.map((subtopic, index) => (
-            <SwiperSlide key={index} className="pointer">
-              <SubtopicCard subtopic={subtopic} />
+            <SwiperSlide key={index}>
+              <button
+                className="w-full text-left"
+                onClick={() => subtopicOnChange(subtopic)}
+              >
+                <SubtopicCard subtopic={subtopic} />
+              </button>
             </SwiperSlide>
           ))}
         </Swiper>
