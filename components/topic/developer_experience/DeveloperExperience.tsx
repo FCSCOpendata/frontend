@@ -1,4 +1,5 @@
 import React from 'react';
+import Code from './Code';
 import Text from './Text';
 
 const DeveloperExperience: React.FC = () => {
@@ -15,7 +16,7 @@ const DeveloperExperience: React.FC = () => {
     },
   ];
 
-  const switchtechRender = () => {
+  const switchTechRender = () => {
     switch (technologies[activeIdx].id) {
       case 'py':
         return (
@@ -24,6 +25,29 @@ const DeveloperExperience: React.FC = () => {
               For Python, first install the `datapackage` library (all the
               datasets on DataHub are Data Packages):
             </Text>
+            <Code language="python">{`  pip install datapackage`}</Code>
+            <Text>
+              To get Data Package into your Python environment, run the
+              following code:
+            </Text>
+            <Code language="python">
+              {`
+  from datapackage import Package
+
+
+  package = Package( 'https://datahub.io/core/gdp/datapackage.json' )
+
+
+  # print list of all resources:
+  print(package.resource_names)
+
+
+  # print processed tabular data (if exists any)
+  for resource in package.resources:
+    if resource.descriptor['datahub']['type'] == 'derived/csv':
+      print(resource.read())
+              `}
+            </Code>
           </>
         );
         break;
@@ -51,7 +75,7 @@ const DeveloperExperience: React.FC = () => {
             </button>
           ))}
         </div>
-        <div>{switchtechRender()}</div>
+        <div>{switchTechRender()}</div>
       </div>
     </>
   );
