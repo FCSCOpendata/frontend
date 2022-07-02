@@ -37,7 +37,7 @@ const SubtopicCarousel: React.FC = (props: any) => {
           className="w-[98%] mb-6"
         >
           {subtopics.map((subtopic, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="pointer">
               <SubtopicCard subtopic={subtopic} />
             </SwiperSlide>
           ))}

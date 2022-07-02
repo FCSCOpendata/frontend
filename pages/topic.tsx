@@ -2,12 +2,17 @@ import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import React from 'react';
 import SubtopicCarousel from '../components/subtopic/SubtopicCarousel';
+import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
 import TopicCarousel from '../components/topic/TopicCarousel';
 import TopicHeader from '../components/topic/TopicHeader';
 import { ErrorMessage } from '../components/_shared';
 import { GET_COLLECTIONS_QUERY, GET_TOPICS_QUERY } from '../graphql/queries';
 
 const Topics: React.FC = () => {
+  const [devExperience, setDevExperience] = React.useState({
+    expanded: false,
+    idx: 0,
+  });
   const [activeTopicIdx, setActiveTopicIdx] = React.useState(0);
 
   //  Topics  holds  hierarchical  information
@@ -60,6 +65,13 @@ const Topics: React.FC = () => {
 
   const topics = topicsData.topics.result;
 
+  const toggleDevExp = () => {
+    setDevExperience({
+      expanded: !devExperience.expanded,
+      idx: devExperience.idx,
+    });
+  };
+
   return (
     <>
       <Head>
@@ -85,6 +97,24 @@ const Topics: React.FC = () => {
             <h1 className="font-semibold text-3xl mb-6">
               Explore Top Datasets In This Theme (32)
             </h1>
+          </div>
+          <div className="mb-20">
+            <button onClick={() => toggleDevExp()}>
+              <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
+                {/* TODO: check this vertical alignment */}
+                <button className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
+                  <img
+                    src="/images/plus.svg"
+                    width={12}
+                    alt="Expand developer experience"
+                  />
+                </button>
+                Developer Experience
+              </h1>
+            </button>
+            <div className={devExperience.expanded ? '' : ''}>
+              <DeveloperExperience />
+            </div>
           </div>
         </div>
       </main>
