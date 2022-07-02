@@ -1,7 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 import SearchForm from '../search/Form';
 import Tags from './Tags';
-import FloatingParticles from './FloatingParticles';
 
 export default function Footer() {
   const { t } = useTranslation();

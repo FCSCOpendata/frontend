@@ -28,6 +28,7 @@ module.exports = {
         montserrat: ['Montserrat', 'sans-serif'],
       },
       fontSize: {
+        '3xl': '2.25rem',
         '4xl': '2.5rem',
       },
       boxShadow: {
@@ -49,5 +50,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
