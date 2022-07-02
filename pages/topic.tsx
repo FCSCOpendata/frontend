@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import React from 'react';
+import SubtopicCarousel from '../components/subtopic/SubtopicCarousel';
 import TopicCarousel from '../components/topic/TopicCarousel';
 import TopicHeader from '../components/topic/TopicHeader';
 import { ErrorMessage } from '../components/_shared';
@@ -67,11 +68,19 @@ const Topics: React.FC = () => {
       </Head>
       <main className="px-20 py-12">
         <div className="w-100">
-          <TopicCarousel
-            topics={topics}
-            topicChangeCallback={(topic, idx) => setActiveTopicIdx(idx)}
-          />
-          <TopicHeader topic={topics[activeTopicIdx]} />
+          <div className="mb-20">
+            <TopicCarousel
+              topics={topics}
+              topicChangeCallback={(topic, idx) => setActiveTopicIdx(idx)}
+            />
+          </div>
+          <div className="mb-20">
+            <TopicHeader topic={topics[activeTopicIdx]} />
+          </div>
+          <div className="mb-20">
+            <h1 className="bold text-3xl">Sub Topics</h1>
+            <SubtopicCarousel subtopics={topics[activeTopicIdx].children}/>
+          </div>
         </div>
       </main>
     </>
