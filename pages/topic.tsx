@@ -78,11 +78,13 @@ const Topics: React.FC = () => {
             <TopicHeader topic={topics[activeTopicIdx]} />
           </div>
           <div className="mb-20">
-            <h1 className="font-semibold text-3xl">Sub Topics</h1>
+            <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
             <SubtopicCarousel subtopics={topics[activeTopicIdx].children} />
           </div>
           <div className="mb-20">
-            <h1 className="font-semibold text-3xl">Explore Top Datasets In This Theme (32)</h1>
+            <h1 className="font-semibold text-3xl mb-6">
+              Explore Top Datasets In This Theme (32)
+            </h1>
           </div>
         </div>
       </main>

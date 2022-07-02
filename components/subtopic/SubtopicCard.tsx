@@ -3,7 +3,7 @@ const SubtopicCard: React.FC = (props: any) => {
 
   return (
     <>
-      <div className="w-[250px] h-[250px] p-1">
+      <div className="h-[280px] p-1">
         <div
           className="
             bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] 
