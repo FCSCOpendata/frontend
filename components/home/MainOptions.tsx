@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
 
-const PopularDatasets = dynamic(() => import('./main/popularDatasets'));
 const Topics = dynamic(() => import('./main/Topics'));
-const MostDownloaded = dynamic(() => import('./main/mostDownloaded'));
-const Blog = dynamic(() => import('./main/Blog'));
+const Map = dynamic(() => import('./main/Map'));
+const News = dynamic(() => import('./main/News'));
+const OpenData101 = dynamic(() => import('./main/OpenData101'));
 
 const MainOptions: React.FC = () => {
   return (
@@ -11,9 +11,9 @@ const MainOptions: React.FC = () => {
       <div>
         <div className="mx-10 md:mx-28 pb-20">
           <Topics />
-          <PopularDatasets />
-          <MostDownloaded />
-          <Blog />
+          <Map />
+          <News />
+          <OpenData101 />
         </div>
       </div>
     </div>

@@ -1,10 +1,10 @@
-export default function blog() {
+export default function News() {
   return (
     <div>
       <div className="mt-32 mx-2">
         <div className="inline-block align-middle w-12 h-0.5  border border-darkbrown" />
         <div className="inline-block font-roboto text-sm text-center pl-2">
-          &nbsp; BLOG
+          &nbsp; What&apos;s New
         </div>
       </div>
       <h1 className="mt-8 font-inter font-black text-4xl md:text-left text-center mx-2">
