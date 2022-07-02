@@ -36,6 +36,9 @@ module.exports = {
           'linear-gradient(90deg, #5EC7F7 9.73%, #1F356C 90.96%)',
         'footer-background':
           'linear-gradient(180deg, #FFFFFF 16.93%, rgba(255, 255, 255, 0) 96.66%), url(/images/footer-background.png)',
+        'button-gradient':
+          'linear-gradient(82.67deg, #5EC7F7 -51.47%, #1F356C 239.3%)',
+        waves: 'url(/images/waves-background.svg)',
       }),
     },
   },
