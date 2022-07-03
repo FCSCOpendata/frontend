@@ -7,7 +7,7 @@
 
 .bg-hero {
   background-size: cover;
-  background-image: url('/images/dashed.svg'), url('/images/hero.svg');
+  background-image: url('/images/dashed.png'), url('/images/hero.svg');
   background-position: 40% 50%;
   height: 750px;
 }
