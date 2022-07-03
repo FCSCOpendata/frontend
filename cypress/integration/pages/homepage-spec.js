@@ -4,11 +4,7 @@ describe('Home Page', () => {
   });
 
   it('renders the hero title', () => {
-    cy.contains('Find and Share');
-  });
-
-  it('checks that a search form exists', () => {
-    cy.get('form').contains('Search');
+    cy.contains('UAE Open Data');
   });
 
   it('submits the search form', () => {
@@ -18,19 +14,19 @@ describe('Home Page', () => {
     cy.get('.text-4xl').and('contain.text', 'datasets');
   });
 
-  it('shows the most popular datasets', () => {
-    cy.contains('MOST POPULAR DATASETS');
+  it('shows the Discover Topics section', () => {
+    cy.contains('Discover Topics');
   });
 
-  it('shows the ckan categories', () => {
-    cy.contains('View collection');
+  it('shows the map of organizations', () => {
+    cy.contains('Explore data through organizations');
   });
 
   it('shows the latest news from blog', () => {
-    cy.contains('ARTICLE');
+    cy.contains("What's New");
   });
 
-  it('shows the most downloaded graph', () => {
-    cy.contains('MOST DOWNLOADED');
+  it('shows the Open Data 101 section', () => {
+    cy.contains('Open Data 101');
   });
 });

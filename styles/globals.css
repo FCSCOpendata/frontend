@@ -7,9 +7,9 @@
 
 .bg-hero {
   background-size: cover;
-  background-image: url('/images/hero-bg.jpg');
+  background-image: url('/images/dashed.svg'), url('/images/hero.svg');
   background-position: 40% 50%;
-  min-height: 900px;
+  height: 750px;
 }
 
 .vertical-text {

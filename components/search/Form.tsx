@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { SearchIcon } from '@heroicons/react/outline';
 
 const SearchForm: React.FC = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const SearchForm: React.FC = () => {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="items-center flex flex-row"
+      className="relative items-center flex flex-row w-3/4"
     >
       <input
         id="search2"
@@ -27,17 +28,11 @@ const SearchForm: React.FC = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
-        placeholder="GDP data..."
+        placeholder="Search by keyword and press enter"
         aria-label="Search"
-        className="inline-block w-3/4 pr-3 py-4 border border-accent rounded-md leading-none bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-accent focus:border-accent"
+        className="inline-block w-full pr-3 py-4 border-0 rounded-md leading-none bg-white placeholder:text-slate-400"
       />
-      <button
-        onClick={() => handleSubmit(false)}
-        type="button"
-        className="inline-block text-lg uppercase font-medium px-10 py-4 ml-4 leading-none border bg-accent rounded-md text-white border-accent lg:mt-0 focus:bg-darkaccent hover:bg-darkaccent"
-      >
-        Search
-      </button>
+      <SearchIcon className="w-6 absolute right-3 text-slate-400" />
     </form>
   );
 };

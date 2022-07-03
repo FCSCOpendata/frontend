@@ -13,7 +13,7 @@ const PageItem: React.FC<Props> = ({ variables }) => (
   <>
     <Head>
       <title>Portal | {variables.slug}</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.svg" />
     </Head>
     <Nav />
     <main className="p-6">

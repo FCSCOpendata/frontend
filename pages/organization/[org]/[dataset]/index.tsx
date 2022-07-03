@@ -27,7 +27,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | {result.title || result.name}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <Nav />
       <NavBreadCrumbs

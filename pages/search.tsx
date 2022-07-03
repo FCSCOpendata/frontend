@@ -26,7 +26,7 @@ const Search: React.FC<Props> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | Search</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <main className="px-20 py-12">
         <Form variables={qvariables} setQvariables={setQvariables} />

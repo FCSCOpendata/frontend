@@ -14,6 +14,10 @@ module.exports = {
         darkaccent: '#00a8ae',
         darkbrown: '#A75001',
         darkerbrown: '#964800',
+        lightestblue: '#F7FAFC',
+        black: '#4D4D4D',
+        gray: '#7C7C7C',
+        primaryGreen: '#22B373',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -22,6 +26,10 @@ module.exports = {
         raleway: ['raleway', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
+      },
+      fontSize: {
+        '3xl': '2.25rem',
+        '4xl': '2.5rem',
       },
       boxShadow: {
         blogImg: 'inset 0 0 0 50vw rgba(0,28,49,0.76)',
@@ -42,5 +50,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
