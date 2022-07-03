@@ -6,19 +6,12 @@ import { GET_ORGS_QUERY } from '../../../graphql/queries';
 export default function Orgs() {
   const router = useRouter();
 
-  function makeGreen(e) {
-    e.target.style.fill = '#54CA59';
-  }
-
-  function makeBlue(e) {
-    e.target.style.fill = '#00A3FF';
-  }
-
   function showInfo(e) {
     const index = e.target.getAttribute('id').split('-')[1];
     document
       .getElementsByTagName('text')
       [index].setAttribute('class', 'block');
+    document.getElementsByTagName('ellipse')[index].style.fill = '#54CA59';
   }
 
   function hideInfo(e) {
@@ -26,6 +19,7 @@ export default function Orgs() {
     document
       .getElementsByTagName('text')
       [index].setAttribute('class', 'hidden');
+    document.getElementsByTagName('ellipse')[index].style.fill = '#00A3FF';
   }
 
   const organizations = [
@@ -99,8 +93,6 @@ export default function Orgs() {
           return (
             <ellipse
               key={`ellipse-${index}`}
-              onMouseOver={makeGreen}
-              onMouseLeave={makeBlue}
               rx="41.2293"
               ry="41.2293"
               transform={`matrix(0.999931 0.0117487 -0.0117535 0.999931 ${item[0]} ${item[1]})`}
