@@ -17,7 +17,7 @@ const List: React.FC<{ variables: any; setQvariables: any }> = ({
     notifyOnNetworkStatusChange: true,
   });
 
-  const searchResults = dataSearch.search.result;
+  const searchResults = dataSearch?.search.result;
 
   return (
     <div>
