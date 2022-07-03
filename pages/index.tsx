@@ -16,7 +16,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <Head>
           <title>{t(`common:title`)}</title>
         </Head>
-        <div className="relative bg-hero hero-pattern overflow-hidden h-screen">
+        <div className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen">
           <Hero />
         </div>
 

@@ -18,7 +18,7 @@ const Org: React.FC<{ variables: any }> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | {data.org.title || data.org.name}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <Nav />
       <About variables={variables} />
