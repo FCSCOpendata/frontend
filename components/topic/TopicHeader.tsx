@@ -11,7 +11,7 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
               bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] 
               h-[300px]
               md:h-[650px]
-              ml-[-5rem]
+              ml-[-7rem]
               mr-[-5rem]
               md:mr-[5rem]
               w-100 

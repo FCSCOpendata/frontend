@@ -19,9 +19,9 @@ const SubtopicCarousel: React.FC = (props: any) => {
             absolute 
             hidden 
             lg:block 
-            top-[36%] 
+            top-[38%] 
             left-[-1rem] 
-            md:left-1 
+            md:left-0
             z-50 
             nav-prev-button"
         >
@@ -32,9 +32,9 @@ const SubtopicCarousel: React.FC = (props: any) => {
             absolute 
             hidden 
             lg:block 
-            top-[36%] 
+            top-[38%] 
             right-[-1rem] 
-            md:right-1 
+            md:right-0
             z-50 
             nav-next-button"
         >
@@ -54,7 +54,7 @@ const SubtopicCarousel: React.FC = (props: any) => {
             bulletActiveClass: 'swiper-bullet-active',
           }}
           spaceBetween={4}
-          className="w-[98%] mb-6"
+          className="w-[96%] mb-6"
           breakpoints={{
             360: {
               slidesPerView: 2,

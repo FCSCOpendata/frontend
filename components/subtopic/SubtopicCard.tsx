@@ -6,17 +6,15 @@ const SubtopicCard: React.FC = (props: any) => {
       {/* TODO: improve this resposivity */}
       <div
         className="
-          h-[45vw] 
-          sm:h-[35vw] 
-          md:h-[20vw] 
-          2xl:h-[300px] 
-          max-w-[300px] 
-          p-1"
+          aspect-w-1 
+          aspect-h-1 
+          xl:aspect-w-7 
+          xl:aspect-h-8"
       >
         <div
           className="
             bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] 
-            rounded-xl 
+            rounded-lg
             w-full 
             h-full 
             bg-cover 
@@ -26,16 +24,16 @@ const SubtopicCard: React.FC = (props: any) => {
         >
           <div
             className="
-            absolute 
-            bottom-5 
-            flex 
-            items-center 
-            justify-between 
-            text-white 
-            px-4 
-            w-full"
+              absolute 
+              bottom-2
+              flex 
+              items-center 
+              justify-between 
+              text-white 
+              px-4 
+              w-full"
           >
-            <h3 className="font-semibold text-xl">
+            <h3 className="font-semibold text-md xl:text-xl">
               {subtopic.display_name || subtopic.title || subtopic.name}
             </h3>
             {/* TODO: fix the responsivity for >1080p */}
@@ -46,6 +44,8 @@ const SubtopicCard: React.FC = (props: any) => {
                       w-[40px] 
                       h-[40px]
                       mr-4
+                      font-poppins 
+                      font-semibold
                     "
             >
               {/* TODO: this icon is not good on too large

@@ -12,6 +12,7 @@ import {
   GET_TOPICS_QUERY,
 } from '../../graphql/queries';
 import { useRouter } from 'next/router';
+import OpenData101 from '../../components/home/main/OpenData101';
 
 const Topic: React.FC = () => {
   const router = useRouter();
@@ -91,7 +92,7 @@ const Topic: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* TODO: check mobile paddings */}
-      <main className="py-12 px-8 sm:px-15 md:px-20 lg:px-25">
+      <main className="py-12 mx-10 md:mx-28 pb-20">
         <div className="w-100">
           <div className="mb-20">
             {/* TODO: the component needs and indicator
@@ -115,7 +116,7 @@ const Topic: React.FC = () => {
             </h1>
             <SubtopicTopDatasets subtopic={{ id: topicParamIdx }} />
           </div>
-          <div className="mb-20">
+          <div>
             <button onClick={() => toggleDevExp()}>
               <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
                 {/* TODO: check this vertical alignment */}
@@ -136,6 +137,9 @@ const Topic: React.FC = () => {
             >
               <DeveloperExperience />
             </div>
+          </div>
+          <div>
+            <OpenData101 />
           </div>
         </div>
       </main>
