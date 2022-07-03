@@ -127,8 +127,9 @@ export default function Orgs() {
               y={ellipsePositions[index][1]}
             >
               <tspan
+                className="font-normal"
+                fill="black"
                 stroke="black"
-                strokeWidth="1.5px"
                 dx="0em"
                 dy="4.5em"
                 textAnchor="middle"
@@ -136,8 +137,9 @@ export default function Orgs() {
                 {org.title}
               </tspan>
               <tspan
+                className="font-semibold"
+                fill="#54CA59"
                 stroke="#54CA59"
-                strokeWidth="1.5px"
                 x={ellipsePositions[index][0]}
                 dy="1.5em"
                 textAnchor="middle"
