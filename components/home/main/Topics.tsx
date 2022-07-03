@@ -68,13 +68,15 @@ export default function Topics() {
         <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-5 xl:gap-x-1">
           {topics.map((topic, index) => (
             <a key={index} href={`/topic/${topic.name}`} className="group">
-              <div className="relative w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <img
-                  src={topic.imageSrc}
-                  alt={topic.title}
-                  className="w-full h-full object-center object-cover group-hover:opacity-75"
-                />
-                <p className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-sm text-gray-700 text-center leading-4">
+              <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+                <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                  <img
+                    src={topic.imageSrc}
+                    alt={topic.title}
+                    className="w-full h-full object-center object-cover group-hover:opacity-75 group-hover:border-b-4 group-hover:border-b-[#54CA59]"
+                  />
+                </div>
+                <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold">
                   {topic.title}
                 </p>
               </div>
