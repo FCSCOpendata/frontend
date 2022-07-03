@@ -1,8 +1,11 @@
+import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../../_shared';
 import { GET_ORGS_QUERY } from '../../../graphql/queries';
 
 export default function Orgs() {
+  const router = useRouter();
+
   function makeGreen(e) {
     e.target.style.fill = '#54CA59';
   }
@@ -113,6 +116,7 @@ export default function Orgs() {
               id={`circle-${index}`}
               onMouseOver={showInfo}
               onMouseLeave={hideInfo}
+              onClick={() => router.push(`/@${result[index].name}`)}
               cx={item[0] - 0.001}
               cy={item[1]}
               r="30.0159"
