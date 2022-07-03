@@ -11,6 +11,20 @@ export default function Orgs() {
     e.target.style.fill = '#00A3FF';
   }
 
+  function showInfo(e) {
+    const index = e.target.getAttribute('id').split('-')[1];
+    document
+      .getElementsByTagName('text')
+      [index].setAttribute('class', 'block');
+  }
+
+  function hideInfo(e) {
+    const index = e.target.getAttribute('id').split('-')[1];
+    document
+      .getElementsByTagName('text')
+      [index].setAttribute('class', 'hidden');
+  }
+
   const organizations = [
     'central-bank-united-arab-emirates',
     'dubaipulse',
@@ -68,7 +82,7 @@ export default function Orgs() {
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
 
-  const { result } = data.orgs;
+  const result = data.orgs.result.slice(0, 20);
 
   return (
     <svg
@@ -92,404 +106,67 @@ export default function Orgs() {
             />
           );
         })}
-        <circle
-          cx="857.523"
-          cy="311.998"
-          r="30.0159"
-          fill="url(#pattern0)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="770.497"
-          cy="124.365"
-          r="30.0159"
-          fill="url(#pattern1)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="500.141"
-          cy="245.503"
-          r="30.5159"
-          fill="url(#pattern2)"
-          stroke="#F7FAFC"
-          strokeWidth="2"
-        />
-        <circle
-          cx="353.94"
-          cy="281.681"
-          r="30.0159"
-          fill="url(#pattern3)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="297.223"
-          cy="371.567"
-          r="30.0159"
-          fill="url(#pattern4)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="229.144"
-          cy="97.4343"
-          r="30.0159"
-          fill="url(#pattern5)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="425.966"
-          cy="453.493"
-          r="30.0159"
-          fill="url(#pattern6)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="268.013"
-          cy="533.606"
-          r="30.0159"
-          fill="url(#pattern7)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="154.275"
-          cy="549.431"
-          r="30.0159"
-          fill="url(#pattern8)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="508.357"
-          cy="524.705"
-          r="30.0159"
-          fill="url(#pattern9)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="774.12"
-          cy="533.383"
-          r="30.0159"
-          fill="url(#pattern10)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="59.1333"
-          cy="345.823"
-          r="30.0159"
-          fill="url(#pattern11)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="-27.333"
-          cy="97.4349"
-          r="30.0159"
-          fill="url(#pattern12)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1338.58"
-          cy="564.899"
-          r="30.0159"
-          fill="url(#pattern13)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1401.61"
-          cy="277.02"
-          r="30.0159"
-          fill="url(#pattern14)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1276.72"
-          cy="259.456"
-          r="30.0159"
-          fill="url(#pattern15)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1110.35"
-          cy="376.752"
-          r="30.0159"
-          fill="url(#pattern16)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1100.2"
-          cy="150.425"
-          r="30.0159"
-          fill="url(#pattern17)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="1356.44"
-          cy="171.885"
-          r="30.0159"
-          fill="url(#pattern18)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="835.834"
-          cy="613.617"
-          r="30.0159"
-          fill="url(#pattern19)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
-        <circle
-          cx="953.197"
-          cy="522.396"
-          r="30.0159"
-          fill="url(#pattern20)"
-          stroke="#F7FAFC"
-          strokeWidth="3"
-        />
+        {ellipsePositions.map((item, index) => {
+          return (
+            <circle
+              key={`circle-${index}`}
+              id={`circle-${index}`}
+              onMouseOver={showInfo}
+              onMouseLeave={hideInfo}
+              cx={item[0] - 0.001}
+              cy={item[1]}
+              r="30.0159"
+              fill={`url(#pattern${index})`}
+              stroke="#F7FAFC"
+              strokeWidth="3"
+            />
+          );
+        })}
+        {result.map((org, index) => {
+          return (
+            <text
+              className="hidden"
+              key={`info-${index}`}
+              x={ellipsePositions[index][0]}
+              y={ellipsePositions[index][1]}
+            >
+              <tspan
+                stroke="black"
+                strokeWidth="1.5px"
+                dx="0em"
+                dy="4.5em"
+                textAnchor="middle"
+              >
+                {org.title}
+              </tspan>
+              <tspan
+                stroke="#54CA59"
+                strokeWidth="1.5px"
+                x={ellipsePositions[index][0]}
+                dy="1.5em"
+                textAnchor="middle"
+              >
+                {org.total + ' datasets'}
+              </tspan>
+            </text>
+          );
+        })}
       </g>
       <defs>
-        <pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_2_1702"
-            transform="translate(-0.25) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern1"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image1_2_1702"
-            transform="translate(-0.25) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern2"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image2_2_1702"
-            transform="translate(-0.25) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern3"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image3_2_1702"
-            transform="translate(0 -0.250646) scale(0.00258398)"
-          />
-        </pattern>
-        <pattern
-          id="pattern4"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image4_2_1702"
-            transform="translate(-0.25) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern5"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image5_2_1702"
-            transform="translate(-0.388518) scale(0.00133511)"
-          />
-        </pattern>
-        <pattern
-          id="pattern6"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image6_2_1702"
-            transform="translate(-0.240517) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern7"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image7_2_1702"
-            transform="translate(0 -0.248711) scale(0.00257732)"
-          />
-        </pattern>
-        <pattern
-          id="pattern8"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image8_2_1702"
-            transform="translate(-0.134483) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern9"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image9_2_1702"
-            transform="translate(-0.253448) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern10"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image10_2_1702"
-            transform="translate(-0.389186) scale(0.00133511)"
-          />
-        </pattern>
-        <pattern
-          id="pattern11"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image11_2_1702"
-            transform="translate(-0.389186) scale(0.00133511)"
-          />
-        </pattern>
-        <pattern
-          id="pattern12"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image12_2_1702"
-            transform="translate(-0.166093) scale(0.00172117)"
-          />
-        </pattern>
-        <pattern
-          id="pattern13"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image13_2_1702"
-            transform="translate(-0.25) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern14"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image14_2_1702"
-            transform="translate(0 -0.249) scale(0.002)"
-          />
-        </pattern>
-        <pattern
-          id="pattern15"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image15_2_1702"
-            transform="translate(-0.231897) scale(0.00172414)"
-          />
-        </pattern>
-        <pattern
-          id="pattern16"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image16_2_1702"
-            transform="translate(-0.388518) scale(0.00133511)"
-          />
-        </pattern>
-        <pattern
-          id="pattern17"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image17_2_1702"
-            transform="translate(-0.448509) scale(0.00135501)"
-          />
-        </pattern>
-        <pattern
-          id="pattern18"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image18_2_1702"
-            transform="translate(-0.166093) scale(0.00172117)"
-          />
-        </pattern>
-        <pattern
-          id="pattern19"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image19_2_1702"
-            transform="translate(-0.339262) scale(0.00131752)"
-          />
-        </pattern>
-        <pattern
-          id="pattern20"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use xlinkHref="#image20_2_1702" transform="scale(0.00172414)" />
-        </pattern>
+        {[...Array(21)].map((item, index) => (
+          <pattern
+            key={`pattern-${index}`}
+            id={`pattern${index}`}
+            patternContentUnits="objectBoundingBox"
+            width="1"
+            height="1"
+          >
+            <use
+              xlinkHref={`#image${index}_2_1702`}
+              transform="translate(-0.253448) scale(0.00172414)"
+            />
+          </pattern>
+        ))}
         <clipPath id="clip0_2_1702">
           <rect
             width="1455"
@@ -504,7 +181,7 @@ export default function Orgs() {
             id={`image${index}_2_1702`}
             width="870"
             height="580"
-            xlinkHref={org.image}
+            xlinkHref={org.image || '/images/org-default.svg'}
           />
         ))}
       </defs>
