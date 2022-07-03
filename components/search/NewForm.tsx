@@ -1,25 +1,18 @@
 /* eslint-disable jsx-a11y/no-onchange */ //This is for the Filter Group because OnBlur doesn't work.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useQuery } from '@apollo/react-hooks';
 import { GetServerSideProps } from 'next';
 import { useRef, useState } from 'react';
 import { GET_RESOURCE_FORMATS_QUERY } from '../../graphql/queries';
 import { initializeApollo } from '../../lib/apolloClient';
-import { ErrorMessage } from '../_shared';
 import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
 
 const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   variables,
   setQvariables,
 }) => {
-  const {
-    loading: loadFormats,
-    error: errorFormats,
-    data: dataFormats,
-  } = useQuery(GET_RESOURCE_FORMATS_QUERY, {
-    notifyOnNetworkStatusChange: true,
-  });
-
   const searchQueryRef = useRef<HTMLInputElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchFormat, setSearchFormat] = useState('');
 
   const handleSubmit = (e) => {

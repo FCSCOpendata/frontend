@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import List from '../search/List';
-import Form from '../search/Form';
 
-import utils from '../../utils';
-import { initializeApollo } from '../../lib/apolloClient';
-import { SEARCH_QUERY } from '../../graphql/queries';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SubtopicTopDatasets: React.FC<any> = ({ subtopic }) => {
   //  TODO: extract the List in a way that we can
   //  reuse it here properly.   Have to wait  for
