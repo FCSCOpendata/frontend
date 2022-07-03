@@ -1,31 +1,15 @@
-import { useQuery } from '@apollo/react-hooks';
-import { GET_DATASET_QUERY } from '../../graphql/queries';
-import Card from '../search/ListCard';
-import { ErrorMessage } from '../_shared';
+import { useState } from 'react';
+import List from '../search/List';
 
 const SubtopicTopDatasets: React.FC = ({ subtopic }) => {
-  const {
-    loading: loadingDatasets,
-    error: errorDatasets,
-    data: dataDatasets,
-    //  TODO: change this query to get only the topics
-    //  datasets
-  } = useQuery(GET_DATASET_QUERY, {
-    notifyOnNetworkStatusChange: true,
-  });
-
-  if (errorDatasets) return <ErrorMessage message="Error loading datasets." />;
-  if (loadingDatasets) return <div>Loading Datasets</div>;
-
-  const datasets = dataDatasets;
-
-  console.log(datasets);
+  //  TODO: extract the List in a way that we can
+  //  reuse it here properly.   Have to wait  for
+  //  merges before doing that.
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <>
-      {/* {datasets.map((dataset, index) => (
-        <Card dataset={dataset} key={index} />
-      ))} */}
+      <List variables={{ id: 1 }} setQvariables={() => {}}></List>
     </>
   );
 };
