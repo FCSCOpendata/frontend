@@ -90,9 +90,13 @@ const Topic: React.FC = () => {
         <title>Portal | Topics</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-20 py-12">
+      {/* TODO: check mobile paddings */}
+      <main className="py-12 px-8 sm:px-15 md:px-20 lg:px-25">
         <div className="w-100">
           <div className="mb-20">
+            {/* TODO: the component needs and indicator
+            //  that there's hidden slides so that  the
+            //  user knows he should slide */}
             <TopicCarousel topics={topics} />
           </div>
           <div className="mb-20">
@@ -115,13 +119,13 @@ const Topic: React.FC = () => {
             <button onClick={() => toggleDevExp()}>
               <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
                 {/* TODO: check this vertical alignment */}
-                <button className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
+                <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
                   <img
                     src="/images/plus.svg"
                     width={12}
                     alt="Expand developer experience"
                   />
-                </button>
+                </span>
                 Developer Experience
               </h1>
             </button>

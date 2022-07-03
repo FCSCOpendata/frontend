@@ -10,22 +10,17 @@ const TopicIcon: React.FC<any> = ({ topic }) => {
   return (
     <>
       <div>
-        <div>
-          <div className="h-10 flex justify-center">
-            <img
-              className=""
-              //  TODO: check what blank image to put when
-              //  there's no image
-              src={topic.image_display_url}
-              alt={`${topic.display_name || topic.name}-topic`}
-              width="40"
-              height="40"
-            />
-          </div>
-          <h3 className="font-inter font-semibold text-md text-center mt-4">
-            {topic.display_name || topic.title || topic.name}
-          </h3>
+        <div className="h-10 flex justify-center">
+          <img
+            //  TODO: check what blank image to put when
+            //  there's no image
+            src={topic.image_display_url}
+            alt={`${topic.display_name || topic.name}-topic`}
+          />
         </div>
+        <h3 className="font-inter font-semibold text-md text-center mt-4">
+          {topic.display_name || topic.title || topic.name}
+        </h3>
       </div>
     </>
   );

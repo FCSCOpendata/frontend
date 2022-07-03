@@ -8,7 +8,25 @@ const TopicCarousel: React.FC<any> = (props) => {
 
   return (
     <>
-      <Swiper slidesPerView={10}>
+      <Swiper
+        breakpoints={{
+          360: {
+            slidesPerView: 4,
+          },
+          620: {
+            slidesPerView: 5,
+          },
+          900: {
+            slidesPerView: 6,
+          },
+          1000: {
+            slidesPerView: 8,
+          },
+          1280: {
+            slidesPerView: 10,
+          },
+        }}
+      >
         {topics.map((topic, index) => (
           <SwiperSlide key={index}>
             <Link href={`/topic/${topic.name}`}>

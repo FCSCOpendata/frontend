@@ -14,15 +14,34 @@ const SubtopicCarousel: React.FC = (props: any) => {
   return (
     <>
       <div className="relative">
-        <div className="absolute top-[40%] left-1 z-50 nav-prev-button">
+        <div
+          className="
+            absolute 
+            hidden 
+            lg:block 
+            top-[36%] 
+            left-[-1rem] 
+            md:left-1 
+            z-50 
+            nav-prev-button"
+        >
           <SwiperNavButton />
         </div>
-        <div className="absolute top-[40%] right-1 z-50 nav-next-button">
+        <div
+          className="
+            absolute 
+            hidden 
+            lg:block 
+            top-[36%] 
+            right-[-1rem] 
+            md:right-1 
+            z-50 
+            nav-next-button"
+        >
           <SwiperNavButton orientation="right" />
         </div>
 
         <Swiper
-          slidesPerView={6}
           modules={[Navigation, Pagination]}
           navigation={{
             prevEl: '.nav-prev-button',
@@ -36,6 +55,23 @@ const SubtopicCarousel: React.FC = (props: any) => {
           }}
           spaceBetween={4}
           className="w-[98%] mb-6"
+          breakpoints={{
+            360: {
+              slidesPerView: 2,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 5,
+            },
+            1280: {
+              slidesPerView: 6,
+            },
+          }}
         >
           {subtopics.map((subtopic, index) => (
             <SwiperSlide key={index}>
