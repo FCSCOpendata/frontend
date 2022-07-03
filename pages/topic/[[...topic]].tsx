@@ -21,6 +21,7 @@ const Topic: React.FC = () => {
     expanded: false,
     idx: 0,
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeSubtopicId, setActiveSubtopicId] = useState(0);
 
   //  TODO: retrieve only  the  full  data  of
@@ -80,9 +81,7 @@ const Topic: React.FC = () => {
     });
   };
 
-  let topicParamIdx = topics.findIndex(
-    (topic, index) => topic.name == topic_param
-  );
+  let topicParamIdx = topics.findIndex((topic) => topic.name == topic_param);
   topicParamIdx = topicParamIdx >= 0 ? topicParamIdx : 0;
 
   return (
@@ -92,7 +91,7 @@ const Topic: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* TODO: check mobile paddings */}
-      <main className="py-12 mx-10 md:mx-28 pb-20">
+      <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <div className="w-100">
           <div className="mb-20">
             {/* TODO: the component needs and indicator

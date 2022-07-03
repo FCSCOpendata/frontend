@@ -1,4 +1,4 @@
-const SubtopicCard: React.FC = (props: any) => {
+const SubtopicCard: React.FC<any> = (props) => {
   const subtopic = props.subtopic;
 
   return (

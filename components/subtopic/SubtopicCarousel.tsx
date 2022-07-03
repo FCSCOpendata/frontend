@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SwiperNavButton from './SwiperNavButton';
 
-const SubtopicCarousel: React.FC = (props: any) => {
+const SubtopicCarousel: React.FC<any> = (props: any) => {
   const subtopics = props.subtopics;
   const subtopicOnChange = props.subtopicChangeCallback;
 
@@ -25,7 +25,7 @@ const SubtopicCarousel: React.FC = (props: any) => {
             z-50 
             nav-prev-button"
         >
-          <SwiperNavButton />
+          <SwiperNavButton orientation="left" />
         </div>
         <div
           className="

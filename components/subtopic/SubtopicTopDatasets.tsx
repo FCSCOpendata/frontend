@@ -6,7 +6,7 @@ import utils from '../../utils';
 import { initializeApollo } from '../../lib/apolloClient';
 import { SEARCH_QUERY } from '../../graphql/queries';
 
-const SubtopicTopDatasets: React.FC = ({ subtopic }) => {
+const SubtopicTopDatasets: React.FC<any> = ({ subtopic }) => {
   //  TODO: extract the List in a way that we can
   //  reuse it here properly.   Have to wait  for
   //  merges before doing that.

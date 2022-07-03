@@ -1,8 +1,7 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-const Code: React.FC = (props: any) => {
-  const language = props.language;
+const Code: React.FC<any> = ({ language, children }) => {
   return (
     <>
       {/*   TODO: the background of the code should be #FEFEFE,
@@ -10,7 +9,7 @@ const Code: React.FC = (props: any) => {
             straightforward implementation */}
       <div className="rounded-lg p-10">
         <SyntaxHighlighter language={language} style={docco}>
-          {props.children}
+          {children}
         </SyntaxHighlighter>
       </div>
     </>

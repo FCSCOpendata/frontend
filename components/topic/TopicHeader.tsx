@@ -37,10 +37,10 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div className="bg-[#F7FAFC] h-full w-[calc(100%+10rem)]  ml-[-5rem] pl-[5rem] pr-[5rem]">
               <div className="pt-[3rem]">
-                <h1 className="text-3xl font-semibold flex items-center mb-6">
+                <h1 className="text-3xl font-semibold flex items-center mb-6 text-[#22B373]">
                   <span
                     className="
-                      bg-[#464646] 
+                      bg-[#22B373]
                       rounded-full 
                       inline-block 
                       overflow-hidden 
@@ -59,7 +59,7 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
                   </span>
                   {topic.title}
                 </h1>
-                <p className="mb-6 w-full 2xl:w-[75%]">
+                <p className="mb-6 w-full 2xl:w-[75%] text-[#7C7C7C]">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                   diam Lorem ipsum dolor sit amet, consectetuer adipiscing
                   elit, sed diam nonummy nibh euismod tincidunt ut laoreet
