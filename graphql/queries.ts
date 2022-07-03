@@ -70,6 +70,8 @@ export const GET_ORGS_QUERY = gql`
       result @type(title: "Organization") {
         title
         name
+        total: package_count
+        image: image_url
       }
     }
   }
