@@ -3,62 +3,35 @@ const SubtopicCard: React.FC = (props: any) => {
 
   return (
     <>
-      {/* TODO: improve this resposivity */}
-      <div
-        className="
-          aspect-w-1 
-          aspect-h-1 
-          xl:aspect-w-7 
-          xl:aspect-h-8"
-      >
-        <div
-          className="
-            bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] 
-            rounded-lg
-            w-full 
-            h-full 
-            bg-cover 
-            bg-no-repeat 
-            bg-center
-        "
-        >
+      <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+        <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+          <img
+            src="https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png"
+            alt={subtopic.title}
+            className="w-full h-full object-center object-cover group-hover:opacity-75 group-hover:border-b-4 group-hover:border-b-[#54CA59]"
+          />
+        </div>
+        <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 font-poppins font-semibold">
+          {subtopic.title}
           <div
             className="
-              absolute 
-              bottom-2
-              flex 
-              items-center 
-              justify-between 
-              text-white 
-              px-4 
-              w-full"
-          >
-            <h3 className="font-semibold text-md xl:text-xl">
-              {subtopic.display_name || subtopic.title || subtopic.name}
-            </h3>
-            {/* TODO: fix the responsivity for >1080p */}
-            <span
-              className="
+                      float-right
                       block 
                       overflow-hidden 
-                      w-[40px] 
-                      h-[40px]
+                      w-[35px] 
+                      h-[35px]
                       mr-4
-                      font-poppins 
-                      font-semibold
                     "
-            >
-              {/* TODO: this icon is not good on too large
-              //  or too small resolutions */}
-              <img
-                src={subtopic.image_display_url}
-                alt={`${subtopic.name}--topic`}
-                className="block"
-                width={100}
-              />
-            </span>
+          >
+            <img
+              src={subtopic.image_display_url}
+              alt={`${subtopic.name}--topic`}
+              className="block
+                "
+              width={100}
+            />
           </div>
-        </div>
+        </p>
       </div>
     </>
   );
