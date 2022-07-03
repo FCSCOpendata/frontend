@@ -3,7 +3,6 @@ import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 const Code: React.FC = (props: any) => {
   const language = props.language;
-  console.log(props);
   return (
     <>
       {/*   TODO: the background of the code should be #FEFEFE,

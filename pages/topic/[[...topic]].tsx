@@ -1,21 +1,30 @@
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import React from 'react';
-import SubtopicCarousel from '../components/subtopic/SubtopicCarousel';
-import SubtopicTopDatasets from '../components/subtopic/SubtopicTopDatasets';
-import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
-import TopicCarousel from '../components/topic/TopicCarousel';
-import TopicHeader from '../components/topic/TopicHeader';
-import { ErrorMessage } from '../components/_shared';
-import { GET_COLLECTIONS_QUERY, GET_TOPICS_QUERY } from '../graphql/queries';
+import React, { useState } from 'react';
+import SubtopicCarousel from '../../components/subtopic/SubtopicCarousel';
+import SubtopicTopDatasets from '../../components/subtopic/SubtopicTopDatasets';
+import DeveloperExperience from '../../components/topic/developer_experience/DeveloperExperience';
+import TopicCarousel from '../../components/topic/TopicCarousel';
+import TopicHeader from '../../components/topic/TopicHeader';
+import { ErrorMessage } from '../../components/_shared';
+import {
+  GET_COLLECTIONS_QUERY,
+  GET_TOPICS_QUERY,
+} from '../../graphql/queries';
+import { useRouter } from 'next/router';
 
-const Topics: React.FC = () => {
+const Topic: React.FC = () => {
+  const router = useRouter();
+  const { topic: topic_param } = router.query;
   const [devExperience, setDevExperience] = React.useState({
     expanded: false,
     idx: 0,
   });
-  const [activeTopicIdx, setActiveTopicIdx] = React.useState(0);
-  const [activeSubtopicId, setActiveSubtopicId] = React.useState(0);
+  const [activeSubtopicId, setActiveSubtopicId] = useState(0);
+
+  //  TODO: retrieve only  the  full  data  of
+  //  the selected topic. Currently retrieving
+  //  full data of all topics here.
 
   //  Topics  holds  hierarchical  information
   //  about `groups` and `subgroups`.
@@ -48,10 +57,6 @@ const Topics: React.FC = () => {
       if (topic.children.length > 0 && topic.id != coll.id) {
         findAndAddDetails(topic.children, coll);
       } else {
-        if (topic.name == 'transport' || coll.name == 'transport') {
-          console.log(topic, coll);
-        }
-
         if (topic.id == coll.id) {
           topics[idx] = { ...topic, ...coll };
         }
@@ -74,6 +79,11 @@ const Topics: React.FC = () => {
     });
   };
 
+  let topicParamIdx = topics.findIndex(
+    (topic, index) => topic.name == topic_param
+  );
+  topicParamIdx = topicParamIdx >= 0 ? topicParamIdx : 0;
+
   return (
     <>
       <Head>
@@ -83,18 +93,15 @@ const Topics: React.FC = () => {
       <main className="px-20 py-12">
         <div className="w-100">
           <div className="mb-20">
-            <TopicCarousel
-              topics={topics}
-              topicChangeCallback={(topic, idx) => setActiveTopicIdx(idx)}
-            />
+            <TopicCarousel topics={topics} />
           </div>
           <div className="mb-20">
-            <TopicHeader topic={topics[activeTopicIdx]} />
+            <TopicHeader topic={topics[topicParamIdx]} />
           </div>
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
             <SubtopicCarousel
-              subtopics={topics[activeTopicIdx].children}
+              subtopics={topics[topicParamIdx].children}
               subtopicChangeCallback={setActiveSubtopicId}
             />
           </div>
@@ -102,7 +109,7 @@ const Topics: React.FC = () => {
             <h1 className="font-semibold text-3xl mb-6">
               Explore Top Datasets In This Theme (32)
             </h1>
-            <SubtopicTopDatasets subtopic={{ id: activeTopicIdx }} />
+            <SubtopicTopDatasets subtopic={{ id: topicParamIdx }} />
           </div>
           <div className="mb-20">
             <button onClick={() => toggleDevExp()}>
@@ -132,4 +139,4 @@ const Topics: React.FC = () => {
   );
 };
 
-export default Topics;
+export default Topic;
