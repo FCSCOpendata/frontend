@@ -1,4 +1,4 @@
-import TopicIcon, { TopicIconProps } from './TopicIcon';
+import TopicIcon from './TopicIcon';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ const TopicCarousel: React.FC<any> = (props) => {
         {topics.map((topic, index) => (
           <SwiperSlide key={index}>
             <Link href={`/topic/${topic.name}`}>
-              <a>
+              <a href={`/topic/${topic.name}`}>
                 <TopicIcon topic={topic} />
               </a>
             </Link>
