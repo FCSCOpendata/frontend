@@ -24,7 +24,11 @@ const Search: React.FC<Props> = ({ variables }) => {
       <Head>
         <title>Search | Bayanat</title>
       </Head>
-      <Form variables={qvariables} setQvariables={setQvariables} />
+      <Form
+        variables={qvariables}
+        setQvariables={setQvariables}
+        setSideFilter={setSideFilter}
+      />
       <div className="">
         <div className="mx-4">
           <List variables={qvariables} setQvariables={setQvariables} />
