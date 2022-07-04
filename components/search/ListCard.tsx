@@ -10,6 +10,9 @@ const datasetFiles = [
 ];
 
 const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
+  const availableFormats = dataset.resources.map((item) =>
+    item.format.toLowerCase()
+  );
   return (
     <li
       {...props}
@@ -86,11 +89,13 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
         </div>
         {/* file icons */}
         <div className="grid items-center px-8 ml-8 h-full border-l-2 border-[#E6E6E6]">
-          {datasetFiles.map((file, index) => (
-            <button key={index}>
-              <img src={file.icon} width={20} alt={file.name} />
-            </button>
-          ))}
+          {datasetFiles
+            .filter((file) => {
+              return availableFormats.includes(file.name);
+            })
+            .map((file, index) => (
+              <img key={index} src={file.icon} width={20} alt={file.name} />
+            ))}
         </div>
       </div>
     </li>
