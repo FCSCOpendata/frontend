@@ -13,23 +13,23 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
   return (
     <li
       {...props}
-      className="group relative bg-[#F7FAFC] min-w-0 flex-1 sm:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-32"
+      className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit xl:h-32"
     >
       <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-xl z-0 ease-in-out duration-150" />
       <div className="flex flex-cols items-center h-full z-10">
         {/* Image */}
-        <div className="h-full w-28 rounded-2xl bg-gray-200">
+        <div className="h-full w-0 xl:w-28 rounded-2xl bg-gray-200">
           {/* <img src="" alt="" /> */}
         </div>
         {/* Title, description & org */}
-        <div className="px-6 flex flex-col justify-between h-full">
+        <div className="px-6 flex flex-col sm:justify-between h-full space-y-4 sm:space-y-0">
           <Link
             href={`/organization/@${
               dataset.organization ? dataset.organization.name : 'dataset'
             }/${dataset.name}`}
           >
             {/* eslint-disable-next-line */}
-            <a className="block focus:outline-none">
+            <a className="block focus:outline-none space-y-2 xl:space-y-0">
               <h1 className="text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl">
                 {dataset.title}
               </h1>
@@ -39,21 +39,21 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               </p>
             </a>
           </Link>
-          <div className="inline-flex items-center py-1 space-x-2 text-[#7C7C7C]">
+          <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
             <img
               src="/images/library-icon.svg"
               alt="orgs"
               className="w-4 mb-1 grayscale"
             />
-            <span className="text-xs capitalize">
+            <span className="text-xs text-center sm:text-left capitalize">
               {dataset.organization.title || dataset.organization.name}
             </span>
           </div>
         </div>
       </div>
-      <div className="flex items-start justify-start h-full text-[#7C7C7C] z-10">
+      <div className="sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
         {/* dataset info on hover */}
-        <div className="flex flex-col px-4 border-l-2 border-[#E6E6E6] h-full opacity-0 group-hover:opacity-100 ease-in-out duration-150">
+        <div className="flex xl:flex-col items-center xl:items-start pl-6 pt-4 xl:pt-0 xl:px-4 space-x-4 xl:space-x-0 xl:border-l-2 border-[#E6E6E6] h-full xl:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
           <div className="">
             <img
               src="/images/time.svg"
@@ -81,10 +81,10 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
           </div>
         </div>
         {/* file icons */}
-        <div className="grid items-center px-8 ml-8 h-full border-l-2 border-[#E6E6E6]">
+        <div className="grid grid-flow-col xl:grid-flow-row gap-4 xl:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 xl:ml-8 h-full xl:border-l-2 border-[#E6E6E6]">
           {datasetFiles.map((file, index) => (
             <button key={index}>
-              <img src={file.icon} width={20} alt={file.name} />
+              <img src={file.icon} alt={file.name} className="w-4" />
             </button>
           ))}
         </div>

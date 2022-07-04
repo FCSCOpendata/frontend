@@ -6,11 +6,13 @@ import { GET_RESOURCE_FORMATS_QUERY } from '../../graphql/queries';
 import { initializeApollo } from '../../lib/apolloClient';
 import { ErrorMessage } from '../_shared';
 import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
+import FiltersBar from './FiltersBar';
 
-const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
-  variables,
-  setQvariables,
-}) => {
+const SearchForm: React.FC<{
+  variables: any;
+  setQvariables: any;
+  setSideFilter: any;
+}> = ({ variables, setQvariables, setSideFilter }) => {
   const {
     loading: loadFormats,
     error: errorFormats,
@@ -21,6 +23,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
 
   const searchQueryRef = useRef<HTMLInputElement>(null);
   const [searchFormat, setSearchFormat] = useState('');
+  const [showFilters, setShowFilters] = useState('');
 
   const handleSubmit = (e) => {
     if (e) {
@@ -38,18 +41,22 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   };
   const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
+  const handleClick = (e) => {
+    setShowFilters((prev) => (prev === e.target.value ? '' : e.target.value));
+  };
+
   // if (errorFormats) return <ErrorMessage message="Error loading Categories" />;
   // if (loadFormats) return <div>Loading Formats</div>;
 
   return (
-    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full h-64 space-y-8 overflow-hidden">
-      <div className="absolute bg-waves bg-contain bg-no-repeat bg-bottom left-[-1%] right-[-9%] top-[-227%] bottom-[-109%] z-0" />
-      <h1 className="text-3xl text-center font-extrabold capitalize !mt-0 z-10">
+    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full py-12 overflow-hidden">
+      <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
+      <h1 className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10">
         Search Data
       </h1>
-      <div className="flex flex-wrap items-center sm:w-9/12 space-x-4 z-10">
+      <div className="xl:flex xl:flex-wrap items-center w-full sm:max-w-xl xl:max-w-none xl:w-9/12 px-4 sm:px-0 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
         <form
-          className="flex flex-1 relative sm:w-1/2 bg-white rounded-xl px-4 py-2 items-center"
+          className="flex flex-1 relative xl:w-1/2 bg-white rounded-xl px-4 py-2 items-center"
           onSubmit={(e) => e.preventDefault()}
         >
           <SearchIcon className="w-4 text-[#858585]" />
@@ -64,16 +71,33 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
             className="flex-1 bg-white appearance-none focus:ring-0 border-0 ml-2 rounded-xl"
           />
         </form>
-        <p className="text-lg bg-button-gradient bg-clip-text text-transparent">
+        <p className="text-lg text-center xl:text-left bg-button-gradient bg-clip-text text-transparent">
           Filter by
         </p>
-        <div className="flex flex-wrap lg:flex-nowrapjustify-center sm:justify-between bg-white px-2 py-2 rounded-xl">
+        <div className="flex flex-wrap xl:flex-nowrap justify-center xl:justify-between bg-white w-fit !mx-auto xl:!ml-4 p-2 rounded-xl">
           <div className="flex text-sm">
-            <div className="flex space-x-1 text-white bg-button-gradient rounded-xl px-10 py-2">
+            <div
+              className={`relative flex space-x-1 rounded-xl px-10 py-2 ${
+                showFilters === 'Themes'
+                  ? 'bg-button-gradient text-white'
+                  : 'text-black'
+              }`}
+            >
               <ViewGridIcon className="w-5 mb-0.5" />
-              <input type="button" value="Themes" className="cursor-pointer" />
+              <input
+                type="button"
+                value="Themes"
+                onClick={handleClick}
+                className="cursor-pointer"
+              />
             </div>
-            <div className="flex space-x-2 rounded-xl px-10 py-2">
+            <div
+              className={`relative flex space-x-1 rounded-xl px-10 py-2 ${
+                showFilters === 'Organizations'
+                  ? 'bg-button-gradient text-white'
+                  : 'text-black'
+              }`}
+            >
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
@@ -82,12 +106,27 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
               <input
                 type="button"
                 value="Organizations"
+                onClick={handleClick}
                 className="cursor-pointer"
               />
             </div>
           </div>
         </div>
       </div>
+      <div className="mt-4 z-10">
+        <FiltersBar
+          setQvariables={setQvariables}
+          setSideFilter={setSideFilter}
+          filters={showFilters}
+        />
+      </div>
+      {/* <div
+        className={`w-full p-8 bg-gray-200 z-10 ${
+          showFilters ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="bg-red-200 border border-black w-full h-32" />
+      </div> */}
     </div>
   );
 };
