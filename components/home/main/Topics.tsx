@@ -69,14 +69,15 @@ export default function Topics() {
           {topics.map((topic, index) => (
             <a key={index} href={`/topic/${topic.name}`} className="group">
               <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+                <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
                 <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                   <img
                     src={topic.imageSrc}
                     alt={topic.title}
-                    className="w-full h-full object-center object-cover group-hover:opacity-75 group-hover:border-b-4 group-hover:border-b-[#54CA59]"
+                    className="w-full h-full object-center object-cover group-hover:opacity-75"
                   />
                 </div>
-                <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold">
+                <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-100 group-hover:text-black">
                   {topic.title}
                 </p>
               </div>
