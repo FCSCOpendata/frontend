@@ -152,9 +152,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
                 className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
               >
                 <img
-                  src={`/images/topics/topic-${Math.floor(
-                    Math.random() * (6 - 1 + 1) + 1
-                  )}.png`}
+                  src={`/images/topics/topic-1.png`}
                   alt=""
                   className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
                 />
@@ -168,7 +166,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
-                  className="font-semibold w-full h-full p-4 cursor-pointer select-none z-10"
+                  className="text-white text-sm font-semibold w-full h-full p-4 cursor-pointer select-none z-10"
                 >
                   {sub.title}
                 </label>
@@ -186,9 +184,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
               className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
             >
               <img
-                src={`/images/topics/topic-${Math.floor(
-                  Math.random() * (6 - 1 + 1) + 1
-                )}.png`}
+                src={`/images/topics/topic-2.png`}
                 alt=""
                 className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
               />
@@ -202,7 +198,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
               />
               <label
                 htmlFor={`checkbox-${index}`}
-                className="font-semibold w-full h-full p-4 cursor-pointer z-10"
+                className="text-white text-sm font-semibold w-full h-full p-4 cursor-pointer z-10"
               >
                 {org.title}
               </label>
