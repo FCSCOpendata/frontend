@@ -15,6 +15,9 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchFormat, setSearchFormat] = useState('');
 
+  const [filter, setFilter] = useState('');
+  const activeFilterClass = 'text-white bg-button-gradient';
+
   const handleSubmit = (e) => {
     if (e) {
       e.preventDefault();
@@ -62,11 +65,21 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
         </p>
         <div className="flex flex-wrap lg:flex-nowrapjustify-center sm:justify-between bg-white px-2 py-2 rounded-xl">
           <div className="flex text-sm">
-            <div className="flex space-x-1 text-white bg-button-gradient rounded-xl px-10 py-2">
+            <button
+              onClick={() => setFilter('Topics')}
+              className={`flex space-x-1 ${
+                filter == 'Topics' && activeFilterClass
+              } rounded-xl px-10 py-2 cursor-pointer`}
+            >
               <ViewGridIcon className="w-5 mb-0.5" />
-              <input type="button" value="Themes" className="cursor-pointer" />
-            </div>
-            <div className="flex space-x-2 rounded-xl px-10 py-2">
+              <input type="button" value="Topics" className="cursor-pointer" />
+            </button>
+            <button
+              onClick={() => setFilter('Organizations')}
+              className={`flex space-x-1 ${
+                filter == 'Organizations' && activeFilterClass
+              } rounded-xl px-10 py-2 cursor-pointer`}
+            >
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
@@ -77,7 +90,7 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
                 value="Organizations"
                 className="cursor-pointer"
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
