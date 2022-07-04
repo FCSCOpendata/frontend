@@ -37,7 +37,7 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div className="bg-[#F7FAFC] h-full w-[calc(100%+10rem)]  ml-[-5rem] pl-[5rem] pr-[5rem]">
               <div className="pt-[3rem]">
-                <h1 className="text-3xl font-semibold flex items-center mb-6 text-[#22B373]">
+                <h1 className="text-3xl font-[Avenir] font-extrabold flex items-center mb-6 text-[#22B373]">
                   <span
                     className="
                       bg-[#22B373]

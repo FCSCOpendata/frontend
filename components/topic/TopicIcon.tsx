@@ -18,7 +18,7 @@ const TopicIcon: React.FC<any> = ({ topic }) => {
             alt={`${topic.display_name || topic.name}-topic`}
           />
         </div>
-        <h3 className="font-inter font-semibold text-md text-center mt-4">
+        <h3 className="font-[Avenir] font-medium text-md text-center mt-4">
           {topic.display_name || topic.title || topic.name}
         </h3>
       </div>
