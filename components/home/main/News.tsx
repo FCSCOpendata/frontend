@@ -1,7 +1,7 @@
 export default function News() {
   return (
     <>
-      <h2 className="block text-3xl text-center font-semibold">
+      <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
         What&apos;s New
       </h2>
       <p className="mt-3 mb-6 text-center text-base text-gray font-normal">

@@ -4,7 +4,7 @@ export default function Map() {
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto pb-16 sm:pb-24 lg:max-w-7xl">
-        <h2 className="block text-3xl text-center font-semibold">
+        <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
           Explore data through organizations
         </h2>
         <p className="mt-3 mb-8 text-center text-base text-gray font-normal">
