@@ -34,12 +34,12 @@ const SearchForm: React.FC<{ variables: any; setQvariables: any }> = ({
   // if (loadFormats) return <div>Loading Formats</div>;
 
   return (
-    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full h-64 space-y-8 overflow-hidden">
+    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full min-h-fit space-y-8 overflow-hidden">
       <div className="absolute bg-waves bg-contain bg-no-repeat bg-bottom left-[-1%] right-[-9%] top-[-227%] bottom-[-109%] z-0" />
-      <h1 className="text-3xl text-center font-extrabold capitalize !mt-0 z-10">
+      <h1 className="text-3xl text-center font-extrabold capitalize !mt-0 z-10 pt-10">
         Search Data
       </h1>
-      <div className="flex flex-wrap items-center sm:w-9/12 space-x-4 z-10">
+      <div className="flex flex-wrap items-center sm:w-9/12 space-x-4 z-10 pb-10">
         <form
           className="flex flex-1 relative sm:w-1/2 bg-white rounded-xl px-4 py-2 items-center"
           onSubmit={(e) => e.preventDefault()}
