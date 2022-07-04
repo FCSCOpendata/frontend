@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import { initializeApollo } from '../../../lib/apolloClient';
-import Nav from '../../../components/home/Nav';
-import About from '../../../components/organization/About';
-import Footer from '../../../components/home/Footer';
-import { GET_ORG_QUERY } from '../../../graphql/queries';
+import { initializeApollo } from '../../lib/apolloClient';
+import Nav from '../../components/home/Nav';
+import About from '../../components/organization/About';
+import Footer from '../../components/home/Footer';
+import { GET_ORG_QUERY } from '../../graphql/queries';
 
 const Org: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_ORG_QUERY, { variables });

@@ -24,7 +24,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
         {/* Title, description & org */}
         <div className="px-6 flex flex-col justify-between h-full">
           <Link
-            href={`/organization/@${
+            href={`/@${
               dataset.organization ? dataset.organization.name : 'dataset'
             }/${dataset.name}`}
           >
