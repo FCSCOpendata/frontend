@@ -21,8 +21,17 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
       <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-xl z-0 ease-in-out duration-150" />
       <div className="flex flex-cols items-center h-full z-10">
         {/* Image */}
-        <div className="h-full w-28 rounded-2xl bg-gray-200">
-          {/* <img src="" alt="" /> */}
+        <div className="h-full w-28 rounded-xl bg-gray-200">
+          <img
+            src={
+              dataset.organization.image ||
+              `/images/topics/topic-${Math.floor(
+                Math.random() * (6 - 1 + 1) + 1
+              )}.png`
+            }
+            alt={dataset.organization.title}
+            className="h-full"
+          />
         </div>
         {/* Title, description & org */}
         <div className="px-6 flex flex-col justify-between h-full">
