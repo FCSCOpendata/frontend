@@ -34,8 +34,10 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                 {dataset.title}
               </h1>
               <p className="text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left">
-                {dataset.description ||
-                  'This dataset does not have a description'}
+                {/* Bug: description comes with html tags */}
+                {dataset.description
+                  ? dataset.description.replace(/<[^>]*>?/gm, '')
+                  : 'This dataset does not have a description'}
               </p>
             </a>
           </Link>
