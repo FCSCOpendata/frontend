@@ -17,3 +17,19 @@
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
 }
+
+/*  Swiper.Js Customization */
+.swiper-bullet {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #cfcfcf;
+  opacity: 1;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.swiper-bullet-active {
+  background: #22b373 !important;
+}

@@ -234,6 +234,15 @@ export const GET_COLLECTIONS_QUERY = gql`
   }
 `;
 
+export const GET_TOPICS_QUERY = gql`
+  query topics {
+    topics(all_fields: False)
+      @rest(type: "Response", path: "group_tree?type=group&{args}") {
+      result
+    }
+  }
+`;
+
 export const GET_KEYWORDS_QUERY = gql`
   query keywords {
     keywords

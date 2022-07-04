@@ -6,9 +6,6 @@ import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
-import SearchSuggestions from '../components/search/SearchSuggestions';
-import BottomBanner from '../components/_shared/BottomBanner';
-import Sidebar from '../components/search/Sidebar';
 
 type Props = {
   variables: any;
@@ -25,25 +22,14 @@ const Search: React.FC<Props> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Portal | Search</title>
-        <link rel="icon" href="/favicon.svg" />
+        <title>Search | Bayanat</title>
       </Head>
-      <main className="px-20 py-12">
-        <Form variables={qvariables} setQvariables={setQvariables} />
-        <div className="flex flex-wrap">
-          <div className="sm:w-1/4">
-            <Sidebar
-              setQvariables={setQvariables}
-              setSideFilter={setSideFilter}
-            />
-          </div>
-          <div className="sm:w-3/4">
-            <List variables={qvariables} setQvariables={setQvariables} />
-            <SearchSuggestions />
-          </div>
+      <Form variables={qvariables} setQvariables={setQvariables} />
+      <div className="">
+        <div className="mx-4">
+          <List variables={qvariables} setQvariables={setQvariables} />
         </div>
-      </main>
-      <BottomBanner />
+      </div>
     </>
   );
 };
