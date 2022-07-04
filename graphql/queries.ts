@@ -131,6 +131,8 @@ export const SEARCH_QUERY = gql`
           description: notes
           updated: metadata_modified
           resources
+          startPeriod: start_period
+          endPeriod: end_period
           organization {
             name
             title

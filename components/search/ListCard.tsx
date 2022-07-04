@@ -79,7 +79,9 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
           </div>
           <div className="">
             <CalendarIcon className="inline mr-1 w-4" />
-            <span className="text-xs capitalize">2017 -2020</span>
+            <span className="text-xs capitalize">
+              {dataset.startPeriod} - {dataset.endPeriod}
+            </span>
           </div>
         </div>
         {/* file icons */}
