@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import { initializeApollo } from '../../../../../../lib/apolloClient';
-import Nav from '../../../../../../components/home/Nav';
-import About from '../../../../../../components/resource/About';
-import View from '../../../../../../components/resource/View';
-import Footer from '../../../../../../components/home/Footer';
-import { GET_DATASET_QUERY } from '../../../../../../graphql/queries';
+import { initializeApollo } from '../../../../../lib/apolloClient';
+import Nav from '../../../../../components/home/Nav';
+import About from '../../../../../components/resource/About';
+import View from '../../../../../components/resource/View';
+import Footer from '../../../../../components/home/Footer';
+import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -21,7 +21,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | {resource.title || resource.name}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <Nav />
       <main className="p-6">

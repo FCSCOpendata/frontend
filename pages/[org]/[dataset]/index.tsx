@@ -1,17 +1,17 @@
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import { initializeApollo } from '../../../../lib/apolloClient';
-import Nav from '../../../../components/home/Nav';
-import About from '../../../../components/dataset/About';
-import Footer from '../../../../components/home/Footer';
-import { GET_DATASET_QUERY } from '../../../../graphql/queries';
-import SimilarDatasets from '../../../../components/dataset/SimilarDatasets';
-import BottomBanner from '../../../../components/_shared/BottomBanner';
-import NavBreadCrumbs from '../../../../components/dataset/NavBreadCrumbs';
-import DatasetNav from '../../../../components/dataset/DatasetNav';
-import NavBody from '../../../../components/dataset/NavBody';
-import { ErrorMessage } from '../../../../components/_shared';
+import { initializeApollo } from '../../../lib/apolloClient';
+import Nav from '../../../components/home/Nav';
+import About from '../../../components/dataset/About';
+import Footer from '../../../components/home/Footer';
+import { GET_DATASET_QUERY } from '../../../graphql/queries';
+import SimilarDatasets from '../../../components/dataset/SimilarDatasets';
+import BottomBanner from '../../../components/_shared/BottomBanner';
+import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
+import DatasetNav from '../../../components/dataset/DatasetNav';
+import NavBody from '../../../components/dataset/NavBody';
+import { ErrorMessage } from '../../../components/_shared';
 import { useState } from 'react';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
@@ -27,7 +27,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | {result.title || result.name}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <Nav />
       <NavBreadCrumbs

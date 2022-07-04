@@ -70,6 +70,8 @@ export const GET_ORGS_QUERY = gql`
       result @type(title: "Organization") {
         title
         name
+        total: package_count
+        image: image_url
       }
     }
   }
@@ -129,6 +131,8 @@ export const SEARCH_QUERY = gql`
           description: notes
           updated: metadata_modified
           resources
+          startPeriod: start_period
+          endPeriod: end_period
           organization {
             name
             title
@@ -227,6 +231,15 @@ export const GET_COLLECTIONS_QUERY = gql`
   query collections {
     collections(all_fields: True)
       @rest(type: "Response", path: "group_list?{args}") {
+      result
+    }
+  }
+`;
+
+export const GET_TOPICS_QUERY = gql`
+  query topics {
+    topics(all_fields: False)
+      @rest(type: "Response", path: "group_tree?type=group&{args}") {
       result
     }
   }

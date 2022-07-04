@@ -124,7 +124,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
 
   return (
     <div className="">
-      {filters === 'Themes' && (
+      {filters === 'Topics' && (
         <>
           <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl">
             {topics.map((topic, index) => (
@@ -152,7 +152,9 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
                 className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
               >
                 <img
-                  src="/images/blog/blog3.jpg"
+                  src={`/images/topics/topic-${Math.floor(
+                    Math.random() * (6 - 1 + 1) + 1
+                  )}.png`}
                   alt=""
                   className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
                 />
@@ -184,7 +186,9 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
               className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
             >
               <img
-                src="/images/blog/blog3.jpg"
+                src={`/images/topics/topic-${Math.floor(
+                  Math.random() * (6 - 1 + 1) + 1
+                )}.png`}
                 alt=""
                 className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
               />

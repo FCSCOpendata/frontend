@@ -1,10 +1,6 @@
 /* eslint-disable jsx-a11y/no-onchange */ //This is for the Filter Group because OnBlur doesn't work.
-import { useQuery } from '@apollo/react-hooks';
-import { GetServerSideProps } from 'next';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useRef, useState } from 'react';
-import { GET_RESOURCE_FORMATS_QUERY } from '../../graphql/queries';
-import { initializeApollo } from '../../lib/apolloClient';
-import { ErrorMessage } from '../_shared';
 import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
 import FiltersBar from './FiltersBar';
 
@@ -13,17 +9,12 @@ const SearchForm: React.FC<{
   setQvariables: any;
   setSideFilter: any;
 }> = ({ variables, setQvariables, setSideFilter }) => {
-  const {
-    loading: loadFormats,
-    error: errorFormats,
-    data: dataFormats,
-  } = useQuery(GET_RESOURCE_FORMATS_QUERY, {
-    notifyOnNetworkStatusChange: true,
-  });
-
   const searchQueryRef = useRef<HTMLInputElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchFormat, setSearchFormat] = useState('');
-  const [showFilters, setShowFilters] = useState('');
+
+  const [filter, setFilter] = useState('');
+  const activeFilterClass = 'text-white bg-button-gradient';
 
   const handleSubmit = (e) => {
     if (e) {
@@ -42,11 +33,8 @@ const SearchForm: React.FC<{
   const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
   const handleClick = (e) => {
-    setShowFilters((prev) => (prev === e.target.value ? '' : e.target.value));
+    setFilter((prev) => (prev === e.target.value ? '' : e.target.value));
   };
-
-  // if (errorFormats) return <ErrorMessage message="Error loading Categories" />;
-  // if (loadFormats) return <div>Loading Formats</div>;
 
   return (
     <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full py-12 overflow-hidden">
@@ -77,26 +65,22 @@ const SearchForm: React.FC<{
         <div className="flex flex-wrap xl:flex-nowrap justify-center xl:justify-between bg-white w-fit !mx-auto xl:!ml-4 p-2 rounded-xl">
           <div className="flex text-sm">
             <div
-              className={`relative flex space-x-1 rounded-xl px-10 py-2 ${
-                showFilters === 'Themes'
-                  ? 'bg-button-gradient text-white'
-                  : 'text-black'
-              }`}
+              className={`flex space-x-1 ${
+                filter == 'Topics' && activeFilterClass
+              } rounded-xl px-10 py-2 cursor-pointer`}
             >
               <ViewGridIcon className="w-5 mb-0.5" />
               <input
                 type="button"
-                value="Themes"
+                value="Topics"
                 onClick={handleClick}
                 className="cursor-pointer"
               />
             </div>
             <div
-              className={`relative flex space-x-1 rounded-xl px-10 py-2 ${
-                showFilters === 'Organizations'
-                  ? 'bg-button-gradient text-white'
-                  : 'text-black'
-              }`}
+              className={`flex space-x-1 ${
+                filter == 'Organizations' && activeFilterClass
+              } rounded-xl px-10 py-2 cursor-pointer`}
             >
               <img
                 src="/images/library-icon.svg"
@@ -117,35 +101,11 @@ const SearchForm: React.FC<{
         <FiltersBar
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
-          filters={showFilters}
+          filters={filter}
         />
       </div>
-      {/* <div
-        className={`w-full p-8 bg-gray-200 z-10 ${
-          showFilters ? 'block' : 'hidden'
-        }`}
-      >
-        <div className="bg-red-200 border border-black w-full h-32" />
-      </div> */}
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const apolloClient = initializeApollo();
-  const variables = {};
-
-  await apolloClient.query({
-    query: GET_RESOURCE_FORMATS_QUERY,
-    variables,
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      variables,
-    },
-  };
 };
 
 export default SearchForm;

@@ -10,6 +10,9 @@ const datasetFiles = [
 ];
 
 const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
+  const availableFormats = dataset.resources.map((item) =>
+    item.format.toLowerCase()
+  );
   return (
     <li
       {...props}
@@ -18,13 +21,22 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
       <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-xl z-0 ease-in-out duration-150" />
       <div className="flex flex-cols items-center h-full z-10">
         {/* Image */}
-        <div className="h-full w-0 xl:w-28 rounded-2xl bg-gray-200">
-          {/* <img src="" alt="" /> */}
+        <div className="h-full w-28 rounded-xl bg-gray-200">
+          <img
+            src={
+              dataset.organization.image ||
+              `/images/topics/topic-${Math.floor(
+                Math.random() * (6 - 1 + 1) + 1
+              )}.png`
+            }
+            alt={dataset.organization.title}
+            className="h-full"
+          />
         </div>
         {/* Title, description & org */}
         <div className="px-6 flex flex-col sm:justify-between h-full space-y-4 sm:space-y-0">
           <Link
-            href={`/organization/@${
+            href={`/@${
               dataset.organization ? dataset.organization.name : 'dataset'
             }/${dataset.name}`}
           >
@@ -34,8 +46,10 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                 {dataset.title}
               </h1>
               <p className="text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left">
-                {dataset.description ||
-                  'This dataset does not have a description'}
+                {/* Bug: description comes with html tags */}
+                {dataset.description
+                  ? dataset.description.replace(/<[^>]*>?/gm, '')
+                  : 'This dataset does not have a description'}
               </p>
             </a>
           </Link>
@@ -77,16 +91,20 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
           </div>
           <div className="">
             <CalendarIcon className="inline mr-1 w-4" />
-            <span className="text-xs capitalize">2017 -2020</span>
+            <span className="text-xs capitalize">
+              {dataset.startPeriod} - {dataset.endPeriod}
+            </span>
           </div>
         </div>
         {/* file icons */}
         <div className="grid grid-flow-col xl:grid-flow-row gap-4 xl:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 xl:ml-8 h-full xl:border-l-2 border-[#E6E6E6]">
-          {datasetFiles.map((file, index) => (
-            <button key={index}>
-              <img src={file.icon} alt={file.name} className="w-4" />
-            </button>
-          ))}
+          {datasetFiles
+            .filter((file) => {
+              return availableFormats.includes(file.name);
+            })
+            .map((file, index) => (
+              <img key={index} src={file.icon} width={20} alt={file.name} />
+            ))}
         </div>
       </div>
     </li>
