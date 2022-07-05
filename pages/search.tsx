@@ -4,6 +4,7 @@ import utils from '../utils';
 import Head from 'next/head';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
+import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
 
@@ -19,6 +20,18 @@ const Search: React.FC<Props> = ({ variables }) => {
     groups: [],
   });
 
+  const [devExperience, setDevExperience] = useState({
+    expanded: false,
+    idx: 0,
+  });
+
+  const toggleDevExp = () => {
+    setDevExperience({
+      expanded: !devExperience.expanded,
+      idx: devExperience.idx,
+    });
+  };
+
   return (
     <>
       <Head>
@@ -29,9 +42,31 @@ const Search: React.FC<Props> = ({ variables }) => {
         setQvariables={setQvariables}
         setSideFilter={setSideFilter}
       />
-      <div className="">
+      <div className="mb-12">
         <div className="mx-4">
           <List variables={qvariables} setQvariables={setQvariables} />
+        </div>
+      </div>
+      <div className="mx-16 mb-12">
+        <button onClick={() => toggleDevExp()}>
+          <h2 className="font-[Avenir] font-semibold text-2xl mb-6 flex items-center pointer">
+            {/* TODO: check this vertical alignment */}
+            <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
+              <img
+                src="/images/plus.svg"
+                width={12}
+                alt="Expand developer experience"
+              />
+            </span>
+            Developer Experience
+          </h2>
+        </button>
+        <div
+          className={`transition-all overflow-hidden ${
+            devExperience.expanded ? 'max-h-max' : 'max-h-0'
+          }`}
+        >
+          <DeveloperExperience />
         </div>
       </div>
     </>
