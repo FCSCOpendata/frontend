@@ -21,8 +21,8 @@ const Topic: React.FC = () => {
     expanded: false,
     idx: 0,
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeSubtopicId, setActiveSubtopicId] = useState(0);
+  const [activeSubtopicIdx, setActiveSubtopicIdx] = useState(0);
+  const [datasetsCount, setDatasetsCount] = useState(0);
 
   //  TODO: retrieve only  the  full  data  of
   //  the selected topic. Currently retrieving
@@ -84,6 +84,8 @@ const Topic: React.FC = () => {
   let topicParamIdx = topics.findIndex((topic) => topic.name == topic_param);
   topicParamIdx = topicParamIdx >= 0 ? topicParamIdx : 0;
 
+  console.log();
+
   return (
     <>
       <Head>
@@ -97,7 +99,7 @@ const Topic: React.FC = () => {
             {/* TODO: the component needs and indicator
             //  that there's hidden slides so that  the
             //  user knows he should slide */}
-            <TopicCarousel topics={topics} />
+            <TopicCarousel topics={topics} active_index={topicParamIdx} />
           </div>
           <div className="mb-20">
             <TopicHeader topic={topics[topicParamIdx]} />
@@ -106,14 +108,18 @@ const Topic: React.FC = () => {
             <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
             <SubtopicCarousel
               subtopics={topics[topicParamIdx].children}
-              subtopicChangeCallback={setActiveSubtopicId}
+              subtopicChangeCallback={setActiveSubtopicIdx}
             />
           </div>
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">
-              Explore Top Datasets In This Theme (32)
+              Explore Top Datasets In This Theme ({datasetsCount})
             </h1>
-            <SubtopicTopDatasets subtopic={{ id: topicParamIdx }} />
+            <SubtopicTopDatasets
+              // TODO: improve this logic
+              subtopic={topics[topicParamIdx].children[activeSubtopicIdx].name}
+              setQty={setDatasetsCount}
+            />
           </div>
           <div>
             <button onClick={() => toggleDevExp()}>

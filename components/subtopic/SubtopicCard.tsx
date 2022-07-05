@@ -11,18 +11,9 @@ const SubtopicCard: React.FC<any> = (props) => {
             className="w-full h-full object-center object-cover group-hover:opacity-75 group-hover:border-b-4 group-hover:border-b-[#54CA59]"
           />
         </div>
-        <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 font-poppins font-semibold">
-          {subtopic.title}
-          <div
-            className="
-                      float-right
-                      block 
-                      overflow-hidden 
-                      w-[35px] 
-                      h-[35px]
-                      mr-4
-                    "
-          >
+        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 flex justify-between">
+          <h3 className="font-[Avenir] font-semibold">{subtopic.title}</h3>
+          <div className="block overflow-hidden w-[35px] h-[35px] mr-4">
             <img
               src={subtopic.image_display_url}
               alt={`${subtopic.name}--topic`}
@@ -31,7 +22,7 @@ const SubtopicCard: React.FC<any> = (props) => {
               width={100}
             />
           </div>
-        </p>
+        </div>
       </div>
     </>
   );
