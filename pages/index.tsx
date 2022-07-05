@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-// import RecentDataset from '../components/home/Recent';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
 import Hero from '../components/home/Hero';
 import MainOptions from '../components/home/MainOptions';
+import OpenData101 from '../components/home/main/OpenData101';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
   const { t } = useTranslation();
@@ -19,9 +19,8 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <div className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen">
           <Hero />
         </div>
-
         <MainOptions />
-        {/* <RecentDataset /> */}
+        <OpenData101 />
       </div>
     </>
   );
