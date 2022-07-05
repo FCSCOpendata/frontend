@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
+import OpenData101 from '../components/home/main/OpenData101';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
 
@@ -43,11 +44,11 @@ const Search: React.FC<Props> = ({ variables }) => {
         setSideFilter={setSideFilter}
       />
       <div className="mb-12">
-        <div className="mx-4">
+        <div className="px-4">
           <List variables={qvariables} setQvariables={setQvariables} />
         </div>
       </div>
-      <div className="mx-16 mb-12">
+      <div className="px-16">
         <button onClick={() => toggleDevExp()}>
           <h2 className="font-[Avenir] font-semibold text-2xl mb-6 flex items-center pointer">
             {/* TODO: check this vertical alignment */}
@@ -69,6 +70,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           <DeveloperExperience />
         </div>
       </div>
+      <OpenData101 />
     </>
   );
 };
