@@ -77,7 +77,7 @@ const SubtopicCarousel: React.FC<any> = (props: any) => {
             <SwiperSlide key={index}>
               <button
                 className="w-full text-left"
-                onClick={() => subtopicOnChange(subtopic)}
+                onClick={() => subtopicOnChange(index)}
               >
                 <SubtopicCard subtopic={subtopic} />
               </button>
