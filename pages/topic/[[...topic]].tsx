@@ -97,7 +97,7 @@ const Topic: React.FC = () => {
             {/* TODO: the component needs and indicator
             //  that there's hidden slides so that  the
             //  user knows he should slide */}
-            <TopicCarousel topics={topics} />
+            <TopicCarousel topics={topics} active_index={topicParamIdx} />
           </div>
           <div className="mb-20">
             <TopicHeader topic={topics[topicParamIdx]} />

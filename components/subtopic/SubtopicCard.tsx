@@ -13,7 +13,7 @@ const SubtopicCard: React.FC<any> = (props) => {
         </div>
         <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 font-poppins font-semibold">
           {subtopic.title}
-          <div
+          <span
             className="
                       float-right
                       block 
@@ -30,7 +30,7 @@ const SubtopicCard: React.FC<any> = (props) => {
                 "
               width={100}
             />
-          </div>
+          </span>
         </p>
       </div>
     </>

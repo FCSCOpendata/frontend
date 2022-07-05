@@ -1,15 +1,7 @@
-//  TODO: check if I should be using some specific
-//  model   (type)   for   the   `Collection`  (or
-//  `Topic`) item.
-export interface TopicIconProps {
-  display_name: string;
-  image_display_url: string;
-}
-
-const TopicIcon: React.FC<any> = ({ topic }) => {
+const TopicIcon: React.FC<any> = ({ topic, active }) => {
   return (
     <>
-      <div>
+      <div className={`${active ? 'text-[#22B373]' : ''}`}>
         <div className="h-10 flex justify-center">
           <img
             //  TODO: check what blank image to put when
