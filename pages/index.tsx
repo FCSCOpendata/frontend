@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
 import Hero from '../components/home/Hero';
@@ -31,14 +30,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   locales,
 }) => {
   const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: SEARCH_QUERY,
-    variables: {
-      sort: 'metadata_created desc',
-      rows: 3,
-    },
-  });
 
   return {
     props: {
