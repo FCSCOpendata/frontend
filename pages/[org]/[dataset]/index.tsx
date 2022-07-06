@@ -76,7 +76,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             </div>
           </div>
           <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
-            {result.description ||
+            {result.description?.replace(/<[^>]*>?/gm, '') ||
               'This dataset does not have a description yet.'}
           </article>
           <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
