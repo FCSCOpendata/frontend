@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
@@ -98,7 +98,6 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
 
   return (
     <div className="grid grid-cols-12 pl-0 w-full">
-      
       {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-12 p-10 bg-[#F7FAFC] rounded-2xl">
         <div className="flex justify-between mb-4">
@@ -116,7 +115,8 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
             <div className="mr-3 text-[#C4C4C4] text-1">|</div>
             <div className="flex mr-3">
               <span>
-                {resources[activeTable].schema?.fields?.length || 'N/A'} columns
+                {resources[activeTable].schema?.fields?.length || 'N/A'}{' '}
+                columns
               </span>
             </div>
           </div>
@@ -147,9 +147,9 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
             className="w-10  h-10 mr-4"
           />
           <div className="">
-            <DatePicker 
-              selected={startDate} 
-              onChange={(date:Date) => setStartDate(date)} 
+            <DatePicker
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
               dateFormat="dd-MM-yyyy"
               className="rounded border-1 font-montserrat text-[#5C5C5C] focus:outline-none"
             />
@@ -167,9 +167,9 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
             className="w-10  h-10 mr-4"
           />
           <div className="">
-            <DatePicker 
-              selected={endDate} 
-              onChange={(date:Date) => setEndDate(date)} 
+            <DatePicker
+              selected={endDate}
+              onChange={(date: Date) => setEndDate(date)}
               dateFormat="dd-MM-yyyy"
               className="rounded border-1 font-montserrat text-[#5C5C5C] focus:outline-none"
             />
