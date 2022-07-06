@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Link from 'next/link';
 import * as timeago from 'timeago.js';
+import { SelectorIcon, CloudDownloadIcon } from '@heroicons/react/outline';
 import { initializeApollo } from '../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
@@ -91,18 +92,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         {/* Resource display */}
         <div className="flex flex-col w-full">
-          <div className="flex flex-row items-baseline font-[Avenir] font-medium text-[20px] text-[#4D4D4D] leading-6 mb-4">
-            <img
-              src="/images/up-down-icon.svg"
-              alt="orgs"
-              className="w-5 h-4 mr-2"
-            />
+          <div className="flex flex-row items-baseline font-[Avenir] font-medium text-[16px] text-[#4D4D4D] leading-6 mb-4">
+            <SelectorIcon className="w-4 mr-2" />
             <span className="mr-4">Select</span>
-            <img
-              src="/images/download-icon.svg"
-              alt="orgs"
-              className="w-5 h-4 mr-2"
-            />
+            <CloudDownloadIcon className="w-4 mr-2" />
             <span>Download all</span>
           </div>
           <div className="flex flex-row mb-10">
