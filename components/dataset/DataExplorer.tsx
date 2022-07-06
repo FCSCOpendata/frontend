@@ -92,16 +92,16 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   };
 
   const download = (resourcePath) => {
-      fetch(resourcePath)
-        .then(res => res.blob())
-        .then(blob => {
-          const a = document.createElement("a")
-          a.href = URL.createObjectURL(blob)
-          a.download = resourcePath.split("/").pop()
-          a.click()
-        })
-        .catch(console.error)
-  }
+    fetch(resourcePath)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = resourcePath.split('/').pop();
+        a.click();
+      })
+      .catch(console.error);
+  };
 
   return (
     <div className="grid grid-cols-12 pl-0 w-full">
@@ -161,13 +161,13 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
 
         <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
           <div className="flex mr-3 items-baseline">
-            <a 
-              onClick={()=> download(resources[activeTable].path)}
+            <button
+              onClick={() => download(resources[activeTable].path)}
               className="cursor-pointer"
             >
               <CloudDownloadIcon className="inline w-5 mr-2" />
               Download
-            </a>
+            </button>
           </div>
           <div className="mr-3 text-[#C4C4C4] text-1">|</div>
           <div className="flex mr-3">
