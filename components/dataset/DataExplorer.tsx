@@ -104,8 +104,8 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   };
 
   return (
-    <div className="grid grid-cols-12 pl-0 w-full">
-      <div className="col-span-3 mr-4 w-1/2">
+    <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
+      <div className="xl:col-span-3 mr-4 w-1/2 ">
         <div className="flex-col">
           {resources.slice(0, 4).map((resource, i) => {
             return (
@@ -141,7 +141,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
         </div>
       </div>
       {/* Preview: show Data Explorer if tabular data + datastore active */}
-      <div className="col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
+      <div className="xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
         <div className="flex justify-between mb-4">
           <div className="w-2/3">
             <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
