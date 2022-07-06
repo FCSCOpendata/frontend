@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
+import Link from 'next/link';
+import * as timeago from 'timeago.js';
 import { initializeApollo } from '../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
@@ -19,7 +22,6 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
     <>
       <Head>
         <title>Portal | {result.title || result.name}</title>
-        <link rel="icon" href="/favicon.svg" />
       </Head>
       <NavBreadCrumbs
         navInfo={{
@@ -33,17 +35,19 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         {/* Dataset About section */}
         <div className="flex flex-col mb-10">
           <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
-            <div className="mr-4">{result.title}</div>
+            <h1 className="mr-4">{result.title}</h1>
             <img src="/images/plant-icon.svg" alt="orgs" className="w-5" />
           </div>
-          <div className="grid grid-cols-4 mb-4 w-1/2 text-[#787878] text-[20px] font-normal">
+          <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
                 className="w-5 h-3"
               />
-              <span>Organization: UNESCO</span>
+              <Link href={`/@${result.organization.name}`}>
+                <a>{result.organization.title}</a>
+              </Link>
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img
@@ -51,11 +55,11 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
                 alt="orgs"
                 className="w-5 h-3 "
               />
-              <span>Created: 27 Nov 2021</span>
+              <span>{'Created ' + timeago.format(result.created)}</span>
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img src="/images/bus-icon.svg" alt="orgs" className="w-5 h-3" />
-              <span>Last Updated: 37 minutes ago</span>
+              <span>{'Updated ' + timeago.format(result.updated)}</span>
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img
@@ -63,28 +67,21 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
                 alt="orgs"
                 className="w-5  h-3"
               />
-              <span>Licene: Creative Commons</span>
+              <span>{result.license_title}</span>
             </div>
           </div>
           <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
-            quod doloremque illo sint! Unde natus ipsum laboriosam culpa
-            labore, debitis esse doloremque. Quaerat, dolor incidunt laborum
-            ipsum eaque assumenda ratione. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Cumque quod doloremque illo sint!
-            Unde natus ipsum laboriosam culpa labore, debitis esse doloremque.
-            Quaerat, dolor incidunt laborum ipsum eaque assumenda ratione.
+            {result.description ||
+              'This dataset does not have a description yet.'}
           </article>
-          <div className="flex flex-row font-[Avenir] font-medium text-[15px] text-[#086F06]">
-            <button className="rounded-full bg-[#80E47E] py-2 px-4 mr-4">
-              Keyword 1
-            </button>
-            <button className="rounded-full bg-[#80E47E] py-2 px-4 mr-4">
-              Keyword 2
-            </button>
-            <button className="rounded-full bg-[#80E47E] py-2 px-4 ">
-              Keyword 3
-            </button>
+          <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
+            {result.tags.map((tag, index) => (
+              <Link key={`tag-${index}`} href={`/search?fq=tags:${tag.name}`}>
+                <a className="rounded-full bg-[#80E47E] py-2 px-4 mr-4">
+                  {tag.title || tag.name}
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
         {/* Resource display */}
