@@ -24,7 +24,7 @@ export const GET_DATASTORE_DATA = gql`
       result {
         count: total
         fields
-        records
+        sample: records
       }
     }
   }
@@ -107,7 +107,7 @@ export const GET_DATASET_QUERY = gql`
           path: url
           format
           created
-          updated: last_modified
+          updated: metadata_modified
           size
         }
         organization {

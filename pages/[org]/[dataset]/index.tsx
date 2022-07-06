@@ -8,7 +8,6 @@ import { initializeApollo } from '../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import { ErrorMessage } from '../../../components/_shared';
-import { datapackage } from '../../../utils/resource';
 import DataExplorer from '../../../components/dataset/DataExplorer';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
@@ -31,7 +30,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         }}
       />
 
-      <main className="flex flex-wrap pl-12 mb-96">
+      <main className="flex flex-wrap px-12 mb-96">
         {/* Dataset About section */}
         <div className="flex flex-col mb-10">
           <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
@@ -102,7 +101,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
           <div className="flex flex-row mb-10">
             <DataExplorer
-              resources={datapackage['resources']}
+              resources={result.resources}
               columnHeaderStyle={null}
             />
           </div>

@@ -1,5 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useQuery } from '@apollo/react-hooks';
+import { CloudDownloadIcon } from '@heroicons/react/outline';
+import { GET_DATASTORE_DATA } from '../../graphql/queries';
+import { ErrorMessage } from '../_shared';
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
@@ -10,8 +16,38 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   resources,
   columnHeaderStyle,
 }) => {
+  const router = useRouter();
+
   const [activeTable, setActiveTable] = useState(0);
   const [previewMode, setPreviewMode] = useState(true);
+
+  const { data, loading, error } = useQuery(GET_DATASTORE_DATA, {
+    variables: { resource_id: resources[activeTable].id },
+  });
+  if (loading) return <div>Loading</div>;
+  if (error) return <ErrorMessage message="Error loading datastore" />;
+  const { result } = data.datastore || {
+    result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
+  };
+
+  const convertToFrictionless = (fields) => {
+    return fields.map((field) => {
+      return {
+        name: field.id,
+        type: field.type,
+      };
+    });
+  };
+
+  Object.assign(resources[activeTable], {
+    sample: result.sample.map(({ _id, ...rest }) => rest),
+    count: result.count,
+    schema: {
+      fields: convertToFrictionless(
+        result.fields.filter((item) => item.id !== '_id')
+      ),
+    },
+  });
 
   const handleTableNameClick = (index) => {
     setActiveTable(index);
@@ -81,46 +117,52 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
                 )}
 
                 <img
-                  src="/images/pdf-icon.svg"
+                  src={`/images/${resource.format.toLowerCase()}-icon.svg`}
                   alt="orgs"
                   className="w-10 mb-4"
                 />
 
-                <p className="p-0 ml-0">{resource.name}</p>
+                <p className="p-0 ml-0">{resource.title || resource.name}</p>
               </button>
             );
           })}
         </div>
       </div>
+      {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
         <div className="flex flex-row justify-between mb-4">
           <p className="font-bold ml-3 mb-2 font-[Avenir] font-extrabold text-[30px] text-[#4D4D4D]">
-            {resources[activeTable].name}
+            {resources[activeTable].title || resources[activeTable].name}
           </p>
-          <button className=" rounded-xl bg-button-gradient p-4 text-white flex flex-row items-baseline font-[Avenir] justify-center font-extrabold text-[20px]">
-            <img src="/images/click-icon.svg" alt="orgs" className="w-4" />
+          <a
+            href={`${router.asPath}/r/${resources[activeTable].name}`}
+            className="rounded-xl bg-button-gradient p-3 text-white flex flex-row items-baseline font-[Avenir] justify-center font-bold text-[20px]"
+          >
+            <img
+              src="/images/click-icon.svg"
+              alt="Build your data"
+              className="w-4"
+            />
             <span className="ml-4">Build Your Data</span>
-          </button>
+          </a>
         </div>
 
-        <div className="flex font-[Avenir] text-[20px] text-[#808080] font-medium pl-4">
+        <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
           <div className="flex mr-3 items-baseline">
             <a href={resources[activeTable].path}>
-              <img
-                src="/images/download-icon.svg"
-                alt="orgs"
-                className="w-4 mr-2 text-[#787878]"
-              />
+              <CloudDownloadIcon className="inline w-5 mr-2" />
+              Download
             </a>
-            <span>Download</span>
           </div>
           <div className="mr-3 text-[#C4C4C4] text-1">|</div>
           <div className="flex mr-3">
-            <span>{resources[activeTable].sample.length} rows</span>
+            <span>{resources[activeTable].count || 'N/A'} rows</span>
           </div>
           <div className="mr-3 text-[#C4C4C4] text-1">|</div>
           <div className="flex mr-3">
-            <span>{resources[activeTable].schema.fields.length} columns</span>
+            <span>
+              {resources[activeTable].schema?.fields?.length || 'N/A'} columns
+            </span>
           </div>
         </div>
         <div className="flex mt-5 mb-4">
@@ -159,7 +201,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
 };
 
 const generateColumns = (resource) => {
-  return resource.schema?.fields.map((field) => {
+  return resource.schema?.fields?.map((field) => {
     return {
       field: field.name,
       headerName: field.name,
@@ -178,12 +220,9 @@ const generateColumns = (resource) => {
 // };
 
 const prepareRowsV2 = (resource) => {
-  return resource.sample.map((row, i) => {
-    const rows = {
+  return resource.sample?.map((row, i) => {
+    const rows = Object.assign(row, {
       id: i,
-    };
-    resource.schema?.fields.forEach((field, j) => {
-      rows[field.name] = row[j];
     });
     return rows;
   });
