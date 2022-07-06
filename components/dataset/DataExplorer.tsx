@@ -149,7 +149,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
 
         <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
           <div className="flex mr-3 items-baseline">
-            <a href={resources[activeTable].path}>
+            <a href={new URL(resources[activeTable].path).pathname}>
               <CloudDownloadIcon className="inline w-5 mr-2" />
               Download
             </a>
