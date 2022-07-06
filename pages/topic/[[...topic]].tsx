@@ -47,7 +47,7 @@ const Topic: React.FC<any> = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (!topicParam) topicParam = topicsTreeData[0].name;
+  if (!topicParam) topicParam = topicsTreeData.topics.result[0].name;
   else topicParam = topicParam[0];
 
   const {
