@@ -10,13 +10,27 @@ import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import { ErrorMessage } from '../../../components/_shared';
 import DataExplorer from '../../../components/dataset/DataExplorer';
+import DeveloperExperience from '../../../components/topic/developer_experience/DeveloperExperience';
+import { useState } from 'react';
+import OpenData101 from '../../../components/home/main/OpenData101';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
+  const [devExperience, setDevExperience] = useState({
+    expanded: false,
+    idx: 0,
+  });
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
 
   if (loading) return <div>Loading</div>;
   if (error) return <ErrorMessage message="Error loading dataset" />;
   const { result } = data.dataset;
+
+  const toggleDevExp = () => {
+    setDevExperience({
+      expanded: !devExperience.expanded,
+      idx: devExperience.idx,
+    });
+  };
 
   return (
     <>
@@ -31,7 +45,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         }}
       />
 
-      <main className="flex flex-wrap px-12 mb-96">
+      <main className="flex flex-wrap px-12 mb-70">
         {/* Dataset About section */}
         <div className="flex flex-col mb-10">
           <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
@@ -113,15 +127,15 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
               <p>Explore Similar Datasets</p>
             </div>
             <div className="flex flex-row justify-between bg-[#F7FAFC] p-2 rounded-xl">
-              <button className="flex items-baseline py-4 px-8  bg-button-gradient rounded-2xl text-white justify-center font-[Avenir] text-[18px] font-medium">
+              <button className="flex items-baseline py-4 px-4  bg-button-gradient rounded-2xl text-white justify-center font-[Avenir] text-[18px] font-medium">
                 <img
                   src="/images/edu-icon.svg"
                   alt="orgs"
-                  className="w-4  h-4 mr-4 text-white"
+                  className="w-4  h-4 mr-2"
                 />
                 Education Theme
               </button>
-              <button className="flex items-baseline py-4 px-8 text-[#202020] justify-center font-[Avenir] text-[18px] font-medium">
+              <button className="flex items-baseline py-4 px-4 text-[#202020] justify-center font-[Avenir] text-[18px] font-medium">
                 <img
                   src="/images/ball-icon.svg"
                   alt="orgs"
@@ -129,7 +143,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
                 />
                 The Indicators Category
               </button>
-              <button className="flex items-baseline py-4 px-8 text-[#202020] justify-center font-[Avenir] text-[18px] font-medium">
+              <button className="flex items-baseline py-4 px-4 text-[#202020] justify-center font-[Avenir] text-[18px] font-medium">
                 <img
                   src="/images/library-icon.svg"
                   alt="orgs"
@@ -141,7 +155,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
         </div>
         {/* lIST SIMILAR DATASET */}
-        <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full">
+        <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full mb-10">
           <div className=" rounded-3xl relative group w-4/5 h-4/5">
             <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px] group-hover:bg-[#80E47E] ">
               Education
@@ -210,6 +224,31 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
               stage, level and gender
             </p>
           </div>
+        </div>
+        <div className="w-full">
+          <button onClick={() => toggleDevExp()}>
+            <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
+              {/* TODO: check this vertical alignment */}
+              <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
+                <img
+                  src="/images/plus.svg"
+                  width={12}
+                  alt="Expand developer experience"
+                />
+              </span>
+              Developer Experience
+            </h1>
+          </button>
+          <div
+            className={`transition-all overflow-hidden ${
+              devExperience.expanded ? 'max-h-max' : 'max-h-0'
+            }`}
+          >
+            <DeveloperExperience />
+          </div>
+        </div>
+        <div>
+          <OpenData101 />
         </div>
       </main>
     </>
