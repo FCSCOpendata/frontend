@@ -5,7 +5,7 @@ import { initializeApollo } from '../../../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
 import NavBreadCrumbs from '../../../../../components/dataset/NavBreadCrumbs';
 import Link from 'next/link';
-import DataExplorer from '../../../../../components/resource/ResourceExplorer.tsx';
+import DataExplorer from '../../../../../components/resource/ResourceExplorer';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
