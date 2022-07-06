@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import List from '../search/List';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -7,7 +7,7 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
   //  reuse it here properly.   Have to wait  for
   //  merges before doing that.
 
-  const qvariables = {
+  const [qvariables, setQvariables] = React.useState({
     rows: '5',
     'facet.field': [
       'organization',
@@ -18,11 +18,7 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
     ],
     'facet.limit': 5,
     fq: `groups:${subtopic}`,
-  };
-
-  const setQvariables = () => {
-    console.log('WIP');
-  };
+  });
 
   return (
     //  TODO: add the search controls (e.g.: sort, qty of entries) to this component
@@ -32,7 +28,7 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
           variables={qvariables}
           setQvariables={setQvariables}
           show_amount={false}
-          setQty={setQty}
+          noXMargin={true}
         />
       </div>
     </>

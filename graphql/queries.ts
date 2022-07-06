@@ -236,10 +236,27 @@ export const GET_COLLECTIONS_QUERY = gql`
   }
 `;
 
-export const GET_TOPICS_QUERY = gql`
+export const GET_TOPICS_TREE_QUERY = gql`
   query topics {
-    topics(all_fields: False)
-      @rest(type: "Response", path: "group_tree?type=group&{args}") {
+    topics @rest(type: "Response", path: "group_tree?type=group&{args}") {
+      result
+    }
+  }
+`;
+
+export const GET_TOPICS_QUERY = gql`
+  query topics($groups: array) {
+    topics(all_fields: True, limit: 1000, include_groups: True)
+      @rest(type: "Response", path: "group_list?type=group&{args}") {
+      result
+    }
+  }
+`;
+
+export const GET_TOPIC_QUERY = gql`
+  query topic($id: String) {
+    topic(id: $id, include_dataset_count: True, include_groups: True)
+      @rest(type: "Response", path: "group_show?type=group&{args}") {
       result
     }
   }

@@ -1,6 +1,8 @@
 import TopicDatasetBadge from './TopicDatasetBadge';
 
-const TopicHeader: React.FC<any> = ({ topic }) => {
+const TopicHeader: React.FC<any> = ({ topic, datasetsCount }) => {
+  datasetsCount = isNaN(datasetsCount) ? 0 : datasetsCount;
+
   return (
     <>
       <div className="md:grid md:grid-cols-2">
@@ -19,15 +21,15 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
                 <h1 className="text-3xl font-[Avenir] font-extrabold flex items-center mb-6 text-[#22B373]">
                   <span className="bg-[#22B373] rounded-full inline-block overflow-hidden w-[40px] h-[40px] p-[9px] mr-4">
                     <img
-                      src={topic.image_display_url}
-                      alt={`${topic.name}--topic`}
+                      src={topic?.image_display_url}
+                      alt={`${topic?.name}--topic`}
                       className="block"
                       width={100}
                     />
                   </span>
-                  {topic.title}
+                  {topic?.title}
                 </h1>
-                <p className="mb-6 w-full 2xl:w-[75%] text-[#7C7C7C]">
+                <p className="mb-6 w-full 2xl:w-[85%] text-[#7C7C7C]">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                   diam Lorem ipsum dolor sit amet, consectetuer adipiscing
                   elit, sed diam nonummy nibh euismod tincidunt ut laoreet
@@ -48,7 +50,9 @@ const TopicHeader: React.FC<any> = ({ topic }) => {
                   dolore magna aliquam erat volutpat. Ut wisi enim ad minim
                   veniam, quis nostrud exerci tation ullamcorper suscipit
                 </p>
-                <TopicDatasetBadge amount={23} />
+                <div className="mb-8">
+                  <TopicDatasetBadge amount={datasetsCount} />
+                </div>
               </div>
             </div>
           </div>

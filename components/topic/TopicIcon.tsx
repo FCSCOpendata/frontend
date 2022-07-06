@@ -6,7 +6,7 @@ const TopicIcon: React.FC<any> = ({ topic, active }) => {
           <img
             //  TODO: check what blank image to put when
             //  there's no image
-            src={topic.image_display_url}
+            src={topic?.image_display_url || '/images/no-image.svg'}
             alt={`${topic.display_name || topic.name}-topic`}
           />
         </div>

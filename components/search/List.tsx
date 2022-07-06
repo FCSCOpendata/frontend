@@ -9,9 +9,8 @@ const List: React.FC<{
   variables: any;
   setQvariables: any;
   show_amount?: boolean;
-  no_x_marging?: boolean;
-  setQty?: (val: number) => void;
-}> = ({ variables, setQvariables, show_amount, no_x_marging, setQty }) => {
+  noXMargin?: boolean;
+}> = ({ variables, setQvariables, show_amount, noXMargin }) => {
   const {
     loading: loadSearch,
     error: errorSearch,
@@ -23,14 +22,10 @@ const List: React.FC<{
 
   const searchResults = dataSearch?.search.result;
 
-  if (setQty && searchResults?.count) setQty(searchResults.count);
-
   return (
     <div>
       <div
-        className={`mt-8 font-[Avenir] ${
-          no_x_marging == true ? '' : 'sm:mx-12'
-        }`}
+        className={`mt-8 font-[Avenir] ${noXMargin == true ? '' : 'sm:mx-12'}`}
       >
         <div className="text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
           {loadSearch

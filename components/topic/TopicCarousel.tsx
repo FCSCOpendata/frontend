@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const TopicCarousel: React.FC<any> = (props) => {
   const topics = props.topics;
-  const active_index = props.active_index;
+  const activeTopic = props.activeTopic;
 
   return (
     <>
@@ -32,7 +32,10 @@ const TopicCarousel: React.FC<any> = (props) => {
           <SwiperSlide key={index}>
             <Link href={`/topic/${topic.name}`}>
               <a href={`/topic/${topic.name}`}>
-                <TopicIcon topic={topic} active={active_index == index} />
+                <TopicIcon
+                  topic={topic}
+                  active={topic.name == activeTopic?.name}
+                />
               </a>
             </Link>
           </SwiperSlide>
