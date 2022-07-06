@@ -34,8 +34,14 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         {/* Dataset About section */}
         <div className="flex flex-col mb-10">
           <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
-            <h1 className="mr-4">{result.title}</h1>
-            <img src="/images/plant-icon.svg" alt="orgs" className="w-5" />
+            <h1 className="inline mr-4">
+              {result.title}{' '}
+              <img
+                src="/images/plant-icon.svg"
+                alt="Dataset title"
+                className="inline w-6"
+              />
+            </h1>
           </div>
           <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
