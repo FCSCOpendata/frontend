@@ -3,7 +3,7 @@ const SwiperNavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
 }) => {
   return (
     <>
-      <button className="bg-[#F7FAFC] w-[45px] h-[45px] rounded-full flex justify-center">
+      <button className="bg-[#F7FAFC] w-[45px] h-[45px] rounded-full flex justify-center items-center">
         <img
           src="/images/arrow.svg"
           width={18}

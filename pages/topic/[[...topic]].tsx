@@ -10,49 +10,92 @@ import { ErrorMessage } from '../../components/_shared';
 import {
   GET_COLLECTIONS_QUERY,
   GET_TOPICS_QUERY,
+  GET_TOPIC_QUERY,
+  GET_TOPICS_TREE_QUERY,
 } from '../../graphql/queries';
 import { useRouter } from 'next/router';
 import OpenData101 from '../../components/home/main/OpenData101';
+import { initializeApollo } from '../../lib/apolloClient';
+import { GetServerSideProps } from 'next';
 
-const Topic: React.FC = () => {
+const Topic: React.FC<any> = () => {
   const router = useRouter();
-  const { topic: topic_param } = router.query;
+  let { topic: topicParam } = router.query;
+
   const [devExperience, setDevExperience] = React.useState({
     expanded: false,
     idx: 0,
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeSubtopicId, setActiveSubtopicId] = useState(0);
 
-  //  TODO: retrieve only  the  full  data  of
-  //  the selected topic. Currently retrieving
-  //  full data of all topics here.
-
-  //  Topics  holds  hierarchical  information
-  //  about `groups` and `subgroups`.
-  //  TODO: check if there's a way to retrieve
-  //  a group's full  info  here. `all_fields`
-  //  ins't working for that case.
+  //  TODO: make it filter by the topics
+  //  children
   const {
-    loading: topicsLoading,
-    error: topicsError,
-    data: topicsData,
+    loading: subtopicsLoading,
+    error: subtopicsError,
+    data: subtopicsData,
   } = useQuery(GET_TOPICS_QUERY, {
     notifyOnNetworkStatusChange: true,
   });
 
-  //  Collections holds topics's details
   const {
-    loading: collectionsLoading,
-    error: collectionsError,
-    data: collectionsData,
-  } = useQuery(GET_COLLECTIONS_QUERY, {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    loading: topicsTreeLoading,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    error: topicsTreeError,
+    data: topicsTreeData,
+  } = useQuery(GET_TOPICS_TREE_QUERY, {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (topicsError || collectionsError)
+  if (!topicParam) topicParam = topicsTreeData.topics.result[0].name;
+  else topicParam = topicParam[0];
+
+  const {
+    loading: topicLoading,
+    error: topicError,
+    data: topicData,
+  } = useQuery(GET_TOPIC_QUERY, {
+    notifyOnNetworkStatusChange: true,
+    variables: {
+      id: topicParam,
+    },
+  });
+
+  const findTopic = (topic, list) => {
+    let found = null;
+    const findTopicChildren = (topics) => {
+      topics.forEach((t) => {
+        if (t.name == topic) {
+          found = t;
+        } else if (t.children) {
+          findTopicChildren(t.children);
+        }
+      });
+    };
+    findTopicChildren(list);
+    return found;
+  };
+
+  const children = findTopic(
+    topicParam,
+    topicsTreeData.topics.result
+  ).children;
+
+  const subtopics = [];
+
+  children.forEach((child) => {
+    const tmp = subtopicsData.topics.result.find(
+      (el) => el.name == child.name
+    );
+
+    if (tmp) subtopics.push(tmp);
+  });
+
+  if (topicsTreeError || topicError)
     return <ErrorMessage message="Error loading topics." />;
-  if (topicsLoading || collectionsLoading) return <div>Loading Topics</div>;
+  if (topicsTreeLoading || topicLoading) return <div>Loading Topics</div>;
+
+  const activeTopic = topicData.topic.result;
 
   const findAndAddDetails = (topics, coll) => {
     topics.forEach((topic: any, idx: number) => {
@@ -66,13 +109,13 @@ const Topic: React.FC = () => {
     });
   };
 
-  const collections = collectionsData.collections.result;
+  const collections = subtopicsData.topics.result;
 
   collections.forEach((collection) => {
-    findAndAddDetails(topicsData.topics.result, collection);
+    findAndAddDetails(topicsTreeData.topics.result, collection);
   });
 
-  const topics = topicsData.topics.result;
+  const topics = topicsTreeData.topics.result;
 
   const toggleDevExp = () => {
     setDevExperience({
@@ -80,9 +123,6 @@ const Topic: React.FC = () => {
       idx: devExperience.idx,
     });
   };
-
-  let topicParamIdx = topics.findIndex((topic) => topic.name == topic_param);
-  topicParamIdx = topicParamIdx >= 0 ? topicParamIdx : 0;
 
   return (
     <>
@@ -97,23 +137,29 @@ const Topic: React.FC = () => {
             {/* TODO: the component needs and indicator
             //  that there's hidden slides so that  the
             //  user knows he should slide */}
-            <TopicCarousel topics={topics} />
+            <TopicCarousel topics={topics} activeTopic={activeTopic} />
           </div>
           <div className="mb-20">
-            <TopicHeader topic={topics[topicParamIdx]} />
-          </div>
-          <div className="mb-20">
-            <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
-            <SubtopicCarousel
-              subtopics={topics[topicParamIdx].children}
-              subtopicChangeCallback={setActiveSubtopicId}
+            <TopicHeader
+              topic={activeTopic}
+              datasetsCount={activeTopic.package_count}
             />
           </div>
+          {subtopics?.length > 0 && (
+            <div className="mb-20">
+              <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
+              <SubtopicCarousel subtopics={subtopics} />
+            </div>
+          )}
+
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">
-              Explore Top Datasets In This Theme (32)
+              Explore Top Datasets In This Theme ({activeTopic.package_count})
             </h1>
-            <SubtopicTopDatasets subtopic={{ id: topicParamIdx }} />
+            <SubtopicTopDatasets
+              // TODO: improve this logic
+              subtopic={activeTopic?.name}
+            />
           </div>
           <div>
             <button onClick={() => toggleDevExp()}>
@@ -144,6 +190,28 @@ const Topic: React.FC = () => {
       </main>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GET_TOPICS_TREE_QUERY,
+  });
+
+  await apolloClient.query({
+    query: GET_TOPICS_QUERY,
+  });
+
+  await apolloClient.query({
+    query: GET_COLLECTIONS_QUERY,
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  };
 };
 
 export default Topic;

@@ -1,43 +1,23 @@
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SubtopicCard from './SubtopicCard';
+import TopicCard from '../topic/TopicCard';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SwiperNavButton from './SwiperNavButton';
+import Link from 'next/link';
 
 const SubtopicCarousel: React.FC<any> = (props: any) => {
   const subtopics = props.subtopics;
-  const subtopicOnChange = props.subtopicChangeCallback;
 
   return (
     <>
       <div className="relative">
-        <div
-          className="
-            absolute 
-            hidden 
-            lg:block 
-            top-[38%] 
-            left-[-1rem] 
-            md:left-0
-            z-50 
-            nav-prev-button"
-        >
+        <div className="absolute hidden lg:block top-[38%] left-[-1rem] md:left-0 z-50 nav-prev-button">
           <SwiperNavButton orientation="left" />
         </div>
-        <div
-          className="
-            absolute 
-            hidden 
-            lg:block 
-            top-[38%] 
-            right-[-1rem] 
-            md:right-0
-            z-50 
-            nav-next-button"
-        >
+        <div className=" absolute hidden lg:block top-[38%] right-[-1rem] md:right-0 z-50 nav-next-button">
           <SwiperNavButton orientation="right" />
         </div>
 
@@ -75,12 +55,14 @@ const SubtopicCarousel: React.FC<any> = (props: any) => {
         >
           {subtopics.map((subtopic, index) => (
             <SwiperSlide key={index}>
-              <button
-                className="w-full text-left"
-                onClick={() => subtopicOnChange(subtopic)}
-              >
-                <SubtopicCard subtopic={subtopic} />
-              </button>
+              <Link href={`/topic/${subtopic.name}`}>
+                <a href={`/topic/${subtopic.name}`}>
+                  <TopicCard
+                    className="w-full text-left"
+                    topic={subtopics[index]}
+                  />
+                </a>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
