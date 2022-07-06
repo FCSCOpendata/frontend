@@ -13,7 +13,6 @@ const MainOptions: React.FC = () => {
           <Topics />
           <Map />
           <News />
-          <OpenData101 />
         </div>
       </div>
     </div>
