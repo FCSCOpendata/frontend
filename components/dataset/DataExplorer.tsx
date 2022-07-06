@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { CloudDownloadIcon } from '@heroicons/react/outline';
+import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 /**
@@ -130,21 +130,21 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
       </div>
       {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
-        <div className="flex flex-row justify-between mb-4">
-          <p className="font-bold ml-3 mb-2 font-[Avenir] font-extrabold text-[30px] text-[#4D4D4D]">
-            {resources[activeTable].title || resources[activeTable].name}
-          </p>
-          <a
-            href={`${router.asPath}/r/${resources[activeTable].name}`}
-            className="rounded-xl bg-button-gradient p-3 text-white flex flex-row items-baseline font-[Avenir] justify-center font-bold text-[20px]"
-          >
-            <img
-              src="/images/click-icon.svg"
-              alt="Build your data"
-              className="w-4"
-            />
-            <span className="ml-4">Build Your Data</span>
-          </a>
+        <div className="flex justify-between mb-4">
+          <div className="w-2/3">
+            <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
+              {resources[activeTable].title || resources[activeTable].name}
+            </p>
+          </div>
+          <div className="grid justify-items-end align-middle">
+            <a
+              href={`${router.asPath}/r/${resources[activeTable].name}`}
+              className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+            >
+              <ExternalLinkIcon className="w-6 mr-2 pb-1 inline" />
+              <span>Build Your Data</span>
+            </a>
+          </div>
         </div>
 
         <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
