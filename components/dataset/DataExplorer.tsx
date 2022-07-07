@@ -91,9 +91,21 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
     );
   };
 
+  const download = (resourcePath) => {
+    fetch(resourcePath)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = resourcePath.split('/').pop();
+        a.click();
+      })
+      .catch(console.error);
+  };
+
   return (
-    <div className="grid grid-cols-12 pl-0 w-full">
-      <div className="col-span-3 mr-4 w-1/2">
+    <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
+      <div className="xl:col-span-3 mr-4 w-1/2 ">
         <div className="flex-col">
           {resources.slice(0, 4).map((resource, i) => {
             return (
@@ -129,7 +141,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
         </div>
       </div>
       {/* Preview: show Data Explorer if tabular data + datastore active */}
-      <div className="col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
+      <div className="xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
         <div className="flex justify-between mb-4">
           <div className="w-2/3">
             <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
@@ -149,10 +161,13 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
 
         <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
           <div className="flex mr-3 items-baseline">
-            <a href={new URL(resources[activeTable].path).pathname}>
+            <button
+              onClick={() => download(resources[activeTable].path)}
+              className="cursor-pointer"
+            >
               <CloudDownloadIcon className="inline w-5 mr-2" />
               Download
-            </a>
+            </button>
           </div>
           <div className="mr-3 text-[#C4C4C4] text-1">|</div>
           <div className="flex mr-3">
