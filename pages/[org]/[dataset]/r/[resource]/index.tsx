@@ -30,7 +30,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
       idx: devExperience.idx,
     });
   };
-  
+
   return (
     <>
       <Head>
