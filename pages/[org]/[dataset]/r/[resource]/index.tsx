@@ -30,7 +30,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
       idx: devExperience.idx,
     });
   };
-
+  
   return (
     <>
       <Head>
@@ -48,11 +48,20 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
         {/* Dataset About section */}
         <div className="flex flex-col mb-10">
           <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px] items-baseline">
-            <img
-              src="/images/csv-icon.svg"
-              alt="Dataset title"
-              className="inline w-6 xl:mr-2"
-            />
+            {resource.format === 'CSV' ? (
+              <img
+                src="/images/csv-icon.svg"
+                alt="Dataset title"
+                className="inline w-6 xl:mr-2"
+              />
+            ) : (
+              <img
+                src="/images/excel-icon.svg"
+                alt="Dataset title"
+                className="inline w-6 xl:mr-2"
+              />
+            )}
+
             <h1 className="inline mr-4">
               {resource.name}{' '}
               <img
