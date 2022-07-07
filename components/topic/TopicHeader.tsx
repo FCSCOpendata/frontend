@@ -5,12 +5,12 @@ const TopicHeader: React.FC<any> = ({ topic, datasetsCount }) => {
 
   return (
     <>
-      <div className="md:grid md:grid-cols-2">
+      <div className="lg:grid lg:grid-cols-2">
         <div className="w-full z-10">
           {/* WIP */}
           <div
-            className="bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] h-[300px] md:h-[650px]
-              ml-[-7rem] mr-[-5rem] md:mr-[5rem] w-100 bg-center bg-no-repeat bg-cover md:rounded-r-[50px]"
+            className="bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] h-[300px] lg:min-h-[600px] lg:h-[100%]
+              ml-[-7rem] mr-[-7rem] lg:mr-[5rem] w-100 bg-center bg-no-repeat bg-cover lg:rounded-r-[50px]"
           ></div>
         </div>
         <div className="w-full">

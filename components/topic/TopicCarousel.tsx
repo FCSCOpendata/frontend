@@ -11,20 +11,20 @@ const TopicCarousel: React.FC<any> = (props) => {
     <>
       <Swiper
         breakpoints={{
-          360: {
-            slidesPerView: 4,
+          1: {
+            slidesPerView: 2.5,
           },
-          620: {
-            slidesPerView: 5,
+          460: {
+            slidesPerView: 3.5,
           },
-          900: {
-            slidesPerView: 6,
+          720: {
+            slidesPerView: 5.5,
           },
-          1000: {
-            slidesPerView: 8,
+          1200: {
+            slidesPerView: 8.5,
           },
           1280: {
-            slidesPerView: 10,
+            slidesPerView: 9.5,
           },
         }}
       >
