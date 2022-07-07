@@ -24,7 +24,7 @@ export const GET_DATASTORE_DATA = gql`
       result {
         count: total
         fields
-        records
+        sample: records
       }
     }
   }
@@ -77,6 +77,14 @@ export const GET_ORGS_QUERY = gql`
   }
 `;
 
+export const GET_ORGS_LIST_QUERY = gql`
+  query orgs {
+    orgs @rest(type: "Response", path: "organization_list") {
+      result
+    }
+  }
+`;
+
 export const GET_DATASET_QUERY = gql`
   query dataset($id: String) {
     dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
@@ -99,7 +107,7 @@ export const GET_DATASET_QUERY = gql`
           path: url
           format
           created
-          updated: last_modified
+          updated: metadata_modified
           size
         }
         organization {

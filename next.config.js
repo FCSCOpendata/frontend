@@ -33,6 +33,16 @@ module.exports = (phase, { defaultConfig }) => {
         DMS: dms ? dms.replace(/\/?$/, '') : 'http://mock.ckan',
         CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
       },
+      async rewrites() {
+        return [
+          {
+            source: '/dataset/:datasetId/resource/:resourceId/download/:file',
+            destination: `${
+              dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
+            }/dataset/:datasetId/resource/:resourceId/download/:file`,
+          },
+        ];
+      },
     };
   }
   return {
@@ -43,6 +53,16 @@ module.exports = (phase, { defaultConfig }) => {
     publicRuntimeConfig: {
       DMS: dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com',
       CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/dataset/:datasetId/resource/:resourceId/download/:file',
+          destination: `${
+            dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
+          }/dataset/:datasetId/resource/:resourceId/download/:file`,
+        },
+      ];
     },
   };
 };

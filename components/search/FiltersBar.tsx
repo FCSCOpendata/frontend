@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   GET_ORGS_QUERY,
   GET_COLLECTIONS_QUERY,
-  GET_TOPICS_QUERY,
+  GET_TOPICS_TREE_QUERY,
 } from '../../graphql/queries';
 import { ErrorMessage } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
@@ -20,7 +20,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
       notifyOnNetworkStatusChange: true,
     });
 
-    const topicsQuery = useQuery(GET_TOPICS_QUERY, {
+    const topicsQuery = useQuery(GET_TOPICS_TREE_QUERY, {
       notifyOnNetworkStatusChange: true,
     });
 
