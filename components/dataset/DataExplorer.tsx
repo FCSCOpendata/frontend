@@ -95,7 +95,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
     <div className="grid grid-cols-12 pl-0 w-full">
       <div className="col-span-3 mr-4 w-1/2">
         <div className="flex-col">
-          {resources.slice(0, 4).map((resource, i) => {
+          {resources.map((resource, i) => {
             return (
               <button
                 key={i}
