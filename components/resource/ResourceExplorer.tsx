@@ -96,23 +96,42 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
     );
   };
 
+  const download = (resourcePath) => {
+    fetch(resourcePath)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = resourcePath.split('/').pop();
+        a.click();
+      })
+      .catch(console.error);
+  };
+
   return (
-    <div className="grid grid-cols-12 pl-0 w-full">
+    <div className="grid xl:grid-cols-12 grid-cols-1 pl-0 w-full">
       {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-12 p-10 bg-[#F7FAFC] rounded-2xl">
-        <div className="flex justify-between mb-4">
-          <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4 w-2/3">
-            <div className="flex mr-3 items-baseline">
-              <a href={new URL(resources[activeTable].path).pathname}>
+        <div className="flex xl:flex-row flex-col justify-between mb-4">
+          <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4 w-2/3 xl:flex-row flex-col">
+            <div className="flex xl:mr-3 items-baseline mb-2">
+              <button
+                onClick={() => download(resources[activeTable].path)}
+                className="cursor-pointer"
+              >
                 <CloudDownloadIcon className="inline w-5 mr-2" />
                 Download
-              </a>
+              </button>
             </div>
-            <div className="mr-3 text-[#C4C4C4] text-1">|</div>
-            <div className="flex mr-3">
+            <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
+              |
+            </div>
+            <div className="flex xl:mr-3 mb-2">
               <span>{resources[activeTable].count || 'N/A'} rows</span>
             </div>
-            <div className="mr-3 text-[#C4C4C4] text-1">|</div>
+            <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
+              |
+            </div>
             <div className="flex mr-3">
               <span>
                 {resources[activeTable].schema?.fields?.length || 'N/A'}{' '}
@@ -121,22 +140,22 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
             </div>
           </div>
           <div className="grid justify-items-end align-middle">
-            <a
-              href={`${router.asPath}/r/${resources[activeTable].name}`}
+            <button
               className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+              onClick={() => download(resources[activeTable].path)}
             >
               <CloudDownloadIcon className="w-6 mr-2 pb-1 inline" />
               <span>Download</span>
-            </a>
+            </button>
           </div>
         </div>
 
-        <div className="flex mt-5 mb-4">
+        <div className="flex flex-row mt-5 mb-4">
           <button
             className={`${
               previewMode &&
-              'font-bold bg-[#CBE9FF] px-8 py-2 rounded-2xl text-[#255B9B]'
-            } ml-3 mr-8 text-[#255B9B] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
+              'font-bold bg-[#CBE9FF] xl:px-8 xl:py-2 px-2 rounded-2xl text-[#255B9B]'
+            } ml-3 xl:mr-8 mr-2 text-[#255B9B] font-[Avenir] xl:text-[20px] xl:font-medium xl:text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Hide / Show Column
@@ -144,34 +163,34 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
           <img
             src="/images/calender-icon.svg"
             alt="orgs"
-            className="w-10  h-10 mr-4"
+            className="w-10  h-10 xl:mr-4"
           />
-          <div className="">
+          <div className="sm:mr-2">
             <DatePicker
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
               dateFormat="dd-MM-yyyy"
-              className="rounded border-1 font-montserrat text-[#5C5C5C] focus:outline-none"
+              className="rounded-lg border-1 font-montserrat text-[#5C5C5C] focus:outline-none border-none"
             />
           </div>
-          <div className="p-4">
+          <div className="xl:p-4 pt-4">
             <img
               src="/images/rightpointer-icon.svg"
               alt="orgs"
-              className="w-8  h-4"
+              className="w-8  h-4 "
             />
           </div>
           <img
             src="/images/calender-icon.svg"
             alt="orgs"
-            className="w-10  h-10 mr-4"
+            className="w-10  h-10 xl:mr-4"
           />
           <div className="">
             <DatePicker
               selected={endDate}
               onChange={(date: Date) => setEndDate(date)}
               dateFormat="dd-MM-yyyy"
-              className="rounded border-1 font-montserrat text-[#5C5C5C] focus:outline-none"
+              className="rounded-lg border-1 font-montserrat text-[#5C5C5C] focus:outline-none border-none"
             />
           </div>
         </div>
