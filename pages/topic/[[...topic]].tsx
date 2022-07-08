@@ -1,22 +1,36 @@
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import React, { useState } from 'react';
-import SubtopicCarousel from '../../components/subtopic/SubtopicCarousel';
-import SubtopicTopDatasets from '../../components/subtopic/SubtopicTopDatasets';
-import DeveloperExperience from '../../components/topic/developer_experience/DeveloperExperience';
-import TopicCarousel from '../../components/topic/TopicCarousel';
-import TopicHeader from '../../components/topic/TopicHeader';
-import { ErrorMessage } from '../../components/_shared';
+import React from 'react';
 import {
-  GET_COLLECTIONS_QUERY,
   GET_TOPICS_QUERY,
   GET_TOPIC_QUERY,
   GET_TOPICS_TREE_QUERY,
 } from '../../graphql/queries';
 import { useRouter } from 'next/router';
-import OpenData101 from '../../components/home/main/OpenData101';
 import { initializeApollo } from '../../lib/apolloClient';
 import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
+
+const SubtopicCarousel = dynamic(
+  () => import('../../components/subtopic/SubtopicCarousel')
+);
+const SubtopicTopDatasets = dynamic(
+  () => import('../../components/subtopic/SubtopicTopDatasets')
+);
+const DeveloperExperience = dynamic(
+  () =>
+    import('../../components/topic/developer_experience/DeveloperExperience')
+);
+const TopicCarousel = dynamic(
+  () => import('../../components/topic/TopicCarousel')
+);
+const TopicHeader = dynamic(
+  () => import('../../components/topic/TopicHeader')
+);
+const OpenData101 = dynamic(
+  () => import('../../components/home/main/OpenData101')
+);
+import { ErrorMessage } from '../../components/_shared';
 
 const Topic: React.FC<any> = () => {
   const router = useRouter();
@@ -27,16 +41,9 @@ const Topic: React.FC<any> = () => {
     idx: 0,
   });
 
-  //  TODO: make it filter by the topics
-  //  children
-  const {
-    loading: subtopicsLoading,
-    error: subtopicsError,
-    data: subtopicsData,
-  } = useQuery(GET_TOPICS_QUERY, {
-    notifyOnNetworkStatusChange: true,
-  });
-
+  //  Loads the topics tree. It would be better to load
+  //  only the selected topic sub topics, but it  seems
+  //  that there isn't this parameter in the API.
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     loading: topicsTreeLoading,
@@ -47,9 +54,16 @@ const Topic: React.FC<any> = () => {
     notifyOnNetworkStatusChange: true,
   });
 
+  //  Creates a filter to filter the topics query later
+  const mainTopicsFilter = topicsTreeData.topics.result.map(
+    (topic) => `"${topic.name}"`
+  );
+
+  //  if the query parameter is empty, use first topic
   if (!topicParam) topicParam = topicsTreeData.topics.result[0].name;
   else topicParam = topicParam[0];
 
+  //  Loads the selected topic
   const {
     loading: topicLoading,
     error: topicError,
@@ -61,6 +75,7 @@ const Topic: React.FC<any> = () => {
     },
   });
 
+  //  Finds a topic in the topics tree
   const findTopic = (topic, list) => {
     let found = null;
     const findTopicChildren = (topics) => {
@@ -76,24 +91,30 @@ const Topic: React.FC<any> = () => {
     return found;
   };
 
+  //  Finds the children of the selected topic
   const children = findTopic(
     topicParam,
     topicsTreeData.topics.result
   ).children;
 
-  const subtopics = [];
+  //  Creates a group filter for the subtopics
+  const subtopicsFilter = children.map((child) => `"${child.name}"`);
 
-  children.forEach((child) => {
-    const tmp = subtopicsData.topics.result.find(
-      (el) => el.name == child.name
-    );
-
-    if (tmp) subtopics.push(tmp);
+  const {
+    loading: subtopicsLoading,
+    error: subtopicsError,
+    data: subtopicsData,
+  } = useQuery(GET_TOPICS_QUERY, {
+    notifyOnNetworkStatusChange: true,
+    variables: {
+      groups: `[${subtopicsFilter.concat(mainTopicsFilter).join(',')}]`,
+    },
   });
 
-  if (topicsTreeError || topicError)
+  if (topicsTreeError || topicError || subtopicsError)
     return <ErrorMessage message="Error loading topics." />;
-  if (topicsTreeLoading || topicLoading) return <div>Loading Topics</div>;
+  if (topicsTreeLoading || topicLoading || subtopicsLoading)
+    return <div>Loading Topics</div>;
 
   const activeTopic = topicData.topic.result;
 
@@ -145,10 +166,10 @@ const Topic: React.FC<any> = () => {
               datasetsCount={activeTopic.package_count}
             />
           </div>
-          {subtopics?.length > 0 && (
+          {topics?.length > 0 && (
             <div className="mb-20">
               <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
-              <SubtopicCarousel subtopics={subtopics} />
+              <SubtopicCarousel subtopics={topics} />
             </div>
           )}
 
@@ -197,14 +218,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   await apolloClient.query({
     query: GET_TOPICS_TREE_QUERY,
-  });
-
-  await apolloClient.query({
-    query: GET_TOPICS_QUERY,
-  });
-
-  await apolloClient.query({
-    query: GET_COLLECTIONS_QUERY,
   });
 
   return {
