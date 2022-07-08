@@ -17,8 +17,8 @@ const TopicHeader: React.FC<any> = ({ topic, datasetsCount }) => {
           <div className="h-full w-full lg:pt-[50px] pb-[50px] mr-[10rem] z-0 overflow-visible">
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div
-              className="bg-[#F7FAFC] pb-5 lg:pb-0 h-full ml-[-2.5rem] md:ml-[-7rem] lg:ml-[-5rem] 
-              px-10 md:pl-[7rem] md:pr-[7rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-[calc(100%+12rem)]"
+              className="bg-[#F7FAFC] pb-5 lg:pb-0 h-full ml-[-2.5rem] md:ml-[-7rem] lg:ml-[-7rem] 
+              px-10 md:pl-[7rem] md:pr-[7rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
             >
               <div className="pt-[3rem]">
                 <h1 className="text-2xl sm:text-3xl font-[Avenir] font-extrabold flex items-center mb-6 text-[#22B373]">
