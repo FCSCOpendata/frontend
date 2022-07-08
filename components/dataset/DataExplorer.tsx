@@ -141,14 +141,14 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
         </div>
       </div>
       {/* Preview: show Data Explorer if tabular data + datastore active */}
-      <div className="xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl -ml-40">
-        <div className="flex justify-between mb-4">
+      <div className="xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl xl:-ml-40">
+        <div className="flex xl:flex-row flex-col justify-between mb-4">
           <div className="w-2/3">
             <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
               {resources[activeTable].title || resources[activeTable].name}
             </p>
           </div>
-          <div className="grid justify-items-end align-middle">
+          <div className="grid xl:justify-items-end align-middle justify-items-start ">
             <a
               href={`${router.asPath}/r/${resources[activeTable].name}`}
               className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"

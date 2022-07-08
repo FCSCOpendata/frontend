@@ -71,19 +71,23 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img
-                src="/images/satelite-icon.svg"
+                src="/images/print-icon.svg"
                 alt="orgs"
                 className="w-5 h-3 "
               />
               <span>{'Created ' + timeago.format(result.created)}</span>
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
-              <img src="/images/bus-icon.svg" alt="orgs" className="w-5 h-3" />
+              <img
+                src="/images/clock-icon.svg"
+                alt="orgs"
+                className="w-5 h-3"
+              />
               <span>{'Updated ' + timeago.format(result.updated)}</span>
             </div>
             <div className="font-[Avenir] flex text-sm py-2 items-baseline">
               <img
-                src="/images/edu-icon.svg"
+                src="/images/book-icon.svg"
                 alt="orgs"
                 className="w-5  h-3"
               />
@@ -121,12 +125,12 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Similar Dataset */}
-        <div className="flex  justify-end w-full p-10">
-          <div className="flex flex-col items-between h-full w-1/2 mb-10">
+        <div className="flex  xl:justify-end justify-start w-full xl:p-10">
+          <div className="flex flex-col items-between h-full xl:w-1/2 mb-10">
             <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
               <p>Explore Similar Datasets</p>
             </div>
-            <div className="flex flex-row justify-between bg-[#F7FAFC] p-2 rounded-xl">
+            <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
               <button className="flex items-baseline py-4 px-4  bg-button-gradient rounded-2xl text-white justify-center font-[Avenir] text-[18px] font-medium">
                 <img
                   src="/images/edu-icon.svg"
