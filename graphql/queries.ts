@@ -47,6 +47,27 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORGS_BY_NAMES_QUERY = gql`
+  query topics($groups: array) {
+    topics(
+      all_fields: True
+      limit: 1000
+      include_groups: True
+      groups: $groups
+    ) @rest(type: "Response", path: "organization_list?type=group&{args}") {
+      result
+    }
+  }
+`;
+
+export const GET_ORG_TREE_QUERY = gql`
+  query topics {
+    topics @rest(type: "Response", path: "org_tree?type=group&{args}") {
+      result
+    }
+  }
+`;
+
 export const GET_ORG_WITH_PACKAGES_QUERY = gql`
   query org($id: String) {
     org(id: $id, include_datasets: True)

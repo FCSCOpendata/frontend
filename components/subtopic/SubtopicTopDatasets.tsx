@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import List from '../search/List';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
+const SubtopicTopDatasets: React.FC<any> = ({ subtopic, organization }) => {
   //  TODO: extract the List in a way that we can
   //  reuse it here properly.   Have to wait  for
   //  merges before doing that.
@@ -17,7 +17,7 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
       'license_id',
     ],
     'facet.limit': 5,
-    fq: `groups:${subtopic}`,
+    fq: subtopic ? `groups:${subtopic}` : `organizations:${organization}`,
   });
 
   return (

@@ -151,13 +151,9 @@ const Topic: React.FC<any> = () => {
         <title>Portal | Topics</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* TODO: check mobile paddings */}
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <div className="w-100">
           <div className="mb-20">
-            {/* TODO: the component needs and indicator
-            //  that there's hidden slides so that  the
-            //  user knows he should slide */}
             <TopicCarousel topics={topics} activeTopic={activeTopic} />
           </div>
           <div className="mb-20">
