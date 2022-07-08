@@ -254,8 +254,12 @@ export const GET_TOPICS_TREE_QUERY = gql`
 
 export const GET_TOPICS_QUERY = gql`
   query topics($groups: array) {
-    topics(all_fields: True, limit: 1000, include_groups: True)
-      @rest(type: "Response", path: "group_list?type=group&{args}") {
+    topics(
+      all_fields: True
+      limit: 1000
+      include_groups: True
+      groups: $groups
+    ) @rest(type: "Response", path: "group_list?type=group&{args}") {
       result
     }
   }
