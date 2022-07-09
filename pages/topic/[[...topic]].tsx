@@ -11,22 +11,20 @@ import { initializeApollo } from '../../lib/apolloClient';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 
-const SubtopicCarousel = dynamic(
-  () => import('../../components/subtopic/SubtopicCarousel')
+const SubtopicsCarousel = dynamic(
+  () => import('../../components/topic/SubtopicsCarousel')
 );
-const SubtopicTopDatasets = dynamic(
-  () => import('../../components/subtopic/SubtopicTopDatasets')
+const DatasetsList = dynamic(
+  () => import('../../components/topic/DatasetsList')
 );
 const DeveloperExperience = dynamic(
   () =>
-    import('../../components/topic/developer_experience/DeveloperExperience')
+    import('../../components/_shared/developer_experience/DeveloperExperience')
 );
-const TopicCarousel = dynamic(
-  () => import('../../components/topic/TopicCarousel')
+const TopicsCarousel = dynamic(
+  () => import('../../components/topic/TopicsCarousel')
 );
-const TopicHeader = dynamic(
-  () => import('../../components/topic/TopicHeader')
-);
+const TopicHeader = dynamic(() => import('../../components/topic/Header'));
 const OpenData101 = dynamic(
   () => import('../../components/home/main/OpenData101')
 );
@@ -95,10 +93,10 @@ const Topic: React.FC<any> = () => {
   const children = findTopic(
     topicParam,
     topicsTreeData.topics.result
-  ).children;
+  )?.children;
 
   //  Creates a group filter for the subtopics
-  const subtopicsFilter = children.map((child) => `"${child.name}"`);
+  const subtopicsFilter = children?.map((child) => `"${child.name}"`);
 
   const {
     loading: subtopicsLoading,
@@ -107,7 +105,7 @@ const Topic: React.FC<any> = () => {
   } = useQuery(GET_TOPICS_QUERY, {
     notifyOnNetworkStatusChange: true,
     variables: {
-      groups: `[${subtopicsFilter.concat(mainTopicsFilter).join(',')}]`,
+      groups: `[${subtopicsFilter?.concat(mainTopicsFilter).join(',')}]`,
     },
   });
 
@@ -154,7 +152,7 @@ const Topic: React.FC<any> = () => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <div className="w-100">
           <div className="mb-20">
-            <TopicCarousel topics={topics} activeTopic={activeTopic} />
+            <TopicsCarousel topics={topics} active={activeTopic} />
           </div>
           <div className="mb-20">
             <TopicHeader
@@ -165,7 +163,7 @@ const Topic: React.FC<any> = () => {
           {topics?.length > 0 && (
             <div className="mb-20">
               <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
-              <SubtopicCarousel subtopics={topics} />
+              <SubtopicsCarousel subtopics={topics} />
             </div>
           )}
 
@@ -173,7 +171,7 @@ const Topic: React.FC<any> = () => {
             <h1 className="font-semibold text-3xl mb-6">
               Explore Top Datasets In This Theme ({activeTopic.package_count})
             </h1>
-            <SubtopicTopDatasets
+            <DatasetsList
               // TODO: improve this logic
               subtopic={activeTopic?.name}
             />

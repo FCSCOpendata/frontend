@@ -3,13 +3,13 @@ import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
 import Head from 'next/head';
 import { initializeApollo } from '../../lib/apolloClient';
-import TopicHeader from '../../components/topic/TopicHeader';
-import DeveloperExperience from '../../components/topic/developer_experience/DeveloperExperience';
+import ImageHeader from '../../components/_shared/image_header/ImageHeader';
+import DeveloperExperience from '../../components/_shared/developer_experience/DeveloperExperience';
 import OpenData101 from '../../components/home/main/OpenData101';
 import { ErrorMessage } from '../../components/_shared';
 import { GET_ORGS_QUERY, GET_ORG_QUERY } from '../../graphql/queries';
-import TopicCarousel from '../../components/topic/TopicCarousel';
-import SubtopicTopDatasets from '../../components/subtopic/SubtopicTopDatasets';
+import TopicCarousel from '../../components/_shared/carousel/icon_card/Carousel';
+import DatasetsList from '../../components/_shared/DatasetsList';
 
 const Org: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, error, loading } = useQuery(GET_ORG_QUERY, { variables });
@@ -52,17 +52,17 @@ const Org: React.FC<{ variables: any }> = ({ variables }) => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <div className="w-100">
           <div className="mb-20">
-            <TopicCarousel topics={orgs} activeTopic={orgs} />
+            <TopicCarousel items={orgs} activeTopic={orgs} />
           </div>
           <div className="mb-20">
-            <TopicHeader topic={data} datasetsCount={data.total} />
+            <ImageHeader items={data} datasetsCount={data.total} />
           </div>
 
           <div className="mb-20">
             <h1 className="font-semibold text-3xl mb-6">
               Explore Top Datasets In This Theme ({data.total})
             </h1>
-            <SubtopicTopDatasets
+            <DatasetsList
               // TODO: improve this logic
               organization={data?.name}
             />

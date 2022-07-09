@@ -1,24 +1,35 @@
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import TopicCard from '../topic/TopicCard';
+import Card from './Card';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import SwiperNavButton from './SwiperNavButton';
-import Link from 'next/link';
+import NavButton from './NavButton';
 
-const SubtopicCarousel: React.FC<any> = (props: any) => {
-  const subtopics = props.subtopics;
+interface Item {
+  title: string;
+  name: string;
+  icon: {
+    url: string;
+    alt: string;
+  };
+  image: {
+    url: string;
+    alt: string;
+  };
+  link: string;
+}
 
+const Carousel: React.FC<{ items: Item[] }> = ({ items }) => {
   return (
     <>
       <div className="relative">
         <div className="absolute hidden lg:block top-[38%] left-[-1rem] md:left-0 z-50 nav-prev-button">
-          <SwiperNavButton orientation="left" />
+          <NavButton orientation="left" />
         </div>
         <div className=" absolute hidden lg:block top-[38%] right-[-1rem] md:right-0 z-50 nav-next-button">
-          <SwiperNavButton orientation="right" />
+          <NavButton orientation="right" />
         </div>
 
         <Swiper
@@ -53,16 +64,11 @@ const SubtopicCarousel: React.FC<any> = (props: any) => {
             },
           }}
         >
-          {subtopics.map((subtopic, index) => (
+          {items.map((item, index) => (
             <SwiperSlide key={index}>
-              <Link href={`/topic/${subtopic.name}`}>
-                <a href={`/topic/${subtopic.name}`}>
-                  <TopicCard
-                    className="w-full text-left"
-                    topic={subtopics[index]}
-                  />
-                </a>
-              </Link>
+              <a href={item.link}>
+                <Card title={item.title} image={item.image} icon={item.icon} />
+              </a>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -72,4 +78,4 @@ const SubtopicCarousel: React.FC<any> = (props: any) => {
   );
 };
 
-export default SubtopicCarousel;
+export default Carousel;
