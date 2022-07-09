@@ -25,7 +25,8 @@ import MainOptions from '../../components/organization/MainOptions';
 
 const Organization: React.FC<any> = ({ variables }) => {
   const router = useRouter();
-  const { org } = router.query;
+  const { org: orgParam } = router.query;
+  const org = (orgParam as string).replace('@', '');
 
   const [devExperience, setDevExperience] = React.useState({
     expanded: false,
