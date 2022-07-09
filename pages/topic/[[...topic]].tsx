@@ -115,6 +115,7 @@ const Topic: React.FC<any> = () => {
     return <div>Loading Topics</div>;
 
   const activeTopic = topicData.topic.result;
+  let subtopics;
 
   const findAndAddDetails = (topics, coll) => {
     topics.forEach((topic: any, idx: number) => {
@@ -122,6 +123,8 @@ const Topic: React.FC<any> = () => {
         findAndAddDetails(topic.children, coll);
       } else {
         if (topic.id == coll.id) {
+          if (coll.name == topicParam) subtopics = topic.children;
+
           topics[idx] = { ...topic, ...coll };
         }
       }
@@ -163,7 +166,7 @@ const Topic: React.FC<any> = () => {
           {topics?.length > 0 && (
             <div className="mb-20">
               <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
-              <SubtopicsCarousel subtopics={topics} />
+              <SubtopicsCarousel subtopics={subtopics} />
             </div>
           )}
 
@@ -173,7 +176,7 @@ const Topic: React.FC<any> = () => {
             </h1>
             <DatasetsList
               // TODO: improve this logic
-              subtopic={activeTopic?.name}
+              topic={activeTopic?.name}
             />
           </div>
           <div>
