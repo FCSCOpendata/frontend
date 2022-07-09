@@ -15,9 +15,10 @@ interface Item {
 interface CarouselProps {
   items: Item[];
   active: { name: string };
+  itemOnClick: (item: any) => any;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ items, active }) => {
+const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
   return (
     <>
       <Swiper
@@ -41,7 +42,13 @@ const Carousel: React.FC<CarouselProps> = ({ items, active }) => {
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
-            <a href={item.link}>
+            <a
+              href={item.link}
+              onClick={(e) => {
+                e.preventDefault();
+                itemOnClick.call(this, item);
+              }}
+            >
               <IconCard
                 title={item.title}
                 image={item.image}

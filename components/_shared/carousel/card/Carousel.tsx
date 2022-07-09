@@ -21,7 +21,10 @@ interface Item {
   link: string;
 }
 
-const Carousel: React.FC<{ items: Item[] }> = ({ items }) => {
+const Carousel: React.FC<{
+  items: Item[];
+  itemOnClick: (item: any) => any;
+}> = ({ items, itemOnClick }) => {
   return (
     <>
       <div className="relative">
@@ -66,7 +69,13 @@ const Carousel: React.FC<{ items: Item[] }> = ({ items }) => {
         >
           {items.map((item, index) => (
             <SwiperSlide key={index}>
-              <a href={item.link}>
+              <a
+                href={item.link}
+                onClick={(e) => {
+                  e.preventDefault();
+                  itemOnClick.call(this, item);
+                }}
+              >
                 <Card title={item.title} image={item.image} icon={item.icon} />
               </a>
             </SwiperSlide>

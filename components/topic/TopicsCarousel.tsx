@@ -1,6 +1,6 @@
 import Carousel from '../_shared/carousel/icon_card/Carousel';
 
-const TopicsCarousel: React.FC<any> = ({ topics, active }) => {
+const TopicsCarousel: React.FC<any> = ({ topics, active, topicOnClick }) => {
   const items = topics.map((topic) => {
     return {
       name: topic.name,
@@ -15,7 +15,7 @@ const TopicsCarousel: React.FC<any> = ({ topics, active }) => {
 
   return (
     <>
-      <Carousel items={items} active={active} />
+      <Carousel items={items} active={active} itemOnClick={topicOnClick} />
     </>
   );
 };
