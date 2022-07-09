@@ -4,7 +4,7 @@ import utils from '../utils';
 import Head from 'next/head';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
-import DeveloperExperience from '../components/topic/developer_experience/DeveloperExperience';
+import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
 import OpenData101 from '../components/home/main/OpenData101';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';

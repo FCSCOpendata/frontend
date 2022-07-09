@@ -1,27 +1,40 @@
-import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
-import { useState } from 'react';
 import Head from 'next/head';
+import React from 'react';
+import {
+  GET_ORGS_FULL_INFO_QUERY,
+  GET_ORG_QUERY,
+} from '../../graphql/queries';
+import { useRouter } from 'next/router';
 import { initializeApollo } from '../../lib/apolloClient';
-import ImageHeader from '../../components/_shared/image_header/ImageHeader';
-import DeveloperExperience from '../../components/_shared/developer_experience/DeveloperExperience';
-import OpenData101 from '../../components/home/main/OpenData101';
+import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
+
+const DeveloperExperience = dynamic(
+  () =>
+    import('../../components/_shared/developer_experience/DeveloperExperience')
+);
+const OrgsCarousel = dynamic(
+  () => import('../../components/organization/OrgsCarousel')
+);
+const OpenData101 = dynamic(
+  () => import('../../components/home/main/OpenData101')
+);
 import { ErrorMessage } from '../../components/_shared';
-import { GET_ORGS_QUERY, GET_ORG_QUERY } from '../../graphql/queries';
-import TopicCarousel from '../../components/_shared/carousel/icon_card/Carousel';
-import DatasetsList from '../../components/_shared/DatasetsList';
+import MainOptions from '../../components/organization/MainOptions';
 
-const Org: React.FC<{ variables: any }> = ({ variables }) => {
-  const { data, error, loading } = useQuery(GET_ORG_QUERY, { variables });
-  if (error) return <ErrorMessage message="Error loading search results." />;
-  if (loading) return <div>Loading</div>;
+const Organization: React.FC<any> = ({ variables }) => {
+  const router = useRouter();
+  const { org } = router.query;
 
-  const { result } = data.org;
-
-  const [devExperience, setDevExperience] = useState({
+  const [devExperience, setDevExperience] = React.useState({
     expanded: false,
     idx: 0,
   });
+
+  const goToOrg = (org: any) => {
+    router.push(`${org.name}`, undefined, { shallow: true });
+  };
 
   const toggleDevExp = () => {
     setDevExperience({
@@ -32,41 +45,36 @@ const Org: React.FC<{ variables: any }> = ({ variables }) => {
 
   const {
     data: orgsData,
-    error: orgsError,
     loading: orgsLoading,
-  } = useQuery(GET_ORGS_QUERY, {
-    notifyOnNetworkStatusChange: true,
-  });
+    error: orgsError,
+  } = useQuery(GET_ORGS_FULL_INFO_QUERY);
 
+  if (orgsLoading) return <div>Loading Topics</div>;
   if (orgsError)
-    return <ErrorMessage message="Error loading search results." />;
-  if (orgsLoading) return <div>Loading</div>;
+    return <ErrorMessage message="Error loading organizations." />;
 
   const orgs = orgsData.orgs.result;
 
   return (
     <>
       <Head>
-        <title>Portal | {result.title || result.name}</title>
+        {/* TODO: should be the name of the active
+            org here */}
+        <title>Portal | Organizations</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <div className="w-100">
           <div className="mb-20">
-            <TopicCarousel items={orgs} activeTopic={orgs} />
-          </div>
-          <div className="mb-20">
-            <ImageHeader items={data} datasetsCount={data.total} />
-          </div>
-
-          <div className="mb-20">
-            <h1 className="font-semibold text-3xl mb-6">
-              Explore Top Datasets In This Theme ({data.total})
-            </h1>
-            <DatasetsList
-              // TODO: improve this logic
-              organization={data?.name}
+            <OrgsCarousel
+              orgs={orgs}
+              active={{ name: org }}
+              orgOnClick={goToOrg}
             />
           </div>
+
+          <MainOptions org={org}></MainOptions>
+
           <div>
             <button onClick={() => toggleDevExp()}>
               <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
@@ -89,7 +97,9 @@ const Org: React.FC<{ variables: any }> = ({ variables }) => {
               <DeveloperExperience />
             </div>
           </div>
-          <OpenData101 />
+          <div>
+            <OpenData101 />
+          </div>
         </div>
       </main>
     </>
@@ -97,28 +107,29 @@ const Org: React.FC<{ variables: any }> = ({ variables }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apolloClient = initializeApollo();
-  const variables = {
-    id: (context.query.org as string).replace('@', ''),
-  };
+  const org = (context.query.org as string).replace('@', '');
 
-  const { data } = await apolloClient.query({
+  const variables = {
+    id: org,
+  };
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
     query: GET_ORG_QUERY,
     variables,
   });
 
-  if (!data.org) {
-    return {
-      notFound: true,
-    };
-  }
+  await apolloClient.query({
+    query: GET_ORGS_FULL_INFO_QUERY,
+  });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       variables,
+      org,
     },
   };
 };
 
-export default Org;
+export default Organization;

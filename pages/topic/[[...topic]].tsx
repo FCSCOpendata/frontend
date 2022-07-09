@@ -57,7 +57,7 @@ const Topic: React.FC<any> = ({ variables }) => {
 
   const mainTopics = mainTopicsData.topics.result;
   const topicsTree = topicsTreeData.topics.result;
-  topic = topic ? topic[0] : topicsTreeData.topic.result.name;
+  topic = topic ? topic[0] : topicsTreeData.topics.result[0].name;
 
   if (topicsTreeLoading || mainTopicsLoading) return <div>Loading Topics</div>;
   if (topicstreeError || mainTopicsError)
@@ -119,9 +119,9 @@ const Topic: React.FC<any> = ({ variables }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo();
 
-  const topicsTree = (await apolloClient.query({
+  await apolloClient.query({
     query: GET_TOPICS_TREE_QUERY,
-  })) as any;
+  });
 
   const topicsTreeData = apolloClient.readQuery({
     query: GET_TOPICS_TREE_QUERY,

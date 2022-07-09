@@ -47,22 +47,10 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
-export const GET_ORGS_BY_NAMES_QUERY = gql`
-  query topics($groups: array) {
-    topics(
-      all_fields: True
-      limit: 1000
-      include_groups: True
-      groups: $groups
-    ) @rest(type: "Response", path: "organization_list?type=group&{args}") {
-      result
-    }
-  }
-`;
-
-export const GET_ORG_TREE_QUERY = gql`
-  query topics {
-    topics @rest(type: "Response", path: "org_tree?type=group&{args}") {
+export const GET_ORG_FULL_INFO_QUERY = gql`
+  query org($id: String) {
+    org(id: $id, all_fields: True)
+      @rest(type: "Response", path: "organization_show?{args}") {
       result
     }
   }
@@ -94,6 +82,15 @@ export const GET_ORGS_QUERY = gql`
         total: package_count
         image: image_url
       }
+    }
+  }
+`;
+
+export const GET_ORGS_FULL_INFO_QUERY = gql`
+  query orgs {
+    orgs(all_fields: True)
+      @rest(type: "Response", path: "organization_list?{args}") {
+      result
     }
   }
 `;
