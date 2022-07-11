@@ -23,7 +23,6 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     (item) => item.name === variables.resource
   );
 
- 
   return (
     <>
       <Head>

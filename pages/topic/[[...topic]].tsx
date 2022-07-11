@@ -36,7 +36,6 @@ const Topic: React.FC<any> = ({ variables }) => {
     router.push(`${topic.name}`, undefined, { shallow: true });
   };
 
-
   const {
     data: topicsTreeData,
     loading: topicsTreeLoading,

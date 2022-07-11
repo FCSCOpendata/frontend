@@ -25,8 +25,6 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   if (error) return <ErrorMessage message="Error loading dataset" />;
   const { result } = data.dataset;
 
-
-
   return (
     <>
       <Head>
