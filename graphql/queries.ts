@@ -47,6 +47,15 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORG_FULL_INFO_QUERY = gql`
+  query org($id: String) {
+    org(id: $id, all_fields: True)
+      @rest(type: "Response", path: "organization_show?{args}") {
+      result
+    }
+  }
+`;
+
 export const GET_ORG_WITH_PACKAGES_QUERY = gql`
   query org($id: String) {
     org(id: $id, include_datasets: True)
@@ -73,6 +82,15 @@ export const GET_ORGS_QUERY = gql`
         total: package_count
         image: image_url
       }
+    }
+  }
+`;
+
+export const GET_ORGS_FULL_INFO_QUERY = gql`
+  query orgs {
+    orgs(all_fields: True)
+      @rest(type: "Response", path: "organization_list?{args}") {
+      result
     }
   }
 `;

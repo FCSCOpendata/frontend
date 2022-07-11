@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import List from '../search/List';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
-  //  TODO: extract the List in a way that we can
-  //  reuse it here properly.   Have to wait  for
-  //  merges before doing that.
-
+const DatasetsList: React.FC<any> = ({ fq }) => {
   const [qvariables, setQvariables] = React.useState({
     rows: '5',
     'facet.field': [
@@ -17,11 +12,10 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
       'license_id',
     ],
     'facet.limit': 5,
-    fq: `groups:${subtopic}`,
+    fq,
   });
 
   return (
-    //  TODO: add the search controls (e.g.: sort, qty of entries) to this component
     <>
       <div className="">
         <List
@@ -35,4 +29,4 @@ const SubtopicTopDatasets: React.FC<any> = ({ subtopic, setQty }) => {
   );
 };
 
-export default SubtopicTopDatasets;
+export default DatasetsList;

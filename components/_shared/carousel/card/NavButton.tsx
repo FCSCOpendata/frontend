@@ -1,4 +1,4 @@
-const SwiperNavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
+const NavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
   orientation,
 }) => {
   return (
@@ -15,6 +15,6 @@ const SwiperNavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
   );
 };
 
-SwiperNavButton.defaultProps = { orientation: 'left' };
+NavButton.defaultProps = { orientation: 'left' };
 
-export default SwiperNavButton;
+export default NavButton;
