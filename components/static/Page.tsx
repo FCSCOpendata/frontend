@@ -19,12 +19,10 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
   return (
     <>
       <div className="text-center">
-        <h1 className="text-3xl font-[Avenir] font-extrabold text-primary my-6">
-          {title}
-        </h1>
+        <h1 className="text-3xl font-extrabold text-primary my-6">{title}</h1>
       </div>
-      {image && <img src={image} className="mb-6" alt={title} />}
-      <article className="prose prose-xl">
+      <article className="prose prose-stone md:prose-lg lg:prose-xl">
+        {image && <img src={image} className="mb-6" alt={title} />}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>
     </>

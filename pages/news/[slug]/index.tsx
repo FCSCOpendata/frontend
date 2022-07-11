@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Page from '../../../components/static/Page';
+import Post from '../../../components/static/Post';
 
 const PageItem: React.FC<{ slug: string }> = ({ slug }) => (
   <>
@@ -9,13 +9,13 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => (
       <link rel="icon" href="/favicon.svg" />
     </Head>
     <main className="grid place-content-center font-[Avenir]">
-      <Page slug={slug} />
+      <Post slug={slug} />
     </main>
   </>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.query.page;
+  const slug = context.query.slug;
   return {
     props: {
       slug,
