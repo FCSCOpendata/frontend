@@ -9,8 +9,8 @@ const DeveloperExperience: React.FC = () => {
     <>
       <Toggle onToggle={() => setExpanded(!expanded)} expanded={expanded} />
       <div
-        className={`transition-all overflow-hidden ${
-          expanded ? 'max-h-max' : 'max-h-0'
+        className={`transition-all ease-in-out duration-300 overflow-hidden ${
+          expanded ? 'max-h-[10000px] opacity-1' : 'max-h-0 opacity-0'
         }`}
       >
         <Tabs />
