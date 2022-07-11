@@ -36,13 +36,6 @@ const Topic: React.FC<any> = ({ variables }) => {
     router.push(`${topic.name}`, undefined, { shallow: true });
   };
 
-  const toggleDevExp = () => {
-    setDevExperience({
-      expanded: !devExperience.expanded,
-      idx: devExperience.idx,
-    });
-  };
-
   const {
     data: topicsTreeData,
     loading: topicsTreeLoading,
@@ -84,29 +77,7 @@ const Topic: React.FC<any> = ({ variables }) => {
             topicsTree={topicsTree}
             topicOnClick={goToTopic}
           ></MainOptions>
-
-          <div>
-            <button onClick={() => toggleDevExp()}>
-              <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
-                {/* TODO: check this vertical alignment */}
-                <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
-                  <img
-                    src="/images/plus.svg"
-                    width={12}
-                    alt="Expand developer experience"
-                  />
-                </span>
-                Developer Experience
-              </h1>
-            </button>
-            <div
-              className={`transition-all overflow-hidden ${
-                devExperience.expanded ? 'max-h-max' : 'max-h-0'
-              }`}
-            >
-              <DeveloperExperience />
-            </div>
-          </div>
+          <DeveloperExperience />
           <div>
             <OpenData101 />
           </div>

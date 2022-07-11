@@ -29,20 +29,8 @@ const Organization: React.FC<any> = ({ variables }) => {
   const { org: orgParam } = router.query;
   const org = (orgParam as string).replace('@', '');
 
-  const [devExperience, setDevExperience] = React.useState({
-    expanded: false,
-    idx: 0,
-  });
-
   const goToOrg = (org: any) => {
     router.push(`${org.name}`, undefined, { shallow: true });
-  };
-
-  const toggleDevExp = () => {
-    setDevExperience({
-      expanded: !devExperience.expanded,
-      idx: devExperience.idx,
-    });
   };
 
   const {
@@ -85,28 +73,7 @@ const Organization: React.FC<any> = ({ variables }) => {
 
           <MainOptions org={org}></MainOptions>
 
-          <div>
-            <button onClick={() => toggleDevExp()}>
-              <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
-                {/* TODO: check this vertical alignment */}
-                <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
-                  <img
-                    src="/images/plus.svg"
-                    width={12}
-                    alt="Expand developer experience"
-                  />
-                </span>
-                Developer Experience
-              </h1>
-            </button>
-            <div
-              className={`transition-all overflow-hidden ${
-                devExperience.expanded ? 'max-h-max' : 'max-h-0'
-              }`}
-            >
-              <DeveloperExperience />
-            </div>
-          </div>
+          <DeveloperExperience />
           <div>
             <OpenData101 />
           </div>

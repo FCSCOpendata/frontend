@@ -4,11 +4,10 @@ import Head from 'next/head';
 import { initializeApollo } from '../../../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
 import NavBreadCrumbs from '../../../../../components/dataset/NavBreadCrumbs';
-import Link from 'next/link';
 import DataExplorer from '../../../../../components/resource/ResourceExplorer';
-import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import { useState } from 'react';
+import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const [devExperience, setDevExperience] = useState({
@@ -23,13 +22,6 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
-
-  const toggleDevExp = () => {
-    setDevExperience({
-      expanded: !devExperience.expanded,
-      idx: devExperience.idx,
-    });
-  };
 
   return (
     <>
@@ -150,26 +142,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
         </div>
         <div className="w-full">
-          <button onClick={() => toggleDevExp()}>
-            <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
-              {/* TODO: check this vertical alignment */}
-              <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
-                <img
-                  src="/images/plus.svg"
-                  width={12}
-                  alt="Expand developer experience"
-                />
-              </span>
-              Developer Experience
-            </h1>
-          </button>
-          <div
-            className={`transition-all overflow-hidden ${
-              devExperience.expanded ? 'max-h-max' : 'max-h-0'
-            }`}
-          >
-            <DeveloperExperience />
-          </div>
+          <DeveloperExperience />
         </div>
         <div>
           <OpenData101 />
