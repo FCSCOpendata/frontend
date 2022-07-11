@@ -6,7 +6,7 @@ import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
 import NavBreadCrumbs from '../../../../../components/dataset/NavBreadCrumbs';
 import Link from 'next/link';
 import DataExplorer from '../../../../../components/resource/ResourceExplorer';
-import DeveloperExperience from '../../../../../components/topic/developer_experience/DeveloperExperience';
+import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import { useState } from 'react';
 

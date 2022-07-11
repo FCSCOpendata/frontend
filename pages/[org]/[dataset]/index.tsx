@@ -10,7 +10,7 @@ import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import { ErrorMessage } from '../../../components/_shared';
 import DataExplorer from '../../../components/dataset/DataExplorer';
-import DeveloperExperience from '../../../components/topic/developer_experience/DeveloperExperience';
+import DeveloperExperience from '../../../components/_shared/developer_experience/DeveloperExperience';
 import { useState } from 'react';
 import OpenData101 from '../../../components/home/main/OpenData101';
 
