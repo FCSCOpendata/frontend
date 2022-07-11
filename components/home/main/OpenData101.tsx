@@ -9,7 +9,7 @@ export default function OpenData101() {
       <img src="/images/open-data-101.svg" alt="Open Data 101" />
       <div className="absolute w-1/2 inset-x-1/4 inset-y-1/3 text-center">
         <p className="text-[#54CA59] font-semibold">- NEXT STOP -</p>
-        <a href="/open-data-101">
+        <a href="/p/open-data-101">
           <h2 className="font-[Avenir] font-extrabold text-4xl mb-2">
             Open Data 101
           </h2>
