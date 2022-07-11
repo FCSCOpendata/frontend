@@ -181,11 +181,23 @@ export const GET_STATS_QUERY = gql`
 `;
 
 export const GET_POSTS_QUERY = gql`
-  query posts {
-    posts
-      @rest(type: "Posts", path: "", endpoint: "wordpress-posts?number=3") {
-      found
-      posts
+  query posts($limit: Int, $page: Int) {
+    posts(limit: $limit, page: $page)
+      @rest(
+        type: "Posts"
+        path: "posts/?limit={args.limit}&page={args.page}"
+        endpoint: "ghost"
+      ) {
+      posts {
+        title
+        slug
+        image: feature_image
+        created: created_at
+        updated: updated_at
+        published: published_at
+        excerpt
+        readingTime: reading_time
+      }
       meta
     }
   }
@@ -194,7 +206,7 @@ export const GET_POSTS_QUERY = gql`
 export const GET_PAGE_QUERY = gql`
   query page($slug: String) {
     page(slug: $slug)
-      @rest(type: "Page", path: "{args.slug}", endpoint: "wordpress") {
+      @rest(type: "Page", path: "pages/slug/{args.slug}", endpoint: "ghost") {
       title
       content
       excerpt
@@ -209,7 +221,7 @@ export const GET_PAGE_QUERY = gql`
 export const GET_POST_QUERY = gql`
   query post($slug: String) {
     post(slug: $slug)
-      @rest(type: "Post", path: "{args.slug}", endpoint: "wordpress") {
+      @rest(type: "Post", path: "posts/slug/{args.slug}", endpoint: "ghost") {
       title
       content
       excerpt

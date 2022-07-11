@@ -1,4 +1,21 @@
+import { useQuery } from '@apollo/react-hooks';
+import { ErrorMessage } from '../../_shared';
+import { GET_POSTS_QUERY } from '../../../graphql/queries';
+
 export default function News() {
+  const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
+    variables: { limit: 5, page: 1 },
+    // Setting this value to true will make the component rerender when
+    // the "networkStatus" changes, so we are able to know if it is fetching
+    // more data
+    notifyOnNetworkStatusChange: true,
+  });
+  if (error) return <ErrorMessage message="Error loading dataset." />;
+  if (loading) return <div>Loading</div>;
+
+  const { posts } = data.posts;
+  console.log(posts);
+
   return (
     <>
       <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
