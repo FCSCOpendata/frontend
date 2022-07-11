@@ -74,10 +74,10 @@ export default function Topics() {
                   <img
                     src={topic.imageSrc}
                     alt={topic.title}
-                    className="w-full h-full object-center object-cover group-hover:opacity-75"
+                    className="w-full h-full object-center object-cover"
                   />
                 </div>
-                <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-100 group-hover:text-black">
+                <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {topic.title}
                 </p>
               </div>
