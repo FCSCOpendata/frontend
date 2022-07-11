@@ -30,7 +30,7 @@ const restLink = new RestLink({
         getConfig().publicRuntimeConfig.CMS_KEY
       );
     }
-    return fetch(uriWithKey, options);
+    return fetch(uriWithKey.href, options);
   },
   typePatcher: {
     Search: (data: any): any => {
