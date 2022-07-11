@@ -225,13 +225,16 @@ export const GET_PAGE_QUERY = gql`
   query page($slug: String) {
     page(slug: $slug)
       @rest(type: "Page", path: "pages/slug/{args.slug}", endpoint: "ghost") {
-      title
-      content
-      excerpt
-      slug
-      date
-      modified
-      featured_image
+      pages {
+        title
+        slug
+        image: feature_image
+        html
+        created: created_at
+        updated: updated_at
+        published: published_at
+        readingTime: reading_time
+      }
     }
   }
 `;
@@ -240,12 +243,16 @@ export const GET_POST_QUERY = gql`
   query post($slug: String) {
     post(slug: $slug)
       @rest(type: "Post", path: "posts/slug/{args.slug}", endpoint: "ghost") {
-      title
-      content
-      excerpt
-      slug
-      date
-      modified
+      posts {
+        title
+        slug
+        image: feature_image
+        html
+        created: created_at
+        updated: updated_at
+        published: published_at
+        readingTime: reading_time
+      }
     }
   }
 `;

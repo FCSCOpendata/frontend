@@ -1,43 +1,24 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { initializeApollo } from '../../../lib/apolloClient';
-import Nav from '../../../components/home/Nav';
 import Page from '../../../components/static/Page';
-import { GET_PAGE_QUERY } from '../../../graphql/queries';
 
-type Props = {
-  variables: any;
-};
-
-const PageItem: React.FC<Props> = ({ variables }) => (
+const PageItem: React.FC<{ slug: string }> = ({ slug }) => (
   <>
     <Head>
-      <title>Portal | {variables.slug}</title>
+      <title>Portal | {slug}</title>
       <link rel="icon" href="/favicon.svg" />
     </Head>
-    <Nav />
-    <main className="p-6">
-      <Page variables={variables} />
+    <main className="grid place-content-center">
+      <Page slug={slug} />
     </main>
   </>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const variables = {
-    slug: context.query.page,
-  };
-
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_PAGE_QUERY,
-    variables,
-  });
-
+  const slug = context.query.page;
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
-      variables,
+      slug,
     },
   };
 };
