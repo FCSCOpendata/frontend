@@ -31,7 +31,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                         alt="bayanat.ae"
                       />
                       <img
-                        className="hidden lg:block h-5 w-auto"
+                        className="hidden lg:block h-7 w-auto"
                         src={logo}
                         alt="bayanat.ae"
                       />
