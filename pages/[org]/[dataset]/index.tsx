@@ -10,9 +10,9 @@ import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import { ErrorMessage } from '../../../components/_shared';
 import DataExplorer from '../../../components/dataset/DataExplorer';
-import DeveloperExperience from '../../../components/_shared/developer_experience/DeveloperExperience';
 import { useState } from 'react';
 import OpenData101 from '../../../components/home/main/OpenData101';
+import DeveloperExperience from '../../../components/_shared/developer_experience/DeveloperExperience';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const [devExperience, setDevExperience] = useState({
@@ -25,12 +25,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   if (error) return <ErrorMessage message="Error loading dataset" />;
   const { result } = data.dataset;
 
-  const toggleDevExp = () => {
-    setDevExperience({
-      expanded: !devExperience.expanded,
-      idx: devExperience.idx,
-    });
-  };
+
 
   return (
     <>
@@ -230,26 +225,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
         </div>
         <div className="w-full">
-          <button onClick={() => toggleDevExp()}>
-            <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
-              {/* TODO: check this vertical alignment */}
-              <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
-                <img
-                  src="/images/plus.svg"
-                  width={12}
-                  alt="Expand developer experience"
-                />
-              </span>
-              Developer Experience
-            </h1>
-          </button>
-          <div
-            className={`transition-all overflow-hidden ${
-              devExperience.expanded ? 'max-h-max' : 'max-h-0'
-            }`}
-          >
-            <DeveloperExperience />
-          </div>
+          <DeveloperExperience />
         </div>
         <div>
           <OpenData101 />
