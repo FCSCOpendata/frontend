@@ -3,6 +3,7 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 module.exports = (phase, { defaultConfig }) => {
   const dms = process.env.DMS;
   const cms = process.env.CMS;
+  const cmsKey = process.env.CMS_KEY;
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     if (dms) {
       console.log('\nYou are running the app in dev mode 🌀');
@@ -32,6 +33,7 @@ module.exports = (phase, { defaultConfig }) => {
       publicRuntimeConfig: {
         DMS: dms ? dms.replace(/\/?$/, '') : 'http://mock.ckan',
         CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
+        CMS_KEY: cmsKey,
       },
       async rewrites() {
         return [
@@ -53,6 +55,7 @@ module.exports = (phase, { defaultConfig }) => {
     publicRuntimeConfig: {
       DMS: dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com',
       CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
+      CMS_KEY: cmsKey,
     },
     async rewrites() {
       return [

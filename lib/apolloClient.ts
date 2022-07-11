@@ -12,15 +12,25 @@ let apolloClient:
   | ApolloClient<NormalizedCache>
   | ApolloClient<NormalizedCacheObject>;
 
+const ghostBaseUri = new URL(
+  '/ghost/api/content/',
+  getConfig().publicRuntimeConfig.CMS
+).href;
+
 const restLink = new RestLink({
   uri: getConfig().publicRuntimeConfig.DMS + '/api/3/action/',
   endpoints: {
-    wordpress: `https://public-api.wordpress.com/rest/v1.1/sites/${
-      getConfig().publicRuntimeConfig.CMS
-    }/posts/slug:`,
-    'wordpress-posts': `https://public-api.wordpress.com/rest/v1.1/sites/${
-      getConfig().publicRuntimeConfig.CMS
-    }/posts`,
+    ghost: ghostBaseUri,
+  },
+  customFetch: (uri, options) => {
+    const uriWithKey = new URL(uri.toString());
+    if (uriWithKey.href.includes(ghostBaseUri)) {
+      uriWithKey.searchParams.append(
+        'key',
+        getConfig().publicRuntimeConfig.CMS_KEY
+      );
+    }
+    return fetch(uriWithKey, options);
   },
   typePatcher: {
     Search: (data: any): any => {
