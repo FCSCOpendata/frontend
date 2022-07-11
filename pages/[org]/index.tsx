@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import {
   GET_ORGS_FULL_INFO_QUERY,
+  GET_ORGS_TREE_QUERY,
   GET_ORG_QUERY,
 } from '../../graphql/queries';
 import { useRouter } from 'next/router';
@@ -45,14 +46,22 @@ const Organization: React.FC<any> = ({ variables }) => {
   };
 
   const {
+    data: orgsTreeData,
+    loading: orgsTreeLoading,
+    error: orgsTreeError,
+  } = useQuery(GET_ORGS_TREE_QUERY);
+
+  const {
     data: orgsData,
     loading: orgsLoading,
     error: orgsError,
   } = useQuery(GET_ORGS_FULL_INFO_QUERY);
 
-  if (orgsLoading) return <div>Loading Topics</div>;
+  if (orgsTreeLoading || orgsLoading) return <div>Loading Topics</div>;
   if (orgsError)
     return <ErrorMessage message="Error loading organizations." />;
+
+  console.log(orgsTreeData.orgs.result.filter((el) => el.length > 0));
 
   const orgs = orgsData.orgs.result;
 

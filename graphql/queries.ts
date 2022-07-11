@@ -47,6 +47,14 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_ORGS_TREE_QUERY = gql`
+  query orgs {
+    orgs @rest(type: "Response", path: "group_tree?type=organization&{args}") {
+      result
+    }
+  }
+`;
+
 export const GET_ORG_FULL_INFO_QUERY = gql`
   query org($id: String) {
     org(id: $id, all_fields: True)
