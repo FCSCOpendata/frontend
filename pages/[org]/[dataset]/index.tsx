@@ -88,7 +88,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           </article>
           <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
             {result.tags.map((tag, index) => (
-              <Link key={`tag-${index}`} href={`/search?fq=tags:"${tag.name}"`}>
+              <Link
+                key={`tag-${index}`}
+                href={`/search?fq=tags:"${tag.name}"`}
+              >
                 <a className="rounded-full bg-[#80E47E] py-2 px-4 mr-4">
                   {tag.title || tag.name}
                 </a>
