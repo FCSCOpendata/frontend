@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ORG_WITH_PACKAGES_QUERY } from '../../graphql/queries';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import Link from 'next/link';
 
 export default function SimilarDatasets({ organization }) {
@@ -11,7 +11,7 @@ export default function SimilarDatasets({ organization }) {
   });
 
   if (error) return <ErrorMessage message="Error loading similar datasets" />;
-  if (loading) return <div>Loading Similar Datasets</div>;
+  if (loading) return <Spinner />;
   const orgPackages = data.org.result.packages.slice(0, 2);
   return (
     <div className="mt-24">

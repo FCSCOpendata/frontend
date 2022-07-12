@@ -5,7 +5,7 @@ import {
   GET_COLLECTIONS_QUERY,
   GET_TOPICS_TREE_QUERY,
 } from '../../graphql/queries';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
 export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
@@ -37,10 +37,10 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   ] = queryMultiple();
 
   if (errorOrg) return <ErrorMessage message="Error loading organizations" />;
-  if (loadOrgs) return <div>Loading Organizations</div>;
+  if (loadOrgs) return <Spinner />;
   if (errorCollections)
     return <ErrorMessage message="Error loading Collections" />;
-  if (loadCollections) return <div>Loading Collections</div>;
+  if (loadCollections) return <Spinner />;
   const orgsResults = dataOrgs.orgs.result;
   const collectionsResults = dataCollections.collections.result;
 

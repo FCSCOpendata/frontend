@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import { ArrowRightIcon } from '@heroicons/react/outline';
-import { ErrorMessage } from '../../_shared';
+import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_POSTS_QUERY } from '../../../graphql/queries';
 
 export default function News() {
@@ -13,7 +13,7 @@ export default function News() {
     notifyOnNetworkStatusChange: true,
   });
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { posts } = data.posts;
 

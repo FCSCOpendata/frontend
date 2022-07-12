@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import Preview from './Preview';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_RESOURCE_VIEWS } from '../../graphql/queries';
 
 const View: React.FC<{ variables: any }> = ({ variables }) => {
@@ -13,7 +13,7 @@ const View: React.FC<{ variables: any }> = ({ variables }) => {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { result } = data.views;
   const previews = result.map((view) => <Preview view={view} key={view.id} />);

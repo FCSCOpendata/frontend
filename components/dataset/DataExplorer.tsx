@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
@@ -24,7 +24,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   const { data, loading, error } = useQuery(GET_DATASTORE_DATA, {
     variables: { resource_id: resources[activeTable].id },
   });
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
   if (error) return <ErrorMessage message="Error loading datastore" />;
   const { result } = data.datastore || {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive

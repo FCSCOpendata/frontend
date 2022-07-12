@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { Table } from 'portal';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 
 const Preview: React.FC<{ view: any }> = ({ view }) => {
@@ -16,7 +16,7 @@ const Preview: React.FC<{ view: any }> = ({ view }) => {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { result } = data.datastore;
 

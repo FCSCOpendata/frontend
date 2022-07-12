@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_POSTS_QUERY } from '../../graphql/queries';
 
 const List: React.FC = () => {
@@ -15,8 +15,7 @@ const List: React.FC = () => {
   });
 
   if (error) return <ErrorMessage message="Error loading search results." />;
-  if (loading) return <div>Loading</div>;
-
+  if (loading) return <Spinner />;
   const { posts, meta } = data.posts;
 
   return (

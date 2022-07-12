@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
@@ -14,7 +14,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { result } = data.dataset;
   const resource = result.resources.find(

@@ -3,9 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
+import { CloudDownloadIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -29,7 +29,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   const { data, loading, error } = useQuery(GET_DATASTORE_DATA, {
     variables: { resource_id: resources[activeTable].id },
   });
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
   if (error) return <ErrorMessage message="Error loading datastore" />;
   const { result } = data.datastore || {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive

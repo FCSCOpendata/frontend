@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { ErrorMessage } from '../../_shared';
+import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_ORGS_QUERY } from '../../../graphql/queries';
 
 export default function Orgs() {
@@ -77,7 +77,7 @@ export default function Orgs() {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const result = data.orgs.result.slice(0, 20);
 

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 import { Org } from 'portal';
 
@@ -13,7 +13,7 @@ const OrgInfo: React.FC<{ variables: any }> = ({ variables }) => {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { organization } = data.dataset.result;
 

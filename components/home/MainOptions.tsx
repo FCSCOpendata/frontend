@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 const Topics = dynamic(() => import('./main/Topics'));
 const Map = dynamic(() => import('./main/Map'));
 const News = dynamic(() => import('./main/News'));
-const OpenData101 = dynamic(() => import('./main/OpenData101'));
 
 const MainOptions: React.FC = () => {
   return (

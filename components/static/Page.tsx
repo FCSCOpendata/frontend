@@ -3,7 +3,7 @@ import ErrorPage from 'next/error';
 import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_PAGE_QUERY } from '../../graphql/queries';
 
 const Page: React.FC<{ slug: string }> = ({ slug }) => {
@@ -16,7 +16,7 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
   });
 
   if (error) return <ErrorMessage message="Error loading the page." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
   if (!data.page) return <ErrorPage statusCode={404} />;
 
   const { title, html, image, readingTime, published } = data.page.pages[0];

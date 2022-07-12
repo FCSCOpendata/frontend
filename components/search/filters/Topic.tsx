@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import { ErrorMessage } from '../../_shared';
+import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_TOPICS_QUERY } from '../../../graphql/queries';
 
 export default function Topic() {
@@ -12,7 +12,7 @@ export default function Topic() {
   });
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { result } = data.topics;
 

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import { ErrorMessage } from '../_shared';
+import { ErrorMessage, Spinner } from '../_shared';
 import { GET_KEYWORDS_QUERY } from '../../graphql/queries';
 
 const Tags: React.FC = () => {
@@ -12,7 +12,7 @@ const Tags: React.FC = () => {
   });
 
   if (error) return <ErrorMessage message="Error loading search results." />;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Spinner />;
 
   const { tags } = data.keywords.result.search_facets;
   const tagsToShow =
