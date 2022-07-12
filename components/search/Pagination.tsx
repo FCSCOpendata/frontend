@@ -72,23 +72,24 @@ const Pagination: React.FC<{
           Prev
         </span>
       </button>
-      {pageGroup().map((pageNum, index) => {
-        return (
-          <button
-            key={index}
-            onClick={() => {
-              handleClick(pageNum, pages[pageNum - 1]);
-            }}
-            className={`mx-2 ${
-              pageNum === currentPage
-                ? 'px-3 py-0 rounded-md bg-blue-100'
-                : null
-            }`}
-          >
-            {pageNum <= pages.length ? pageNum : null}
-          </button>
-        );
-      })}
+      {count &&
+        pageGroup().map((pageNum, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                handleClick(pageNum, pages[pageNum - 1]);
+              }}
+              className={`mx-2 ${
+                pageNum === currentPage
+                  ? 'px-3 py-0 rounded-md bg-blue-100'
+                  : null
+              }`}
+            >
+              {pageNum <= pages.length ? pageNum : null}
+            </button>
+          );
+        })}
       <button
         onClick={nextPage}
         className={`ml-6 ${

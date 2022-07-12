@@ -17,7 +17,7 @@ const DatasetsList: React.FC<any> = ({ fq, onPageChange }) => {
 
   return (
     <>
-      <div className="">
+      <div>
         <List
           variables={qvariables}
           setQvariables={setQvariables}
