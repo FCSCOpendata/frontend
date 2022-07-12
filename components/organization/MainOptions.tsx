@@ -79,13 +79,18 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
         </div>
       )}
 
-      <div className="mb-20">
+      <div className="mb-20" id="explore-top-datasets">
         <h1 className="font-semibold text-3xl mb-6">
           Explore Top Datasets In This Theme ({activeOrg?.package_count})
         </h1>
         <DatasetsList
           // TODO: improve this logic
           org={activeOrg?.name}
+          onPageChange={() =>
+            document
+              .getElementById('explore-top-datasets')
+              .scrollIntoView({ behavior: 'smooth' })
+          }
         />
       </div>
     </>

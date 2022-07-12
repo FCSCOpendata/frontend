@@ -10,9 +10,11 @@ const List: React.FC<{
   setQvariables: any;
   show_amount?: boolean;
   noXMargin?: boolean;
-}> = ({ variables, setQvariables, show_amount, noXMargin }) => {
+  onPageChange?: () => void;
+}> = ({ variables, setQvariables, show_amount, noXMargin, onPageChange }) => {
   const {
     loading: loadSearch,
+    
     error: errorSearch,
     data: dataSearch,
   } = useQuery(SEARCH_QUERY, {
@@ -50,6 +52,7 @@ const List: React.FC<{
             <Pagination
               count={searchResults?.count}
               setQvariables={setQvariables}
+              onPageChange={onPageChange}
             />
           )}
         </div>

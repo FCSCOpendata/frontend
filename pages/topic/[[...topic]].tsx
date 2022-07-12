@@ -73,9 +73,7 @@ const Topic: React.FC<any> = ({ variables }) => {
             topicOnClick={goToTopic}
           ></MainOptions>
           <DeveloperExperience />
-          <div>
-            <OpenData101 />
-          </div>
+          <OpenData101 />
         </div>
       </main>
     </>
