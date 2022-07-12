@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage } from '../_shared';
 import { GET_PAGE_QUERY } from '../../graphql/queries';
@@ -18,6 +19,9 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
 
   return (
     <>
+      <Head>
+        <title>{title} | Open Data UAE</title>
+      </Head>
       <div className="text-center">
         <h1 className="text-3xl font-extrabold text-primary my-6">{title}</h1>
       </div>

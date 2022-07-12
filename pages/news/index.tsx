@@ -4,7 +4,7 @@ import List from '../../components/static/List';
 const News: React.FC = () => (
   <>
     <Head>
-      <title>Portal | News</title>
+      <title>News | Open Data UAE</title>
       <link rel="icon" href="/favicon.svg" />
     </Head>
     <main className="grid place-content-center font-[Avenir] mb-12">
