@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import {
   GET_ORGS_FULL_INFO_QUERY,
+  GET_ORGS_TREE_QUERY,
   GET_ORG_QUERY,
 } from '../../graphql/queries';
 import { useRouter } from 'next/router';
@@ -33,12 +34,25 @@ const Organization: React.FC<any> = ({ variables }) => {
   };
 
   const {
+    data: orgsTreeData,
+    loading: orgsTreeLoading,
+    error: orgsTreeError,
+  } = useQuery(GET_ORGS_TREE_QUERY);
+
+  if (orgsTreeLoading) return <div>Loading organizations</div>;
+  if (orgsTreeError)
+    return <ErrorMessage message="Error loading organizations." />;
+
+  const {
     data: orgsData,
     loading: orgsLoading,
     error: orgsError,
-  } = useQuery(GET_ORGS_FULL_INFO_QUERY);
+  } = useQuery(GET_ORGS_FULL_INFO_QUERY, {
+    notifyOnNetworkStatusChange: true,
+    variables: variables.GET_ORGS_FULL_INFO_QUERY,
+  });
 
-  if (orgsLoading) return <div>Loading Topics</div>;
+  if (orgsTreeLoading || orgsLoading) return <div>Loading Topics</div>;
   if (orgsError)
     return <ErrorMessage message="Error loading organizations." />;
 
@@ -62,7 +76,11 @@ const Organization: React.FC<any> = ({ variables }) => {
             />
           </div>
 
-          <MainOptions org={org}></MainOptions>
+          <MainOptions
+            org={org}
+            orgsTree={orgsTreeData.orgs.result}
+            orgOnClick={goToOrg}
+          ></MainOptions>
 
           <DeveloperExperience />
           <div>
@@ -75,20 +93,33 @@ const Organization: React.FC<any> = ({ variables }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const org = (context.query.org as string).replace('@', '');
-
-  const variables = {
-    id: org,
-  };
   const apolloClient = initializeApollo();
+
+  const org = (context.query.org as string).replace('@', '');
 
   await apolloClient.query({
     query: GET_ORG_QUERY,
-    variables,
+    variables: {
+      id: org,
+    },
   });
 
   await apolloClient.query({
+    query: GET_ORGS_TREE_QUERY,
+  });
+
+  const orgsTreeData = apolloClient.readQuery({
+    query: GET_ORGS_TREE_QUERY,
+  })?.orgs?.result;
+  const mainOrgsNames = orgsTreeData.map((org) => `"${org.name}"`);
+
+  const variables = {
+    organizations: `[${mainOrgsNames.join(',')}]`,
+  };
+
+  await apolloClient.query({
     query: GET_ORGS_FULL_INFO_QUERY,
+    variables: variables,
   });
 
   return {

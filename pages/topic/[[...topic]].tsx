@@ -27,11 +27,6 @@ const Topic: React.FC<any> = ({ variables }) => {
   const router = useRouter();
   let { topic } = router.query;
 
-  const [devExperience, setDevExperience] = React.useState({
-    expanded: false,
-    idx: 0,
-  });
-
   const goToTopic = (topic: any) => {
     router.push(`${topic.name}`, undefined, { shallow: true });
   };
