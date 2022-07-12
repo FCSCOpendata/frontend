@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import ErrorPage from 'next/error';
 import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
@@ -14,8 +15,9 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading search results." />;
+  if (error) return <ErrorMessage message="Error loading the page." />;
   if (loading) return <div>Loading</div>;
+  if (!data.page) return <ErrorPage statusCode={404} />;
 
   const { title, html, image, readingTime, published } = data.page.pages[0];
 

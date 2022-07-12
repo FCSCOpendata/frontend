@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import ErrorPage from 'next/error';
 import { useQuery } from '@apollo/react-hooks';
 import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
@@ -16,6 +17,7 @@ const Post: React.FC<{ slug: string }> = ({ slug }) => {
 
   if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <div>Loading</div>;
+  if (!data.post) return <ErrorPage statusCode={404} />;
 
   const { title, html, image, readingTime, published } = data.post.posts[0];
 
