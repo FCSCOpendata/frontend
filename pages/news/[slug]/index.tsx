@@ -8,9 +8,7 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => (
       <title>Portal | {slug}</title>
       <link rel="icon" href="/favicon.svg" />
     </Head>
-    <main className="grid place-content-center font-[Avenir]">
-      <Post slug={slug} />
-    </main>
+    <Post slug={slug} />
   </>
 );
 
