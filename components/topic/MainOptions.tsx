@@ -11,6 +11,7 @@ const DatasetsList = dynamic(
 );
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
 import { ErrorMessage } from '../../components/_shared';
+import CopyButton from '../_shared/CopyButton';
 
 const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
   //  Loads the selected topic
@@ -105,9 +106,18 @@ const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <h1 className="font-semibold text-3xl mb-6">
-          Explore Top Datasets In This Theme ({activeTopic.package_count})
-        </h1>
+        <div className="flex items-center mb-6">
+          <h1 className="font-semibold text-2xl sm:text-3xl">
+            Explore Top Datasets In This Theme ({activeTopic.package_count})
+          </h1>
+          <span className="ml-3 select-none">
+            <CopyButton
+              content="teste"
+              hintBeforeCopy="Click to copy this page's URL"
+              hintAfterCopy="Copied"
+            ></CopyButton>
+          </span>
+        </div>
         <DatasetsList
           // TODO: improve this logic
           topic={activeTopic?.name}
