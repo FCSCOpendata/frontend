@@ -9,17 +9,17 @@ const Pagination: React.FC<{
   const [start, setStart] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    setStart(JSON.parse(window.localStorage.getItem('start')));
-  }, []);
+  // useEffect(() => {
+  //   setStart(JSON.parse(window.localStorage.getItem('start')));
+  // }, []);
 
-  useEffect(() => {
-    setCurrentPage(JSON.parse(window.localStorage.getItem('currentPage')));
-  }, [currentPage]);
+  // useEffect(() => {
+  //   setCurrentPage(JSON.parse(window.localStorage.getItem('currentPage')));
+  // }, [currentPage]);
 
-  useEffect(() => {
-    window.localStorage.setItem('start', JSON.stringify(start));
-  }, [start]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('start', JSON.stringify(start));
+  // }, [start]);
 
   const nextPage = () => setStart((page) => page + pageLimit);
   const prevPage = () => setStart((page) => page - pageLimit);

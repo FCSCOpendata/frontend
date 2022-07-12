@@ -1,9 +1,11 @@
-const Spinner: React.FC = () => {
+const Spinner: React.FC<any> = ({ size }) => {
+  const wh = size ? size : '8';
+
   return (
     <div className="px-4 my-6 sm:mx-12">
       <svg
         role="status"
-        className="w-8 h-8 mr-2 text-[#F7FAFC] animate-spin fill-blue-200"
+        className={`w-${wh} h-${wh} mr-2 text-[#F7FAFC] animate-spin fill-blue-200`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
