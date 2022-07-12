@@ -1,5 +1,7 @@
-import parse from 'html-react-parser';
+import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
+import * as timeago from 'timeago.js';
+import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage } from '../_shared';
 import { GET_POSTS_QUERY } from '../../graphql/queries';
 
@@ -18,22 +20,67 @@ const List: React.FC = () => {
   const { posts, meta } = data.posts;
 
   return (
-    <>
-      <h2 className="text-2xl font-semibold my-6 inline-block">
+    <div className="font-[Avenir] mt-8 mb-12 px-4 sm:mx-12">
+      <h2 className="text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
         {meta.pagination.total} articles found
       </h2>
-      {posts.map((post, index) => (
-        <div key={index}>
-          <a
-            href={`/news/${post.slug}`}
-            className="text-xl font-semibold my-6 inline-block"
+      <ul className="mb-10">
+        {posts.map((post, index) => (
+          <li
+            key={index}
+            className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit xl:h-32"
           >
-            {parse(post.title)}
-          </a>
-          <p>{parse(post.excerpt)}</p>
-        </div>
-      ))}
-    </>
+            <div className="flex flex-cols items-center h-full z-10">
+              {/* Image */}
+              <div className="h-full w-28 rounded-xl bg-gray-200">
+                <img
+                  src={
+                    post.image ||
+                    `/images/topics/topic-${Math.floor(
+                      Math.random() * (6 - 1 + 1) + 1
+                    )}.png`
+                  }
+                  alt={post.title}
+                  className="h-full"
+                />
+              </div>
+              {/* Title, description & org */}
+              <div className="px-6 flex flex-col sm:justify-between h-full space-y-4 sm:space-y-0">
+                <Link href={`/news/${post.slug}`}>
+                  {/* eslint-disable-next-line */}
+                  <a className="block focus:outline-none space-y-2 xl:space-y-0">
+                    <h1 className="text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl">
+                      {post.title}
+                    </h1>
+                    <p className="text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left">
+                      {post.excerpt}
+                    </p>
+                  </a>
+                </Link>
+                <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
+                  <div className="mr-4">
+                    <img
+                      src="/images/time.svg"
+                      alt="reading time"
+                      className="inline w-4 pb-1 mr-1 grayscale"
+                    />
+                    <span className="text-xs text-center sm:text-left">
+                      {post.readingTime} min read
+                    </span>
+                  </div>
+                  <div>
+                    <CalendarIcon className="inline pb-1 mr-1 w-4" />
+                    <span className="text-xs text-center sm:text-left">
+                      {timeago.format(post.published)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
