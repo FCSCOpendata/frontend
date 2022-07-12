@@ -14,7 +14,7 @@ const List: React.FC<{
 }> = ({ variables, setQvariables, show_amount, noXMargin, onPageChange }) => {
   const {
     loading: loadSearch,
-    
+
     error: errorSearch,
     data: dataSearch,
   } = useQuery(SEARCH_QUERY, {
