@@ -10,15 +10,10 @@ import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
 import { ErrorMessage } from '../../../components/_shared';
 import DataExplorer from '../../../components/dataset/DataExplorer';
-import { useState } from 'react';
 import OpenData101 from '../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../components/_shared/developer_experience/DeveloperExperience';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
-  const [devExperience, setDevExperience] = useState({
-    expanded: false,
-    idx: 0,
-  });
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
 
   if (loading) return <div>Loading</div>;
