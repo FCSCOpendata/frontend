@@ -1,11 +1,9 @@
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from '../lib/apolloClient';
 import utils from '../utils';
 import Head from 'next/head';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import OpenData101 from '../components/home/main/OpenData101';
-import { SEARCH_QUERY } from '../graphql/queries';
 import { useState } from 'react';
 import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
 
@@ -49,16 +47,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const variables = utils.convertToCkanSearchQuery(query);
 
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: SEARCH_QUERY,
-    variables,
-  });
-
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       variables,
     },
   };
