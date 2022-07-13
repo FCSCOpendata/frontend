@@ -19,7 +19,6 @@ const MainOptions: React.FC<any> = ({
   topicsTree,
   topicOnClick,
   searchPage,
-  page,
 }) => {
   const router = useRouter();
 
@@ -128,13 +127,13 @@ const MainOptions: React.FC<any> = ({
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <div className="flex justify-between items-center mb-6">
+        <div className="lg:flex justify-between items-center mb-6">
           <h1 className="font-semibold text-2xl sm:text-3xl">
             Explore Top Datasets In This Theme ({activeTopic.package_count})
           </h1>
           <span className="ml-3 select-none">
             <CopyButton content={document.location.href}>
-              Click to copy this page's URL
+              Copy this page{"'"}s URL
             </CopyButton>
           </span>
         </div>
