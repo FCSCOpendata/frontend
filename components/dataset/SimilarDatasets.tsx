@@ -80,30 +80,34 @@ export default function SimilarDatasets({ variables }) {
           <ErrorMessage message="Error loading similar datasets" />
         )}
         {similarDatasetsResponse.loading && <Spinner />}
-        {similarDatasetsResponse.data?.search.result.results
-          ?.slice(0, 4)
-          .map((item, index) => (
-            <div
-              key={index}
-              className=" rounded-3xl relative group w-4/5 h-4/5"
-            >
-              <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
-                Dataset
-              </span>
-              <img
-                src={`/images/dubai-robocop.png`}
-                alt={item.title}
-                className="w-full h-full object-center rounded-2xl object-cover"
-              />
-              <a
-                href={`/@${item.organization.name}/${item.name}`}
-                className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
-                                  font-[Avenir]"
+        {!similarDatasetsResponse.loading && similarDatasetsResponse.data?.search.result.results
+            ?.slice(0, 4)
+            .map((item, index) => (
+              <div
+                key={index}
+                className=" rounded-3xl relative group w-4/5 h-4/5"
               >
-                {item.title}
-              </a>
-            </div>
-          ))}
+                <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
+                  Dataset
+                </span>
+                <img
+                  src={
+                    fq.startsWith('groups')
+                      ? result.groups[0]?.image_url || '/images/dubai-robocop.png'
+                      : item.organization.image || '/images/dubai-robocop.png'
+                  }
+                  alt={item.title}
+                  className="w-full h-full object-center rounded-2xl object-cover"
+                />
+                <a
+                  href={`/@${item.organization.name}/${item.name}`}
+                  className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
+                                    font-[Avenir]"
+                >
+                  {item.title}
+                </a>
+              </div>
+            ))}
       </div>
     </>
   );
