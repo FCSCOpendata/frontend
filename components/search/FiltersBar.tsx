@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   GET_ORGS_QUERY,
   GET_COLLECTIONS_QUERY,
@@ -9,6 +10,7 @@ import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
 export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
+  const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const variables = { notifyOnNetworkStatusChange: true };
@@ -78,7 +80,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   };
 
   const generateFq = (sideFilter) => {
-    let fq = '';
+    let fq = query.fq || '';
     let keyIndex = 0;
     for (const key of Object.keys(sideFilter)) {
       if (sideFilter[key].length > 0) {
