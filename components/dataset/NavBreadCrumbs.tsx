@@ -8,7 +8,13 @@ export default function NavBreadCrumbs({ navInfo }) {
         <ol className="flex text-[13px] items-center font-[500] tracking-widest uppercase text-[#464646] px-12 py-8 space-x-2">
           <li>
             <Link href="/search">
-              <a>Datasets</a>
+              <a className="group relative">
+                Datasets
+                <span
+                  className={`hidden lg:opacity-0 lg:flex absolute left-1 right-1 -bottom-2.5 h-0.5 ease-in-out duration-300
+                  group-hover:bg-nav-underline lg:group-hover:opacity-100`}
+                />
+              </a>
             </Link>
           </li>
           <li>
@@ -16,7 +22,13 @@ export default function NavBreadCrumbs({ navInfo }) {
           </li>
           <li>
             <Link href={`/@${navInfo.orgName}`}>
-              <a>{navInfo.orgTitle}</a>
+              <a className="group relative">
+                {navInfo.orgTitle}
+                <span
+                  className={`hidden lg:opacity-0 lg:flex absolute left-1 right-1 -bottom-2.5 h-0.5 ease-in-out duration-300
+                  group-hover:bg-nav-underline lg:group-hover:opacity-100`}
+                />
+              </a>
             </Link>
           </li>
           <li>
