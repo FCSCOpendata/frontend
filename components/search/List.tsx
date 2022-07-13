@@ -11,7 +11,15 @@ const List: React.FC<{
   show_amount?: boolean;
   noXMargin?: boolean;
   onPageChange?: (page: number) => void;
-}> = ({ variables, setQvariables, show_amount, noXMargin, onPageChange }) => {
+  page?: number;
+}> = ({
+  variables,
+  setQvariables,
+  show_amount,
+  noXMargin,
+  onPageChange,
+  page,
+}) => {
   const {
     loading: loadSearch,
 
@@ -29,10 +37,10 @@ const List: React.FC<{
       <div
         className={`mt-8 font-[Avenir] ${noXMargin == true ? '' : 'sm:mx-12'}`}
       >
-        <div className="transition-all text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
+        <div className="text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
           {loadSearch ? (
             <div className="w-100 flex justify-center">
-              <Spinner size="20" />
+              <Spinner size="10" />
             </div>
           ) : show_amount != false ? (
             searchResults?.count +
@@ -56,6 +64,7 @@ const List: React.FC<{
             count={searchResults?.count}
             setQvariables={setQvariables}
             onPageChange={onPageChange}
+            initAtPage={page}
           />
         </div>
       </div>

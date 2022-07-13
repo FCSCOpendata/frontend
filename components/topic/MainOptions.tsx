@@ -19,16 +19,9 @@ const MainOptions: React.FC<any> = ({
   topicsTree,
   topicOnClick,
   searchPage,
+  page,
 }) => {
   const router = useRouter();
-
-  useEffect(() => {
-    if (searchPage) {
-      document
-        .getElementById('explore-top-datasets')
-        .scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
 
   //  Loads the selected topic
   const {
@@ -74,6 +67,19 @@ const MainOptions: React.FC<any> = ({
       groups: `[${subtopicsFilter.join(',')}]`,
     },
   });
+
+  useEffect(() => {
+    if (searchPage && !subtopicsLoading) {
+      setTimeout(() => {
+        document
+          .getElementById('explore-top-datasets')
+          .scrollIntoView({ behavior: 'smooth' });
+        //  NOTE: this timeout might not be ideal
+        //  but without it there must be  another
+        //  wait to wait for the datasets loading
+      }, 500);
+    }
+  }, [subtopicsLoading]);
 
   if (topicError || subtopicsError)
     return <ErrorMessage message="Error loading topics." />;
@@ -135,13 +141,15 @@ const MainOptions: React.FC<any> = ({
           </span>
         </div>
         <DatasetsList
-          // TODO: improve this logic
           topic={activeTopic?.name}
-          onPageChange={() => {
+          onPageChange={(page) => {
+            router.query.searchPage = page + '';
+            router.push(router, undefined, { shallow: true });
             document
               .getElementById('explore-top-datasets')
               .scrollIntoView({ behavior: 'smooth' });
           }}
+          page={searchPage}
         />
       </div>
     </>

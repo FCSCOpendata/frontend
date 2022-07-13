@@ -3,11 +3,20 @@ const Pagination: React.FC<{
   count: number;
   setQvariables: any;
   onPageChange?: (page: number) => void;
-}> = ({ count, setQvariables, onPageChange }) => {
+  initAtPage?: number;
+}> = ({ count, setQvariables, onPageChange, initAtPage }) => {
   const pageLimit = 5;
 
   const [start, setStart] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    if (initAtPage && initAtPage <= count) {
+      const page = Number(initAtPage);
+      const groupIdx = Math.floor(page * pageLimit - pageLimit);
+      handleClick(page, groupIdx);
+    }
+  }, [count]);
 
   // useEffect(() => {
   //   setStart(JSON.parse(window.localStorage.getItem('start')));
@@ -35,8 +44,7 @@ const Pagination: React.FC<{
     pages.push(i);
   }
   const handleClick = (item, startRange) => {
-    if (onPageChange) onPageChange(currentPage);
-    window.localStorage.setItem('currentPage', JSON.stringify(item));
+    //window.localStorage.setItem('currentPage', JSON.stringify(item));
     setCurrentPage(item);
     setQvariables((prev) => {
       return {
@@ -44,6 +52,7 @@ const Pagination: React.FC<{
         start: startRange,
       };
     });
+    if (onPageChange) onPageChange(item);
   };
 
   return (

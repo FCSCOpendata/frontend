@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '../search/List';
 
-const DatasetsList: React.FC<any> = ({ fq, onPageChange }) => {
+const DatasetsList: React.FC<any> = ({ fq, onPageChange, page }) => {
   const [qvariables, setQvariables] = React.useState({
     rows: '5',
     'facet.field': [
@@ -24,6 +24,7 @@ const DatasetsList: React.FC<any> = ({ fq, onPageChange }) => {
           show_amount={false}
           noXMargin={true}
           onPageChange={onPageChange}
+          page={page}
         />
       </div>
     </>
