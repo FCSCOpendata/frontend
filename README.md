@@ -16,7 +16,7 @@ https://fcsc-demo.vercel.app/
 
 Install a recent version of Node. We recommend using Node v14.
 
-```
+```bash
 npm i # install dependencies
 npm run dev # starts dev mode
 ```
@@ -24,6 +24,14 @@ npm run dev # starts dev mode
 Open [http://localhost:3000](http://localhost:3000) to see the home page 🎉
 
 You can start editing the page by modifying `/pages/index.tsx`. The page auto-updates as you edit the file.
+
+To connect your frontend to the backend (DMS and CMS), you will need to setup the following environment variables:
+
+```bash
+export DMS=http://ckan-domain.com
+export CMS=http://ghost-cms-domain.com # Note that we're using Ghost CMS for this frontend
+export CMS_KEY=your-content-key # You can get it from Ghost CMS settings
+```
 
 ## Guide
 
