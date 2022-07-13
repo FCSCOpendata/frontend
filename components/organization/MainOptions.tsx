@@ -85,6 +85,25 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
   const activeOrg = orgData?.org?.result;
   const subOrgs = subOrgsData?.orgs?.result;
 
+  const onSubOrgClick = (subOrg) => {
+    orgOnClick(subOrg);
+    //  TODO: this scroll is glitching in some occasions.
+    //  I think it's related to the loading states.
+    //  Currently it's pointing to body because it  works
+    //  more consistently, but ideally it would be better
+    //  to scroll to the center of the header...
+    setTimeout(() => {
+      const el = document.getElementsByTagName('body')[0];
+
+      el.scrollIntoView({
+        behavior: 'smooth',
+        //  ... using these props
+        // block: 'center',
+        // inline: 'center',
+      });
+    }, 250);
+  };
+
   return (
     <>
       <div className="mb-20">
@@ -93,7 +112,7 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
       {children?.length > 0 && (
         <div className="mb-20">
           <h1 className="font-semibold text-3xl mb-6">Sub Organizations</h1>
-          <SubOrgsCarousel orgs={subOrgs} orgOnClick={orgOnClick} />
+          <SubOrgsCarousel orgs={subOrgs} orgOnClick={onSubOrgClick} />
         </div>
       )}
 
