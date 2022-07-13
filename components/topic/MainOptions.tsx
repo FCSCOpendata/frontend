@@ -10,8 +10,8 @@ const DatasetsList = dynamic(
   () => import('../../components/topic/DatasetsList')
 );
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
+const CopyButton = dynamic(() => import('../_shared/CopyButton'));
 import { ErrorMessage } from '../../components/_shared';
-import CopyButton from '../_shared/CopyButton';
 import { useRouter } from 'next/router';
 
 const MainOptions: React.FC<any> = ({
@@ -19,7 +19,6 @@ const MainOptions: React.FC<any> = ({
   topicsTree,
   topicOnClick,
   searchPage,
-  page,
 }) => {
   const router = useRouter();
 
@@ -128,16 +127,14 @@ const MainOptions: React.FC<any> = ({
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <div className="flex items-center mb-6">
+        <div className="lg:flex justify-between items-center mb-6">
           <h1 className="font-semibold text-2xl sm:text-3xl">
             Explore Top Datasets In This Theme ({activeTopic.package_count})
           </h1>
           <span className="ml-3 select-none">
-            <CopyButton
-              content={document.location.href}
-              hintBeforeCopy="Click to copy this page's URL"
-              hintAfterCopy="Copied"
-            ></CopyButton>
+            <CopyButton content={document.location.href}>
+              Copy this page{"'"}s URL
+            </CopyButton>
           </span>
         </div>
         <DatasetsList
