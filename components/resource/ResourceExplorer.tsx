@@ -19,8 +19,6 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
   resources,
   columnHeaderStyle,
 }) => {
-  const router = useRouter();
-
   const [activeTable, setActiveTable] = useState(0);
   const [previewMode, setPreviewMode] = useState(true);
   const [startDate, setStartDate] = useState(new Date());
@@ -158,7 +156,7 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
             } ml-3 xl:mr-8 mr-2 text-[#255B9B] font-[Avenir] xl:text-[20px] xl:font-medium xl:text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
-            Hide / Show Column
+            Hide/Show Schema
           </button>
           <img
             src="/images/calender-icon.svg"
