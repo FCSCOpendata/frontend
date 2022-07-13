@@ -80,7 +80,8 @@ export default function SimilarDatasets({ variables }) {
           <ErrorMessage message="Error loading similar datasets" />
         )}
         {similarDatasetsResponse.loading && <Spinner />}
-        {!similarDatasetsResponse.loading && similarDatasetsResponse.data?.search.result.results
+        {!similarDatasetsResponse.loading &&
+          similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
             .map((item, index) => (
               <div
@@ -93,7 +94,8 @@ export default function SimilarDatasets({ variables }) {
                 <img
                   src={
                     fq.startsWith('groups')
-                      ? result.groups[0]?.image_url || '/images/dubai-robocop.png'
+                      ? result.groups[0]?.image_url ||
+                        '/images/dubai-robocop.png'
                       : item.organization.image || '/images/dubai-robocop.png'
                   }
                   alt={item.title}
