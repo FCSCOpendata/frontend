@@ -4,20 +4,30 @@ import Head from 'next/head';
 import Form from '../components/search/NewForm';
 import List from '../components/search/List';
 import OpenData101 from '../components/home/main/OpenData101';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
+import CopyButton from '../components/_shared/CopyButton';
+import { useRouter } from 'next/router';
 
 type Props = {
   variables: any;
 };
 
 const Search: React.FC<Props> = ({ variables }) => {
+  const router = useRouter();
+
+  const [destination, setDestination] = useState('');
+  const [amount, setAmount] = useState(0);
   const [qvariables, setQvariables] = useState(variables);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sideFilter, setSideFilter] = useState({
     organization: [],
     groups: [],
   });
+
+  useEffect(() => {
+    setDestination(document.location.href);
+  }, []);
 
   return (
     <>
@@ -29,12 +39,37 @@ const Search: React.FC<Props> = ({ variables }) => {
         setQvariables={setQvariables}
         setSideFilter={setSideFilter}
       />
-      <div className="mb-12">
+      <div className="mb-12 sm:mx-12 mt-12" id="datasets">
         <div className="px-4">
-          <List variables={qvariables} setQvariables={setQvariables} />
+          <div className="lg:flex justify-between items-center">
+            <h1 className="font-semibold text-xl sm:text-2xl">
+              {amount} dataset{amount == 1 ? '' : 's'}
+            </h1>
+            <span className="ml-3 select-none">
+              <CopyButton content={destination}>
+                Copy this page{"'"}s URL
+              </CopyButton>
+            </span>
+          </div>
+
+          <List
+            variables={qvariables}
+            noXMargin={true}
+            setQvariables={setQvariables}
+            show_amount={false}
+            setCount={setAmount}
+            onPageChange={(page) => {
+              router.query.searchPage = page + '';
+              router.push(router, undefined, { shallow: true });
+              setDestination(document.location.href);
+              document
+                .getElementById('datasets')
+                .scrollIntoView({ behavior: 'smooth' });
+            }}
+          />
         </div>
       </div>
-      <div className="px-16">
+      <div className="mx-5 sm:mx-16">
         <DeveloperExperience />
       </div>
       <OpenData101 />
