@@ -39,6 +39,7 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
             slidesPerView: 9.5,
           },
         }}
+        initialSlide={items.findIndex((item) => item.name == active.name)}
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
