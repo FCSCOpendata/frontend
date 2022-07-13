@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GET_TOPICS_QUERY, GET_TOPIC_QUERY } from '../../graphql/queries';
 import dynamic from 'next/dynamic';
 
@@ -12,8 +12,24 @@ const DatasetsList = dynamic(
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
 import { ErrorMessage } from '../../components/_shared';
 import CopyButton from '../_shared/CopyButton';
+import { useRouter } from 'next/router';
 
-const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
+const MainOptions: React.FC<any> = ({
+  topic,
+  topicsTree,
+  topicOnClick,
+  searchPage,
+}) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (searchPage) {
+      document
+        .getElementById('explore-top-datasets')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   //  Loads the selected topic
   const {
     loading: topicLoading,
@@ -112,7 +128,7 @@ const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
           </h1>
           <span className="ml-3 select-none">
             <CopyButton
-              content="teste"
+              content={document.location.href}
               hintBeforeCopy="Click to copy this page's URL"
               hintAfterCopy="Copied"
             ></CopyButton>
@@ -121,11 +137,11 @@ const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
         <DatasetsList
           // TODO: improve this logic
           topic={activeTopic?.name}
-          onPageChange={() =>
+          onPageChange={() => {
             document
               .getElementById('explore-top-datasets')
-              .scrollIntoView({ behavior: 'smooth' })
-          }
+              .scrollIntoView({ behavior: 'smooth' });
+          }}
         />
       </div>
     </>

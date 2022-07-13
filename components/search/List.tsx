@@ -3,7 +3,6 @@ import { ErrorMessage, Spinner } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
 import Pagination from './Pagination';
 import ListCard from './ListCard';
-import { useEffect, useState } from 'react';
 
 const List: React.FC<{
   //  TODO: improve this parameterization
@@ -11,7 +10,7 @@ const List: React.FC<{
   setQvariables: any;
   show_amount?: boolean;
   noXMargin?: boolean;
-  onPageChange?: () => void;
+  onPageChange?: (page: number) => void;
 }> = ({ variables, setQvariables, show_amount, noXMargin, onPageChange }) => {
   const {
     loading: loadSearch,

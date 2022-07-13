@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 const Pagination: React.FC<{
   count: number;
   setQvariables: any;
-  onPageChange?: () => void;
+  onPageChange?: (page: number) => void;
 }> = ({ count, setQvariables, onPageChange }) => {
   const pageLimit = 5;
 
@@ -35,7 +35,7 @@ const Pagination: React.FC<{
     pages.push(i);
   }
   const handleClick = (item, startRange) => {
-    if (onPageChange) onPageChange();
+    if (onPageChange) onPageChange(currentPage);
     window.localStorage.setItem('currentPage', JSON.stringify(item));
     setCurrentPage(item);
     setQvariables((prev) => {

@@ -25,10 +25,11 @@ import MainOptions from '../../components/topic/MainOptions';
 
 const Topic: React.FC<any> = ({ variables }) => {
   const router = useRouter();
-  let { topic } = router.query;
+  // eslint-disable-next-line prefer-const
+  let { searchPage, topic } = router.query;
 
   const goToTopic = (topic: any) => {
-    router.push(`${topic.name}`, undefined, { shallow: true });
+    router.push(`/topic/${topic.name}`, undefined, { shallow: true });
   };
 
   const {
@@ -43,13 +44,13 @@ const Topic: React.FC<any> = ({ variables }) => {
     error: mainTopicsError,
   } = useQuery(GET_TOPICS_QUERY, { variables });
 
-  const mainTopics = mainTopicsData.topics.result;
-  const topicsTree = topicsTreeData.topics.result;
-  topic = topic ? topic[0] : topicsTreeData.topics.result[0].name;
-
   if (topicsTreeLoading || mainTopicsLoading) return <div>Loading Topics</div>;
   if (topicstreeError || mainTopicsError)
     return <ErrorMessage message="Error loading topics." />;
+
+  const mainTopics = mainTopicsData.topics.result;
+  const topicsTree = topicsTreeData.topics.result;
+  topic = topic ? topic : topicsTreeData.topics.result[0].name;
 
   return (
     <>
@@ -71,6 +72,7 @@ const Topic: React.FC<any> = ({ variables }) => {
             topic={topic}
             topicsTree={topicsTree}
             topicOnClick={goToTopic}
+            searchPage={searchPage}
           ></MainOptions>
           <DeveloperExperience />
           <OpenData101 />
