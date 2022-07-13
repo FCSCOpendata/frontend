@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_DATASET_QUERY } from '../../graphql/queries';
+import { GET_DATASET_QUERY, SEARCH_QUERY } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
 
 export default function SimilarDatasets({ variables }) {
@@ -11,6 +12,13 @@ export default function SimilarDatasets({ variables }) {
   if (error) return <ErrorMessage message="Error loading similar datasets" />;
   if (loading) return <Spinner />;
   const { result } = data.dataset;
+
+  // Fetch datasets within given topic for similar datasets section
+  const [fq, setFq] = useState(`groups:${result.groups[0].name}`);
+  const similarDatasetsResponse = useQuery(SEARCH_QUERY, {
+    variables: { fq },
+    notifyOnNetworkStatusChange: true,
+  });
 
   return (
     <>
@@ -43,76 +51,35 @@ export default function SimilarDatasets({ variables }) {
           </div>
         </div>
       </div>
-      {/* lIST SIMILAR DATASET */}
+      {/* List similar datasets */}
       <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full mb-10">
-        <div className=" rounded-3xl relative group w-4/5 h-4/5">
-          <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px] group-hover:bg-[#80E47E] ">
-            Education
-          </span>
-          <img
-            src="/images/dubai-robocop.png"
-            alt="alt"
-            className="w-full h-full object-center rounded-2xl object-cover group-hover:opacity-90"
-          />
-          <p
-            className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-7 font-poppins font-semibold group-hover:opacity-80 group-hover:rounded-lg group-hover:bg-slate-100 group-hover:text-[#464646]
-                                font-[Avenir] group-hover:font-medium font-extrabold text-[20px]"
-          >
-            Government education - National students by Education Zone, stage,
-            level and gender
-          </p>
-        </div>
-        <div className="rounded-3xl relative group w-4/5 h-4/5">
-          <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px] group-hover:bg-[#80E47E] ">
-            Education
-          </span>
-          <img
-            src="/images/1dome.png"
-            alt="alt"
-            className="w-full h-full object-center rounded-2xl object-cover group-hover:opacity-90"
-          />
-          <p
-            className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-7 font-poppins font-semibold group-hover:opacity-80 group-hover:rounded-lg group-hover:bg-slate-100 group-hover:text-[#464646]
-                                font-[Avenir] group-hover:font-medium font-extrabold text-[20px]"
-          >
-            Government education - National students by Education Zone, stage,
-            level and gender
-          </p>
-        </div>
-        <div className="rounded-3xl relative group w-4/5 h-4/5">
-          <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px] group-hover:bg-[#80E47E] ">
-            Education
-          </span>
-          <img
-            src="/images/emirati-doctor.png"
-            alt="alt"
-            className="w-full h-full object-center rounded-2xl object-cover group-hover:opacity-90"
-          />
-          <p
-            className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-7 font-poppins font-semibold group-hover:opacity-80 group-hover:rounded-lg group-hover:bg-slate-100 group-hover:text-[#464646]
-                                font-[Avenir] group-hover:font-medium font-extrabold text-[20px]"
-          >
-            Government education - National students by Education Zone, stage,
-            level and gender
-          </p>
-        </div>
-        <div className="rounded-3xl relative group w-4/5 h-4/5">
-          <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px] group-hover:bg-[#80E47E] ">
-            Education
-          </span>
-          <img
-            src="/images/uae-students.png"
-            alt="alt"
-            className="w-full h-full object-center rounded-2xl object-cover group-hover:opacity-90"
-          />
-          <p
-            className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-7 font-poppins font-semibold group-hover:opacity-80 group-hover:rounded-lg group-hover:bg-slate-100 group-hover:text-[#464646]
-                                font-[Avenir] group-hover:font-medium font-extrabold text-[20px]"
-          >
-            Government education - National students by Education Zone, stage,
-            level and gender
-          </p>
-        </div>
+        {similarDatasetsResponse.error && (
+          <ErrorMessage message="Error loading similar datasets" />
+        )}
+        {similarDatasetsResponse.loading && <Spinner />}
+        {similarDatasetsResponse.data?.search.result.results
+          ?.slice(0, 4)
+          .map((item, index) => (
+            <div
+              key={index}
+              className=" rounded-3xl relative group w-4/5 h-4/5"
+            >
+              <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
+                {item.groups[0]?.title}
+              </span>
+              <img
+                src={item.groups[0]?.image_url || `/images/dubai-robocop.png`}
+                alt={item.title}
+                className="w-full h-full object-center rounded-2xl object-cover"
+              />
+              <p
+                className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
+                                  font-[Avenir]"
+              >
+                {item.title}
+              </p>
+            </div>
+          ))}
       </div>
     </>
   );

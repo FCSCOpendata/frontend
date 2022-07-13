@@ -174,6 +174,7 @@ export const SEARCH_QUERY = gql`
             description
             image: image_url
           }
+          groups
         }
       }
     }
