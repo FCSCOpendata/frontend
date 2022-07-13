@@ -12,10 +12,12 @@ import { ErrorMessage, Spinner } from '../_shared';
  * data filtering, sorting, e.t.c
  * @param resources: A array of frictionless datapackage resource
  */
-const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
-  resources,
-  columnHeaderStyle,
-}) => {
+const DataExplorer: React.FC<{
+  resources: any[];
+  columnHeaderStyle: any;
+  enableSelect: boolean;
+  setSelectData: any;
+}> = ({ resources, columnHeaderStyle, enableSelect, setSelectData }) => {
   const router = useRouter();
 
   const [activeTable, setActiveTable] = useState(0);
@@ -103,39 +105,65 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
       .catch(console.error);
   };
 
+  const checkFunc = (id, resourcePath, e) => {
+    if (e.target.checked) {
+      setSelectData((prev) => {
+        const newData = { ...prev };
+        newData[id] = resourcePath;
+        return { ...newData };
+      });
+    } else {
+      setSelectData((prev) => {
+        const newData = { ...prev };
+        delete newData[id];
+        return newData;
+      });
+    }
+  };
+
   return (
     <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
       <div className="xl:col-span-3 mr-4 w-1/2 ">
         <div className="flex-col">
           {resources.map((resource, i) => {
             return (
-              <button
-                key={i}
-                className={`flex flex-col rounded-lg w-1/2 relative p-4 ${
-                  i === activeTable
-                    ? 'border-b-4 rounded-b-xl border-b-[#22B373]'
-                    : ''
-                } bg-[#F7FAFC] w-full mb-4 text-left`}
-                onClick={() => handleTableNameClick(i)}
-              >
-                {i === activeTable ? (
-                  <img
-                    src="/images/checked-icon.svg"
-                    alt="orgs"
-                    className="w-5 h-4 mb-4 absolute -top-2 -right-2"
+              <>
+                {enableSelect && (
+                  <input
+                    type="checkbox"
+                    key={`${i}-e`}
+                    className="relative w-5 h-4 -mb-4 z-20 focus:outline-none"
+                    onChange={(e) => checkFunc(i, resources[i].path, e)}
                   />
-                ) : (
-                  ''
                 )}
+                <button
+                  key={i}
+                  className={`flex flex-col z-10 rounded-lg w-1/2 relative p-4 ${
+                    i === activeTable
+                      ? 'border-b-4 rounded-b-xl border-b-[#22B373]'
+                      : ''
+                  } bg-[#F7FAFC] w-full mb-4 text-left`}
+                  onClick={() => handleTableNameClick(i)}
+                >
+                  {i === activeTable ? (
+                    <img
+                      src="/images/checked-icon.svg"
+                      alt="orgs"
+                      className="w-5 h-4 mb-4 absolute -top-2 -right-2"
+                    />
+                  ) : (
+                    ''
+                  )}
 
-                <img
-                  src={`/images/${resource.format.toLowerCase()}-icon.svg`}
-                  alt="orgs"
-                  className="w-10 mb-4"
-                />
+                  <img
+                    src={`/images/${resource.format.toLowerCase()}-icon.svg`}
+                    alt="orgs"
+                    className="w-10 mb-4"
+                  />
 
-                <p className="p-0 ml-0">{resource.title || resource.name}</p>
-              </button>
+                  <p className="p-0 ml-0">{resource.title || resource.name}</p>
+                </button>
+              </>
             );
           })}
         </div>
