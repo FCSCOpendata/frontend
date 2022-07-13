@@ -14,11 +14,21 @@ export default function SimilarDatasets({ variables }) {
   const { result } = data.dataset;
 
   // Fetch datasets within given topic for similar datasets section
-  const [fq, setFq] = useState(`groups:${result.groups[0].name}`);
+  const [fq, setFq] = useState(`groups:${result.groups[0]?.name}`);
   const similarDatasetsResponse = useQuery(SEARCH_QUERY, {
     variables: { fq },
     notifyOnNetworkStatusChange: true,
   });
+
+  const baseClassName =
+    'flex items-baseline py-4 px-4 justify-start font-[Avenir] text-[18px] font-medium ';
+
+  const getClassName = (type) => {
+    const additionalClassName = fq.startsWith(type)
+      ? 'bg-button-gradient rounded-2xl text-white'
+      : '';
+    return baseClassName + additionalClassName;
+  };
 
   return (
     <>
@@ -28,11 +38,17 @@ export default function SimilarDatasets({ variables }) {
             <p>Explore Similar Datasets</p>
           </div>
           <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
-            <button className="flex items-baseline py-4 px-4 bg-button-gradient rounded-2xl text-white justify-start font-[Avenir] text-[18px] font-medium">
+            <button
+              onClick={() => setFq(`groups:${result.groups[0]?.name}`)}
+              className={getClassName('groups')}
+            >
               <img src="/images/edu-icon.svg" alt="orgs" className="w-4 h-4" />
               {result.groups[0]?.title} Topic
             </button>
-            <button className="flex items-baseline py-4 px-4 text-[#202020] justify-start font-[Avenir] text-[18px] font-medium">
+            <button
+              onClick={() => setFq(`tags:"${result.tags[0]?.name}"`)}
+              className={getClassName('tags')}
+            >
               <img
                 src="/images/ball-icon.svg"
                 alt="orgs"
@@ -40,7 +56,10 @@ export default function SimilarDatasets({ variables }) {
               />
               {result.tags[0]?.display_name} Tag
             </button>
-            <button className="flex items-baseline py-4 px-4 text-[#202020] justify-start font-[Avenir] text-[18px] font-medium">
+            <button
+              onClick={() => setFq(`organization:${result.organization.name}`)}
+              className={getClassName('organization')}
+            >
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
@@ -65,10 +84,10 @@ export default function SimilarDatasets({ variables }) {
               className=" rounded-3xl relative group w-4/5 h-4/5"
             >
               <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
-                {item.groups[0]?.title}
+                Dataset
               </span>
               <img
-                src={item.groups[0]?.image_url || `/images/dubai-robocop.png`}
+                src={`/images/dubai-robocop.png`}
                 alt={item.title}
                 className="w-full h-full object-center rounded-2xl object-cover"
               />
