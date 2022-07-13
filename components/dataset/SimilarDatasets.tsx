@@ -42,7 +42,11 @@ export default function SimilarDatasets({ variables }) {
               onClick={() => setFq(`groups:${result.groups[0]?.name}`)}
               className={getClassName('groups')}
             >
-              <img src="/images/edu-icon.svg" alt="orgs" className="w-4 h-4" />
+              <img
+                src="/images/edu-icon.svg"
+                alt="orgs"
+                className="w-4 h-4 mr-2"
+              />
               {result.groups[0]?.title} Topic
             </button>
             <button
@@ -52,7 +56,7 @@ export default function SimilarDatasets({ variables }) {
               <img
                 src="/images/ball-icon.svg"
                 alt="orgs"
-                className="w-4 h-4 text-white"
+                className="w-4 h-4 text-white mr-2"
               />
               {result.tags[0]?.display_name} Tag
             </button>
@@ -63,7 +67,7 @@ export default function SimilarDatasets({ variables }) {
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
-                className="w-4 h-4 text-white"
+                className="w-4 h-4 text-white mr-2"
               />
               {result.organization.title}
             </button>
@@ -91,12 +95,13 @@ export default function SimilarDatasets({ variables }) {
                 alt={item.title}
                 className="w-full h-full object-center rounded-2xl object-cover"
               />
-              <p
+              <a
+                href={`/@${item.organization.name}/${item.name}`}
                 className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
                                   font-[Avenir]"
               >
                 {item.title}
-              </p>
+              </a>
             </div>
           ))}
       </div>
