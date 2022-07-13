@@ -22,7 +22,6 @@ const List: React.FC<{
 }) => {
   const {
     loading: loadSearch,
-
     error: errorSearch,
     data: dataSearch,
   } = useQuery(SEARCH_QUERY, {

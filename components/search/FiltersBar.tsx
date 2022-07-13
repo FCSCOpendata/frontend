@@ -9,10 +9,14 @@ import {
 import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
-export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
+export default function FiltersBar({
+  qvariables,
+  setQvariables,
+  setSideFilter,
+  filters,
+}) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
@@ -119,6 +123,11 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
 
   const topics = dataTopics.topics.result;
 
+  const regexForGroups = /((\bgroups\b):\(([^)]+)\))/;
+  const matchesForGroups = regexForGroups.exec(qvariables.fq);
+  const regexForOrgs = /((\borganization\b):\(([^)]+)\))/;
+  const matchesForOrgs = regexForOrgs.exec(qvariables.fq);
+
   return (
     <div className="">
       {filters === 'Topics' && (
@@ -160,6 +169,9 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
                   id={`checkbox-${index}`}
                   className="peer hidden"
                   onChange={(e) => filterSearch(e, 'groups', sub.name)}
+                  checked={
+                    matchesForGroups && matchesForGroups[3].includes(sub.name)
+                  }
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
@@ -192,6 +204,9 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
                 id={`checkbox-${index}`}
                 className="peer hidden"
                 onChange={(e) => filterSearch(e, 'organization', org.name)}
+                checked={
+                  matchesForOrgs && matchesForOrgs[3].includes(org.name)
+                }
               />
               <label
                 htmlFor={`checkbox-${index}`}
