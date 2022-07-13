@@ -9,20 +9,13 @@ import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
 export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
-  // const [showMore, setShowMore] = useState({ orgs: 5, collections: 5 });
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
-    const orgsQuery = useQuery(GET_ORGS_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
-    const collectionsQuery = useQuery(GET_COLLECTIONS_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
-
-    const topicsQuery = useQuery(GET_TOPICS_TREE_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
+    const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
+    const collectionsQuery = useQuery(GET_COLLECTIONS_QUERY, variables);
+    const topicsQuery = useQuery(GET_TOPICS_TREE_QUERY, variables);
 
     return [orgsQuery, collectionsQuery, topicsQuery];
   };
@@ -41,6 +34,8 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   if (errorCollections)
     return <ErrorMessage message="Error loading Collections" />;
   if (loadCollections) return <Spinner />;
+  if (errorTopics) return <ErrorMessage message="Error loading topics tree" />;
+  if (loadTopics) return <Spinner />;
   const orgsResults = dataOrgs.orgs.result;
   const collectionsResults = dataCollections.collections.result;
 
