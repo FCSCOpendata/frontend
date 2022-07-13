@@ -141,6 +141,7 @@ export const GET_DATASET_QUERY = gql`
           title
           image: image_url
         }
+        groups
         tags
       }
     }
@@ -173,6 +174,7 @@ export const SEARCH_QUERY = gql`
             description
             image: image_url
           }
+          groups
         }
       }
     }

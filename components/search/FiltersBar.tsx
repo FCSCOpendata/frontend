@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   GET_ORGS_QUERY,
   GET_COLLECTIONS_QUERY,
@@ -8,21 +9,19 @@ import {
 import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
-export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
-  // const [showMore, setShowMore] = useState({ orgs: 5, collections: 5 });
+export default function FiltersBar({
+  qvariables,
+  setQvariables,
+  setSideFilter,
+  filters,
+}) {
+  const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
-    const orgsQuery = useQuery(GET_ORGS_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
-    const collectionsQuery = useQuery(GET_COLLECTIONS_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
-
-    const topicsQuery = useQuery(GET_TOPICS_TREE_QUERY, {
-      notifyOnNetworkStatusChange: true,
-    });
+    const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
+    const collectionsQuery = useQuery(GET_COLLECTIONS_QUERY, variables);
+    const topicsQuery = useQuery(GET_TOPICS_TREE_QUERY, variables);
 
     return [orgsQuery, collectionsQuery, topicsQuery];
   };
@@ -41,6 +40,8 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   if (errorCollections)
     return <ErrorMessage message="Error loading Collections" />;
   if (loadCollections) return <Spinner />;
+  if (errorTopics) return <ErrorMessage message="Error loading topics tree" />;
+  if (loadTopics) return <Spinner />;
   const orgsResults = dataOrgs.orgs.result;
   const collectionsResults = dataCollections.collections.result;
 
@@ -83,7 +84,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   };
 
   const generateFq = (sideFilter) => {
-    let fq = '';
+    let fq = query.fq || '';
     let keyIndex = 0;
     for (const key of Object.keys(sideFilter)) {
       if (sideFilter[key].length > 0) {
@@ -101,7 +102,7 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
         keyIndex += 1;
       }
     }
-    return fq.trim();
+    return (fq as string).trim();
   };
 
   const findAndAddDetails = (topics, coll) => {
@@ -121,6 +122,11 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
   });
 
   const topics = dataTopics.topics.result;
+
+  const regexForGroups = /((\bgroups\b):\(([^)]+)\))/;
+  const matchesForGroups = regexForGroups.exec(qvariables.fq);
+  const regexForOrgs = /((\borganization\b):\(([^)]+)\))/;
+  const matchesForOrgs = regexForOrgs.exec(qvariables.fq);
 
   return (
     <div className="">
@@ -153,20 +159,23 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
               >
                 <img
                   src={`/images/topics/topic-1.png`}
-                  alt=""
-                  className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
+                  alt={sub.title}
+                  className="absolute left-0 top-0 w-full h-full object-cover z-0"
                 />
-                <span className="absolute left-0 top-0 w-full h-full bg-gray-400/60" />
+                <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
                 <input
                   type="checkbox"
                   name={sub.title}
                   id={`checkbox-${index}`}
                   className="peer hidden"
                   onChange={(e) => filterSearch(e, 'groups', sub.name)}
+                  checked={
+                    matchesForGroups && matchesForGroups[3].includes(sub.name)
+                  }
                 />
                 <label
                   htmlFor={`checkbox-${index}`}
-                  className="text-white text-sm font-semibold w-full h-full p-4 cursor-pointer select-none z-10"
+                  className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
                 >
                   {sub.title}
                 </label>
@@ -186,19 +195,22 @@ export default function FiltersBar({ setQvariables, setSideFilter, filters }) {
               <img
                 src={`/images/topics/topic-2.png`}
                 alt=""
-                className="absolute left-0 top-0 w-full h-full object-cover z-0 ease-in-out duration-300 group-hover:scale-110"
+                className="absolute left-0 top-0 w-full h-full object-cover z-0"
               />
-              <span className="absolute left-0 top-0 w-full h-full bg-gray-400/60" />
+              <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
               <input
                 type="checkbox"
                 name={org.title}
                 id={`checkbox-${index}`}
                 className="peer hidden"
                 onChange={(e) => filterSearch(e, 'organization', org.name)}
+                checked={
+                  matchesForOrgs && matchesForOrgs[3].includes(org.name)
+                }
               />
               <label
                 htmlFor={`checkbox-${index}`}
-                className="text-white text-sm font-semibold w-full h-full p-4 cursor-pointer z-10"
+                className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
               >
                 {org.title}
               </label>

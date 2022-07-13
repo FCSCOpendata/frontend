@@ -22,7 +22,7 @@ const Search: React.FC<Props> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Search | Bayanat</title>
+        <title>Search Datasets | Open Data UAE</title>
       </Head>
       <Form
         variables={qvariables}

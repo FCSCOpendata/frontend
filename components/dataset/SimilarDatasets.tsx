@@ -1,35 +1,116 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_ORG_WITH_PACKAGES_QUERY } from '../../graphql/queries';
+import { GET_DATASET_QUERY, SEARCH_QUERY } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
-import Link from 'next/link';
 
-export default function SimilarDatasets({ organization }) {
-  const orgName = organization.name;
-  const { loading, error, data } = useQuery(GET_ORG_WITH_PACKAGES_QUERY, {
-    variables: { id: orgName },
+export default function SimilarDatasets({ variables }) {
+  const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
+    variables,
     notifyOnNetworkStatusChange: true,
   });
 
   if (error) return <ErrorMessage message="Error loading similar datasets" />;
   if (loading) return <Spinner />;
-  const orgPackages = data.org.result.packages.slice(0, 2);
+  const { result } = data.dataset;
+
+  // Fetch datasets within given topic for similar datasets section
+  const [fq, setFq] = useState(`groups:${result.groups[0]?.name}`);
+  const similarDatasetsResponse = useQuery(SEARCH_QUERY, {
+    variables: { fq },
+    notifyOnNetworkStatusChange: true,
+  });
+
+  const baseClassName =
+    'flex items-baseline py-4 px-4 justify-start font-[Avenir] text-[18px] font-medium ';
+
+  const getClassName = (type) => {
+    const additionalClassName = fq.startsWith(type)
+      ? 'bg-button-gradient rounded-2xl text-white'
+      : '';
+    return baseClassName + additionalClassName;
+  };
+
   return (
-    <div className="mt-24">
-      <h3 className="text-2xl font-bold text-gray-900 capitalize mb-8">
-        More Datasets By {organization.title}
-      </h3>
-      <div className="flex flex-1 space-x-5">
-        {orgPackages.map((dataset, index) => (
-          <Link key={index} href={`/organization/@${orgName}/${dataset.name}`}>
-            {/* eslint-disable-next-line */}
-            <a className="flex bg-blue-100 rounded-2xl capitalize px-6 py-2 text-center">
-              <span className="flex-1 text-xs text-blue-800 font-bold">
-                {dataset.title}
-              </span>
-            </a>
-          </Link>
-        ))}
+    <>
+      <div className="flex justify-center w-full xl:p-10">
+        <div className="flex flex-col items-between h-full xl:w-2/3 mb-10">
+          <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
+            <p>Explore Similar Datasets</p>
+          </div>
+          <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
+            <button
+              onClick={() => setFq(`groups:${result.groups[0]?.name}`)}
+              className={getClassName('groups')}
+            >
+              <img
+                src="/images/edu-icon.svg"
+                alt="orgs"
+                className="w-4 h-4 mr-2"
+              />
+              {result.groups[0]?.title} Topic
+            </button>
+            <button
+              onClick={() => setFq(`tags:"${result.tags[0]?.name}"`)}
+              className={getClassName('tags')}
+            >
+              <img
+                src="/images/ball-icon.svg"
+                alt="orgs"
+                className="w-4 h-4 text-white mr-2"
+              />
+              {result.tags[0]?.display_name} Tag
+            </button>
+            <button
+              onClick={() => setFq(`organization:${result.organization.name}`)}
+              className={getClassName('organization')}
+            >
+              <img
+                src="/images/library-icon.svg"
+                alt="orgs"
+                className="w-4 h-4 text-white mr-2"
+              />
+              {result.organization.title}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+      {/* List similar datasets */}
+      <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full mb-10">
+        {similarDatasetsResponse.error && (
+          <ErrorMessage message="Error loading similar datasets" />
+        )}
+        {similarDatasetsResponse.loading && <Spinner />}
+        {!similarDatasetsResponse.loading &&
+          similarDatasetsResponse.data?.search.result.results
+            ?.slice(0, 4)
+            .map((item, index) => (
+              <div
+                key={index}
+                className=" rounded-3xl relative group w-4/5 h-4/5"
+              >
+                <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
+                  Dataset
+                </span>
+                <img
+                  src={
+                    fq.startsWith('groups')
+                      ? result.groups[0]?.image_url ||
+                        '/images/dubai-robocop.png'
+                      : item.organization.image || '/images/dubai-robocop.png'
+                  }
+                  alt={item.title}
+                  className="w-full h-full object-center rounded-2xl object-cover"
+                />
+                <a
+                  href={`/@${item.organization.name}/${item.name}`}
+                  className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
+                                    font-[Avenir]"
+                >
+                  {item.title}
+                </a>
+              </div>
+            ))}
+      </div>
+    </>
   );
 }

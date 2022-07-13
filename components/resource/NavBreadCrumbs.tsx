@@ -34,7 +34,21 @@ export default function NavBreadCrumbs({ navInfo }) {
           <li>
             <span>&gt;</span>
           </li>
-          <li>{navInfo.datasetTitle}</li>
+          <li>
+            <Link href={`/@${navInfo.orgName}/${navInfo.datasetName}`}>
+              <a className="group relative">
+                {navInfo.datasetTitle}
+                <span
+                  className={`hidden lg:opacity-0 lg:flex absolute left-1 right-1 -bottom-2.5 h-0.5 ease-in-out duration-300
+                  group-hover:bg-nav-underline lg:group-hover:opacity-100`}
+                />
+              </a>
+            </Link>
+          </li>
+          <li>
+            <span>&gt;</span>
+          </li>
+          <li>{navInfo.resourceTitle}</li>
         </ol>
       </div>
     </div>

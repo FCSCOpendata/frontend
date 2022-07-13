@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import { initializeApollo } from '../../../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
-import NavBreadCrumbs from '../../../../../components/dataset/NavBreadCrumbs';
+import NavBreadCrumbs from '../../../../../components/resource/NavBreadCrumbs';
 import DataExplorer from '../../../../../components/resource/ResourceExplorer';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
@@ -26,7 +26,9 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
       </Head>
       <NavBreadCrumbs
         navInfo={{
+          resourceTitle: resource.title || resource.name,
           datasetTitle: result.title,
+          datasetName: result.name,
           orgName: result.organization.name,
           orgTitle: result.organization.title,
         }}

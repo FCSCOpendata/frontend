@@ -1,71 +1,65 @@
+import Link from 'next/link';
 import * as timeago from 'timeago.js';
+import { useQuery } from '@apollo/react-hooks';
+import { ErrorMessage } from '../../components/_shared';
+import { GET_DATASET_QUERY } from '../../graphql/queries';
 
-const About: React.FC<{ datasetData: any }> = ({ datasetData }) => {
-  const result = datasetData;
-  const tags = result.tags;
-  const resource_formats = result.resources.map((item) => item.format);
+const About: React.FC<{ variables: any }> = ({ variables }) => {
+  const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
+
+  if (loading) return <div>Loading</div>;
+  if (error) return <ErrorMessage message="Error loading dataset" />;
+  const { result } = data.dataset;
 
   return (
-    <div>
-      <div className="flex flex-col flex-wrap sm:pr-16">
-        <h1 className="text-4xl font-bold text-purple-800 capitalize">
-          {result.title}
+    <div className="flex flex-col mb-10">
+      <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
+        <h1 className="inline mr-4">
+          {result.title}{' '}
+          <img
+            src="/images/plant-icon.svg"
+            alt="Dataset title"
+            className="inline w-6"
+          />
         </h1>
-        <div className="inline-flex mt-4 space-x-3">
-          <img src="/images/dataset-page/location.svg" alt="location-icon" />
-          <span className="font-medium text-sm text-gray-500">Dubai, UAE</span>
+      </div>
+      <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
+        <div className="font-[Avenir] flex text-sm py-2 items-baseline">
+          <img src="/images/library-icon.svg" alt="orgs" className="w-5 h-3" />
+          <Link href={`/@${result.organization.name}`}>
+            <a href={`/@${result.organization.name}`}>
+              {result.organization.title}
+            </a>
+          </Link>
         </div>
-        <div className="inline-flex mt-4 space-x-3">
-          <img src="/images/dataset-page/category.svg" alt="category-icon" />
-          <span className="font-medium text-sm text-gray-500">
-            {result.organization.title}
-          </span>
+        <div className="font-[Avenir] flex text-sm py-2 items-baseline">
+          <img src="/images/print-icon.svg" alt="orgs" className="w-5 h-3 " />
+          <span>{'Created ' + timeago.format(result.created)}</span>
         </div>
-        <div className="inline-flex mt-4 space-x-5">
-          <img src="/images/dataset-page/time.svg" alt="time-icon" />
-          <span className="font-medium text-sm text-gray-500">
-            Last Updated: {timeago.format(result.updated)}
-          </span>
+        <div className="font-[Avenir] flex text-sm py-2 items-baseline">
+          <img src="/images/clock-icon.svg" alt="orgs" className="w-5 h-3" />
+          <span>{'Updated ' + timeago.format(result.updated)}</span>
         </div>
-        <div className="inline-flex mt-4 space-x-5">
-          <img src="/images/dataset-page/downloads.svg" alt="download-icon" />
-          <span className="font-medium text-sm text-gray-500">
-            Downloads: 2048
-          </span>
+        <div className="font-[Avenir] flex text-sm py-2 items-baseline">
+          <img src="/images/book-icon.svg" alt="orgs" className="w-5  h-3" />
+          <span>{result.license_title}</span>
         </div>
-        <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
-        <span className="mt-8 text-sm">rating goes here</span>
-        <hr className="inline-block align-middle w-3/4 mt-8 h-0.5 border bg-gray-100 rounded" />
-        <div className="mt-4 text-sm sm:w-3/4 leading-relaxed line-clamp-6">
-          {result.description || 'This dataset does not have a description'}
-        </div>
-        <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
-        <div className="grid grid-cols-2 grid-rows-auto gap-4 mt-4 w-3/4">
-          {tags.length == 0
-            ? 'No tags available'
-            : tags.map((keyword, index) => (
-                <button
-                  key={index}
-                  className="bg-blue-200 rounded-2xl capitalize text-center appearance-none focus:outline-none focus:bg-blue-400"
-                >
-                  <span className="text-xs text-blue-800 font-semibold">
-                    {keyword.display_name}
-                  </span>
-                </button>
-              ))}
-        </div>
-        <hr className="inline-block align-middle w-3/4 mt-6 h-0.5 border bg-gray-100 rounded" />
-
-        <ul className="mt-6 grid grid-cols-3 w-3/4 auto-rows-auto gap-2">
-          {resource_formats.map((format, index) => (
-            <li
-              key={index}
-              className="bg-green-400 rounded-xl text-white uppercase text-center"
+      </div>
+      <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
+        {result.description?.replace(/<[^>]*>?/gm, '') ||
+          'This dataset does not have a description yet.'}
+      </article>
+      <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
+        {result.tags.map((tag, index) => (
+          <Link key={`tag-${index}`} href={`/search?fq=tags:"${tag.name}"`}>
+            <a
+              href={`/search?fq=tags:"${tag.name}"`}
+              className="rounded-full bg-[#80E47E] py-2 px-4 mr-4"
             >
-              {format}
-            </li>
-          ))}
-        </ul>
+              {tag.title || tag.name}
+            </a>
+          </Link>
+        ))}
       </div>
     </div>
   );

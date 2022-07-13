@@ -99,6 +99,7 @@ const SearchForm: React.FC<{
       </div>
       <div className="mt-4 z-10">
         <FiltersBar
+          qvariables={variables}
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
           filters={filter}
