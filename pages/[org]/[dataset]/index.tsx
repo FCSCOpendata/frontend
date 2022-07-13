@@ -2,12 +2,11 @@
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import Link from 'next/link';
-import * as timeago from 'timeago.js';
 import { SelectorIcon, CloudDownloadIcon } from '@heroicons/react/outline';
 import { initializeApollo } from '../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../graphql/queries';
 import NavBreadCrumbs from '../../../components/dataset/NavBreadCrumbs';
+import About from '../../../components/dataset/About';
 import { ErrorMessage } from '../../../components/_shared';
 import DataExplorer from '../../../components/dataset/DataExplorer';
 import OpenData101 from '../../../components/home/main/OpenData101';
@@ -35,70 +34,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
 
       <main className="flex flex-wrap px-12 mb-70">
         {/* Dataset About section */}
-        <div className="flex flex-col mb-10">
-          <div className="flex flex-row mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px]">
-            <h1 className="inline mr-4">
-              {result.title}{' '}
-              <img
-                src="/images/plant-icon.svg"
-                alt="Dataset title"
-                className="inline w-6"
-              />
-            </h1>
-          </div>
-          <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
-            <div className="font-[Avenir] flex text-sm py-2 items-baseline">
-              <img
-                src="/images/library-icon.svg"
-                alt="orgs"
-                className="w-5 h-3"
-              />
-              <Link href={`/@${result.organization.name}`}>
-                <a>{result.organization.title}</a>
-              </Link>
-            </div>
-            <div className="font-[Avenir] flex text-sm py-2 items-baseline">
-              <img
-                src="/images/print-icon.svg"
-                alt="orgs"
-                className="w-5 h-3 "
-              />
-              <span>{'Created ' + timeago.format(result.created)}</span>
-            </div>
-            <div className="font-[Avenir] flex text-sm py-2 items-baseline">
-              <img
-                src="/images/clock-icon.svg"
-                alt="orgs"
-                className="w-5 h-3"
-              />
-              <span>{'Updated ' + timeago.format(result.updated)}</span>
-            </div>
-            <div className="font-[Avenir] flex text-sm py-2 items-baseline">
-              <img
-                src="/images/book-icon.svg"
-                alt="orgs"
-                className="w-5  h-3"
-              />
-              <span>{result.license_title}</span>
-            </div>
-          </div>
-          <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
-            {result.description?.replace(/<[^>]*>?/gm, '') ||
-              'This dataset does not have a description yet.'}
-          </article>
-          <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
-            {result.tags.map((tag, index) => (
-              <Link
-                key={`tag-${index}`}
-                href={`/search?fq=tags:"${tag.name}"`}
-              >
-                <a className="rounded-full bg-[#80E47E] py-2 px-4 mr-4">
-                  {tag.title || tag.name}
-                </a>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <About variables={variables} />
         {/* Resource display */}
         <div className="flex flex-col w-full">
           <div className="flex flex-row items-baseline font-[Avenir] font-medium text-[16px] text-[#4D4D4D] leading-6 mb-4">
@@ -116,7 +52,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Similar Dataset */}
-        <div className="flex  xl:justify-end justify-start w-full xl:p-10">
+        <div className="flex justify-center w-full xl:p-10">
           <div className="flex flex-col items-between h-full xl:w-1/2 mb-10">
             <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
               <p>Explore Similar Datasets</p>
