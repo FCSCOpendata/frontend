@@ -76,7 +76,7 @@ const MainOptions: React.FC<any> = ({
         //  NOTE: this timeout might not be ideal
         //  but without it there must be  another
         //  wait to wait for the datasets loading
-      }, 500);
+      }, 1000);
     }
   }, [subtopicsLoading]);
 
