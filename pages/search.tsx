@@ -15,6 +15,7 @@ type Props = {
 
 const Search: React.FC<Props> = ({ variables }) => {
   const router = useRouter();
+  const { searchPage } = router.query;
 
   const [destination, setDestination] = useState('');
   const [amount, setAmount] = useState(0);
@@ -27,6 +28,19 @@ const Search: React.FC<Props> = ({ variables }) => {
 
   useEffect(() => {
     setDestination(document.location.href);
+  }, []);
+
+  useEffect(() => {
+    if (searchPage) {
+      setTimeout(() => {
+        document
+          .getElementById('datasets')
+          .scrollIntoView({ behavior: 'smooth' });
+        //  NOTE: this timeout might not be ideal
+        //  but without it there must be  another
+        //  wait to wait for the datasets loading
+      }, 500);
+    }
   }, []);
 
   return (
@@ -66,6 +80,7 @@ const Search: React.FC<Props> = ({ variables }) => {
                 .getElementById('datasets')
                 .scrollIntoView({ behavior: 'smooth' });
             }}
+            page={searchPage ? Number(searchPage) : undefined}
           />
         </div>
       </div>

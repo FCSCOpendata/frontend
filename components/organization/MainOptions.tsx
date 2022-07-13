@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   GET_ORGS_FULL_INFO_QUERY,
   GET_ORG_FULL_INFO_QUERY,
@@ -15,8 +15,13 @@ const OrgHeader = dynamic(
 const SubOrgsCarousel = dynamic(() => import('./SubOrgsCarousel'));
 
 import { ErrorMessage } from '../../components/_shared';
+import { useRouter } from 'next/router';
+import CopyButton from '../_shared/CopyButton';
 
 const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
+  const router = useRouter();
+  const { searchPage } = router.query;
+
   const {
     loading: orgLoading,
     error: orgError,
@@ -60,6 +65,19 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
     },
   });
 
+  useEffect(() => {
+    if (searchPage && !subOrgsLoading) {
+      setTimeout(() => {
+        document
+          .getElementById('explore-top-datasets')
+          .scrollIntoView({ behavior: 'smooth' });
+        //  NOTE: this timeout might not be ideal
+        //  but without it there must be  another
+        //  wait to wait for the datasets loading
+      }, 1000);
+    }
+  }, [subOrgsLoading]);
+
   if (subOrgsLoading || orgLoading) return <div>Loading Organization</div>;
   if (subOrgsError || orgError)
     return <ErrorMessage message="Error loading organization." />;
@@ -80,17 +98,27 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <h1 className="font-semibold text-3xl mb-6">
-          Explore Top Datasets In This Theme ({activeOrg?.package_count})
-        </h1>
+        <div className="lg:flex justify-between items-center mb-6">
+          <h1 className="font-semibold text-2xl sm:text-3xl">
+            Explore Top Datasets In This Theme ({activeOrg?.package_count})
+          </h1>
+          <span className="ml-3 select-none">
+            <CopyButton content={document.location.href}>
+              Copy this page{"'"}s URL
+            </CopyButton>
+          </span>
+        </div>
         <DatasetsList
           // TODO: improve this logic
           org={activeOrg?.name}
-          onPageChange={() =>
+          onPageChange={(page) => {
+            router.query.searchPage = page + '';
+            router.push(router, undefined, { shallow: true });
             document
               .getElementById('explore-top-datasets')
-              .scrollIntoView({ behavior: 'smooth' })
-          }
+              .scrollIntoView({ behavior: 'smooth' });
+          }}
+          page={searchPage}
         />
       </div>
     </>
