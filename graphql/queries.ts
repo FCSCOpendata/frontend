@@ -141,6 +141,7 @@ export const GET_DATASET_QUERY = gql`
           title
           image: image_url
         }
+        groups
         tags
       }
     }
