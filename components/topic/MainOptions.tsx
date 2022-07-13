@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GET_TOPICS_QUERY, GET_TOPIC_QUERY } from '../../graphql/queries';
 import dynamic from 'next/dynamic';
 
@@ -11,8 +11,18 @@ const DatasetsList = dynamic(
 );
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
 import { ErrorMessage } from '../../components/_shared';
+import CopyButton from '../_shared/CopyButton';
+import { useRouter } from 'next/router';
 
-const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
+const MainOptions: React.FC<any> = ({
+  topic,
+  topicsTree,
+  topicOnClick,
+  searchPage,
+  page,
+}) => {
+  const router = useRouter();
+
   //  Loads the selected topic
   const {
     loading: topicLoading,
@@ -57,6 +67,19 @@ const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
       groups: `[${subtopicsFilter.join(',')}]`,
     },
   });
+
+  useEffect(() => {
+    if (searchPage && !subtopicsLoading) {
+      setTimeout(() => {
+        document
+          .getElementById('explore-top-datasets')
+          .scrollIntoView({ behavior: 'smooth' });
+        //  NOTE: this timeout might not be ideal
+        //  but without it there must be  another
+        //  wait to wait for the datasets loading
+      }, 500);
+    }
+  }, [subtopicsLoading]);
 
   if (topicError || subtopicsError)
     return <ErrorMessage message="Error loading topics." />;
@@ -104,13 +127,29 @@ const MainOptions: React.FC<any> = ({ topic, topicsTree, topicOnClick }) => {
         </div>
       )}
 
-      <div className="mb-20">
-        <h1 className="font-semibold text-3xl mb-6">
-          Explore Top Datasets In This Theme ({activeTopic.package_count})
-        </h1>
+      <div className="mb-20" id="explore-top-datasets">
+        <div className="flex items-center mb-6">
+          <h1 className="font-semibold text-2xl sm:text-3xl">
+            Explore Top Datasets In This Theme ({activeTopic.package_count})
+          </h1>
+          <span className="ml-3 select-none">
+            <CopyButton
+              content={document.location.href}
+              hintBeforeCopy="Click to copy this page's URL"
+              hintAfterCopy="Copied"
+            ></CopyButton>
+          </span>
+        </div>
         <DatasetsList
-          // TODO: improve this logic
           topic={activeTopic?.name}
+          onPageChange={(page) => {
+            router.query.searchPage = page + '';
+            router.push(router, undefined, { shallow: true });
+            document
+              .getElementById('explore-top-datasets')
+              .scrollIntoView({ behavior: 'smooth' });
+          }}
+          page={searchPage}
         />
       </div>
     </>

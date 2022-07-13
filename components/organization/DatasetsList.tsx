@@ -1,11 +1,11 @@
 import SharedDatasetsList from '../_shared/DatasetsList';
 
-const DatasetsList: React.FC<any> = ({ org }) => {
+const DatasetsList: React.FC<any> = ({ org, onPageChange }) => {
   const fq = `organization:${org}`;
 
   return (
     <>
-      <SharedDatasetsList fq={fq} />
+      <SharedDatasetsList onPageChange={onPageChange} fq={fq} />
     </>
   );
 };

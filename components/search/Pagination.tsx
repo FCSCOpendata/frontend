@@ -2,23 +2,33 @@ import { useState, useEffect } from 'react';
 const Pagination: React.FC<{
   count: number;
   setQvariables: any;
-}> = ({ count, setQvariables }) => {
+  onPageChange?: (page: number) => void;
+  initAtPage?: number;
+}> = ({ count, setQvariables, onPageChange, initAtPage }) => {
   const pageLimit = 5;
 
   const [start, setStart] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    setStart(JSON.parse(window.localStorage.getItem('start')));
-  }, []);
+    if (initAtPage && initAtPage <= count) {
+      const page = Number(initAtPage);
+      const groupIdx = Math.floor(page * pageLimit - pageLimit);
+      handleClick(page, groupIdx);
+    }
+  }, [count]);
 
-  useEffect(() => {
-    setCurrentPage(JSON.parse(window.localStorage.getItem('currentPage')));
-  }, [currentPage]);
+  // useEffect(() => {
+  //   setStart(JSON.parse(window.localStorage.getItem('start')));
+  // }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem('start', JSON.stringify(start));
-  }, [start]);
+  // useEffect(() => {
+  //   setCurrentPage(JSON.parse(window.localStorage.getItem('currentPage')));
+  // }, [currentPage]);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem('start', JSON.stringify(start));
+  // }, [start]);
 
   const nextPage = () => setStart((page) => page + pageLimit);
   const prevPage = () => setStart((page) => page - pageLimit);
@@ -34,7 +44,7 @@ const Pagination: React.FC<{
     pages.push(i);
   }
   const handleClick = (item, startRange) => {
-    window.localStorage.setItem('currentPage', JSON.stringify(item));
+    //window.localStorage.setItem('currentPage', JSON.stringify(item));
     setCurrentPage(item);
     setQvariables((prev) => {
       return {
@@ -42,6 +52,7 @@ const Pagination: React.FC<{
         start: startRange,
       };
     });
+    if (onPageChange) onPageChange(item);
   };
 
   return (
@@ -70,29 +81,30 @@ const Pagination: React.FC<{
           Prev
         </span>
       </button>
-      {pageGroup().map((pageNum, index) => {
-        return (
-          <button
-            key={index}
-            onClick={() => {
-              handleClick(pageNum, pages[pageNum - 1]);
-            }}
-            className={`mx-2 ${
-              pageNum === currentPage
-                ? 'px-3 py-0 rounded-md bg-blue-100'
-                : null
-            }`}
-          >
-            {pageNum <= pages.length ? pageNum : null}
-          </button>
-        );
-      })}
+      {count &&
+        pageGroup().map((pageNum, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                handleClick(pageNum, pages[pageNum - 1]);
+              }}
+              className={`mx-2 ${
+                pageNum === currentPage
+                  ? 'px-3 py-0 rounded-md bg-blue-100'
+                  : null
+              }`}
+            >
+              {pageNum <= pages.length ? pageNum : null}
+            </button>
+          );
+        })}
       <button
         onClick={nextPage}
         className={`ml-6 ${
-          start === pages.length - 1 ? 'text-[#747474]' : null
+          start >= pages.length - 5 ? 'text-[#747474]' : null
         }`}
-        disabled={start === pages.length - 1}
+        disabled={start >= pages.length - 5}
       >
         <span className="flex items-center">
           {' '}
@@ -109,7 +121,7 @@ const Pagination: React.FC<{
               fillRule="evenodd"
               clipRule="evenodd"
               d="M9.84781 0.313814C10.3116 -0.104605 11.0634 -0.104605 11.5272 0.313814L18.6522 6.74239C18.8749 6.94332 19 7.21584 19 7.5C19 7.78416 18.8749 8.05668 18.6522 8.25762L11.5272 14.6862C11.0634 15.1046 10.3116 15.1046 9.84781 14.6862C9.38406 14.2678 9.38406 13.5894 9.84781 13.171L14.9456 8.57143L1.1875 8.57143C0.531662 8.57143 0 8.09173 0 7.5C0 6.90827 0.531662 6.42857 1.1875 6.42857L14.9456 6.42857L9.84781 1.82904C9.38406 1.41062 9.38406 0.732233 9.84781 0.313814Z"
-              fill={`${start === pages.length - 1 ? '#747474' : '#202020'}`}
+              fill={`${start >= pages.length - 5 ? '#747474' : '#202020'}`}
             />
           </svg>
         </span>
