@@ -102,7 +102,7 @@ export default function FiltersBar({
         keyIndex += 1;
       }
     }
-    return fq.trim();
+    return (fq as string).trim();
   };
 
   const findAndAddDetails = (topics, coll) => {
