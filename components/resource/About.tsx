@@ -1,6 +1,4 @@
-/* eslint-disable react/display-name */
 import { useQuery } from '@apollo/react-hooks';
-import * as timeago from 'timeago.js';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 
@@ -17,59 +15,42 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <Spinner />;
 
   const { result } = data.dataset;
+  // Find right resource
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
 
-  const stats = [
-    { name: 'File', stat: resource.title || resource.name },
-    { name: 'Description', stat: resource.description || 'N/A' },
-    { name: 'Size', stat: resource.size || 'N/A' },
-    {
-      name: 'Created',
-      stat: resource.created && timeago.format(resource.created),
-    },
-    {
-      name: 'Updated',
-      stat: resource.updated && timeago.format(resource.updated),
-    },
-    { name: 'Download', stat: resource.path, link: true },
-  ];
-
   return (
     <>
-      <div className="pb-5 border-b border-gray-200">
-        <h1 className="text-3xl leading-6 font-medium text-gray-900">
-          {result.title || result.name}
-        </h1>
-      </div>
-      <div className="mb-5">
-        <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          {stats.map((item) => (
-            <div
-              key={item.name}
-              className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6"
-            >
-              <dt className="text-sm font-medium text-gray-500 truncate">
-                {item.name}
-              </dt>
-              <dd className="mt-1 text-3xl font-semibold text-gray-900">
-                {item.link ? (
-                  <a
-                    href={item.stat}
-                    className="underline"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    {resource.format || 'Click'}
-                  </a>
-                ) : (
-                  item.stat
-                )}
-              </dd>
-            </div>
-          ))}
-        </dl>
+      <div className="flex flex-col mb-10">
+        <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px] items-baseline">
+          {resource.format === 'CSV' ? (
+            <img
+              src="/images/csv-icon.svg"
+              alt="Dataset title"
+              className="inline w-6 xl:mr-2"
+            />
+          ) : (
+            <img
+              src="/images/excel-icon.svg"
+              alt="Dataset title"
+              className="inline w-6 xl:mr-2"
+            />
+          )}
+
+          <h1 className="inline mr-4">
+            {resource.name}{' '}
+            <img
+              src="/images/plant-icon.svg"
+              alt="Dataset title"
+              className="inline w-6"
+            />
+          </h1>
+        </div>
+        <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
+          {resource.description?.replace(/<[^>]*>?/gm, '') ||
+            'This resource does not have a description yet.'}
+        </article>
       </div>
     </>
   );
