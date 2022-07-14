@@ -55,16 +55,9 @@ const Search: React.FC<Props> = ({ variables }) => {
       />
       <div className="mb-12 sm:mx-12 mt-12" id="datasets">
         <div className="px-4">
-          <div className="lg:flex justify-between items-center">
-            <h1 className="font-semibold text-xl sm:text-2xl">
-              {amount} dataset{amount == 1 ? '' : 's'}
-            </h1>
-            <span className="ml-3 select-none">
-              <CopyButton content={destination}>
-                Copy this page{"'"}s URL
-              </CopyButton>
-            </span>
-          </div>
+          <h1 className="font-semibold text-xl sm:text-2xl">
+            {amount} dataset{amount == 1 ? '' : 's'}
+          </h1>
 
           <List
             variables={qvariables}

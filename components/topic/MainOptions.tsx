@@ -152,16 +152,9 @@ const MainOptions: React.FC<any> = ({
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <div className="lg:flex justify-between items-center mb-6">
-          <h1 className="font-semibold text-2xl sm:text-3xl">
-            Explore Top Datasets In This Theme ({activeTopic.package_count})
-          </h1>
-          <span className="ml-3 select-none">
-            <CopyButton content={document.location.href}>
-              Copy this page{"'"}s URL
-            </CopyButton>
-          </span>
-        </div>
+        <h1 className="font-semibold text-2xl sm:text-3xl">
+          Explore Top Datasets In This Theme ({activeTopic.package_count})
+        </h1>
         <DatasetsList
           topic={activeTopic?.name}
           onPageChange={(page) => {
