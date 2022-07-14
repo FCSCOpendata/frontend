@@ -5,6 +5,18 @@ import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import BarChart from './BarChart';
 
 const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
+  const [view, setView] = useState({
+    name: 'chart',
+    title: 'My title',
+    resources,
+    specType: 'simple',
+    spec: {
+      type: 'bar',
+      group: '',
+      series: [],
+    },
+  });
+
   const { loading, error, data } = useQuery(GET_DATASTORE_DATA, {
     variables: { resource_id: resources[0].id },
     // Setting this value to true will make the component rerender when
@@ -21,20 +33,6 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
   };
   // Remove internally generated fields such as `_id`
   const fields = result.fields.filter((field) => !(field.id === '_id'));
-
-  const initialView = {
-    name: 'chart',
-    title: 'My title',
-    resources,
-    specType: 'simple',
-    spec: {
-      type: 'bar',
-      group: fields[0].id,
-      series: [fields[1].id],
-    },
-  };
-
-  const [view, setView] = useState(initialView);
 
   return (
     <>
