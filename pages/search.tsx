@@ -6,7 +6,6 @@ import List from '../components/search/List';
 import OpenData101 from '../components/home/main/OpenData101';
 import { useEffect, useState } from 'react';
 import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
-import CopyButton from '../components/_shared/CopyButton';
 import { useRouter } from 'next/router';
 
 type Props = {
