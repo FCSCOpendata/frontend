@@ -21,10 +21,7 @@ const HomeTags: React.FC = () => {
 
   return (
     <>
-      <Tags
-        tags={tagsToShow}
-        style={null} 
-      />
+      <Tags tags={tagsToShow} style={null} />
     </>
   );
 };

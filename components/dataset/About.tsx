@@ -50,7 +50,10 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           'This dataset does not have a description yet.'}
       </article>
       <div className="flex flex-row font-[Avenir] font-normal text-[15px] text-[#086F06]">
-        <Tags tags={result.tags}  style={"rounded-full bg-[#80E47E] py-2 px-4 mr-4"}/>
+        <Tags
+          tags={result.tags}
+          style={'rounded-full bg-[#80E47E] py-2 px-4 mr-4'}
+        />
       </div>
     </div>
   );
