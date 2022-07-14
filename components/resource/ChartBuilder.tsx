@@ -1,10 +1,12 @@
 import { useQuery } from '@apollo/react-hooks';
+import { useState } from 'react';
 import { ErrorMessage, Spinner } from '../_shared';
-import { GET_DATASET_QUERY } from '../../graphql/queries';
+import { GET_DATASTORE_DATA } from '../../graphql/queries';
+import BarChart from './BarChart';
 
-const ChartBuilder: React.FC<{ variables: any }> = ({ variables }) => {
-  const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
-    variables,
+const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
+  const { loading, error, data } = useQuery(GET_DATASTORE_DATA, {
+    variables: { resource_id: resources[0].id },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
@@ -14,7 +16,25 @@ const ChartBuilder: React.FC<{ variables: any }> = ({ variables }) => {
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <Spinner />;
 
-  const { result } = data.dataset;
+  const { result } = data.datastore || {
+    result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
+  };
+  // Remove internally generated fields such as `_id`
+  const fields = result.fields.filter((field) => !(field.id === '_id'));
+
+  const initialView = {
+    name: 'chart',
+    title: 'My title',
+    resources,
+    specType: 'simple',
+    spec: {
+      type: 'bar',
+      group: fields[0].id,
+      series: [fields[1].id],
+    },
+  };
+
+  const [view, setView] = useState(initialView);
 
   return (
     <>
@@ -46,7 +66,7 @@ const ChartBuilder: React.FC<{ variables: any }> = ({ variables }) => {
 
       <div className="grid xl:grid-cols-12 grid-cols-1 pl-0 w-full xl:gap-x-4 gap-y-4 mb-20">
         <div className="xl:col-span-8 rounded-lg">
-          <img src="/images/graph-img.svg" alt="orgs" className="rounded-lg" />
+          <BarChart view={view} />
         </div>
         <div className="col-span-4 rounded-lg flex flex-col p-8 bg-[#F7FAFC]">
           <h1 className="text-center font-[Avenir] text-[30px] text-[#343434] font-extrabold mb-8">
@@ -57,27 +77,36 @@ const ChartBuilder: React.FC<{ variables: any }> = ({ variables }) => {
               Chart Type
             </span>
             <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
-              <option className="">Select Chart type</option>
+              <option className="">Bar Chart</option>
+              <option className="">Line Chart</option>
             </select>
           </div>
           <div className="flex flex-col mb-4">
             <span className="mb-2 font-[Montserrat] font-semibold text-[18px] text-[#424242]">
-              Chart Type
+              Dimension (field for x axis)
             </span>
             <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
-              <option className="">Select Chart type</option>
+              {fields.map((field, index) => (
+                <option key={`dimension-${index}`} className="">
+                  {field.id}
+                </option>
+              ))}
             </select>
           </div>
           <div className="flex flex-col mb-10">
             <span className="mb-2 font-[Montserrat] font-semibold text-[18px] text-[#424242]">
-              Chart Type
+              Measure (field for y axis)
             </span>
             <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
-              <option className="">Select Chart type</option>
+              {fields.map((field, index) => (
+                <option key={`measure-${index}`} className="">
+                  {field.id}
+                </option>
+              ))}
             </select>
           </div>
           <button className="border font-[Avenir] font-extrabold text-[20px] text-center text-[#FFFFFF] p-4 bg-button-gradient rounded-xl">
-            Update
+            Build
           </button>
         </div>
       </div>

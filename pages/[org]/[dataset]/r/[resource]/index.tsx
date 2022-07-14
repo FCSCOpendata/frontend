@@ -44,7 +44,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Create Visualization */}
-        <ChartBuilder variables={variables} />
+        <ChartBuilder resources={[resource]} />
         <div className="w-full">
           <DeveloperExperience />
         </div>
