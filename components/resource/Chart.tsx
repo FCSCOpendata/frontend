@@ -42,7 +42,7 @@ const Chart: React.FC<{ view: any }> = ({ view }) => {
     labels: result.sample.map((item) => item[view.spec.group]),
     datasets: [
       {
-        label: view.title,
+        label: view.spec.group || view.title,
         data: result.sample.map((item) => item[view.spec.series[0]]),
         backgroundColor: '#CBE9FF',
         borderColor: '#CBE9FF',

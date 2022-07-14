@@ -133,9 +133,6 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
               ))}
             </select>
           </div>
-          <button className="border font-[Avenir] font-extrabold text-[20px] text-center text-[#FFFFFF] p-4 bg-button-gradient rounded-xl">
-            Build
-          </button>
         </div>
       </div>
     </>
