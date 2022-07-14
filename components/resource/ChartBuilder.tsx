@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useState } from 'react';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
-import BarChart from './BarChart';
+import Chart from './Chart';
 
 const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
   const [view, setView] = useState({
@@ -34,6 +34,24 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
   // Remove internally generated fields such as `_id`
   const fields = result.fields.filter((field) => !(field.id === '_id'));
 
+  const handleChartTypeChange = (event) => {
+    const newView = JSON.parse(JSON.stringify(view));
+    newView.spec.type = event.target.value;
+    setView(newView);
+  };
+
+  const handleDimensionChange = (event) => {
+    const newView = JSON.parse(JSON.stringify(view));
+    newView.spec.group = event.target.value;
+    setView(newView);
+  };
+
+  const handleMeasureChange = (event) => {
+    const newView = JSON.parse(JSON.stringify(view));
+    newView.spec.series[0] = event.target.value;
+    setView(newView);
+  };
+
   return (
     <>
       <div className="flex  justify-start w-full py-10 pl-0">
@@ -64,7 +82,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
 
       <div className="grid xl:grid-cols-12 grid-cols-1 pl-0 w-full xl:gap-x-4 gap-y-4 mb-20">
         <div className="xl:col-span-8 rounded-lg">
-          <BarChart view={view} />
+          <Chart view={view} />
         </div>
         <div className="col-span-4 rounded-lg flex flex-col p-8 bg-[#F7FAFC]">
           <h1 className="text-center font-[Avenir] text-[30px] text-[#343434] font-extrabold mb-8">
@@ -74,18 +92,26 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
             <span className="mb-2 font-[Montserrat] font-semibold text-[18px] text-[#424242]">
               Chart Type
             </span>
-            <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
-              <option className="">Bar Chart</option>
-              <option className="">Line Chart</option>
+            <select
+              value={view.spec.type}
+              onChange={handleChartTypeChange}
+              className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4"
+            >
+              <option value="bar">Bar Chart</option>
+              <option value="line">Line Chart</option>
             </select>
           </div>
           <div className="flex flex-col mb-4">
             <span className="mb-2 font-[Montserrat] font-semibold text-[18px] text-[#424242]">
               Dimension (field for x axis)
             </span>
-            <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
+            <select
+              value={view.spec.group}
+              onChange={handleDimensionChange}
+              className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4"
+            >
               {fields.map((field, index) => (
-                <option key={`dimension-${index}`} className="">
+                <option key={`dimension-${index}`} value={field.id}>
                   {field.id}
                 </option>
               ))}
@@ -95,9 +121,13 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
             <span className="mb-2 font-[Montserrat] font-semibold text-[18px] text-[#424242]">
               Measure (field for y axis)
             </span>
-            <select className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4">
+            <select
+              value={view.spec.series[0] || ''}
+              onChange={handleMeasureChange}
+              className="rounded-xl outline-none border-none font-[Montserrat] font-medium text-[16px] text-[#B6B6B6] p-4"
+            >
               {fields.map((field, index) => (
-                <option key={`measure-${index}`} className="">
+                <option key={`measure-${index}`} value={field.id}>
                   {field.id}
                 </option>
               ))}

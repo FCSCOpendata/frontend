@@ -14,7 +14,7 @@ import {
   Legend,
   Filler,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -28,7 +28,7 @@ ChartJS.register(
   Filler
 );
 
-const BarChart: React.FC<{ view: any }> = ({ view }) => {
+const Chart: React.FC<{ view: any }> = ({ view }) => {
   const { data, loading, error } = useQuery(GET_DATASTORE_DATA, {
     variables: { resource_id: view.resources[0].id },
   });
@@ -38,13 +38,14 @@ const BarChart: React.FC<{ view: any }> = ({ view }) => {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
   };
 
-  const barChartData = {
+  const chartData = {
     labels: result.sample.map((item) => item[view.spec.group]),
     datasets: [
       {
         label: view.title,
         data: result.sample.map((item) => item[view.spec.series[0]]),
         backgroundColor: '#CBE9FF',
+        borderColor: '#CBE9FF',
       },
     ],
   };
@@ -55,9 +56,13 @@ const BarChart: React.FC<{ view: any }> = ({ view }) => {
 
   return (
     <div className="card-custom w-full h-64">
-      <Bar data={barChartData} height={300} options={options} />
+      {view.spec.type === 'bar' ? (
+        <Bar data={chartData} height={300} options={options} />
+      ) : (
+        <Line data={chartData} height={300} options={options} />
+      )}
     </div>
   );
 };
 
-export default BarChart;
+export default Chart;
