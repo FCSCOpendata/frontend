@@ -40,7 +40,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
         <About variables={variables} />
         {/* Resource display */}
         <div className="flex flex-col w-full">
-          <DataExplorer resources={[resource]} columnHeaderStyle={null} />
+          <DataExplorer dataset={result} columnHeaderStyle={null} />
         </div>
 
         {/* Create Visualization */}

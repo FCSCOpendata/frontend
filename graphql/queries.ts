@@ -125,6 +125,8 @@ export const GET_DATASET_QUERY = gql`
         license_title
         created: metadata_created
         updated: metadata_modified
+        start: start_period
+        end: end_period
         resources {
           id
           name
