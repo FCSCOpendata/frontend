@@ -141,10 +141,8 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
         <div className="w-full">
           <DeveloperExperience />
         </div>
-        <div>
-          <OpenData101 />
-        </div>
       </main>
+      <OpenData101 />
     </>
   );
 };
