@@ -1,28 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { CloudDownloadIcon } from '@heroicons/react/outline';
+import {
+  CloudDownloadIcon,
+  CalendarIcon,
+  ArrowSmRightIcon,
+} from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
  * data filtering, sorting, e.t.c
- * @param resources: A array of frictionless datapackage resource
+ * @param dataset: An object of frictionless datapackage
  */
-const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
-  resources,
+const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
+  dataset,
   columnHeaderStyle,
 }) => {
+  const { resources } = dataset;
   const [activeTable, setActiveTable] = useState(0);
   const [previewMode, setPreviewMode] = useState(true);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
 
   const { data, loading, error } = useQuery(GET_DATASTORE_DATA, {
     variables: { resource_id: resources[activeTable].id },
@@ -51,10 +51,6 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
       ),
     },
   });
-
-  const handleTableNameClick = (index) => {
-    setActiveTable(index);
-  };
 
   const getDataGridTable = (resource, columnHeaderStyle) => {
     return (
@@ -158,38 +154,13 @@ const DataExplorer: React.FC<{ resources: any[]; columnHeaderStyle: any }> = ({
           >
             Hide/Show Schema
           </button>
-          <img
-            src="/images/calender-icon.svg"
-            alt="orgs"
-            className="w-10  h-10 xl:mr-4"
-          />
-          <div className="sm:mr-2">
-            <DatePicker
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
-              dateFormat="dd-MM-yyyy"
-              className="rounded-lg border-1 font-montserrat text-[#5C5C5C] focus:outline-none border-none"
-            />
+          <CalendarIcon className="w-6 xl:mr-4" />
+          <div className="mt-3" title="This resource's start period.">
+            {new Date(dataset.start).toDateString()}
           </div>
-          <div className="xl:p-4 pt-4">
-            <img
-              src="/images/rightpointer-icon.svg"
-              alt="orgs"
-              className="w-8  h-4 "
-            />
-          </div>
-          <img
-            src="/images/calender-icon.svg"
-            alt="orgs"
-            className="w-10  h-10 xl:mr-4"
-          />
-          <div className="">
-            <DatePicker
-              selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
-              dateFormat="dd-MM-yyyy"
-              className="rounded-lg border-1 font-montserrat text-[#5C5C5C] focus:outline-none border-none"
-            />
+          <ArrowSmRightIcon className="w-4 mx-4" />
+          <div className="mt-3" title="This resource's end period.">
+            {new Date(dataset.end).toDateString()}
           </div>
         </div>
         {previewMode && (
