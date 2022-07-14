@@ -6,6 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Hero from '../components/home/Hero';
 import MainOptions from '../components/home/MainOptions';
 import OpenData101 from '../components/home/main/OpenData101';
+import ScrollIndicator from '../components/_shared/ScrollIndicator';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
   const { t } = useTranslation();
@@ -16,6 +17,16 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <title>{t(`common:title`)}</title>
         </Head>
         <div className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen">
+          <div className="absolute right-10 top-[50%] translate-y-[-50%] z-50">
+            <ScrollIndicator
+              stops={[
+                { name: '1' },
+                { name: '2' },
+                { name: '3' },
+                { name: '4' },
+              ]}
+            />
+          </div>
           <Hero />
         </div>
         <MainOptions />
