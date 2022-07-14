@@ -10,7 +10,6 @@ const DatasetsList = dynamic(
   () => import('../../components/topic/DatasetsList')
 );
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
-const CopyButton = dynamic(() => import('../_shared/CopyButton'));
 import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
 

@@ -16,7 +16,6 @@ const SubOrgsCarousel = dynamic(() => import('./SubOrgsCarousel'));
 
 import { ErrorMessage } from '../../components/_shared';
 import { useRouter } from 'next/router';
-import CopyButton from '../_shared/CopyButton';
 
 const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
   const router = useRouter();
