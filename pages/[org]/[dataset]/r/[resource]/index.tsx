@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { initializeApollo } from '../../../../../lib/apolloClient';
 import { GET_DATASET_QUERY } from '../../../../../graphql/queries';
 import NavBreadCrumbs from '../../../../../components/resource/NavBreadCrumbs';
+import About from '../../../../../components/resource/About';
 import DataExplorer from '../../../../../components/resource/ResourceExplorer';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
@@ -12,7 +13,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
 
   if (loading) return <div>Loading</div>;
-  const result = data.dataset.result;
+  const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
     (item) => item.name === variables.resource
@@ -21,7 +22,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Portal | {resource.title || resource.name}</title>
+        <title>{resource.title || resource.name} | Open Data UAE</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <NavBreadCrumbs
@@ -35,36 +36,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
       />
       <main className="flex flex-wrap px-12 mb-70">
         {/* Dataset About section */}
-        <div className="flex flex-col mb-10">
-          <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px] items-baseline">
-            {resource.format === 'CSV' ? (
-              <img
-                src="/images/csv-icon.svg"
-                alt="Dataset title"
-                className="inline w-6 xl:mr-2"
-              />
-            ) : (
-              <img
-                src="/images/excel-icon.svg"
-                alt="Dataset title"
-                className="inline w-6 xl:mr-2"
-              />
-            )}
-
-            <h1 className="inline mr-4">
-              {resource.name}{' '}
-              <img
-                src="/images/plant-icon.svg"
-                alt="Dataset title"
-                className="inline w-6"
-              />
-            </h1>
-          </div>
-          <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
-            {resource.description?.replace(/<[^>]*>?/gm, '') ||
-              'This dataset does not have a description yet.'}
-          </article>
-        </div>
+        <About variables={variables} />
         {/* Resource display */}
         <div className="flex flex-col w-full">
           <DataExplorer resources={[resource]} columnHeaderStyle={null} />
