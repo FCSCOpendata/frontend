@@ -34,15 +34,22 @@ const Search: React.FC<Props> = ({ variables }) => {
           url: '/images/scroll_indicator_icon_1.svg',
           alt: 'First stop',
         }}
-        stops={[{ id: 'search' }, { id: 'dev-exp' }]}
+        stops={[
+          { id: 'search' },
+          { id: 'datasets' },
+          { id: 'dev-exp' },
+          { id: 'open-data-101' },
+        ]}
       />
 
-      <Form
-        variables={qvariables}
-        setQvariables={setQvariables}
-        setSideFilter={setSideFilter}
-      />
-      <div className="mb-12" id="search">
+      <div id="search">
+        <Form
+          variables={qvariables}
+          setQvariables={setQvariables}
+          setSideFilter={setSideFilter}
+        />
+      </div>
+      <div className="mb-12" id="datasets">
         <div className="px-4">
           <List variables={qvariables} setQvariables={setQvariables} />
         </div>
@@ -50,7 +57,7 @@ const Search: React.FC<Props> = ({ variables }) => {
       <div className="px-16" id="dev-exp">
         <DeveloperExperience />
       </div>
-      <OpenData101 />
+      <OpenData101 id="open-data-101" />
     </>
   );
 };
