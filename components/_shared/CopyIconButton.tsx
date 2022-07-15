@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 
-const CopyButton: React.FC<{
+const CopyIconButton: React.FC<{
   content: string;
   hintBeforeCopy: string;
   hintAfterCopy: string;
@@ -50,4 +50,4 @@ const CopyButton: React.FC<{
   );
 };
 
-export default CopyButton;
+export default CopyIconButton;

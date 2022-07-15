@@ -49,7 +49,8 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                         <span
                           className={`hidden lg:opacity-0 lg:flex absolute left-3 right-3 -bottom-2.5 h-0.5 ease-in-out duration-300
                           ${
-                            router.asPath == item.path
+                            router.asPath.startsWith(item.path) ||
+                            router.asPath.startsWith(item.matchExp)
                               ? 'lg:opacity-100 bg-nav-underline'
                               : 'group-hover:bg-nav-underline lg:group-hover:opacity-100'
                           }
