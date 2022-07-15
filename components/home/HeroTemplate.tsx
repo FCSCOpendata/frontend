@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 import SearchForm from '../search/Form';
-import Tags from './Tags';
+import HomeTags from './HomeTags';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ export default function Footer() {
                   <SearchForm />
                 </div>
                 <div className="pt-4 max-w-lg">
-                  <Tags />
+                  <HomeTags />
                 </div>
               </div>
             </div>
