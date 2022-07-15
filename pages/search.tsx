@@ -57,7 +57,9 @@ const Search: React.FC<Props> = ({ variables }) => {
       <div className="px-16" id="dev-exp">
         <DeveloperExperience />
       </div>
-      <OpenData101 id="open-data-101" />
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };
