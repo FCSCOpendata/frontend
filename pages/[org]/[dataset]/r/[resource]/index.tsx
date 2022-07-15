@@ -48,7 +48,6 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           }}
           stops={[
             { id: 'about' },
-            { id: 'data-explorer' },
             { id: 'chart-builder' },
             { id: 'developer-experience' },
             { id: 'open-data-101' },
