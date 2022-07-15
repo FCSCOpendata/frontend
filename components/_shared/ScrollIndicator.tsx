@@ -26,17 +26,22 @@ const ScrollIndicator: React.FC<{
           const rect = el.getBoundingClientRect();
 
           const elTopPosition = rect.top + window.scrollY;
-          const elHeigth = el.offsetHeight;
-          const threshold = elHeigth / 2;
           const elBottomPosition = elTopPosition + el.offsetHeight;
 
+          const threshold = window.innerHeight / 2;
+
+          const thresholdedTopPos = elTopPosition - threshold;
+          const thresholdedBotPos = elBottomPosition - threshold;
+
           if (
-            window.scrollY >= elTopPosition - threshold &&
-            window.scrollY < elBottomPosition - threshold
+            window.scrollY >= thresholdedTopPos &&
+            window.scrollY < thresholdedBotPos &&
+            window.screenY > 10
           ) {
             setActive(i);
             break;
           }
+          setActive(0);
         }
       }
     };
