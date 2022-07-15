@@ -72,7 +72,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           setSideFilter={setSideFilter}
         />
       </div>
-      <div className="mb-12 sm:mx-12 mt-12" id="datasets">
+      <div className="mb-12 mx-10 md:mx-28 mt-12" id="datasets">
         <div className="px-4">
           <h1 className="font-semibold text-xl sm:text-2xl">
             {amount} dataset{amount == 1 ? '' : 's'}
@@ -96,7 +96,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           />
         </div>
       </div>
-      <div className="mx-5 sm:mx-16" id="dev-exp">
+      <div className="mx-10 md:mx-28" id="dev-exp">
         <DeveloperExperience />
       </div>
       <div id="open-data-101">
