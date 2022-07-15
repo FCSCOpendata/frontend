@@ -95,11 +95,11 @@ const Topic: React.FC<any> = ({ variables }) => {
           <div id="developer-experience">
             <DeveloperExperience />
           </div>
-          <div id="open-data-101">
-            <OpenData101 />
-          </div>
         </div>
       </main>
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };
