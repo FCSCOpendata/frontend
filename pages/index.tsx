@@ -16,35 +16,33 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <Head>
           <title>{t(`common:title`)}</title>
         </Head>
-        <div className="fixed right-8 top-[50%] translate-y-[-50%] z-50 hidden lg:block">
-          <ScrollIndicator
-            firstImage={{
-              url: '/images/scroll_indicator_icon_1.svg',
-              alt: 'First stop',
-            }}
-            lastImage={{
-              url: '/images/scroll_indicator_icon_1.svg',
-              alt: 'First stop',
-            }}
-            stops={[
-              { id: 'hero' },
-              { id: 'discover-topics' },
-              { id: 'explore-orgs' },
-              { id: 'news' },
-              { id: 'open-data-101' },
-            ]}
-          />
-        </div>
-        <div
-          className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen"
-          id="hero"
-        >
-          <Hero />
-        </div>
-        <MainOptions />
-        <div id="open-data-101">
-          <OpenData101 />
-        </div>
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'hero' },
+            { id: 'discover-topics' },
+            { id: 'explore-orgs' },
+            { id: 'news' },
+            { id: 'open-data-101' },
+          ]}
+        />
+      </div>
+      <div
+        className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen"
+        id="hero"
+      >
+        <Hero />
+      </div>
+      <MainOptions />
+      <div id="open-data-101">
+        <OpenData101 />
       </div>
     </>
   );
