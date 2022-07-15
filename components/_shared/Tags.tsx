@@ -3,21 +3,21 @@ import Link from 'next/link';
 const Tags: React.FC<{ tags: any[]; style: string }> = ({ tags, style }) => {
   const colors = [
     {
-      color: 'green-400',
-      text: 'green-800',
+      color: '#80E47E',
+      text: '#086F06',
     },
     {
-      color: 'indigo-500',
-      text: 'indigo-800',
+      color: '#C2B2E5',
+      text: '#6444AC',
     },
     {
-      color: 'blue-200',
-      text: 'blue-800',
+      color: '#7EE4DE',
+      text: '#00968D',
     },
   ];
 
   const getColors = (index) => {
-    return `inline-flex items-center mr-3 px-5 py-1.5 border border-transparent text-xs rounded-full text-${colors[index].text} bg-${colors[index].color}`;
+    return `inline-flex items-center mr-3 px-5 py-1.5 border border-transparent text-xs rounded-full text-[${colors[index].text}] bg-[${colors[index].color}]`;
   };
 
   return (

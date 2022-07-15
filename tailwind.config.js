@@ -50,6 +50,19 @@ module.exports = {
       }),
     },
   },
+  safelist: [
+    {
+      pattern: /green-\d*/,
+    },
+    {
+      pattern: /blue-\d*/,
+    },
+    {
+      pattern: /indigo-\d*/,
+    },
+    ...['#80E47E', '#C2B2E5', '#7EE4DE'].map((c) => `bg-[${c}]`),
+    ...['#086F06', '#6444AC', '#00968D'].map((c) => `text-[${c}]`),
+  ],
   variants: {
     extend: {},
   },
