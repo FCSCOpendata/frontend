@@ -6,6 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Hero from '../components/home/Hero';
 import MainOptions from '../components/home/MainOptions';
 import OpenData101 from '../components/home/main/OpenData101';
+import ScrollIndicator from '../components/_shared/ScrollIndicator';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
   const { t } = useTranslation();
@@ -15,10 +16,32 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <Head>
           <title>{t(`common:title`)}</title>
         </Head>
-        <div className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen">
-          <Hero />
-        </div>
-        <MainOptions />
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'hero' },
+            { id: 'discover-topics' },
+            { id: 'explore-orgs' },
+            { id: 'news' },
+            { id: 'open-data-101' },
+          ]}
+        />
+      </div>
+      <div
+        className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen"
+        id="hero"
+      >
+        <Hero />
+      </div>
+      <MainOptions />
+      <div id="open-data-101">
         <OpenData101 />
       </div>
     </>

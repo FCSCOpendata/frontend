@@ -6,6 +6,7 @@ import List from '../components/search/List';
 import OpenData101 from '../components/home/main/OpenData101';
 import { useEffect, useState } from 'react';
 import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
+import ScrollIndicator from '../components/_shared/ScrollIndicator';
 import { useRouter } from 'next/router';
 
 type Props = {
@@ -47,11 +48,30 @@ const Search: React.FC<Props> = ({ variables }) => {
       <Head>
         <title>Search Datasets | Open Data UAE</title>
       </Head>
-      <Form
-        variables={qvariables}
-        setQvariables={setQvariables}
-        setSideFilter={setSideFilter}
+      <ScrollIndicator
+        firstImage={{
+          url: '/images/scroll_indicator_icon_1.svg',
+          alt: 'First stop',
+        }}
+        lastImage={{
+          url: '/images/scroll_indicator_icon_1.svg',
+          alt: 'First stop',
+        }}
+        stops={[
+          { id: 'search' },
+          { id: 'datasets' },
+          { id: 'dev-exp' },
+          { id: 'open-data-101' },
+        ]}
       />
+
+      <div id="search">
+        <Form
+          variables={qvariables}
+          setQvariables={setQvariables}
+          setSideFilter={setSideFilter}
+        />
+      </div>
       <div className="mb-12 sm:mx-12 mt-12" id="datasets">
         <div className="px-4">
           <h1 className="font-semibold text-xl sm:text-2xl">
@@ -76,10 +96,12 @@ const Search: React.FC<Props> = ({ variables }) => {
           />
         </div>
       </div>
-      <div className="mx-5 sm:mx-16">
+      <div className="mx-5 sm:mx-16" id="dev-exp">
         <DeveloperExperience />
       </div>
-      <OpenData101 />
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };
