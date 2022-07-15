@@ -9,6 +9,7 @@ import DataExplorer from '../../../../../components/resource/ResourceExplorer';
 import ChartBuilder from '../../../../../components/resource/ChartBuilder';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
+import ScrollIndicator from '../../../../../components/_shared/ScrollIndicator';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -35,21 +36,44 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className="flex flex-wrap px-12 mb-70">
+      <main className="flex flex-wrap mb-70 mx-10 md:mx-28">
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'about' },
+            { id: 'data-explorer' },
+            { id: 'chart-builder' },
+            { id: 'developer-experience' },
+            { id: 'open-data-101' },
+          ]}
+        />
         {/* Dataset About section */}
-        <About variables={variables} />
+        <div id="about">
+          <About variables={variables} />
+        </div>
         {/* Resource display */}
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full" id="data-explorer">
           <DataExplorer dataset={result} columnHeaderStyle={null} />
         </div>
 
         {/* Create Visualization */}
-        <ChartBuilder resources={[resource]} />
-        <div className="w-full">
+        <div id="chart-builder">
+          <ChartBuilder resources={[resource]} />
+        </div>
+        <div className="w-full" id="developer-experience">
           <DeveloperExperience />
         </div>
       </main>
-      <OpenData101 />
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };
