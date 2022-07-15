@@ -1,6 +1,7 @@
 import IconCard from './IconCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useState } from 'react';
 
 interface Item {
   title: string;
@@ -19,9 +20,12 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
+  const [swiper, setSwiper] = useState(null);
+
   return (
     <>
       <Swiper
+        onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
             slidesPerView: 2.5,
@@ -39,12 +43,26 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
             slidesPerView: 9.5,
           },
         }}
+        initialSlide={items.findIndex((item) => item.name == active.name)}
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
             <a
               href={item.link}
               onClick={(e) => {
+                const slidesPerView = swiper.params.slidesPerView;
+                const currentSlide = index; //  or swiper.clickedIndex
+                const firstVisibleSlide = swiper.realIndex;
+                const lastVisibleSlide = Math.floor(
+                  firstVisibleSlide + slidesPerView
+                );
+
+                if (currentSlide >= lastVisibleSlide) {
+                  swiper.slideTo(firstVisibleSlide + 1);
+                } else if (currentSlide < firstVisibleSlide) {
+                  swiper.slideTo(firstVisibleSlide - 1);
+                }
+
                 e.preventDefault();
                 itemOnClick.call(this, item);
               }}

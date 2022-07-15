@@ -30,7 +30,7 @@ const Organization: React.FC<any> = ({ variables }) => {
   const org = (orgParam as string).replace('@', '');
 
   const goToOrg = (org: any) => {
-    router.push(`${org.name}`, undefined, { shallow: true });
+    router.push(`@${org.name}`, undefined, { shallow: true });
   };
 
   const {

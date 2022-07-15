@@ -3,15 +3,17 @@ import { ErrorMessage, Spinner } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
 import Pagination from './Pagination';
 import ListCard from './ListCard';
+import { useEffect } from 'react';
 
 const List: React.FC<{
   //  TODO: improve this parameterization
   variables: any;
   setQvariables: any;
-  show_amount?: boolean;
+  show_amount?: boolean; //  TODO: this parameter is not respecting the style guide
   noXMargin?: boolean;
   onPageChange?: (page: number) => void;
   page?: number;
+  setCount?: (count: number) => void;
 }> = ({
   variables,
   setQvariables,
@@ -19,6 +21,7 @@ const List: React.FC<{
   noXMargin,
   onPageChange,
   page,
+  setCount,
 }) => {
   const {
     loading: loadSearch,
@@ -30,6 +33,10 @@ const List: React.FC<{
   });
 
   const searchResults = dataSearch?.search.result;
+
+  useEffect(() => {
+    if (setCount) setCount(searchResults?.count | 0);
+  }, [searchResults]);
 
   return (
     <div>

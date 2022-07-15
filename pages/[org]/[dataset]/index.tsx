@@ -27,7 +27,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const downloadAll = () => {
     const dataUrls = Object.values(selectData);
     const resourceUrls =
-      dataUrls.length > 0 ? dataUrls : result.resources.map((r) => r.path);
+      dataUrls.length > 0 && enableSelect
+        ? dataUrls
+        : result.resources.map((r) => r.path);
     const fetchAll = resourceUrls.map((path) => {
       return fetch(path).then((res) => res.blob());
     });
@@ -79,7 +81,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
               Select
             </button>
             <CloudDownloadIcon className="w-4 mr-2" />
-            <button onClick={() => downloadAll()}>Download all</button>
+            <button onClick={() => downloadAll()}>
+              {enableSelect ? 'Download Selected' : 'Download all'}
+            </button>
           </div>
           <div className="flex flex-row mb-10">
             <DataExplorer

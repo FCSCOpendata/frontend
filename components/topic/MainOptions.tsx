@@ -10,8 +10,7 @@ const DatasetsList = dynamic(
   () => import('../../components/topic/DatasetsList')
 );
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
-import { ErrorMessage } from '../../components/_shared';
-import CopyButton from '../_shared/CopyButton';
+import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
 
 const MainOptions: React.FC<any> = ({
@@ -19,7 +18,6 @@ const MainOptions: React.FC<any> = ({
   topicsTree,
   topicOnClick,
   searchPage,
-  page,
 }) => {
   const router = useRouter();
 
@@ -77,13 +75,18 @@ const MainOptions: React.FC<any> = ({
         //  NOTE: this timeout might not be ideal
         //  but without it there must be  another
         //  wait to wait for the datasets loading
-      }, 500);
+      }, 1000);
     }
   }, [subtopicsLoading]);
 
   if (topicError || subtopicsError)
     return <ErrorMessage message="Error loading topics." />;
-  if (topicLoading || subtopicsLoading) return <div>Loading Topics</div>;
+  if (topicLoading || subtopicsLoading)
+    return (
+      <div className="w-full flex justify-center">
+        <Spinner className="mt-10" size="10" id="loading" />
+      </div>
+    );
 
   const activeTopic = topicData.topic.result;
 
@@ -109,9 +112,29 @@ const MainOptions: React.FC<any> = ({
   //  no children.
   const subtopics = children.length ? subtopicsData.topics.result : [];
 
+  const onSutopicClick = (subtopic) => {
+    topicOnClick(subtopic);
+
+    //  TODO: this scroll is glitching in some occasions.
+    //  I think it's related to the loading states.
+    //  Currently it's pointing to body because it  works
+    //  more consistently, but ideally it would be better
+    //  to scroll to the center of the header...
+    setTimeout(() => {
+      const el = document.getElementsByTagName('body')[0];
+
+      el.scrollIntoView({
+        behavior: 'smooth',
+        //  ... using these props
+        // block: 'center',
+        // inline: 'center',
+      });
+    }, 250);
+  };
+
   return (
     <>
-      <div className="mb-20">
+      <div className="mb-20" id="header">
         <TopicHeader
           topic={activeTopic}
           datasetsCount={activeTopic.package_count}
@@ -122,24 +145,15 @@ const MainOptions: React.FC<any> = ({
           <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
           <SubtopicsCarousel
             subtopics={subtopics}
-            subtopicOnClick={topicOnClick}
+            subtopicOnClick={onSutopicClick}
           />
         </div>
       )}
 
       <div className="mb-20" id="explore-top-datasets">
-        <div className="flex items-center mb-6">
-          <h1 className="font-semibold text-2xl sm:text-3xl">
-            Explore Top Datasets In This Theme ({activeTopic.package_count})
-          </h1>
-          <span className="ml-3 select-none">
-            <CopyButton
-              content={document.location.href}
-              hintBeforeCopy="Click to copy this page's URL"
-              hintAfterCopy="Copied"
-            ></CopyButton>
-          </span>
-        </div>
+        <h1 className="font-semibold text-2xl sm:text-3xl">
+          Explore Top Datasets In This Theme ({activeTopic.package_count})
+        </h1>
         <DatasetsList
           topic={activeTopic?.name}
           onPageChange={(page) => {
