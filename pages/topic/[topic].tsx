@@ -71,7 +71,7 @@ const Topic: React.FC<any> = ({ variables }) => {
           }}
           stops={[
             { id: 'topics' },
-            { id: 'subtopics' },
+            // { id: 'subtopics' },
             { id: 'explore-top-datasets' },
             { id: 'developer-experience' },
             { id: 'open-data-101' },
