@@ -116,7 +116,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Similar Dataset */}
-        <div id="similar-datasets">
+        <div id="similar-datasets" className="w-full">
           <SimilarDatasets variables={variables} />
         </div>
         <div className="w-full" id="developer-experience">

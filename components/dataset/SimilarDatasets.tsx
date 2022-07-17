@@ -74,12 +74,17 @@ export default function SimilarDatasets({ variables }) {
           </div>
         </div>
       </div>
+      {similarDatasetsResponse.loading && (
+        <div className="w-full flex justify-center">
+          <Spinner />
+        </div>
+      )}
       {/* List similar datasets */}
       <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full mb-10">
         {similarDatasetsResponse.error && (
           <ErrorMessage message="Error loading similar datasets" />
         )}
-        {similarDatasetsResponse.loading && <Spinner />}
+
         {!similarDatasetsResponse.loading &&
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
