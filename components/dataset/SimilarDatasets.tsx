@@ -89,7 +89,9 @@ export default function SimilarDatasets({ variables }) {
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
             .map((item, index) => {
-              console.log(result.groups[0]);
+              console.log(similarDatasetsResponse.data?.search.result);
+              console.log(result);
+              console.log(item);
 
               return (
                 <div
@@ -103,7 +105,7 @@ export default function SimilarDatasets({ variables }) {
                     <img
                       src={
                         fq.startsWith('groups')
-                          ? result.groups[0]?.image_display_url ||
+                          ? item.groups[0]?.image_url ||
                             '/images/dubai-robocop.png'
                           : item.organization.image ||
                             '/images/dubai-robocop.png'
