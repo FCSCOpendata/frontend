@@ -57,12 +57,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           url: '/images/scroll_indicator_icon_1.svg',
           alt: 'First stop',
         }}
-        stops={[
-          { id: 'search' },
-          { id: 'datasets' },
-          { id: 'dev-exp' },
-          { id: 'open-data-101' },
-        ]}
+        stops={[{ id: 'search' }, { id: 'dev-exp' }, { id: 'open-data-101' }]}
       />
 
       <div id="search">
@@ -71,31 +66,32 @@ const Search: React.FC<Props> = ({ variables }) => {
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
         />
-      </div>
-      <div className="mb-12 mx-10 md:mx-28 mt-12" id="datasets">
-        <div className="px-4">
-          <h1 className="font-semibold text-xl sm:text-2xl">
-            {amount} dataset{amount == 1 ? '' : 's'}
-          </h1>
+        <div className="mb-12 mx-10 md:mx-28 mt-12">
+          <div className="px-4">
+            <h1 className="font-semibold text-xl sm:text-2xl">
+              {amount} dataset{amount == 1 ? '' : 's'}
+            </h1>
 
-          <List
-            variables={qvariables}
-            noXMargin={true}
-            setQvariables={setQvariables}
-            show_amount={false}
-            setCount={setAmount}
-            onPageChange={(page) => {
-              router.query.searchPage = page + '';
-              router.push(router, undefined, { shallow: true });
-              setDestination(document.location.href);
-              document
-                .getElementById('datasets')
-                .scrollIntoView({ behavior: 'smooth' });
-            }}
-            page={searchPage ? Number(searchPage) : undefined}
-          />
+            <List
+              variables={qvariables}
+              noXMargin={true}
+              setQvariables={setQvariables}
+              show_amount={false}
+              setCount={setAmount}
+              onPageChange={(page) => {
+                router.query.searchPage = page + '';
+                router.push(router, undefined, { shallow: true });
+                setDestination(document.location.href);
+                document
+                  .getElementById('datasets')
+                  .scrollIntoView({ behavior: 'smooth' });
+              }}
+              page={searchPage ? Number(searchPage) : undefined}
+            />
+          </div>
         </div>
       </div>
+
       <div className="mx-10 md:mx-28" id="dev-exp">
         <DeveloperExperience />
       </div>
