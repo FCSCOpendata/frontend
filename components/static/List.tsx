@@ -4,10 +4,23 @@ import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_POSTS_QUERY } from '../../graphql/queries';
+import Pagination from '../search/Pagination';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const List: React.FC = () => {
+  const router = useRouter();
+  const initialPage = Number(router.query.page) || 1;
+
+  const [page, setPage] = useState(initialPage);
+
+  const handlePageChange = (page) => {
+    setPage(page);
+    router.push(`/news?page=${page}`, undefined, { shallow: true });
+  };
+
   const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
-    variables: { limit: 5, page: 1 },
+    variables: { limit: 5, page },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
@@ -79,6 +92,16 @@ const List: React.FC = () => {
           </li>
         ))}
       </ul>
+      <div className="flex justify-center">
+        <Pagination
+          count={meta?.pagination.total}
+          //  TODO: pagination component should be more
+          //  generic
+          setQvariables={() => null}
+          onPageChange={handlePageChange}
+          initAtPage={initialPage}
+        />
+      </div>
     </div>
   );
 };
