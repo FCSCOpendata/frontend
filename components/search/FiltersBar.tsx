@@ -8,6 +8,8 @@ import {
 } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
 import { CheckCircleIcon } from '@heroicons/react/outline';
+import FilterCarousel from './filters/FilterCarousel';
+import { SwiperSlide } from 'swiper/react';
 
 export default function FiltersBar({
   qvariables,
@@ -132,24 +134,28 @@ export default function FiltersBar({
     <div className="">
       {filters === 'Topics' && (
         <>
-          <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl">
-            {topics.map((topic, index) => (
-              <li
-                key={topic.id}
-                className={`py-2 px-4 rounded-xl ${
-                  currentIndex === index
-                    ? 'bg-button-gradient text-white'
-                    : 'text-black'
-                }`}
-              >
-                <input
-                  type="button"
-                  value={topic.display_name || topic.title}
-                  onClick={() => setCurrentIndex(index)}
-                  className="cursor-pointer"
-                />
-              </li>
-            ))}
+          <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden">
+            <FilterCarousel>
+              {topics.map((topic, index) => (
+                <SwiperSlide key={index}>
+                  <li
+                    key={topic.id}
+                    className={`py-2 px-4 rounded-xl ${
+                      currentIndex === index
+                        ? 'bg-button-gradient text-white'
+                        : 'text-black'
+                    }`}
+                  >
+                    <input
+                      type="button"
+                      value={topic.display_name || topic.title}
+                      onClick={() => setCurrentIndex(index)}
+                      className="cursor-pointer"
+                    />
+                  </li>
+                </SwiperSlide>
+              ))}
+            </FilterCarousel>
           </ul>
           <ul className="flex gap-2 mt-4 w-fit mx-auto">
             {topics[currentIndex].children.map((sub, index) => (
