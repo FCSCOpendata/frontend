@@ -68,7 +68,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className="flex flex-wrap mb-70 mx-10 md:mx-28">
+      <main className="flex flex-wrap pl-12 pr-20 mb-70">
         <ScrollIndicator
           firstImage={{
             url: '/images/scroll_indicator_icon_1.svg',
@@ -116,7 +116,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Similar Dataset */}
-        <div id="similar-datasets" className="w-full">
+        <div className="w-full" id="similar-datasets">
           <SimilarDatasets variables={variables} />
         </div>
         <div className="w-full" id="developer-experience">
