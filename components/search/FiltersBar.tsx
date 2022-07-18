@@ -19,6 +19,8 @@ export default function FiltersBar({
 }) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [topicNavBtn, setTopicNavBtn] = useState(false);
+  const [subNavBtn, setSubNavBtn] = useState(false);
   const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
@@ -134,8 +136,16 @@ export default function FiltersBar({
     <div className="">
       {filters === 'Topics' && (
         <>
-          <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden">
-            <FilterCarousel>
+          <ul
+            className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden"
+            onMouseEnter={(e) => {
+              setTopicNavBtn(true);
+            }}
+            onMouseLeave={(e) => {
+              setTopicNavBtn(false);
+            }}
+          >
+            <FilterCarousel enableNavBtn={topicNavBtn}>
               {topics.map((topic, index) => (
                 <SwiperSlide key={index}>
                   <li
@@ -157,8 +167,16 @@ export default function FiltersBar({
               ))}
             </FilterCarousel>
           </ul>
-          <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden">
-            <FilterCarousel>
+          <ul
+            className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden mt-2"
+            onMouseEnter={(e) => {
+              setSubNavBtn(true);
+            }}
+            onMouseLeave={(e) => {
+              setSubNavBtn(false);
+            }}
+          >
+            <FilterCarousel enableNavBtn={subNavBtn}>
               {topics[currentIndex].children.map((sub, index) => (
                 <SwiperSlide key={index}>
                   <li
@@ -197,8 +215,16 @@ export default function FiltersBar({
         </>
       )}
       {filters === 'Organizations' && (
-        <ul className="flex flex-wrap bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden justify-start">
-          <FilterCarousel>
+        <ul
+          className="flex bg-white text-sm p-2 rounded-xl mx-auto max-w-6xl overflow-hidden justify-start w-full mt-2"
+          onMouseEnter={(e) => {
+            setSubNavBtn(true);
+          }}
+          onMouseLeave={(e) => {
+            setSubNavBtn(false);
+          }}
+        >
+          <FilterCarousel enableNavBtn={subNavBtn}>
             {orgsResults.map((org, index) => (
               <SwiperSlide key={index}>
                 <li

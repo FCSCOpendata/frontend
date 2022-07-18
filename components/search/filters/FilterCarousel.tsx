@@ -5,13 +5,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const FilterCarousel: React.FC<{}> = ({ children }) => {
+const FilterCarousel: React.FC<{ enableNavBtn: boolean }> = ({
+  children,
+  enableNavBtn,
+}) => {
   return (
     <>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={4}
-        navigation={true}
+        navigation={enableNavBtn}
         className={'w-full'}
         breakpoints={{
           360: {
