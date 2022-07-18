@@ -14,6 +14,7 @@ import OpenData101 from '../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../components/_shared/developer_experience/DeveloperExperience';
 import JSZip from 'jszip';
 import { useState } from 'react';
+import ScrollIndicator from '../../../components/_shared/ScrollIndicator';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
@@ -67,9 +68,28 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className="flex flex-wrap px-12 mb-70">
+      <main className="flex flex-wrap mb-70 mx-10 md:mx-28">
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'about' },
+            { id: 'similar-datasets' },
+            { id: 'developer-experience' },
+            { id: 'open-data-101' },
+          ]}
+        />
+
         {/* Dataset About section */}
-        <About variables={variables} />
+        <div id="about">
+          <About variables={variables} />
+        </div>
         {/* Resource display */}
         <div className="flex flex-col w-full">
           <div className="flex flex-row items-baseline font-[Avenir] font-medium text-[16px] text-[#4D4D4D] leading-6 mb-4">
@@ -96,13 +116,16 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Similar Dataset */}
-        <SimilarDatasets variables={variables} />
-        <div className="w-full">
+        <div id="similar-datasets">
+          <SimilarDatasets variables={variables} />
+        </div>
+        <div className="w-full" id="developer-experience">
           <DeveloperExperience />
         </div>
       </main>
-
-      <OpenData101 />
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };

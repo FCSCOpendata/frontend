@@ -17,23 +17,23 @@ const ScrollIndicator: React.FC<{
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    //  NOTE: stops should be ASC sorted
     const onScroll = () => {
       let i;
-      for (i = 0; i < stops.length; i++) {
+      for (i = stops.length - 1; i >= 0; i--) {
         const el = document.getElementById(stops[i].id);
-        const rect = el.getBoundingClientRect();
 
-        const elTopPosition = rect.top + window.scrollY;
-        const elHeigth = el.offsetHeight;
-        const threshold = elHeigth / 2;
-        const elBottomPosition = elTopPosition + el.offsetHeight;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const elTopPos = rect.top + window.scrollY;
+          const threshold = window.innerHeight / 2;
+          const thresholdedTopPos = elTopPos - threshold;
 
-        if (
-          window.scrollY >= elTopPosition - threshold &&
-          window.scrollY < elBottomPosition - threshold
-        ) {
-          setActive(i);
-          break;
+          if (window.scrollY >= thresholdedTopPos) {
+            setActive(i);
+            break;
+          }
+          setActive(0);
         }
       }
     };

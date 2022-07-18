@@ -23,6 +23,7 @@ const OpenData101 = dynamic(
 );
 import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/organization/MainOptions';
+import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 
 const Organization: React.FC<any> = ({ variables }) => {
   const router = useRouter();
@@ -67,8 +68,26 @@ const Organization: React.FC<any> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'organizations' },
+            // { id: 'sub-organizations' },
+            { id: 'explore-top-datasets' },
+            { id: 'developer-experience' },
+            { id: 'open-data-101' },
+          ]}
+        />
+
         <div className="w-100">
-          <div className="mb-20">
+          <div className="mb-20" id="organizations">
             <OrgsCarousel
               orgs={orgs}
               active={{ name: org }}
@@ -82,8 +101,10 @@ const Organization: React.FC<any> = ({ variables }) => {
             orgOnClick={goToOrg}
           ></MainOptions>
 
-          <DeveloperExperience />
-          <div>
+          <div id="developer-experience">
+            <DeveloperExperience />
+          </div>
+          <div id="open-data-101">
             <OpenData101 />
           </div>
         </div>

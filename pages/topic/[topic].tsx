@@ -22,6 +22,7 @@ const OpenData101 = dynamic(
 );
 import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/topic/MainOptions';
+import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 
 const Topic: React.FC<any> = ({ variables }) => {
   const router = useRouter();
@@ -59,8 +60,25 @@ const Topic: React.FC<any> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
+        <ScrollIndicator
+          firstImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'First stop',
+          }}
+          stops={[
+            { id: 'topics' },
+            // { id: 'subtopics' },
+            { id: 'explore-top-datasets' },
+            { id: 'developer-experience' },
+            { id: 'open-data-101' },
+          ]}
+        />
         <div className="w-100">
-          <div className="mb-20">
+          <div className="mb-20" id="topics">
             <TopicsCarousel
               topics={mainTopics}
               active={{ name: topic }}
@@ -74,10 +92,14 @@ const Topic: React.FC<any> = ({ variables }) => {
             topicOnClick={goToTopic}
             searchPage={searchPage}
           ></MainOptions>
-          <DeveloperExperience />
-          <OpenData101 />
+          <div id="developer-experience">
+            <DeveloperExperience />
+          </div>
         </div>
       </main>
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };

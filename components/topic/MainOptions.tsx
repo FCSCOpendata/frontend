@@ -141,7 +141,7 @@ const MainOptions: React.FC<any> = ({
         />
       </div>
       {subtopics?.length > 0 && (
-        <div className="mb-20">
+        <div className="mb-20" id="subtopics">
           <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
           <SubtopicsCarousel
             subtopics={subtopics}
