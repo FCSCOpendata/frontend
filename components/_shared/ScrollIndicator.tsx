@@ -58,8 +58,8 @@ const ScrollIndicator: React.FC<{
               <div className="h-full absolute flex flex-col justify-evenly w-full items-center border-[#333333] border-t-[1px] border-b-[1px] w-1">
                 {stops.map((stop, index) => (
                   <button
-                    className={`rounded-full border-[1px] border-[#333333] w-[10px] h-[10px] bg-[#fff] ${
-                      active == index ? 'w-[15px] h-[15px]' : ''
+                    className={`transition-all ease-in-out origin-center duration-100 rounded-full border-[1px] border-[#333333] w-[10px] h-[10px] bg-[#fff] ${
+                      active == index ? 'scale-150' : ''
                     } flex justify-center items-center`}
                     key={index}
                     onClick={() => {
@@ -68,9 +68,11 @@ const ScrollIndicator: React.FC<{
                       setActive(index);
                     }}
                   >
-                    {active == index && (
-                      <div className="w-[9px] h-[9px] bg-[#22B373] rounded-full"></div>
-                    )}
+                    <div
+                      className={`transition-opacity ease-in-out duration-150 w-[6px] h-[6px] ${
+                        active == index ? ' opacity-100' : 'opacity-0'
+                      } bg-[#22B373] rounded-full`}
+                    ></div>
                   </button>
                 ))}
               </div>
