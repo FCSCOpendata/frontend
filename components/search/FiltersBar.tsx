@@ -216,7 +216,7 @@ export default function FiltersBar({
       )}
       {filters === 'Organizations' && (
         <ul
-          className="flex bg-white text-sm p-2 rounded-xl mx-auto max-w-6xl overflow-hidden justify-start w-full mt-2"
+          className="flex gap-2 mt-4 justify-start max-w-full overflow-hidden mt-2"
           onMouseEnter={(e) => {
             setSubNavBtn(true);
           }}

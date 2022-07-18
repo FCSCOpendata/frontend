@@ -27,10 +27,10 @@ const FilterCarousel: React.FC<{ enableNavBtn: boolean }> = ({
             slidesPerView: 4,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 5,
           },
           1280: {
-            slidesPerView: 4,
+            slidesPerView: 6,
           },
         }}
       >
