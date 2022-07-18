@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const FilterCarousel: React.FC<> = ({ children }) => {
+const FilterCarousel: React.FC<{}> = ({ children }) => {
   return (
     <>
       <Swiper
