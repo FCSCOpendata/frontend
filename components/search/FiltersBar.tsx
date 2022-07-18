@@ -157,72 +157,81 @@ export default function FiltersBar({
               ))}
             </FilterCarousel>
           </ul>
-          <ul className="flex gap-2 mt-4 w-fit mx-auto">
-            {topics[currentIndex].children.map((sub, index) => (
-              <li
-                key={sub.id}
-                className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
-              >
-                <img
-                  src={`/images/topics/topic-1.png`}
-                  alt={sub.title}
-                  className="absolute left-0 top-0 w-full h-full object-cover z-0"
-                />
-                <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
-                <input
-                  type="checkbox"
-                  name={sub.title}
-                  id={`checkbox-${index}`}
-                  className="peer hidden"
-                  onChange={(e) => filterSearch(e, 'groups', sub.name)}
-                  checked={
-                    matchesForGroups && matchesForGroups[3].includes(sub.name)
-                  }
-                />
-                <label
-                  htmlFor={`checkbox-${index}`}
-                  className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
-                >
-                  {sub.title}
-                </label>
-                <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600 hidden peer-checked:block" />
-              </li>
-            ))}
+          <ul className="flex flex-wrap items-center bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden">
+            <FilterCarousel>
+              {topics[currentIndex].children.map((sub, index) => (
+                <SwiperSlide key={index}>
+                  <li
+                    key={sub.id}
+                    className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
+                  >
+                    <img
+                      src={`/images/topics/topic-1.png`}
+                      alt={sub.title}
+                      className="absolute left-0 top-0 w-full h-full object-cover z-0"
+                    />
+                    <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+                    <input
+                      type="checkbox"
+                      name={sub.title}
+                      id={`checkbox-${index}`}
+                      className="peer hidden"
+                      onChange={(e) => filterSearch(e, 'groups', sub.name)}
+                      checked={
+                        matchesForGroups &&
+                        matchesForGroups[3].includes(sub.name)
+                      }
+                    />
+                    <label
+                      htmlFor={`checkbox-${index}`}
+                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                    >
+                      {sub.title}
+                    </label>
+                    <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600 hidden peer-checked:block" />
+                  </li>
+                </SwiperSlide>
+              ))}
+            </FilterCarousel>
           </ul>
         </>
       )}
       {filters === 'Organizations' && (
-        <ul className="flex gap-2 mt-4 justify-start">
-          {orgsResults.map((org, index) => (
-            <li
-              key={org.id}
-              className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
-            >
-              <img
-                src={`/images/topics/topic-2.png`}
-                alt=""
-                className="absolute left-0 top-0 w-full h-full object-cover z-0"
-              />
-              <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
-              <input
-                type="checkbox"
-                name={org.title}
-                id={`checkbox-${index}`}
-                className="peer hidden"
-                onChange={(e) => filterSearch(e, 'organization', org.name)}
-                checked={
-                  matchesForOrgs && matchesForOrgs[3].includes(org.name)
-                }
-              />
-              <label
-                htmlFor={`checkbox-${index}`}
-                className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
-              >
-                {org.title}
-              </label>
-              <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 hidden peer-checked:block z-0" />
-            </li>
-          ))}
+        <ul className="flex flex-wrap bg-white text-sm p-2 rounded-xl w-fit mx-auto max-w-6xl overflow-hidden justify-start">
+          <FilterCarousel>
+            {orgsResults.map((org, index) => (
+              <SwiperSlide key={index}>
+                <li
+                  key={org.id}
+                  className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={`/images/topics/topic-2.png`}
+                    alt=""
+                    className="absolute left-0 top-0 w-full h-full object-cover z-0"
+                  />
+                  <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+                  <input
+                    type="checkbox"
+                    name={org.title}
+                    id={`checkbox-${index}`}
+                    className="peer hidden"
+                    onChange={(e) => filterSearch(e, 'organization', org.name)}
+                    checked={
+                      matchesForOrgs && matchesForOrgs[3].includes(org.name)
+                    }
+                  />
+                  <label
+                    htmlFor={`checkbox-${index}`}
+                    className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                  >
+                    {org.title}
+                  </label>
+                  <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 hidden peer-checked:block z-0" />
+                </li>
+              </SwiperSlide>
+            ))}
+          </FilterCarousel>
         </ul>
       )}
     </div>

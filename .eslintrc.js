@@ -40,12 +40,12 @@ module.exports = {
     '@typescript-eslint/ban-types': [
       'error',
       {
-          extendDefaults: true,
-          types: {
-              '{}': false,
-          },
+        extendDefaults: true,
+        types: {
+          '{}': false,
+        },
       },
-  ],
+    ],
   },
   settings: {
     react: {
