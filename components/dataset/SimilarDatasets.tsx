@@ -33,7 +33,7 @@ export default function SimilarDatasets({ variables }) {
   return (
     <>
       <div className="flex justify-center w-full xl:p-10">
-        <div className="flex flex-col items-between h-full xl:w-2/3 mb-10">
+        <div className="flex flex-col items-between h-full xl:w-2/3 mb-10 w-full">
           <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
             <p>Explore Similar Datasets</p>
           </div>
@@ -74,42 +74,55 @@ export default function SimilarDatasets({ variables }) {
           </div>
         </div>
       </div>
+      {similarDatasetsResponse.loading && (
+        <div className="w-full flex justify-center">
+          <Spinner />
+        </div>
+      )}
       {/* List similar datasets */}
       <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-4 xl:gap-x-1 w-full mb-10">
         {similarDatasetsResponse.error && (
           <ErrorMessage message="Error loading similar datasets" />
         )}
-        {similarDatasetsResponse.loading && <Spinner />}
+
         {!similarDatasetsResponse.loading &&
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
-            .map((item, index) => (
-              <div
-                key={index}
-                className=" rounded-3xl relative group w-4/5 h-4/5"
-              >
-                <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
-                  Dataset
-                </span>
-                <img
-                  src={
-                    fq.startsWith('groups')
-                      ? result.groups[0]?.image_url ||
-                        '/images/dubai-robocop.png'
-                      : item.organization.image || '/images/dubai-robocop.png'
-                  }
-                  alt={item.title}
-                  className="w-full h-full object-center rounded-2xl object-cover"
-                />
-                <a
-                  href={`/@${item.organization.name}/${item.name}`}
-                  className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
-                                    font-[Avenir]"
+            .map((item, index) => {
+              console.log(similarDatasetsResponse.data?.search.result);
+              console.log(result);
+              console.log(item);
+
+              return (
+                <div
+                  key={index}
+                  className=" rounded-3xl relative group w-4/5 h-4/5"
                 >
-                  {item.title}
-                </a>
-              </div>
-            ))}
+                  <a href={`/@${item.organization.name}/${item.name}`}>
+                    <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
+                      Dataset
+                    </span>
+                    <img
+                      src={
+                        fq.startsWith('groups')
+                          ? item.groups[0]?.image_url ||
+                            '/images/dubai-robocop.png'
+                          : item.organization.image ||
+                            '/images/dubai-robocop.png'
+                      }
+                      alt={item.title}
+                      className="w-full h-full object-center rounded-2xl object-cover"
+                    />
+                    <h3
+                      className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold group-hover:opacity-75 group-hover:rounded-lg group-hover:bg-slate-200 group-hover:text-[#464646]
+                                    font-[Avenir]"
+                    >
+                      {item.title}
+                    </h3>
+                  </a>
+                </div>
+              );
+            })}
       </div>
     </>
   );
