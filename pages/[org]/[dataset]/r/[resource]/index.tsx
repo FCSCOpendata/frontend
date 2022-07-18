@@ -36,7 +36,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className="flex flex-wrap mb-70 mx-10 md:mx-28">
+      <main className="flex flex-wrap pl-12 pr-20 mb-70">
         <ScrollIndicator
           firstImage={{
             url: '/images/scroll_indicator_icon_1.svg',
@@ -63,7 +63,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Create Visualization */}
-        <div id="chart-builder">
+        <div className="w-full" id="chart-builder">
           <ChartBuilder resources={[resource]} />
         </div>
         <div className="w-full" id="developer-experience">
