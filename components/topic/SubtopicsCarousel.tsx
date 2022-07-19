@@ -6,11 +6,11 @@ const SubtopicsCarousel: React.FC<any> = ({ subtopics, subtopicOnClick }) => {
       name: subtopic.name,
       title: subtopic.title || subtopic.display_url || subtopic.name,
       image: {
-        url: 'https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png',
+        url: subtopic.image_display_url || subtopic.image_url,
         alt: `${subtopic.name}--topic`,
       },
       icon: {
-        url: subtopic.image_display_url,
+        url: subtopic.logo_display_url || subtopic.logo_url,
         alt: `${subtopic.name}--topic`,
       },
       link: `/topic/${subtopic.name}`,

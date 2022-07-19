@@ -78,7 +78,7 @@ const Topic: React.FC<any> = ({ variables }) => {
           ]}
         />
         <div className="w-100">
-          <div className="mb-20" id="topics">
+          <div className="mb-10" id="topics">
             <TopicsCarousel
               topics={mainTopics}
               active={{ name: topic }}

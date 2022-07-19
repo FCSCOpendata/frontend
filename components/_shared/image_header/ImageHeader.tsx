@@ -4,6 +4,7 @@ import Title from './Title';
 interface ImageHeaderProps {
   title: string;
   icon?: { url: string; alt: string };
+  image?: { url: string; alt: string };
   badgeText?: string;
   children: React.ReactNode;
 }
@@ -11,16 +12,19 @@ interface ImageHeaderProps {
 const ImageHeader: React.FC<ImageHeaderProps> = ({
   title,
   icon,
+  image,
   badgeText,
   children,
 }) => {
   return (
     <>
-      <div className="lg:grid lg:grid-cols-2">
-        <div className="w-full z-10">
+      <div className={image?.url ? `lg:grid lg:grid-cols-2` : ''}>
+        <div className={`${image?.url ? 'w-full z-10' : 'hidden'}`}>
           <div
-            className="bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
-              ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover lg:rounded-r-[50px]"
+            className={`h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
+            ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover lg:rounded-r-[50px]"
+            `}
+            style={{ backgroundImage: `url('${image.url}')` }}
           ></div>
         </div>
         <div className="w-full">
