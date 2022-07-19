@@ -6,7 +6,7 @@ const Header: React.FC<any> = ({ org, datasetsCount }) => {
     alt: `${org.name}--organization`,
   };
   const image = {
-    url: org.image_url,
+    url: org.image_url || '/images/dubai_placeholder.png',
     alt: `${org.name}--organization`,
   };
 

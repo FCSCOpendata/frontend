@@ -5,7 +5,10 @@ const Header: React.FC<any> = ({ topic, datasetsCount }) => {
     url: topic.logo_display_url || '/images/no_icon_topic.png',
     alt: `${topic.name}---topic`,
   };
-  const image = { url: topic.image_display_url, alt: `${topic.name}---topic` };
+  const image = {
+    url: topic.image_display_url || '/images/dubai_placeholder.png',
+    alt: `${topic.name}---topic`,
+  };
 
   const datasetsCountText = isNaN(datasetsCount) ? 0 : datasetsCount;
   const badgeText = `${datasetsCount} dataset${
