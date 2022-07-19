@@ -5,8 +5,12 @@ import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_POST_QUERY } from '../../graphql/queries';
+import { useEffect } from 'react';
 
-const Post: React.FC<{ slug: string }> = ({ slug }) => {
+const Post: React.FC<{ slug: string; setPost: (post: any) => void }> = ({
+  slug,
+  setPost,
+}) => {
   const { loading, error, data } = useQuery(GET_POST_QUERY, {
     variables: { slug },
     // Setting this value to true will make the component rerender when
@@ -14,6 +18,10 @@ const Post: React.FC<{ slug: string }> = ({ slug }) => {
     // more data
     notifyOnNetworkStatusChange: true,
   });
+
+  useEffect(() => {
+    if (setPost && data) setPost(data.post.posts[0]);
+  }, [data]);
 
   if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <Spinner />;

@@ -233,6 +233,29 @@ export const GET_POSTS_QUERY = gql`
   }
 `;
 
+export const GET_NEXT_POSTS_QUERY = gql`
+  query posts($limit: Int, $after: String, $slug: String) {
+    posts(limit: $limit, after: $after, slug: $slug)
+      @rest(
+        type: "Posts"
+        path: "posts/?limit={args.limit}&order=published_at%20desc&filter=published_at%3A<={args.after}%2Bslug%3A-{args.slug}"
+        endpoint: "ghost"
+      ) {
+      posts {
+        title
+        slug
+        image: feature_image
+        created: created_at
+        updated: updated_at
+        published: published_at
+        excerpt
+        readingTime: reading_time
+      }
+      meta
+    }
+  }
+`;
+
 export const GET_PAGE_QUERY = gql`
   query page($slug: String) {
     page(slug: $slug)
