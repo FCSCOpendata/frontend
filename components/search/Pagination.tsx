@@ -18,18 +18,6 @@ const Pagination: React.FC<{
     }
   }, [count]);
 
-  // useEffect(() => {
-  //   setStart(JSON.parse(window.localStorage.getItem('start')));
-  // }, []);
-
-  // useEffect(() => {
-  //   setCurrentPage(JSON.parse(window.localStorage.getItem('currentPage')));
-  // }, [currentPage]);
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('start', JSON.stringify(start));
-  // }, [start]);
-
   const nextPage = () => setStart((page) => page + pageLimit);
   const prevPage = () => setStart((page) => page - pageLimit);
 
@@ -44,7 +32,6 @@ const Pagination: React.FC<{
     pages.push(i);
   }
   const handleClick = (item, startRange) => {
-    //window.localStorage.setItem('currentPage', JSON.stringify(item));
     setCurrentPage(item);
     setQvariables((prev) => {
       return {
@@ -60,7 +47,7 @@ const Pagination: React.FC<{
       <button
         onClick={prevPage}
         disabled={start < pageLimit}
-        className={`pr-6 ${start < pageLimit ? 'text-[#747474]' : null}`}
+        className={`pr-6 ${start < pageLimit ? 'opacity-0' : null}`}
       >
         <span className="flex items-center">
           <svg
@@ -101,9 +88,7 @@ const Pagination: React.FC<{
         })}
       <button
         onClick={nextPage}
-        className={`ml-6 ${
-          start >= pages.length - 5 ? 'text-[#747474]' : null
-        }`}
+        className={`ml-6 ${start >= pages.length - 5 ? 'opacity-0' : null}`}
         disabled={start >= pages.length - 5}
       >
         <span className="flex items-center">
