@@ -1,36 +1,31 @@
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
+import { useState } from 'react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const FilterCarousel: React.FC<{ enableNavBtn: boolean }> = ({
-  children,
-  enableNavBtn,
-}) => {
+const FilterCarousel: React.FC<{}> = ({ children }) => {
+  const [swiper, setSwiper] = useState(null);
   return (
     <>
       <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={4}
-        navigation={enableNavBtn}
-        className={'w-full'}
+        onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
-          360: {
-            slidesPerView: 2,
+          1: {
+            slidesPerView: 2.5,
           },
-          640: {
-            slidesPerView: 3,
+          460: {
+            slidesPerView: 3.5,
           },
-          768: {
-            slidesPerView: 4,
+          720: {
+            slidesPerView: 5.5,
           },
-          1024: {
-            slidesPerView: 5,
+          1200: {
+            slidesPerView: 5.5,
           },
           1280: {
-            slidesPerView: 6,
+            slidesPerView: 6.5,
           },
         }}
       >
