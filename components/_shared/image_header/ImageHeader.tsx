@@ -22,10 +22,16 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
         <div className={`${image?.url ? 'w-full z-10' : 'hidden'}`}>
           <div
             className={`h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
-            ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover lg:rounded-r-[50px]"
+            ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover"
             `}
-            style={{ backgroundImage: `url('${image.url}')` }}
-          ></div>
+          >
+            <img
+              src={image.url}
+              alt={`${title}`}
+              height="100%"
+              className="object-center object-cover h-full lg:rounded-r-[40px] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
+            />
+          </div>
         </div>
         <div className="w-full">
           <div className="h-full w-full lg:pt-[50px] pb-[50px] mr-[10rem] z-0 overflow-visible">
