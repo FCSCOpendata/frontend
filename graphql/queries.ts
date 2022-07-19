@@ -96,7 +96,7 @@ export const GET_ORGS_QUERY = gql`
 
 export const GET_ORGS_FULL_INFO_QUERY = gql`
   query orgs {
-    orgs(all_fields: True)
+    orgs(all_fields: True, include_extras: True)
       @rest(type: "Response", path: "organization_list?{args}") {
       result
     }
@@ -330,6 +330,7 @@ export const GET_TOPICS_QUERY = gql`
       all_fields: True
       limit: 1000
       include_groups: True
+      include_extras: True
       groups: $groups
     ) @rest(type: "Response", path: "group_list?type=group&{args}") {
       result
