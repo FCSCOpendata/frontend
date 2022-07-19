@@ -6,11 +6,11 @@ const SubOrgsCarousel: React.FC<any> = ({ orgs, orgOnClick }) => {
       name: org.name,
       title: org.title || org.display_url || org.name,
       image: {
-        url: 'https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png',
+        url: org.image_display_url || org.image_url,
         alt: `${org.name}--organization`,
       },
       icon: {
-        url: org.image_display_url,
+        url: org.logo_display_url || org.logo_url,
         alt: `${org.name}--organization`,
       },
       link: `@${org.name}`,

@@ -4,6 +4,7 @@ import Title from './Title';
 interface ImageHeaderProps {
   title: string;
   icon?: { url: string; alt: string };
+  image?: { url: string; alt: string };
   badgeText?: string;
   children: React.ReactNode;
 }
@@ -11,17 +12,26 @@ interface ImageHeaderProps {
 const ImageHeader: React.FC<ImageHeaderProps> = ({
   title,
   icon,
+  image,
   badgeText,
   children,
 }) => {
   return (
     <>
-      <div className="lg:grid lg:grid-cols-2">
-        <div className="w-full z-10">
+      <div className={image?.url ? `lg:grid lg:grid-cols-2` : ''}>
+        <div className={`${image?.url ? 'w-full z-10' : 'hidden'}`}>
           <div
-            className="bg-[url('https://coolmagazine.com.br/wp-content/uploads/2022/05/dubai.png')] h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
-              ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover lg:rounded-r-[50px]"
-          ></div>
+            className={`h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
+            ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover"
+            `}
+          >
+            <img
+              src={image.url}
+              alt={`${title}`}
+              height="100%"
+              className="object-center object-cover h-full lg:rounded-r-[40px] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
+            />
+          </div>
         </div>
         <div className="w-full">
           <div className="h-full w-full lg:pt-[50px] pb-[50px] mr-[10rem] z-0 overflow-visible">

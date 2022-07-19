@@ -87,7 +87,7 @@ const Organization: React.FC<any> = ({ variables }) => {
         />
 
         <div className="w-100">
-          <div className="mb-20" id="organizations">
+          <div className="mb-10" id="organizations">
             <OrgsCarousel
               orgs={orgs}
               active={{ name: org }}
@@ -104,11 +104,11 @@ const Organization: React.FC<any> = ({ variables }) => {
           <div id="developer-experience">
             <DeveloperExperience />
           </div>
-          <div id="open-data-101">
-            <OpenData101 />
-          </div>
         </div>
       </main>
+      <div id="open-data-101">
+        <OpenData101 />
+      </div>
     </>
   );
 };
