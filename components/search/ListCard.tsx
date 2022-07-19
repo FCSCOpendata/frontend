@@ -70,7 +70,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
         <div className="flex xl:flex-col items-center xl:items-start pl-6 pt-4 xl:pt-0 xl:px-4 space-x-4 xl:space-x-0 xl:border-l-2 border-[#E6E6E6] h-full xl:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
           <div className="">
             <img
-              src="/images/time.svg"
+              src="/images/page.svg"
               alt="t"
               className="inline grayscale mr-1 w-4"
             />
