@@ -3,7 +3,7 @@ const Title: React.FC<any> = ({ icon, children }) => {
     <>
       <h1 className="text-2xl sm:text-3xl font-[Avenir] font-extrabold flex items-center mb-6 text-[#22B373]">
         {icon?.url && (
-          <span className="border-[1px] rounded-full inline-block overflow-hidden min-w-[30px] w-[30px] sm:min-w-[40px] sm:w-[40px] h-[30px] sm:h-[40px] p-[6px] mr-2 sm:mr-4">
+          <span className="border-[1px] rounded-full inline-block overflow-hidden min-w-[30px] w-[30px] sm:min-w-[40px] sm:w-[40px] h-[30px] sm:h-[40px] p-[6px] mr-2 sm:mr-4 flex items-center justify-center">
             <img
               src={icon.url}
               alt={icon.alt}
