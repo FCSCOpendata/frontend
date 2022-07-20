@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
           <img
             src={image.url}
             alt={image.alt}
-            className="w-full h-full object-center object-cover"
+            className="w-full h-full object-center object-scale-down"
           />
         </div>
         <div className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">

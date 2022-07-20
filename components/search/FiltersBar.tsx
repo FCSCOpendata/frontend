@@ -168,7 +168,7 @@ export default function FiltersBar({
                           sub.image_display_url || `/images/topics/topic-1.png`
                         }
                         alt={sub.title}
-                        className="absolute left-0 top-0 w-full h-full object-cover z-0"
+                        className="absolute left-0 top-0 w-full h-full object-scale-down z-0"
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
@@ -214,7 +214,7 @@ export default function FiltersBar({
                     <img
                       src={org.image || `/images/topics/topic-2.png`}
                       alt=""
-                      className="absolute left-0 top-0 w-full h-full object-cover z-0"
+                      className="absolute left-0 top-0 w-full h-full object-scale-down z-0"
                     />
                     <span
                       className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
