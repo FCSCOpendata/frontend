@@ -6,7 +6,10 @@ const SubOrgsCarousel: React.FC<any> = ({ orgs, orgOnClick }) => {
       name: org.name,
       title: org.title || org.display_url || org.name,
       image: {
-        url: org.image_display_url || org.image_url,
+        url:
+          org.image_display_url ||
+          org.image_url ||
+          '/images/topics/topic-2.png',
         alt: `${org.name}--organization`,
       },
       icon: {

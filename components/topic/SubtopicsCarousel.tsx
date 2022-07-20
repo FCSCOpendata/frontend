@@ -6,7 +6,10 @@ const SubtopicsCarousel: React.FC<any> = ({ subtopics, subtopicOnClick }) => {
       name: subtopic.name,
       title: subtopic.title || subtopic.display_url || subtopic.name,
       image: {
-        url: subtopic.image_display_url || subtopic.image_url,
+        url:
+          subtopic.image_display_url ||
+          subtopic.image_url ||
+          '/images/topics/topic-1.png',
         alt: `${subtopic.name}--topic`,
       },
       icon: {
