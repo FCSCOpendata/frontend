@@ -120,7 +120,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           <SimilarDatasets variables={variables} />
         </div>
         <div className="w-full" id="developer-experience">
-          <DeveloperExperience />
+          <DeveloperExperience
+            api={`${window.location.origin}/api/dataset/${result.name}`}
+          />
         </div>
       </main>
       <div id="open-data-101">

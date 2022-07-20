@@ -93,7 +93,15 @@ const Search: React.FC<Props> = ({ variables }) => {
       </div>
 
       <div className="mx-10 md:mx-28" id="dev-exp">
-        <DeveloperExperience />
+        <DeveloperExperience
+          api={
+            qvariables.q
+              ? `${window.location.origin}/api/search?q=${encodeURI(
+                  qvariables.q
+                )}&fq=${qvariables.fq}`
+              : `${window.location.origin}/api/search?q=dataset_name`
+          }
+        />
       </div>
       <div id="open-data-101">
         <OpenData101 />

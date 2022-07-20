@@ -102,7 +102,9 @@ const Organization: React.FC<any> = ({ variables }) => {
           ></MainOptions>
 
           <div id="developer-experience">
-            <DeveloperExperience />
+            <DeveloperExperience
+              api={`${window.location.origin}/api/organization?id=${org}`}
+            />
           </div>
         </div>
       </main>

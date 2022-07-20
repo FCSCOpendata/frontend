@@ -2,7 +2,7 @@ import React from 'react';
 import Code from './Code';
 import Text from './Text';
 
-const Tabs: React.FC = () => {
+const Tabs: React.FC<{ api: string }> = ({ api }) => {
   const [activeIdx, setActiveIdx] = React.useState(0);
 
   const technologies = [
@@ -22,10 +22,6 @@ const Tabs: React.FC = () => {
       id: 'curl',
       name: 'Curl',
     },
-    {
-      id: 'pandas',
-      name: 'Pandas',
-    },
   ];
 
   const switchTechRender = () => {
@@ -33,38 +29,68 @@ const Tabs: React.FC = () => {
       case 'py':
         return (
           <>
-            <Text>
-              For Python, first install the `datapackage` library (all the
-              datasets on DataHub are Data Packages):
-            </Text>
-            <Code language="python">{`  pip install datapackage`}</Code>
-            <Text>
-              To get Data Package into your Python environment, run the
-              following code:
-            </Text>
+            <Text>Interact with our functional api in python</Text>
             <Code language="python">
               {`
-  from datapackage import Package
+import request
 
+data = request("${api}").json()
 
-  package = Package( 'https://datahub.io/core/gdp/datapackage.json' )
-
-
-  # print list of all resources:
-  print(package.resource_names)
-
-
-  # print processed tabular data (if exists any)
-  for resource in package.resources:
-    if resource.descriptor['datahub']['type'] == 'derived/csv':
-      print(resource.read())
               `}
             </Code>
           </>
         );
         break;
       case 'js':
-        return <></>;
+        return (
+          <>
+            <Text>Interact with our functional api in JavaScript</Text>
+            <Code language="javascript">
+              {`
+const data = fetch("${api}").then(res => res.json())
+
+              `}
+            </Code>
+          </>
+        );
+        break;
+      case 'curl':
+        return (
+          <>
+            <Text>Interact with our functional api in cURL</Text>
+            <Code language="curl">
+              {`
+curl ${api}
+
+              `}
+            </Code>
+          </>
+        );
+        break;
+      case 'R':
+        return (
+          <>
+            <Text>Interact with our functional api in R</Text>
+            <Code language="curl">
+              {`
+# installing packages
+install.packages("httr")
+  
+# importing packages
+library(httr)
+library(jsonlite)
+  
+# GET() method will store the raw data
+# in response variable
+jsonResponse < - GET("${api}")
+  
+# printing response/data
+print(jsonResponse)
+
+              `}
+            </Code>
+          </>
+        );
         break;
     }
   };
