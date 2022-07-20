@@ -121,7 +121,11 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         <div className="w-full" id="developer-experience">
           <DeveloperExperience
-            api={`${window.location.origin}/api/dataset/${result.name}`}
+            api={
+              typeof window !== 'undefined'
+                ? `${window.location.origin}/api/dataset/${result.name}`
+                : ''
+            }
           />
         </div>
       </main>

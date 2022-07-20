@@ -95,11 +95,13 @@ const Search: React.FC<Props> = ({ variables }) => {
       <div className="mx-10 md:mx-28" id="dev-exp">
         <DeveloperExperience
           api={
-            qvariables.q || qvariables.fq
-              ? `${window.location.origin}/api/search?q=${
-                  qvariables.q ? encodeURI(qvariables.q) : ''
-                }&fq=${qvariables.fq}`
-              : `${window.location.origin}/api/search?q=dataset_name`
+            typeof window !== 'undefined'
+              ? qvariables.q || qvariables.fq
+                ? `${window.location.origin}/api/search?q=${
+                    qvariables.q ? encodeURI(qvariables.q) : ''
+                  }&fq=${qvariables.fq}`
+                : `${window.location.origin}/api/search?q=dataset_name`
+              : ''
           }
         />
       </div>

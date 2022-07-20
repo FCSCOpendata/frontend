@@ -103,7 +103,11 @@ const Organization: React.FC<any> = ({ variables }) => {
 
           <div id="developer-experience">
             <DeveloperExperience
-              api={`${window.location.origin}/api/organization?id=${org}`}
+              api={
+                typeof window !== 'undefined'
+                  ? `${window.location.origin}/api/organization?id=${org}`
+                  : ''
+              }
             />
           </div>
         </div>
