@@ -212,11 +212,7 @@ export default function FiltersBar({
                     onClick={(e) => filterSearch(e, 'organization', org.name)}
                   >
                     <img
-                      src={
-                        org.image_display_url ||
-                        org.image_url ||
-                        `/images/topics/topic-2.png`
-                      }
+                      src={org.image || `/images/topics/topic-2.png`}
                       alt=""
                       className="absolute left-0 top-0 w-full h-full object-cover z-0"
                     />
