@@ -187,7 +187,10 @@ export default function FiltersBar({
                       />
                       <label
                         htmlFor={`checkbox-${index}`}
-                        className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                        //  NOTE: z-index removed because it makes
+                        //  the onclick not work and  doen't  seem
+                        //  to be necessary for the UI. Was `z-10`
+                        className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
                       >
                         {sub.title}
                       </label>
@@ -234,7 +237,10 @@ export default function FiltersBar({
                     />
                     <label
                       htmlFor={`checkbox-${index}`}
-                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none z-10 group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                      //  NOTE: z-index removed because it makes
+                      //  the onclick not work and  doen't  seem
+                      //  to be necessary for the UI. Was `z-10`
+                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
                     >
                       {org.title}
                     </label>
