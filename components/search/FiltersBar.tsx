@@ -242,41 +242,45 @@ export default function FiltersBar({
         <div className="flex flex-col">
           <span className="font-bold">Active Filters</span>
           {sideFilter.groups.length > 0 && (
-            <div className="flex flex-wrap w-100 max-w-6xl items-between">
-              <span className="mt-2 font-bold">Groups:</span>
-              {sideFilter.groups.map((group, index) => (
-                <div
-                  className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
-                  key={index}
-                >
-                  <span className="mr-2">{group}</span>
-                  <button
-                    id="true"
-                    onClick={(e) => filterSearch(e, 'groups', group)}
+            <div className="flex w-100 max-w-6xl items-between">
+              <span className="mt-2 font-bold">Topics:</span>
+              <div className="flex flex-wrap ml-12">
+                {sideFilter.groups.map((group, index) => (
+                  <div
+                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    key={index}
                   >
-                    x
-                  </button>
-                </div>
-              ))}
+                    <span className="mr-2">{group}</span>
+                    <button
+                      id="true"
+                      onClick={(e) => filterSearch(e, 'groups', group)}
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
           {sideFilter.organization.length > 0 && (
-            <div className="flex flex-wrap w-100 max-w-6xl items-between mt-4">
+            <div className="flex w-100 max-w-6xl items-between mt-4">
               <span className="mt-2 font-bold">Organization:</span>
-              {sideFilter.organization.map((org, index) => (
-                <div
-                  className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
-                  key={index}
-                >
-                  <span className="mr-2">{org}</span>
-                  <button
-                    id="true"
-                    onClick={(e) => filterSearch(e, 'organization', org)}
+              <div className="flex flex-wrap">
+                {sideFilter.organization.map((org, index) => (
+                  <div
+                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    key={index}
                   >
-                    x
-                  </button>
-                </div>
-              ))}
+                    <span className="mr-2">{org}</span>
+                    <button
+                      id="true"
+                      onClick={(e) => filterSearch(e, 'organization', org)}
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
