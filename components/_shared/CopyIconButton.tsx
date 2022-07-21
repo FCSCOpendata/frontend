@@ -45,6 +45,7 @@ const CopyIconButton: React.FC<{
         place="top"
         effect="solid"
         getContent={() => (copied ? hintAfterCopy : hintBeforeCopy)}
+        type="dark"
       />
     </>
   );
