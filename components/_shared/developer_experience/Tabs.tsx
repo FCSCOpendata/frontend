@@ -29,13 +29,14 @@ const Tabs: React.FC<{ api: string }> = ({ api }) => {
       case 'py':
         return (
           <>
-            <Text>Interact with our functional api in python</Text>
+            <Text>Interact with our functional api in Python</Text>
             <Code language="python">
               {`
 import request
 
 data = request("${api}").json()
 
+print(data)
               `}
             </Code>
           </>
@@ -47,8 +48,10 @@ data = request("${api}").json()
             <Text>Interact with our functional api in JavaScript</Text>
             <Code language="javascript">
               {`
-const data = fetch("${api}").then(res => res.json())
-
+const data = fetch("${api}")
+  .then(res => {
+    res.json().then(console.log)
+  })
               `}
             </Code>
           </>
