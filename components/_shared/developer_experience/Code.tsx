@@ -24,7 +24,7 @@ const Code: React.FC<any> = ({ language, children }) => {
             borderRadius: '25px',
             padding: '10px',
             paddingLeft: '40px',
-            paddingRigth: '20px'
+            paddingRigth: '20px',
           }}
         >
           {children}
