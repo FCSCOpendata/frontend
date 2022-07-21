@@ -89,10 +89,6 @@ export default function SimilarDatasets({ variables }) {
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
             .map((item, index) => {
-              console.log(similarDatasetsResponse.data?.search.result);
-              console.log(result);
-              console.log(item);
-
               return (
                 <div
                   key={index}
