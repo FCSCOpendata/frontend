@@ -43,7 +43,11 @@ const Pagination: React.FC<{
   };
 
   return (
-    <div className="font-raleway flex text-lg text-[#202020]">
+    <div
+      className={`font-raleway flex text-lg text-[#202020] ${
+        !count && 'hidden'
+      }`}
+    >
       <button
         onClick={prevPage}
         disabled={start < pageLimit}
