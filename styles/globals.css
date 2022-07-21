@@ -113,3 +113,22 @@
     transform: rotate(360deg);
   }
 }
+
+/*  Datagrid CSS */
+div.MuiDataGrid-menuIcon,
+div.MuiDataGrid-menuIcon > * {
+  width: auto !important;
+  visibility: visible !important;
+}
+
+.MuiDataGrid-filterForm {
+  padding-right: 40px !important;
+}
+
+div.MuiDataGrid-filterFormDeleteIcon {
+  right: 0;
+  float: right;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
