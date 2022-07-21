@@ -113,3 +113,9 @@
     transform: rotate(360deg);
   }
 }
+
+/*  Datagrid CSS */
+div.MuiDataGrid-menuIcon, div.MuiDataGrid-menuIcon > * {
+  width: auto !important;
+  visibility: visible !important;
+}
