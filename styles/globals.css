@@ -115,7 +115,8 @@
 }
 
 /*  Datagrid CSS */
-div.MuiDataGrid-menuIcon, div.MuiDataGrid-menuIcon > * {
+div.MuiDataGrid-menuIcon,
+div.MuiDataGrid-menuIcon > * {
   width: auto !important;
   visibility: visible !important;
 }
