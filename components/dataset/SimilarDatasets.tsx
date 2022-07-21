@@ -95,9 +95,6 @@ export default function SimilarDatasets({ variables }) {
                   className="transition-all ease-in-out rounded-3xl relative group w-4/5 h-4/5 border-b-4 border-[transparent] hover:border-[#22B373] overflow-hidden"
                 >
                   <a href={`/@${item.organization.name}/${item.name}`}>
-                    <span className="absolute left-4 top-8 rounded-2xl px-4 py-2 bg-[#80E47E] text-[#086F06] font-[Avenir] font-medium text-[15px]">
-                      Dataset
-                    </span>
                     <img
                       src={
                         fq.startsWith('groups')
