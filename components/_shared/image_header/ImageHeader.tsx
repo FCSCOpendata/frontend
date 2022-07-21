@@ -21,7 +21,8 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
       <div className={image?.url ? `lg:grid lg:grid-cols-2` : ''}>
         <div className={`${image?.url ? 'w-full z-10' : 'hidden'}`}>
           <div
-            className={`h-[300px] md:h-[450px] lg:min-h-[600px] lg:h-[100%]
+            //  h-[300px] md:h-full lg:min-h-[600px] lg:h-[100%] --> might be better
+            className={`h-full flex items-center
             ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] lg:mr-[5rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)] lg:w-full bg-center bg-no-repeat bg-cover"
             `}
           >
@@ -29,7 +30,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
               src={image.url}
               alt={`${title}`}
               height="100%"
-              className="object-center object-cover h-full lg:rounded-r-[40px] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
+              className="object-center object-cover w-full lg:rounded-r-[40px] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
             />
           </div>
         </div>

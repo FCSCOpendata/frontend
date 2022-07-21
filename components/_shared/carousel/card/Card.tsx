@@ -13,15 +13,15 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, icon, image }) => {
   return (
     <>
-      <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden ">
+      <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden group">
         <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
           <img
             src={image.url}
             alt={image.alt}
-            className="w-full h-full object-center object-cover"
+            className="w-full h-full object-center object-scale-down"
           />
         </div>
-        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 flex justify-between">
+        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
           <h3 className="font-[Avenir] font-semibold">{title}</h3>
           {!!icon.url && (
             <div className="block overflow-hidden w-[35px] h-[35px] mr-4">

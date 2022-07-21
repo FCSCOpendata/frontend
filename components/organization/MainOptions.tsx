@@ -117,7 +117,8 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
 
       <div className="mb-20" id="explore-top-datasets">
         <h1 className="font-semibold text-2xl sm:text-3xl">
-          Explore Top Datasets In This Theme ({activeOrg?.package_count})
+          Explore Top Datasets In This Organization ({activeOrg?.package_count}
+          )
         </h1>
         <DatasetsList
           // TODO: improve this logic
