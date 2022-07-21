@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Tabs from './Tabs';
 import Toggle from './Toggle';
 
-const DeveloperExperience: React.FC = () => {
+const DeveloperExperience: React.FC<{ api: string }> = ({ api }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ const DeveloperExperience: React.FC = () => {
           expanded ? 'max-h-[10000px] opacity-1' : 'max-h-0 opacity-0'
         }`}
       >
-        <Tabs />
+        <Tabs api={api} />
       </div>
     </>
   );

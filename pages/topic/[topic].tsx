@@ -93,7 +93,13 @@ const Topic: React.FC<any> = ({ variables }) => {
             searchPage={searchPage}
           ></MainOptions>
           <div id="developer-experience">
-            <DeveloperExperience />
+            <DeveloperExperience
+              api={
+                typeof window !== 'undefined'
+                  ? `${window.location.origin}/api/topic?id=${topic}`
+                  : ''
+              }
+            />
           </div>
         </div>
       </main>

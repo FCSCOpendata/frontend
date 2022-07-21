@@ -67,7 +67,15 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           <ChartBuilder resources={[resource]} />
         </div>
         <div className="w-full" id="developer-experience">
-          <DeveloperExperience />
+          <DeveloperExperience
+            api={
+              typeof window !== 'undefined'
+                ? `${window.location.origin}/api/dataset/${
+                    result.name
+                  }/resource/${encodeURI(resource.name)}`
+                : ''
+            }
+          />
         </div>
       </main>
       <div id="open-data-101">
