@@ -65,6 +65,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           variables={qvariables}
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
+          sideFilter={sideFilter}
         />
         <div className="mb-12 mx-10 md:mx-28 mt-12">
           <div className="px-4">

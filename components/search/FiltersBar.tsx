@@ -19,6 +19,7 @@ export default function FiltersBar({
   setQvariables,
   setSideFilter,
   filters,
+  sideFilter,
 }) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -250,6 +251,41 @@ export default function FiltersBar({
               ))}
             </FilterCarousel>
           </div>
+        </div>
+      )}
+
+      {(sideFilter.groups.length > 0 ||
+        sideFilter.organization.length > 0) && (
+        <div className="flex flex-col">
+          <span className="font-bold">Active Filters</span>
+          {sideFilter.groups.length > 0 && (
+            <div className="flex flex-wrap w-100 max-w-6xl items-between">
+              <span className="mt-2 font-bold">Groups:</span>
+              {sideFilter.groups.map((group, index) => (
+                <div
+                  className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                  key={index}
+                >
+                  <span className="mr-2">{group}</span>
+                  <button>x</button>
+                </div>
+              ))}
+            </div>
+          )}
+          {sideFilter.organization.length > 0 && (
+            <div className="flex flex-wrap w-100 max-w-6xl items-between mt-4">
+              <span className="mt-2 font-bold">Organization:</span>
+              {sideFilter.organization.map((org, index) => (
+                <div
+                  className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                  key={index}
+                >
+                  <span className="mr-2">{org}</span>
+                  <button>x</button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
