@@ -52,7 +52,7 @@ export default function FiltersBar({
   const collectionsResults = dataCollections.collections.result;
 
   const filterSearch = (event, btnType, name) => {
-    if (event.target.checked || event.target.id === 'notchecked') {
+    if (event.target.id !== 'true') {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
         newFilter[btnType].push(name);
@@ -63,7 +63,6 @@ export default function FiltersBar({
           const newQ = { ...prev, fq: fq };
           return newQ;
         });
-        event.target.id = 'checked';
         return newFilter;
       });
     } else if (btnType === 'keyword') {
@@ -85,10 +84,6 @@ export default function FiltersBar({
 
           return newQ;
         });
-
-        if (event.target.id === 'checked') {
-          event.target.id = 'notchecked';
-        }
         return newFilter;
       });
     }
@@ -173,18 +168,10 @@ export default function FiltersBar({
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
-                        id="notchecked"
-                      />
-                      <input
-                        type="checkbox"
-                        name={sub.title}
-                        id={`checkbox-${index}`}
-                        className="peer hidden"
-                        onChange={(e) => filterSearch(e, 'groups', sub.name)}
-                        checked={
+                        id={`${
                           matchesForGroups &&
                           matchesForGroups[3].includes(sub.name)
-                        }
+                        }`}
                       />
                       <label
                         htmlFor={`checkbox-${index}`}
@@ -195,7 +182,10 @@ export default function FiltersBar({
                       >
                         {sub.title}
                       </label>
-                      <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600 hidden peer-checked:block" />
+                      {matchesForGroups &&
+                        matchesForGroups[3].includes(sub.name) && (
+                          <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600" />
+                        )}
                     </button>
                   </SwiperSlide>
                 ))}
@@ -222,19 +212,9 @@ export default function FiltersBar({
                     />
                     <span
                       className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
-                      id="notchecked"
-                    />
-                    <input
-                      type="checkbox"
-                      name={org.title}
-                      id={`checkbox-${index}`}
-                      className="peer hidden"
-                      onChange={(e) =>
-                        filterSearch(e, 'organization', org.name)
-                      }
-                      checked={
+                      id={`${
                         matchesForOrgs && matchesForOrgs[3].includes(org.name)
-                      }
+                      }`}
                     />
                     <label
                       htmlFor={`checkbox-${index}`}
@@ -245,7 +225,10 @@ export default function FiltersBar({
                     >
                       {org.title}
                     </label>
-                    <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 hidden peer-checked:block z-0" />
+                    {matchesForOrgs &&
+                      matchesForOrgs[3].includes(org.name) && (
+                        <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 z-0" />
+                      )}
                   </button>
                 </SwiperSlide>
               ))}
@@ -267,7 +250,12 @@ export default function FiltersBar({
                   key={index}
                 >
                   <span className="mr-2">{group}</span>
-                  <button>x</button>
+                  <button
+                    id="true"
+                    onClick={(e) => filterSearch(e, 'groups', group)}
+                  >
+                    x
+                  </button>
                 </div>
               ))}
             </div>
@@ -281,7 +269,12 @@ export default function FiltersBar({
                   key={index}
                 >
                   <span className="mr-2">{org}</span>
-                  <button>x</button>
+                  <button
+                    id="true"
+                    onClick={(e) => filterSearch(e, 'organization', org)}
+                  >
+                    x
+                  </button>
                 </div>
               ))}
             </div>
