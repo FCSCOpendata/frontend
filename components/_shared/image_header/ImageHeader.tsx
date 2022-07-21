@@ -41,9 +41,9 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
               className="bg-[#F7FAFC] pb-5 lg:pb-0 h-full ml-[-2.5rem] md:ml-[-7rem] lg:ml-[-7rem] 
               px-10 md:pl-[7rem] md:pr-[7rem] w-[calc(100%+5rem)] md:w-[calc(100%+14rem)]"
             >
-              <div className="pt-[3rem]">
+              <div className="pt-[3rem] flex flex-col h-full">
                 <Title icon={icon}>{title}</Title>
-                <p className="mb-6 w-full 2xl:w-[85%] text-[#7C7C7C]">
+                <p className="mb-8 w-full 2xl:w-[85%] text-[#7C7C7C] grow">
                   {children}
                 </p>
                 <div className="mb-8">

@@ -9,6 +9,7 @@ const Header: React.FC<any> = ({ topic, datasetsCount }) => {
     url: topic.image_display_url || '/images/dubai_placeholder.png',
     alt: `${topic.name}---topic`,
   };
+  const description = topic.description;
 
   const datasetsCountText = isNaN(datasetsCount) ? 0 : datasetsCount;
   const badgeText = `${datasetsCount} dataset${
@@ -23,25 +24,7 @@ const Header: React.FC<any> = ({ topic, datasetsCount }) => {
         badgeText={badgeText}
         image={image}
       >
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-        ullamcorper suscipit
-        <br />
-        <br />
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-        ullamcorper suscipit
-        <br />
-        <br />
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-        ullamcorper suscipit
+        {description}
       </ImageHeader>
     </>
   );
