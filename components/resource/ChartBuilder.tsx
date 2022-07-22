@@ -90,7 +90,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 alt="orgs"
                 className="w-4  h-4 mr-4 text-white"
               />
-              Build Your Own Application
+              Build Your Own Dashboard
             </button>
           </div>
         </div>
