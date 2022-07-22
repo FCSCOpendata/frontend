@@ -8,7 +8,8 @@ const SearchForm: React.FC<{
   variables: any;
   setQvariables: any;
   setSideFilter: any;
-}> = ({ variables, setQvariables, setSideFilter }) => {
+  sideFilter: any;
+}> = ({ variables, setQvariables, setSideFilter, sideFilter }) => {
   const searchQueryRef = useRef<HTMLInputElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchFormat, setSearchFormat] = useState('');
@@ -103,6 +104,7 @@ const SearchForm: React.FC<{
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
           filters={filter}
+          sideFilter={sideFilter}
         />
       </div>
     </div>

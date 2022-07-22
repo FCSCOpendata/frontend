@@ -19,6 +19,7 @@ export default function FiltersBar({
   setQvariables,
   setSideFilter,
   filters,
+  sideFilter,
 }) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,7 +52,7 @@ export default function FiltersBar({
   const collectionsResults = dataCollections.collections.result;
 
   const filterSearch = (event, btnType, name) => {
-    if (event.target.checked || event.target.id === 'notchecked') {
+    if (event.target.id !== 'true') {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
         newFilter[btnType].push(name);
@@ -62,7 +63,6 @@ export default function FiltersBar({
           const newQ = { ...prev, fq: fq };
           return newQ;
         });
-        event.target.id = 'checked';
         return newFilter;
       });
     } else if (btnType === 'keyword') {
@@ -84,10 +84,6 @@ export default function FiltersBar({
 
           return newQ;
         });
-
-        if (event.target.id === 'checked') {
-          event.target.id = 'notchecked';
-        }
         return newFilter;
       });
     }
@@ -172,18 +168,10 @@ export default function FiltersBar({
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
-                        id="notchecked"
-                      />
-                      <input
-                        type="checkbox"
-                        name={sub.title}
-                        id={`checkbox-${index}`}
-                        className="peer hidden"
-                        onChange={(e) => filterSearch(e, 'groups', sub.name)}
-                        checked={
+                        id={`${
                           matchesForGroups &&
                           matchesForGroups[3].includes(sub.name)
-                        }
+                        }`}
                       />
                       <label
                         htmlFor={`checkbox-${index}`}
@@ -194,7 +182,10 @@ export default function FiltersBar({
                       >
                         {sub.title}
                       </label>
-                      <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600 hidden peer-checked:block" />
+                      {matchesForGroups &&
+                        matchesForGroups[3].includes(sub.name) && (
+                          <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600" />
+                        )}
                     </button>
                   </SwiperSlide>
                 ))}
@@ -221,19 +212,9 @@ export default function FiltersBar({
                     />
                     <span
                       className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
-                      id="notchecked"
-                    />
-                    <input
-                      type="checkbox"
-                      name={org.title}
-                      id={`checkbox-${index}`}
-                      className="peer hidden"
-                      onChange={(e) =>
-                        filterSearch(e, 'organization', org.name)
-                      }
-                      checked={
+                      id={`${
                         matchesForOrgs && matchesForOrgs[3].includes(org.name)
-                      }
+                      }`}
                     />
                     <label
                       htmlFor={`checkbox-${index}`}
@@ -244,12 +225,64 @@ export default function FiltersBar({
                     >
                       {org.title}
                     </label>
-                    <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 hidden peer-checked:block z-0" />
+                    {matchesForOrgs &&
+                      matchesForOrgs[3].includes(org.name) && (
+                        <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 z-0" />
+                      )}
                   </button>
                 </SwiperSlide>
               ))}
             </FilterCarousel>
           </div>
+        </div>
+      )}
+
+      {(sideFilter.groups.length > 0 ||
+        sideFilter.organization.length > 0) && (
+        <div className="flex flex-col">
+          <span className="font-bold">Active Filters</span>
+          {sideFilter.groups.length > 0 && (
+            <div className="flex w-100 max-w-6xl items-between">
+              <span className="mt-2 font-bold">Topics:</span>
+              <div className="flex flex-wrap ml-12">
+                {sideFilter.groups.map((group, index) => (
+                  <div
+                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    key={index}
+                  >
+                    <span className="mr-2">{group}</span>
+                    <button
+                      id="true"
+                      onClick={(e) => filterSearch(e, 'groups', group)}
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {sideFilter.organization.length > 0 && (
+            <div className="flex w-100 max-w-6xl items-between mt-4">
+              <span className="mt-2 font-bold">Organization:</span>
+              <div className="flex flex-wrap">
+                {sideFilter.organization.map((org, index) => (
+                  <div
+                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    key={index}
+                  >
+                    <span className="mr-2">{org}</span>
+                    <button
+                      id="true"
+                      onClick={(e) => filterSearch(e, 'organization', org)}
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
