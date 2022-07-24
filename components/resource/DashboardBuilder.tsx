@@ -141,7 +141,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
           </button>
         ))}
       </div>
-      <div className="bg-white rounded-3xl p-6">
+      <div className="bg-white rounded-3xl font-[Avenir] px-20 py-10">
         <span className="font-semibold">
           {dashboards[activeIndex].description}
         </span>
