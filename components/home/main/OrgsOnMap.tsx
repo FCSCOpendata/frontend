@@ -45,7 +45,7 @@ export default function Orgs() {
     [229.145, 97.4343],
   ];
 
-  const { loading, error, data } = useQuery(GET_ORGS_BY_DATASETS_COUNT_QUERY, {
+  const { data, loading, error } = useQuery(GET_ORGS_BY_DATASETS_COUNT_QUERY, {
     variables: { limit: 20 },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
@@ -53,8 +53,9 @@ export default function Orgs() {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading dataset." />;
+  if (error) return <ErrorMessage message="Error loading organizations." />;
   if (loading) return <Spinner />;
+  console.log(error);
 
   const result = data.orgs.result.slice(0, 20);
 
@@ -156,7 +157,7 @@ export default function Orgs() {
             id={`image${index}_2_1702`}
             width="870"
             height="580"
-            xlinkHref={org.image || '/images/org-default.svg'}
+            xlinkHref={org.image_display_url || '/images/org-default.svg'}
           />
         ))}
       </defs>
