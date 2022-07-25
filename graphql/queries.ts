@@ -338,6 +338,25 @@ export const GET_TOPICS_QUERY = gql`
   }
 `;
 
+export const GET_TOPICS_BY_DATASETS_COUNT_QUERY = gql`
+  query topics($limit: number) {
+    topics(
+      limit: $limit
+      include_datasets_count: True
+      sort: "package_count desc"
+      all_fields: True
+    ) @rest(type: "Response", path: "group_list?{args}") {
+      result {
+        id
+        name
+        title
+        image_url
+        image_display_url
+      }
+    }
+  }
+`;
+
 export const GET_TOPIC_QUERY = gql`
   query topic($id: String) {
     topic(id: $id, include_dataset_count: True, include_groups: True)
