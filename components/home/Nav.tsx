@@ -6,7 +6,7 @@ const NavBar: React.FC = () => {
     { title: 'Organizations', path: '/organization', matchExp: '/@' },
     { title: 'Topics', path: '/topic' },
     { title: 'Open Data 101', path: '/p/open-data-101' },
-    { title: 'Applications', path: '/p/application' },
+    { title: 'News', path: '/news' },
   ];
 
   return <Template menu={navMenu} logo={'/images/bayanat-logo.svg'} />;
