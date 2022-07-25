@@ -61,7 +61,7 @@ export default function Topics() {
           Discover Topics
         </h2>
         <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
-          Our Data Portal topics will help you to navigate throw thousands of
+          Our Data Portal topics will help you to navigate through thousands of
           datasets. Select a topic you are looking for.
         </p>
 
