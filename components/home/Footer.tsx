@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       { name: 'Organizations', href: '/organization' },
       { name: 'Topics', href: '/topic' },
       { name: 'Open Data 101', href: '/p/open-data-101' },
-      { name: 'News', href: '/p/news' },
+      { name: 'News', href: '/news' },
       { name: 'About', href: '/p/about' },
       { name: 'Terms of Use', href: '/p/terms-of-use' },
       { name: 'Contact', href: '/p/contact' },
