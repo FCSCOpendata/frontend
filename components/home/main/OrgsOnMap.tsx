@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../../_shared';
-import { GET_ORGS_QUERY } from '../../../graphql/queries';
+import { GET_ORGS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 
 export default function Orgs() {
   const router = useRouter();
@@ -21,29 +21,6 @@ export default function Orgs() {
       [index].setAttribute('class', 'hidden');
     document.getElementsByTagName('ellipse')[index].style.fill = '#00A3FF';
   }
-
-  const organizations = [
-    'central-bank-united-arab-emirates',
-    'dubaipulse',
-    'federal-authority-nuclear-regulation',
-    'federal-competitiveness-and-statistics-center',
-    'federal-customs-authority',
-    'federal-electricity-water-authority',
-    'ministry-climate-change-environment',
-    'ministry-community-development',
-    'ministry-culture-knowledge-development',
-    'ministry-economy',
-    'ministry-education',
-    'ministry-energy-industry',
-    'ministry-finance',
-    'ministry-foreign-affairs-and-international-cooperation',
-    'ministry-health-and-prevention',
-    'ministry-human-resources-emiratizations',
-    'ministry-infrastructure-development',
-    'ministry-interior',
-    'ministry-justice',
-    'ministry-state-federal-national-council-affairs',
-  ];
 
   const ellipsePositions = [
     [499.934, 246.404],
@@ -68,8 +45,8 @@ export default function Orgs() {
     [229.145, 97.4343],
   ];
 
-  const { loading, error, data } = useQuery(GET_ORGS_QUERY, {
-    variables: { organizations, all_fields: true },
+  const { loading, error, data } = useQuery(GET_ORGS_BY_DATASETS_COUNT_QUERY, {
+    variables: { limit: 20 },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data

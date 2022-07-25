@@ -94,6 +94,25 @@ export const GET_ORGS_QUERY = gql`
   }
 `;
 
+export const GET_ORGS_BY_DATASETS_COUNT_QUERY = gql`
+  query orgs($limit: number) {
+    orgs(
+      limit: $limit
+      include_datasets_count: True
+      sort: "package_count desc"
+      all_fields: True
+    ) @rest(type: "Response", path: "organization_list?{args}") {
+      result {
+        id
+        name
+        title
+        image_url
+        image_display_url
+      }
+    }
+  }
+`;
+
 export const GET_ORGS_FULL_INFO_QUERY = gql`
   query orgs {
     orgs(all_fields: True, include_extras: True)
