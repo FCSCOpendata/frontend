@@ -108,6 +108,7 @@ export const GET_ORGS_BY_DATASETS_COUNT_QUERY = gql`
         title
         image_url
         image_display_url
+        total: package_count
       }
     }
   }
