@@ -95,6 +95,23 @@ const SearchForm: React.FC<{
                 className="cursor-pointer"
               />
             </div>
+            <div
+              className={`flex space-x-1 ${
+                filter == 'Time Frame' && activeFilterClass
+              } rounded-xl px-10 py-2 cursor-pointer`}
+            >
+              <img
+                src="/images/calender-icon.svg"
+                alt="orgs"
+                className="w-5 mb-1 "
+              />
+              <input
+                type="button"
+                value="Time Frame"
+                onClick={handleClick}
+                className="cursor-pointer"
+              />
+            </div>
           </div>
         </div>
       </div>

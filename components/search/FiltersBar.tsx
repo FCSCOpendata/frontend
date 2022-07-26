@@ -23,6 +23,7 @@ export default function FiltersBar({
 }) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
   const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
@@ -133,6 +134,36 @@ export default function FiltersBar({
   const matchesForGroups = regexForGroups.exec(qvariables.fq);
   const regexForOrgs = /((\borganization\b):\(([^)]+)\))/;
   const matchesForOrgs = regexForOrgs.exec(qvariables.fq);
+  const timeFrames = {
+    Custom: null,
+    'Last Year': 1,
+    'Last 2 years': 2,
+    'Last 3 years': 3,
+    'Last 4 years': 4,
+    'Last 5 years': 5,
+  };
+  const setTimeSearchValue = (key, index) => {
+    setCurrentTimeIndex(index);
+    const now = new Date().getFullYear();
+    const end = now + 1;
+    const start = now - timeFrames[key];
+    const startString = `[${start} TO ${end}]`;
+    const endString = `[${now} TO ${end}]`;
+
+    setSideFilter((prev) => {
+      const newFilter = { ...prev };
+      newFilter['start_period'] = [startString];
+      // newFilter['end_period'] = [endString]; need clarity
+
+      const fq = generateFq(newFilter);
+
+      setQvariables((prev) => {
+        const newQ = { ...prev, fq: fq };
+        return newQ;
+      });
+      return newFilter;
+    });
+  };
 
   return (
     <div className="">
@@ -234,6 +265,24 @@ export default function FiltersBar({
               ))}
             </FilterCarousel>
           </div>
+        </div>
+      )}
+
+      {filters === 'Time Frame' && (
+        <div className="w-full can mt-2 bg-white">
+          {Object.keys(timeFrames).map((timeframe, index) => (
+            <button
+              key={index}
+              className={`py-2 px-4 rounded-xl font-[Avenir] ${
+                currentTimeIndex === index
+                  ? 'bg-button-gradient text-white'
+                  : 'text-black'
+              }`}
+              onClick={() => setTimeSearchValue(timeframe, index)}
+            >
+              {timeframe}
+            </button>
+          ))}
         </div>
       )}
 
