@@ -292,7 +292,7 @@ export default function FiltersBar({
         </div>
       )}
 
-      {currentTimeIndex === 0 && (
+      {currentTimeIndex === 0 && filters === 'Time Frame' && (
         <div className="w-full mt-2">
           <div className="flex flex-col w-1/2 border pt-6 px-8 font-[Raleway] bg-white rounded-xl">
             <div>
