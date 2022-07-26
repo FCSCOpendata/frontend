@@ -132,3 +132,15 @@ div.MuiDataGrid-filterFormDeleteIcon {
   top: 50%;
   transform: translateY(-50%);
 }
+
+/*  CMS content CSS */
+/*  Styles buttons that come from GhostCMS */
+.kg-btn.kg-btn-accent {
+  text-decoration: none !important;
+  background-image: linear-gradient(82.67deg, #5EC7F7 -51.47%, #1F356C 239.3%);
+  padding: 0.75rem;
+  font-family: Avenir;
+  font-weight: 500;
+  color: #ffffff;
+  border-radius: 0.50rem;
+;}
