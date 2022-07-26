@@ -24,6 +24,12 @@ export default function FiltersBar({
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
+  const [slider, setSlider] = useState({
+    max: 100,
+    min: 0,
+    value: 0,
+  });
+
   const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
@@ -286,6 +292,47 @@ export default function FiltersBar({
         </div>
       )}
 
+      {currentTimeIndex === 0 && (
+        <div className="w-full mt-2">
+          <div className="flex flex-col w-1/2 border pt-6 px-8 font-[Raleway] bg-white rounded-xl">
+            <div>
+              <input
+                type="range"
+                min={slider.min}
+                max={slider.max}
+                value={slider.value}
+                id="myRange"
+                className="slider"
+                onChange={() =>
+                  setSlider({ ...slider, value: slider.value + 2 })
+                }
+              />
+            </div>
+            <div className="flex w-full mb-12">
+              <div className="flex rounded-xl p-2 bg-[#F6F6F6]  w-2/5 mr-4 text-[14px] font-medium text-[#464646]">
+                <img
+                  src="/images/calender-icon.svg"
+                  alt="orgs"
+                  className="w-5 mb-1 "
+                />
+                <span>1940</span>
+              </div>
+              <span className="self-center">-</span>
+              <div className="flex rounded-xl p-2  w-2/5 ml-4 bg-[#F6F6F6] text-[14px] font-medium text-[#464646]">
+                <img
+                  src="/images/calender-icon.svg"
+                  alt="orgs"
+                  className="w-5 mb-1 "
+                />
+                <span>2022</span>
+              </div>
+            </div>
+            <div>
+              <button className="text-blue-500 font-[Raleway">clear</button>
+            </div>
+          </div>
+        </div>
+      )}
       {(sideFilter.groups.length > 0 ||
         sideFilter.organization.length > 0) && (
         <div className="flex flex-col">
