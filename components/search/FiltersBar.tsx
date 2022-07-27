@@ -215,6 +215,10 @@ export default function FiltersBar({
     maxValRef.current = 42;
     setMinVal(0);
     minValRef.current = 0;
+    setSlider({
+      max: new Date().getFullYear(),
+      min: 1980,
+    });
     setSideFilter((prev) => {
       const newFilter = { ...prev };
       newFilter['start_period'] = [];
@@ -363,7 +367,7 @@ export default function FiltersBar({
                 setMax={setMax}
               />
             </div>
-            <div className="flex w-full mb-12 mt-8">
+            <div className="flex w-full mb-4 mt-8">
               <div className="flex rounded-xl p-2 bg-[#F6F6F6]  w-2/5 mr-4 text-[14px] font-medium text-[#464646]">
                 <img
                   src="/images/calender-icon.svg"
