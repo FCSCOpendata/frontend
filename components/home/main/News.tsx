@@ -17,6 +17,10 @@ export default function News() {
 
   const { posts } = data.posts;
 
+  //  TODO: ideally it would display the latest  posts
+  //  or the best rated ones. Also, the error handling
+  //  was done quickly just to get  the  page  working
+  //  and could be better written.
   return (
     <>
       <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
@@ -29,14 +33,22 @@ export default function News() {
       <div className="container mx-auto flex flex-wrap h-96">
         <div className="flex flex-wrap w-full">
           <div className="flex flex-wrap w-1/3 px-1">
-            <a href={`/news/${posts[0].slug}`} className="group w-full h-full">
+            <a
+              href={posts[0] ? `/news/${posts[0]?.slug}` : ''}
+              onClick={(e) => (!posts[0] ? e.preventDefault() : null)}
+              className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
+            >
               <div className="relative w-full h-full">
                 <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-10" />
-                <img
-                  alt={posts[0].title}
-                  className="w-full object-cover w-full h-full object-center block rounded-lg"
-                  src={posts[0].image}
-                />
+                {posts[0] ? (
+                  <img
+                    alt={posts[0]?.title}
+                    className="object-cover w-full h-full object-center block rounded-lg"
+                    src={posts[0]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-full" />
+                )}
                 <p className="absolute p-8 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[0].title}
                 </p>
@@ -44,57 +56,93 @@ export default function News() {
             </a>
           </div>
           <div className="flex flex-wrap w-1/3 px-1">
-            <a href={`/news/${posts[1].slug}`} className="group w-full">
+            <a
+              href={posts[1] ? `/news/${posts[1]?.slug}` : ''}
+              onClick={(e) => (!posts[1] ? e.preventDefault() : null)}
+              className={`${posts[1] ? 'group' : 'cursor-auto'} w-full`}
+            >
               <div className="relative w-full pb-1">
-                <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-10" />
-                <img
-                  alt={posts[1].title}
-                  className="w-full object-cover w-full h-36 object-center block rounded-lg"
-                  src={posts[1].image}
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 ${
+                    posts[1] ? 'border-[#22B373]' : ''
+                  } rounded-b-lg z-10`}
                 />
+                {posts[1] ? (
+                  <img
+                    alt={posts[1]?.title}
+                    className="w-full object-cover w-full h-36 object-center block rounded-lg"
+                    src={posts[1]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-36" />
+                )}
                 <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
-                  {posts[1].title}
+                  {posts[1]?.title}
                 </p>
               </div>
             </a>
-            <a href={`/news/${posts[2].slug}`} className="group w-full">
+            <a
+              href={posts[2] ? `/news/${posts[2]?.slug}` : ''}
+              onClick={(e) => (!posts[2] ? e.preventDefault() : null)}
+              className={`${posts[2] ? 'group' : 'cursor-auto'} w-full`}
+            >
               <div className="relative w-full pt-1">
                 <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-10" />
-                <img
-                  alt={posts[2].title}
-                  className="w-full object-cover w-full h-60 object-center block rounded-lg"
-                  src={posts[2].image}
-                />
+                {posts[2] ? (
+                  <img
+                    alt={posts[2]?.title}
+                    className="w-full object-cover w-full h-60 object-center block rounded-lg"
+                    src={posts[2]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-60" />
+                )}
                 <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
-                  {posts[2].title}
+                  {posts[2]?.title}
                 </p>
               </div>
             </a>
           </div>
           <div className="flex flex-wrap w-1/3 px-1">
-            <a href={`/news/${posts[3].slug}`} className="group w-full">
+            <a
+              href={posts[3] ? `/news/${posts[3]?.slug}` : ''}
+              onClick={(e) => (!posts[3] ? e.preventDefault() : null)}
+              className={`${posts[3] ? 'group' : 'cursor-auto'} w-full`}
+            >
               <div className="relative w-full pb-1">
                 <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-10" />
-                <img
-                  alt={posts[3].title}
-                  className="w-full object-cover w-full h-60 object-center block rounded-lg"
-                  src={posts[3].image}
-                />
+                {posts[3] ? (
+                  <img
+                    alt={posts[3]?.title}
+                    className="w-full object-cover w-full h-60 object-center block rounded-lg"
+                    src={posts[3]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-60" />
+                )}
                 <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
-                  {posts[3].title}
+                  {posts[3]?.title}
                 </p>
               </div>
             </a>
-            <a href={`/news/${posts[4].slug}`} className="group w-full">
+            <a
+              href={posts[4] ? `/news/${posts[4]?.slug}` : ''}
+              onClick={(e) => (!posts[4] ? e.preventDefault() : null)}
+              className={`${posts[4] ? 'group' : 'cursor-auto'} w-full`}
+            >
               <div className="relative w-full pt-1">
                 <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-10" />
-                <img
-                  alt={posts[4].title}
-                  className="w-full object-cover w-full h-36 object-center block rounded-lg"
-                  src={posts[4].image}
-                />
+                {posts[4] ? (
+                  <img
+                    alt={posts[4]?.title}
+                    className="w-full object-cover w-full h-36 object-center block rounded-lg"
+                    src={posts[4]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-36" />
+                )}
                 <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
-                  {posts[4].title}
+                  {posts[4]?.title}
                 </p>
               </div>
             </a>
