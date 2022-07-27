@@ -215,7 +215,16 @@ export default function FiltersBar({
     maxValRef.current = 42;
     setMinVal(0);
     minValRef.current = 0;
-    setCustomTimeSearchValue(0, 42);
+    setSideFilter((prev) => {
+      const newFilter = { ...prev };
+      newFilter['start_period'] = [];
+      const fq = generateFq(newFilter);
+      setQvariables((prev) => {
+        const newQ = { ...prev, fq: fq };
+        return newQ;
+      });
+      return newFilter;
+    });
   };
 
   return (
