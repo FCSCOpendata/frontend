@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   GET_ORGS_QUERY,
@@ -11,6 +11,7 @@ import { CheckCircleIcon } from '@heroicons/react/outline';
 import FilterCarousel from './filters/FilterCarousel';
 import { SwiperSlide } from 'swiper/react';
 import dynamic from 'next/dynamic';
+import MultiRangeSlider from '../_shared/MultiRangeSlider/MultiRangeSlider';
 
 const TopicsCarousel = dynamic(() => import('./filters/TopicFilterCarousel'));
 
@@ -23,6 +24,17 @@ export default function FiltersBar({
 }) {
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
+  const [slider, setSlider] = useState({
+    max: new Date().getFullYear(),
+    min: 1980,
+  });
+  const [minVal, setMinVal] = useState(0);
+  const [maxVal, setMaxVal] = useState(42);
+  const minValRef = useRef(0);
+  const maxValRef = useRef(42);
+  const [modal, setModal] = useState(false);
+
   const variables = { notifyOnNetworkStatusChange: true };
   const queryMultiple = () => {
     const orgsQuery = useQuery(GET_ORGS_QUERY, variables);
@@ -133,6 +145,91 @@ export default function FiltersBar({
   const matchesForGroups = regexForGroups.exec(qvariables.fq);
   const regexForOrgs = /((\borganization\b):\(([^)]+)\))/;
   const matchesForOrgs = regexForOrgs.exec(qvariables.fq);
+  const timeFrames = {
+    Custom: null,
+    'Last Year': 1,
+    'Last 2 years': 2,
+    'Last 3 years': 3,
+    'Last 4 years': 4,
+    'Last 5 years': 5,
+  };
+  const setTimeSearchValue = (key, index) => {
+    if (key !== 'Custom') {
+      setCurrentTimeIndex(index);
+      const now = new Date().getFullYear();
+      const end = now + 1;
+      const start = now - timeFrames[key];
+      const startString = `[${start} TO ${end}]`;
+      const endString = `[${now} TO ${end}]`;
+
+      setSideFilter((prev) => {
+        const newFilter = { ...prev };
+        newFilter['start_period'] = [startString];
+        // newFilter['end_period'] = [endString]; need clarity
+
+        const fq = generateFq(newFilter);
+
+        setQvariables((prev) => {
+          const newQ = { ...prev, fq: fq };
+          return newQ;
+        });
+        return newFilter;
+      });
+    } else {
+      setCurrentTimeIndex(index);
+    }
+  };
+
+  const setCustomTimeSearchValue = (min, max) => {
+    const minDate = 1980;
+    setSlider({ ...slider, min: minDate + min, max: minDate + max });
+    const startString = `[${minDate + min} TO ${minDate + max + 1}]`;
+    setSideFilter((prev) => {
+      const newFilter = { ...prev };
+      newFilter['start_period'] = [startString];
+      const fq = generateFq(newFilter);
+      setQvariables((prev) => {
+        const newQ = { ...prev, fq: fq };
+        return newQ;
+      });
+      return newFilter;
+    });
+  };
+
+  const setMax = (event) => {
+    const value = Math.max(Number(event.target.value), minVal + 1);
+    setMaxVal(value);
+    maxValRef.current = value;
+    setCustomTimeSearchValue(minVal, value);
+  };
+
+  const setMin = (event) => {
+    const value = Math.min(Number(event.target.value), maxVal - 1);
+    setMinVal(value);
+    minValRef.current = value;
+    setCustomTimeSearchValue(value, maxVal);
+  };
+
+  const clearCustom = () => {
+    setMaxVal(42);
+    maxValRef.current = 42;
+    setMinVal(0);
+    minValRef.current = 0;
+    setSlider({
+      max: new Date().getFullYear(),
+      min: 1980,
+    });
+    setSideFilter((prev) => {
+      const newFilter = { ...prev };
+      newFilter['start_period'] = [];
+      const fq = generateFq(newFilter);
+      setQvariables((prev) => {
+        const newQ = { ...prev, fq: fq };
+        return newQ;
+      });
+      return newFilter;
+    });
+  };
 
   return (
     <div className="">
@@ -237,6 +334,69 @@ export default function FiltersBar({
         </div>
       )}
 
+      {filters === 'Time Frame' && (
+        <div className="w-full can mt-2 bg-white">
+          {Object.keys(timeFrames).map((timeframe, index) => (
+            <button
+              key={index}
+              className={`py-2 px-4 rounded-xl font-[Avenir] ${
+                currentTimeIndex === index
+                  ? 'bg-button-gradient text-white'
+                  : 'text-black'
+              }`}
+              onClick={() => setTimeSearchValue(timeframe, index)}
+            >
+              {timeframe}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {currentTimeIndex === 0 && filters === 'Time Frame' && (
+        <div className="w-full mt-4">
+          <div className="flex flex-col w-1/2  pt-6 px-8 font-[Raleway] bg-white relative rounded-xl triangle">
+            <div>
+              <MultiRangeSlider
+                min={0}
+                max={42}
+                minVal={minVal}
+                maxVal={maxVal}
+                minValRef={minValRef}
+                maxValRef={maxValRef}
+                setMin={setMin}
+                setMax={setMax}
+              />
+            </div>
+            <div className="flex w-full mb-4 mt-8">
+              <div className="flex rounded-xl p-2 bg-[#F6F6F6]  w-2/5 mr-4 text-[14px] font-medium text-[#464646]">
+                <img
+                  src="/images/calender-icon.svg"
+                  alt="orgs"
+                  className="w-5 mb-1 "
+                />
+                <span>{slider.min}</span>
+              </div>
+              <span className="self-center">-</span>
+              <div className="flex rounded-xl p-2  w-2/5 ml-4 bg-[#F6F6F6] text-[14px] font-medium text-[#464646]">
+                <img
+                  src="/images/calender-icon.svg"
+                  alt="orgs"
+                  className="w-5 mb-1 "
+                />
+                <span>{slider.max}</span>
+              </div>
+            </div>
+            <div>
+              <button
+                className="text-blue-500 font-[Raleway] text-[10px]"
+                onClick={() => clearCustom()}
+              >
+                clear
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {(sideFilter.groups.length > 0 ||
         sideFilter.organization.length > 0) && (
         <div className="flex flex-col">

@@ -144,3 +144,111 @@ div.MuiDataGrid-filterFormDeleteIcon {
   color: #ffffff;
   border-radius: 0.5rem;
 }
+
+.slider {
+  position: relative;
+  width: 250px;
+}
+
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+  position: absolute;
+}
+
+.slider__track,
+.slider__range {
+  border-radius: 3px;
+  height: 5px;
+}
+
+.slider__track {
+  background-color: #ced4da;
+  width: 100%;
+  z-index: 1;
+}
+
+.slider__range {
+  background: linear-gradient(82.67deg, #5ec7f7 -51.47%, #1f356c 239.3%);
+  z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+  color: #dee2e6;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.slider__left-value {
+  left: 6px;
+}
+
+.slider__right-value {
+  right: -4px;
+}
+
+/* Removing the default appearance */
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 250px;
+  outline: none;
+}
+
+.thumb--left {
+  z-index: 3;
+}
+
+.thumb--right {
+  z-index: 4;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+  background: linear-gradient(82.67deg, #5ec7f7 -51.47%, #1f356c 239.3%);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+  background: linear-gradient(82.67deg, #5ec7f7 -51.47%, #1f356c 239.3%);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+.triangle:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  bottom: 100%;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-bottom: solid 10px white;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+}
