@@ -80,19 +80,34 @@ export default function Orgs() {
         })}
         {ellipsePositions.map((item, index) => {
           return (
-            <circle
-              key={`circle-${index}`}
-              id={`circle-${index}`}
-              onMouseOver={showInfo}
-              onMouseLeave={hideInfo}
-              onClick={() => router.push(`/@${result[index].name}`)}
-              cx={item[0] - 0.001}
-              cy={item[1]}
-              r="30.0159"
-              fill={`url(#pattern${index})`}
-              stroke="#F7FAFC"
-              strokeWidth="3"
-            />
+            <>
+              <circle
+                key={`circle-${index}`}
+                id={`circle-${index}`}
+                onMouseOver={showInfo}
+                onMouseLeave={hideInfo}
+                onClick={() => router.push(`/@${result[index].name}`)}
+                cx={item[0] - 0.001}
+                cy={item[1]}
+                r="30.0159"
+                fill={`#ffffff`}
+                stroke="#ffffff"
+                strokeWidth="3"
+              />
+              <circle
+                key={`circle-${index}`}
+                id={`circle-${index}`}
+                onMouseOver={showInfo}
+                onMouseLeave={hideInfo}
+                onClick={() => router.push(`/@${result[index].name}`)}
+                cx={item[0] - 0.001}
+                cy={item[1]}
+                r="30.0159"
+                fill={`url(#pattern${index})`}
+                stroke="#F7FAFC"
+                strokeWidth="3"
+              />
+            </>
           );
         })}
         {result.map((org, index) => {
@@ -147,7 +162,7 @@ export default function Orgs() {
             width="1455"
             height="699"
             fill="white"
-            transform="translate(0.574219 0.783203)"
+            transform="translate(0.574219 0.703203)"
           />
         </clipPath>
         {result.map((org, index) => (
