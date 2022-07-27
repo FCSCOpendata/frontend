@@ -16,12 +16,12 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
   return (
     <li
       {...props}
-      className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit xl:h-32"
+      className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit"
     >
       <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-xl z-0 ease-in-out duration-150" />
       <div className="flex flex-cols items-center h-full z-10">
         {/* Image */}
-        <div className="h-full w-28 rounded-xl bg-gray-200">
+        <div className="min-w-[7rem] w-28 rounded-xl bg-gray-200">
           <img
             src={
               dataset.organization.image ||
@@ -30,7 +30,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               )}.png`
             }
             alt={dataset.organization.title}
-            className="h-full"
+            className="w-full object-scale-down object-center"
           />
         </div>
         {/* Title, description & org */}
@@ -68,7 +68,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
       <div className="sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
         {/* dataset info on hover */}
         <div className="flex xl:flex-col items-center xl:items-start pl-6 pt-4 xl:pt-0 xl:px-4 space-x-4 xl:space-x-0 xl:border-l-2 border-[#E6E6E6] h-full xl:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
-          <div className="">
+          <div className="whitespace-nowrap">
             <img
               src="/images/page.svg"
               alt="t"
@@ -79,7 +79,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               {dataset.resources.length > 1 ? 'resources' : 'resource'}
             </span>
           </div>
-          <div className="">
+          <div className="whitespace-nowrap">
             <img
               src="/images/time.svg"
               alt="t"
@@ -89,7 +89,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               {timeago.format(dataset.updated)}
             </span>
           </div>
-          <div className="">
+          <div className="whitespace-nowrap">
             <CalendarIcon className="inline mr-1 w-4" />
             <span className="text-xs capitalize">
               {dataset.startPeriod} - {dataset.endPeriod}
