@@ -40,11 +40,11 @@ const List: React.FC = () => {
         {posts.map((post, index) => (
           <li
             key={index}
-            className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit xl:h-32"
+            className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit"
           >
             <div className="flex flex-cols items-center h-full z-10">
               {/* Image */}
-              <div className="h-full w-28 rounded-xl bg-gray-200">
+              <div className="h-full min-w-[7rem] w-28 rounded-xl bg-gray-200">
                 <img
                   src={
                     post.image ||
@@ -53,7 +53,7 @@ const List: React.FC = () => {
                     )}.png`
                   }
                   alt={post.title}
-                  className="h-full"
+                  className="w-full object-scale-down object-center"
                 />
               </div>
               {/* Title, description & org */}
@@ -69,6 +69,7 @@ const List: React.FC = () => {
                     </p>
                   </a>
                 </Link>
+                <div className="grow h-full"></div>
                 <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
                   <div className="mr-4">
                     <img
