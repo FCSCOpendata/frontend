@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { dynamicPages } from './Nav';
 
-const Footer: React.FC = () => {
-  const navigation = {
+const Footer: React.FC<any> = ({ settings }) => {
+  const [navigation, setNavigation] = useState({
     menu: [
       { name: 'Datasets', href: '/search' },
       { name: 'Organizations', href: '/organization' },
@@ -13,7 +15,34 @@ const Footer: React.FC = () => {
       { name: 'Contact', href: '/p/contact' },
     ],
     social: [],
-  };
+  });
+
+  useEffect(() => {
+    const cmsNavigation = settings?.settings?.settings?.secondary_navigation
+      ?.map((nav) => {
+        // The URL can be absolute or relative
+        // Gets the last segment of the URL
+        let path;
+
+        if (nav.url.includes('//')) {
+          const tmp = /[^/]*\w*$/.exec(nav.url);
+          path = tmp.length > 0 ? tmp[0] : '';
+        } else path = nav.url;
+
+        path = path.replaceAll('/', '');
+        path = `${!dynamicPages.includes(path) ? '/p' : ''}/${path}`;
+
+        return {
+          name: nav.label,
+          href: path.length > 0 ? path : null,
+        };
+      })
+      .filter((el) => el.path != '');
+
+    if (cmsNavigation) {
+      setNavigation({ menu: cmsNavigation, social: [] });
+    }
+  }, [settings]);
 
   return (
     <footer className="relative overflow-hidden">
