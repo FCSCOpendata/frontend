@@ -4,11 +4,10 @@
 
 </h1>
 
-🌀 This is a `Portal.js` project: https://github.com/datopian/portal.js
+## Live instances
 
-## Live demo
-
-https://fcsc-demo.vercel.app/
+- Development: https://frontend.fcsc.develop.datopian.com/
+- Production: https://frontend.fcsc.production.datopian.com (note this is going to be updated to https://opendata.fcsc.gov.ae)
 
 ## Getting Started
 
@@ -49,7 +48,7 @@ So far the app is running with mocked data behind. You can connect CMS and DMS b
 
 ```console
 $ export DMS=http://ckan:5000
-$ export CMS=http://myblog.wordpress.com
+$ export CMS=http://ghost-cms.domain
 ```
 
 > Note that we don't yet have implementations for the following CKAN features:
@@ -66,12 +65,11 @@ These are the default routes set up in the "starter" app.
 - Home `/`
 - Search `/search`
 - Organizations `/organization`
-- Organization `organization/@org`
+- Organization `/@org`
 - Dataset `organization/@org/dataset`
 - Resource `organization/@org/dataset/r/resource`
-- Collections (aka group in CKAN or categories here) - `/collection`
-- Collection - `/collection/collection_name`
-- Static pages, eg, `/about` etc. from CMS or can do it without external CMS, e.g., in Next.js
+- Topics (aka group in CKAN or categories here) - `/topic`
+- Static pages, eg, `/p/about` etc. from CMS or can do it without external CMS, e.g., in Next.js
 
 ### New Routes
 
