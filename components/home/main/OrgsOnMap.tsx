@@ -22,6 +22,19 @@ export default function Orgs() {
     document.getElementsByTagName('ellipse')[index].style.fill = '#00A3FF';
   }
 
+  const { data, loading, error } = useQuery(GET_ORGS_BY_DATASETS_COUNT_QUERY, {
+    variables: { limit: 20 },
+    // Setting this value to true will make the component rerender when
+    // the "networkStatus" changes, so we are able to know if it is fetching
+    // more data
+    notifyOnNetworkStatusChange: true,
+  });
+
+  if (error) return <ErrorMessage message="Error loading organizations." />;
+  if (loading) return <Spinner />;
+
+  const result = data.orgs.result.filter((org) => org.total > 0);
+
   const ellipsePositions = [
     [499.934, 246.404],
     [771.145, 124.366],
@@ -43,21 +56,7 @@ export default function Orgs() {
     [298.371, 371.567],
     [353.942, 281.682],
     [229.145, 97.4343],
-  ];
-
-  const { data, loading, error } = useQuery(GET_ORGS_BY_DATASETS_COUNT_QUERY, {
-    variables: { limit: 20 },
-    // Setting this value to true will make the component rerender when
-    // the "networkStatus" changes, so we are able to know if it is fetching
-    // more data
-    notifyOnNetworkStatusChange: true,
-  });
-
-  if (error) return <ErrorMessage message="Error loading organizations." />;
-  if (loading) return <Spinner />;
-  console.log(error);
-
-  const result = data.orgs.result.slice(0, 20);
+  ].slice(0, result.length);
 
   return (
     <svg
@@ -81,19 +80,34 @@ export default function Orgs() {
         })}
         {ellipsePositions.map((item, index) => {
           return (
-            <circle
-              key={`circle-${index}`}
-              id={`circle-${index}`}
-              onMouseOver={showInfo}
-              onMouseLeave={hideInfo}
-              onClick={() => router.push(`/@${result[index].name}`)}
-              cx={item[0] - 0.001}
-              cy={item[1]}
-              r="30.0159"
-              fill={`url(#pattern${index})`}
-              stroke="#F7FAFC"
-              strokeWidth="3"
-            />
+            <>
+              <circle
+                key={`circle-${index}`}
+                id={`circle-${index}`}
+                onMouseOver={showInfo}
+                onMouseLeave={hideInfo}
+                onClick={() => router.push(`/@${result[index].name}`)}
+                cx={item[0] - 0.001}
+                cy={item[1]}
+                r="30.0159"
+                fill={`#ffffff`}
+                stroke="#ffffff"
+                strokeWidth="3"
+              />
+              <circle
+                key={`circle-${index}`}
+                id={`circle-${index}`}
+                onMouseOver={showInfo}
+                onMouseLeave={hideInfo}
+                onClick={() => router.push(`/@${result[index].name}`)}
+                cx={item[0] - 0.001}
+                cy={item[1]}
+                r="30.0159"
+                fill={`url(#pattern${index})`}
+                stroke="#F7FAFC"
+                strokeWidth="3"
+              />
+            </>
           );
         })}
         {result.map((org, index) => {
@@ -148,7 +162,7 @@ export default function Orgs() {
             width="1455"
             height="699"
             fill="white"
-            transform="translate(0.574219 0.783203)"
+            transform="translate(0.574219 0.703203)"
           />
         </clipPath>
         {result.map((org, index) => (
