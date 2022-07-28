@@ -115,10 +115,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             />
           </div>
         </div>
-        
+
         {/* Cite */}
         <div className="w-full mb-12">
-         <Citation dtype="Dataset" title={result.title} />
+          <Citation dtype="Dataset" title={result.title} />
         </div>
         {/* Similar Dataset */}
         <div className="w-full" id="similar-datasets">

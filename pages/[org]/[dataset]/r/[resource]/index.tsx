@@ -65,7 +65,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
 
         {/* Citation */}
         <div className="w-full mb-8">
-         <Citation dtype="Resource" title={resource.name} />
+          <Citation dtype="Resource" title={resource.name} />
         </div>
         {/* Create Visualization */}
         <div className="w-full" id="chart-builder">
