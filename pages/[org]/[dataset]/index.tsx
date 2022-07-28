@@ -15,6 +15,7 @@ import DeveloperExperience from '../../../components/_shared/developer_experienc
 import JSZip from 'jszip';
 import { useState } from 'react';
 import ScrollIndicator from '../../../components/_shared/ScrollIndicator';
+import Citation from '../../../components/_shared/Citation';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
@@ -115,6 +116,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           </div>
         </div>
 
+        {/* Cite */}
+        <div className="w-full mb-12">
+          <Citation dtype="Dataset" title={result.title} />
+        </div>
         {/* Similar Dataset */}
         <div className="w-full" id="similar-datasets">
           <SimilarDatasets variables={variables} />
