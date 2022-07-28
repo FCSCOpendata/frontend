@@ -89,35 +89,7 @@ export default function SimilarDatasets({ variables }) {
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
             .map((item, index) => {
-              // Leaving this HTML commented because it may be
-              // useful in case something is  off  on the  new
-              // HTML
               return (
-                // <div
-                //   key={index}
-                //   className="transition-all ease-in-out rounded-3xl relative group w-4/5 h-4/5 border-b-4 border-[transparent] hover:border-[#22B373] overflow-hidden"
-                // >
-                //   <a href={`/@${item.organization.name}/${item.name}`}>
-                //     <img
-                //       src={
-                //         fq.startsWith('groups')
-                //           ? item.groups[0]?.image_url ||
-                //             '/images/dubai-robocop.png'
-                //           : item.organization.image ||
-                //             '/images/dubai-robocop.png'
-                //       }
-                //       alt={item.title}
-                //       className="w-full h-full object-center rounded-2xl object-cover"
-                //     />
-                //     <h3
-                //       className="absolute p-4 bottom-0 inset-x-0 text-white text-sm leading-7 font-semibold opacity-75 rounded-lg bg-slate-200 text-[#464646]
-                //                     font-[Avenir]"
-                //     >
-                //       {item.title}
-                //     </h3>
-                //   </a>
-                // </div>
-
                 <a key={index} href={`/topic/${item.name}`} className="group">
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">
                     {/* <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" /> */}
