@@ -123,7 +123,7 @@ const DataExplorer: React.FC<{
 
   return (
     <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
-      <div className="xl:col-span-3 mr-4 w-1/2 ">
+      <div className="xl:col-span-3 mr-4 w-1/2 h-[718px] overflow-y-auto pt-4 pr-2 overflow-x-hidden">
         <div className="flex-col">
           {resources.map((resource, i) => {
             return (
