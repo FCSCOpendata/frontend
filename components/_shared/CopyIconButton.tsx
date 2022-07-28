@@ -31,10 +31,9 @@ const CopyIconButton: React.FC<{
         }}
       >
         <img
-          // TODO: maybe use cop.svg. Check that.
           src="/images/copy.svg"
           alt="copy"
-          className={`transition all ease-in-out duration-400 h-5 w-5 opacity-50 hover:opacity-100 mt-1 ${
+          className={`transition all ease-in-out duration-400 h-7 w-7 opacity-50 hover:opacity-100 mt-1 ${
             copied ? 'opacity-100' : ''
           }`}
           data-tip
