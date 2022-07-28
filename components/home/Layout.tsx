@@ -1,8 +1,18 @@
+import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
+import { GET_CMS_SETTINGS } from '../../graphql/queries';
 import Footer from './Footer';
 import Nav from './Nav';
 
 export default function Layout({ children }) {
+  const {
+    data: settings,
+    loading,
+    error,
+  } = useQuery(GET_CMS_SETTINGS, {
+    notifyOnNetworkStatusChange: true,
+  });
+
   return (
     <>
       <Head>
@@ -12,9 +22,9 @@ export default function Layout({ children }) {
           content="initial-scale=1.0, width=device-width"
         />
       </Head>
-      <Nav />
+      <Nav settings={settings} />
       <main>{children}</main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

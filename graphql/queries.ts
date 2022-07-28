@@ -312,6 +312,14 @@ export const GET_POST_QUERY = gql`
   }
 `;
 
+export const GET_CMS_SETTINGS = gql`
+  query settings {
+    settings @rest(type: "Settings", path: "settings", endpoint: "ghost") {
+      settings
+    }
+  }
+`;
+
 export const GET_POPULAR_DATASETS_QUERY = gql`
   query popular {
     popular @rest(type: "Search", path: "package_search?rows=3") {
