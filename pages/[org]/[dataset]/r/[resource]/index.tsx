@@ -10,6 +10,7 @@ import ChartBuilder from '../../../../../components/resource/ChartBuilder';
 import OpenData101 from '../../../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
 import ScrollIndicator from '../../../../../components/_shared/ScrollIndicator';
+import Citation from '../../../../../components/_shared/Citation';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -58,10 +59,14 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           <About variables={variables} />
         </div>
         {/* Resource display */}
-        <div className="flex flex-col w-full" id="data-explorer">
+        <div className="flex flex-col w-full mb-8" id="data-explorer">
           <DataExplorer dataset={result} columnHeaderStyle={null} />
         </div>
 
+        {/* Citation */}
+        <div className="w-full mb-8">
+         <Citation dtype="Resource" title={resource.name} />
+        </div>
         {/* Create Visualization */}
         <div className="w-full" id="chart-builder">
           <ChartBuilder resources={[resource]} />
