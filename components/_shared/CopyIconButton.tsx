@@ -5,7 +5,8 @@ const CopyIconButton: React.FC<{
   content: string;
   hintBeforeCopy: string;
   hintAfterCopy: string;
-}> = ({ content, hintBeforeCopy, hintAfterCopy }) => {
+  id: string;
+}> = ({ content, hintBeforeCopy, hintAfterCopy, id }) => {
   const [copied, setCopied] = useState(false);
 
   const disableCopiedState = () => {
@@ -37,12 +38,14 @@ const CopyIconButton: React.FC<{
             copied ? 'opacity-100' : ''
           }`}
           data-tip
+          data-for={id}
           id="tooltip"
         />
       </button>
       <ReactTooltip
         place="top"
         effect="solid"
+        id={id}
         getContent={() => (copied ? hintAfterCopy : hintBeforeCopy)}
         className="bg-black text-white"
       />

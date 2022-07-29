@@ -19,6 +19,7 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
         <CopyIconButton
           hintBeforeCopy="Copy this snippet"
           hintAfterCopy="Copied"
+          id="dataset"
           content={`${title} - ${
             typeof window !== 'undefined' ? window.location.href : ''
           }`}
