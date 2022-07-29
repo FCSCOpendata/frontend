@@ -156,6 +156,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
                       {item.url}{' '}
                     </a>
                     <CopyIconButton
+                      id={`databuilder-${index}`}
                       hintBeforeCopy="Copy this snippet"
                       hintAfterCopy="Copied"
                       content={item.url}
