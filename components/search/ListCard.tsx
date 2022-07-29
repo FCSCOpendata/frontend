@@ -103,7 +103,13 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               return availableFormats.includes(file.name);
             })
             .map((file, index) => (
-              <img key={index} src={file.icon} width={20} alt={file.name} />
+              <img
+                key={index}
+                src={file.icon}
+                width="20px"
+                alt={file.name}
+                className="min-w-[20px]"
+              />
             ))}
         </div>
       </div>
