@@ -7,6 +7,11 @@ const datasetFiles = [
   { name: 'pdf', icon: '/images/pdf-icon.svg' },
   { name: 'excel', icon: '/images/excel-icon.svg' },
   { name: 'csv', icon: '/images/csv-icon.svg' },
+  { name: 'html', icon: '/images/resources/html.svg' },
+  { name: 'xls', icon: '/images/excel-icon.svg' },
+  { name: 'xlsx', icon: '/images/excel-icon.svg' },
+  { name: 'api', icon: '/images/resources/json.svg' },
+  { name: 'zip', icon: '/images/resources/zip.svg' },
 ];
 
 const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
@@ -103,7 +108,13 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               return availableFormats.includes(file.name);
             })
             .map((file, index) => (
-              <img key={index} src={file.icon} width={20} alt={file.name} />
+              <img
+                key={index}
+                src={file.icon}
+                width={20}
+                className="lg:mt-1"
+                alt={file.name}
+              />
             ))}
         </div>
       </div>
