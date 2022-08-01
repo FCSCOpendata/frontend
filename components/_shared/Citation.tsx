@@ -7,18 +7,19 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
   return (
     <div
       className={`divide-y divide-slate-400 rounded-xl  w-100 ${
-        dtype === 'Dataset' ? 'xl:ml-80' : ''
+        dtype === 'Dataset' ? 'xl:ml-72' : ''
       }`}
     >
       <div className="font-[Avenir] text-bold p-2">Cite this {dtype}</div>
       <div className="font-[Avenir] text-sm p-4">
         {title} -{' '}
-        <span className="text-[#80E47E] mr-2">
+        <span className="text-[#1F356C] mr-2">
           {typeof window !== 'undefined' ? window.location.href : ''}
         </span>
         <CopyIconButton
           hintBeforeCopy="Copy this snippet"
           hintAfterCopy="Copied"
+          id="dataset"
           content={`${title} - ${
             typeof window !== 'undefined' ? window.location.href : ''
           }`}

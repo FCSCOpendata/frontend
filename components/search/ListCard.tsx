@@ -111,9 +111,9 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               <img
                 key={index}
                 src={file.icon}
-                width={20}
-                className="lg:mt-1"
+                width="20px"
                 alt={file.name}
+                className="min-w-[20px] lg:mt-1"
               />
             ))}
         </div>

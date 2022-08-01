@@ -27,8 +27,9 @@ module.exports = (phase, { defaultConfig }) => {
 
     return {
       i18n: {
-        locales: ['en', 'fr', 'nl-NL'],
+        locales: ['en', 'ar', 'nl-NL'],
         defaultLocale: 'en',
+        localeDetaction: false,
       },
       publicRuntimeConfig: {
         DMS: dms ? dms.replace(/\/?$/, '') : 'http://mock.ckan',
@@ -36,20 +37,30 @@ module.exports = (phase, { defaultConfig }) => {
         CMS_KEY: cmsKey,
       },
       async rewrites() {
-        return [
-          {
-            source: '/dataset/:datasetId/resource/:resourceId/download/:file',
-            destination: `${
-              dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
-            }/dataset/:datasetId/resource/:resourceId/download/:file`,
-          },
-        ];
+        return {
+          afterFiles: [
+            {
+              source:
+                '/dataset/:datasetId/resource/:resourceId/download/:file',
+              destination: `${
+                dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
+              }/dataset/:datasetId/resource/:resourceId/download/:file`,
+            },
+          ],
+          beforeFiles: [
+            {
+              source: '/ar/:path*',
+              destination: '/under-construction',
+              locale: false,
+            },
+          ],
+        };
       },
     };
   }
   return {
     i18n: {
-      locales: ['en', 'fr', 'nl-NL'],
+      locales: ['en', 'ar', 'nl-NL'],
       defaultLocale: 'en',
     },
     publicRuntimeConfig: {
@@ -58,14 +69,23 @@ module.exports = (phase, { defaultConfig }) => {
       CMS_KEY: cmsKey,
     },
     async rewrites() {
-      return [
-        {
-          source: '/dataset/:datasetId/resource/:resourceId/download/:file',
-          destination: `${
-            dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
-          }/dataset/:datasetId/resource/:resourceId/download/:file`,
-        },
-      ];
+      return {
+        afterFiles: [
+          {
+            source: '/dataset/:datasetId/resource/:resourceId/download/:file',
+            destination: `${
+              dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com'
+            }/dataset/:datasetId/resource/:resourceId/download/:file`,
+          },
+        ],
+        beforeFiles: [
+          {
+            source: '/ar/:path*',
+            destination: '/under-construction',
+            locale: false,
+          },
+        ],
+      };
     },
     output: 'standalone',
   };

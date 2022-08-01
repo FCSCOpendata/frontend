@@ -14,6 +14,7 @@ const Code: React.FC<any> = ({ language, children }) => {
             hintBeforeCopy="Copy this snippet"
             hintAfterCopy="Copied"
             content={children}
+            id="dev"
           />
         </div>
         <SyntaxHighlighter
