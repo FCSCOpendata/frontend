@@ -9,10 +9,7 @@ const languages = ['ar', 'en'];
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   const router = useRouter();
 
-  const [locale, setLocale] = useState(router.locale.toUpperCase());
-
   function handleLocale(e: MouseEvent<HTMLButtonElement>) {
-    setLocale(e.currentTarget.value.toLocaleLowerCase());
     router.push(router.asPath, null, {
       locale: e.currentTarget.value.toLocaleLowerCase(),
     });
@@ -75,7 +72,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                       className={`
                         rounded-[3px] py-1 px-2 uppercase cursor-pointer
                         ${
-                          locale.toLocaleLowerCase() ==
+                          router.locale.toLocaleLowerCase() ==
                           name.toLocaleLowerCase()
                             ? 'bg-lang-gradient text-white'
                             : 'bg-transparent text-inherit'
