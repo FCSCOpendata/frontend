@@ -120,7 +120,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <div className="mb-12 grid xl:grid-cols-6 gap-1 pl-0 w-full grid-cols-1 sm:gap-y-1">
           <div className="md:col-start-2 md:col-span-6 md:-ml-4 ">
             <Citation dtype="Dataset" title={result.title} />
-          </div>  
+          </div>
         </div>
         {/* Similar Dataset */}
         <div className="w-full" id="similar-datasets">
