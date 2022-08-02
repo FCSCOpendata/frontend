@@ -6,9 +6,7 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
 }) => {
   return (
     <div
-      className={`divide-y divide-slate-400 rounded-xl  w-100 ${
-        dtype === 'Dataset' ? 'xl:ml-72' : ''
-      }`}
+      className={`divide-y divide-slate-400 rounded-xl  w-100 `}
     >
       <div className="font-[Avenir] text-bold p-2">Cite this {dtype}</div>
       <div className="font-[Avenir] text-sm p-4">
