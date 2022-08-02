@@ -16,7 +16,9 @@ const UnderConstruction = () => {
           Switch to English for more content,{' '}
           <button
             onClick={() => {
-              router.push(router.asPath, null, { locale: 'en' });
+              router.push(router.asPath, null, {
+                locale: 'en',
+              });
             }}
           >
             click here
