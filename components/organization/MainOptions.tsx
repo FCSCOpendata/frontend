@@ -36,12 +36,13 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
   //  org's children
   const name = org;
   const findOrgChildren = (orgs) => {
-    for (org of orgs) {
-      if (org.name == name) return org.children;
-      else if (org.children?.length > 0) {
-        return findOrgChildren(org);
+    if (orgs)
+      for (org of orgs) {
+        if (org.name == name) return org.children;
+        else if (org.children?.length > 0) {
+          return findOrgChildren(org.children);
+        }
       }
-    }
     return [];
   };
 
