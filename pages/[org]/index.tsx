@@ -40,7 +40,7 @@ const Organization: React.FC<any> = ({ variables }) => {
     error: orgsTreeError,
   } = useQuery(GET_ORGS_TREE_QUERY);
 
-  if (orgsTreeLoading) return <div>Loading organizations</div>;
+  if (orgsTreeLoading) return <div>Loading Organizations</div>;
   if (orgsTreeError)
     return <ErrorMessage message="Error loading organizations." />;
 
@@ -50,10 +50,10 @@ const Organization: React.FC<any> = ({ variables }) => {
     error: orgsError,
   } = useQuery(GET_ORGS_FULL_INFO_QUERY, {
     notifyOnNetworkStatusChange: true,
-    variables: variables.GET_ORGS_FULL_INFO_QUERY,
+    variables: variables,
   });
 
-  if (orgsTreeLoading || orgsLoading) return <div>Loading Topics</div>;
+  if (orgsTreeLoading || orgsLoading) return <div>Loading Organizations</div>;
   if (orgsError)
     return <ErrorMessage message="Error loading organizations." />;
 

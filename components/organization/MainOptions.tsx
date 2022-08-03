@@ -14,7 +14,7 @@ const OrgHeader = dynamic(
 );
 const SubOrgsCarousel = dynamic(() => import('./SubOrgsCarousel'));
 
-import { ErrorMessage } from '../../components/_shared';
+import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
 
 const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
@@ -78,7 +78,12 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
     }
   }, [subOrgsLoading]);
 
-  if (subOrgsLoading || orgLoading) return <div>Loading Organization</div>;
+  if (subOrgsLoading || orgLoading)
+    return (
+      <div className="w-full flex justify-center">
+        <Spinner className="mt-10" size="10" id="loading" />
+      </div>
+    );
   if (subOrgsError || orgError)
     return <ErrorMessage message="Error loading organization." />;
 
