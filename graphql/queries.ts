@@ -115,9 +115,12 @@ export const GET_ORGS_BY_DATASETS_COUNT_QUERY = gql`
 `;
 
 export const GET_ORGS_FULL_INFO_QUERY = gql`
-  query orgs {
-    orgs(all_fields: True, include_extras: True)
-      @rest(type: "Response", path: "organization_list?{args}") {
+  query orgs($organizations: String) {
+    orgs(
+      all_fields: True
+      include_extras: True
+      organizations: $organizations
+    ) @rest(type: "Response", path: "organization_list?{args}") {
       result
     }
   }
