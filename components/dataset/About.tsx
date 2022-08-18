@@ -39,8 +39,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         <div className="font-[Avenir] flex text-sm py-2 items-baseline">
           <img src="/images/clock-icon.svg" alt="orgs" className="w-5 h-3" />
           <span>
-            {'Updated at ' +
-              new Date(result.updated).toLocaleDateString('en-GB')}
+            {'Updated ' + new Date(result.updated).toLocaleDateString('en-GB')}
           </span>
         </div>
         <div className="font-[Avenir] flex text-sm py-2 items-baseline">
