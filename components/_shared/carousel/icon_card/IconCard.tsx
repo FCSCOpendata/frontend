@@ -1,13 +1,13 @@
 interface IconCardProps {
   title: string;
-  image: {
+  icon: {
     url: string;
     alt: string;
   };
   isActive?: boolean;
 }
 
-const IconCard: React.FC<IconCardProps> = ({ title, image, isActive }) => {
+const IconCard: React.FC<IconCardProps> = ({ title, icon, isActive }) => {
   return (
     <>
       <div className={`${isActive ? 'text-[#22B373]' : ''}`}>
@@ -15,8 +15,8 @@ const IconCard: React.FC<IconCardProps> = ({ title, image, isActive }) => {
           <img
             //  TODO: check what blank image to put when
             //  there's no image
-            src={image.url || '/images/no-image.svg'}
-            alt={image.alt}
+            src={icon.url || '/images/no-image.svg'}
+            alt={icon.alt}
           />
         </div>
         <h3 className="font-[Avenir] font-medium text-md text-center mt-4">

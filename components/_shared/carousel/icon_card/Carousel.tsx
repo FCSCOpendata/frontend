@@ -8,7 +8,7 @@ import NavButton from '../NavButton';
 interface Item {
   title: string;
   name: string;
-  image: {
+  icon: {
     url: string;
     alt: string;
   };
@@ -83,7 +83,7 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
             >
               <IconCard
                 title={item.title}
-                image={item.image}
+                icon={item.icon}
                 isActive={item.name == active?.name}
               />
             </a>
