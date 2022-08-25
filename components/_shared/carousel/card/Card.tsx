@@ -22,8 +22,8 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
             className="w-full h-full object-center object-scale-down"
           />
         </div>
-        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-sm pl-5 leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center">
-          <h3 className="font-[Avenir] font-semibold">{title}</h3>
+        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-m pl-5 leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center">
+          <h3 className="font-avenir font-bold">{title}</h3>
           {!!icon.url && (
             <div className="block overflow-hidden w-[35px] h-[35px] mr-4">
               <img
