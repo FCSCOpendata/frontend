@@ -5,8 +5,8 @@ const OrgsCarousel: React.FC<any> = ({ orgs, active, orgOnClick }) => {
     return {
       name: org.name,
       title: org.title || org.display_url || org.name,
-      image: {
-        url: org.logo_display_url || '/images/no_icon_org.svg',
+      icon: {
+        url: org.logo_display_url || org.logo_url || '/images/no_icon_org.svg',
         alt: `${org.name}--topic`,
       },
       link: `/${org.name}`,

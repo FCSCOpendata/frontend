@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   GET_ORGS_FULL_INFO_QUERY,
   GET_ORGS_TREE_QUERY,
@@ -29,8 +29,10 @@ const Organization: React.FC<any> = ({ variables }) => {
   const router = useRouter();
   const { org: orgParam } = router.query;
   const org = (orgParam as string).replace('@', '');
+  const [activeOrg, setActiveOrg] = useState({ org: null });
 
-  const goToOrg = (org: any) => {
+  const handleOrgChange = (org: any) => {
+    setActiveOrg({ org });
     router.push(`@${org.name}`, undefined, { shallow: true });
   };
 
@@ -70,7 +72,9 @@ const Organization: React.FC<any> = ({ variables }) => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <ScrollIndicator
           firstImage={{
-            url: '/images/scroll_indicator_icon_1.svg',
+            url:
+              activeOrg?.org?.icon?.url ||
+              '/images/no_icon_org.svg',
             alt: 'First stop',
           }}
           lastImage={{
@@ -91,14 +95,15 @@ const Organization: React.FC<any> = ({ variables }) => {
             <OrgsCarousel
               orgs={orgs}
               active={{ name: org }}
-              orgOnClick={goToOrg}
+              orgOnClick={handleOrgChange}
             />
           </div>
 
           <MainOptions
             org={org}
             orgsTree={orgsTreeData.orgs.result}
-            orgOnClick={goToOrg}
+            orgOnClick={handleOrgChange}
+            setActiveOrg={setActiveOrg}
           ></MainOptions>
 
           <div id="developer-experience">
