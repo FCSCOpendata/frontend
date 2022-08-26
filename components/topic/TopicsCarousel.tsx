@@ -5,7 +5,7 @@ const TopicsCarousel: React.FC<any> = ({ topics, active, topicOnClick }) => {
     return {
       name: topic.name,
       title: topic.title || topic.display_name || topic.name,
-      image: {
+      icon: {
         url: topic.logo_display_url || '/images/no_icon_topic.png',
         alt: `${topic.name}--topic`,
       },

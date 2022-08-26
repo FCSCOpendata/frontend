@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   GET_TOPICS_QUERY,
   GET_TOPICS_TREE_QUERY,
@@ -28,8 +28,10 @@ const Topic: React.FC<any> = ({ variables }) => {
   const router = useRouter();
   // eslint-disable-next-line prefer-const
   let { searchPage, topic } = router.query;
+  const [activeTopic, setActiveTopic] = useState({ topic: null });
 
-  const goToTopic = (topic: any) => {
+  const handleTopicChange = (topic: any) => {
+    setActiveTopic({ topic });
     router.push(`/topic/${topic.name}`, undefined, { shallow: true });
   };
 
@@ -62,7 +64,9 @@ const Topic: React.FC<any> = ({ variables }) => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <ScrollIndicator
           firstImage={{
-            url: '/images/scroll_indicator_icon_1.svg',
+            url:
+              activeTopic.topic?.icon?.url ||
+              '/images/scroll_indicator_icon_1.svg',
             alt: 'First stop',
           }}
           lastImage={{
@@ -82,15 +86,16 @@ const Topic: React.FC<any> = ({ variables }) => {
             <TopicsCarousel
               topics={mainTopics}
               active={{ name: topic }}
-              topicOnClick={goToTopic}
+              topicOnClick={handleTopicChange}
             />
           </div>
 
           <MainOptions
             topic={topic}
             topicsTree={topicsTree}
-            topicOnClick={goToTopic}
+            topicOnClick={handleTopicChange}
             searchPage={searchPage}
+            setActiveTopic={setActiveTopic}
           ></MainOptions>
           <div id="developer-experience">
             <DeveloperExperience

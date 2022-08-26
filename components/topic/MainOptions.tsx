@@ -18,6 +18,7 @@ const MainOptions: React.FC<any> = ({
   topicsTree,
   topicOnClick,
   searchPage,
+  setActiveTopic,
 }) => {
   const router = useRouter();
 
@@ -79,6 +80,17 @@ const MainOptions: React.FC<any> = ({
     }
   }, [subtopicsLoading]);
 
+  //  This serves just to update the scroll
+  //  indicator icon
+  useEffect(() => {
+    if (topicData) {
+      const tmp = topicData.topic.result;
+      setActiveTopic({
+        topic: { icon: { url: tmp?.logo_display_url || tmp?.logo_url } },
+      });
+    }
+  }, [topicData]);
+
   if (topicError || subtopicsError)
     return <ErrorMessage message="Error loading topics." />;
   if (topicLoading || subtopicsLoading)
@@ -88,7 +100,7 @@ const MainOptions: React.FC<any> = ({
       </div>
     );
 
-  const activeTopic = topicData.topic.result;
+  const activeTopic = { ...topicData.topic.result };
 
   const findAndAddDetails = (topics, coll) => {
     topics.forEach((t: any, idx: number) => {

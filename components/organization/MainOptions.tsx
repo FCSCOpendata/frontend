@@ -17,7 +17,12 @@ const SubOrgsCarousel = dynamic(() => import('./SubOrgsCarousel'));
 import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
 
-const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
+const MainOptions: React.FC<any> = ({
+  org,
+  orgsTree,
+  orgOnClick,
+  setActiveOrg,
+}) => {
   const router = useRouter();
   const { searchPage } = router.query;
 
@@ -31,6 +36,19 @@ const MainOptions: React.FC<any> = ({ org, orgsTree, orgOnClick }) => {
       id: org,
     },
   });
+
+  useEffect(() => {
+    if (orgData) {
+      const tmp = orgData.org.result;
+      setActiveOrg({
+        org: {
+          icon: {
+            url: tmp?.logo_display_url || tmp?.logo_url,
+          },
+        },
+      });
+    }
+  }, [orgData]);
 
   //  TODO: not the best way to find the
   //  org's children
