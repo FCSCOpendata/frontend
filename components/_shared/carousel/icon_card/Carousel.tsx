@@ -2,6 +2,8 @@ import IconCard from './IconCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useState } from 'react';
+import { Navigation } from 'swiper';
+import NavButton from '../NavButton';
 
 interface Item {
   title: string;
@@ -23,27 +25,39 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
   const [swiper, setSwiper] = useState(null);
 
   return (
-    <>
+    <div className="group relative">
+      {items.length > 10 && (
+        <>
+          <div className="transition-all opacity-0 group-hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button">
+            <NavButton orientation="left" />
+          </div>
+          <div className="transition-all opacity-0 group-hover:opacity-100  absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button">
+            <NavButton orientation="right" />
+          </div>
+        </>
+      )}
       <Swiper
+        modules={[Navigation]}
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
-            slidesPerView: 2.5,
+            slidesPerView: 3,
           },
           460: {
-            slidesPerView: 3.5,
+            slidesPerView: 4,
           },
           720: {
-            slidesPerView: 5.5,
+            slidesPerView: 6,
           },
           1200: {
-            slidesPerView: 8.5,
-          },
-          1280: {
-            slidesPerView: 9.5,
+            slidesPerView: 10,
           },
         }}
         initialSlide={items.findIndex((item) => item.name == active.name)}
+        navigation={{
+          prevEl: '.nav-prev-button',
+          nextEl: '.nav-next-button',
+        }}
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
@@ -76,7 +90,7 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

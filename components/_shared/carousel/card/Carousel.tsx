@@ -5,7 +5,7 @@ import Card from './Card';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import NavButton from './NavButton';
+import NavButton from '../NavButton';
 
 interface Item {
   title: string;
