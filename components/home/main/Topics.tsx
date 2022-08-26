@@ -36,16 +36,18 @@ export default function Topics() {
           {!loading &&
             !error &&
             data.topics.result.map((topic, index) => (
-              <a key={index} href={`/topic/${topic.name}`} className="group">
+              <a
+                key={index}
+                href={`/topic/${topic.name}`}
+                className="group h-full w-full flex flex-stretch"
+              >
                 <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
                   <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
-                  <div>
-                    <img
-                      src={topic.image_display_url}
-                      alt={topic.title}
-                      className="w-full h-full object-center object-scale-down"
-                    />
-                  </div>
+                  <img
+                    src={topic.image_display_url}
+                    alt={topic.title}
+                    className="w-full h-full object-center object-scale-down"
+                  />
                   <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
                     {topic.title}
                   </p>
