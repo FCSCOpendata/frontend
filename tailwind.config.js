@@ -26,6 +26,7 @@ module.exports = {
         raleway: ['raleway', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
+        avenir: ['avenir', 'sans-serif']
       },
       fontSize: {
         '3xl': '2.25rem',
