@@ -90,7 +90,11 @@ export default function SimilarDatasets({ variables }) {
             ?.slice(0, 4)
             .map((item, index) => {
               return (
-                <a key={index} href={`/topic/${item.name}`} className="group">
+                <a
+                  key={index}
+                  href={`/@${item.organization.name}/${item.name}`}
+                  className="group"
+                >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">
                     {/* <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" /> */}
                     <div className="aspect-w-1 aspect-h-1">
