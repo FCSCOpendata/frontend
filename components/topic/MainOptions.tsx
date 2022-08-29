@@ -63,7 +63,7 @@ const MainOptions: React.FC<any> = ({
   } = useQuery(GET_TOPICS_QUERY, {
     notifyOnNetworkStatusChange: true,
     variables: {
-      groups: `[${subtopicsFilter.join(',')}]`,
+      groups: `[${subtopicsFilter?.join(',')}]`,
     },
   });
 
@@ -84,7 +84,7 @@ const MainOptions: React.FC<any> = ({
   //  indicator icon
   useEffect(() => {
     if (topicData) {
-      const tmp = topicData.topic.result;
+      const tmp = topicData?.topic?.result;
       setActiveTopic({
         topic: { icon: { url: tmp?.logo_display_url || tmp?.logo_url } },
       });
