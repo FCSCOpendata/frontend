@@ -42,7 +42,9 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
             </span>
           </div>
           <div>
-            <CalendarIcon className={`inline pb-1 w-4 ${AR('ml-1', 'mr-1')}`} />
+            <CalendarIcon
+              className={`inline pb-1 w-4 ${AR('ml-1', 'mr-1')}`}
+            />
             <span className="text-xs text-center sm:text-left">
               {timeago.format(published)}
             </span>

@@ -39,7 +39,7 @@ const Post: React.FC<{ slug: string; setPost: (post: any) => void }> = ({
         <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
         <h1 className="text-3xl font-extrabold z-10">{title}</h1>
         <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
-          <div className={`${AR('ml-4', "mr-4")}`}>
+          <div className={`${AR('ml-4', 'mr-4')}`}>
             <img
               src="/images/time.svg"
               alt="reading time"
@@ -50,7 +50,9 @@ const Post: React.FC<{ slug: string; setPost: (post: any) => void }> = ({
             </span>
           </div>
           <div>
-            <CalendarIcon className={`inline pb-1 w-4 ${AR('ml-1', 'mr-1')}`} />
+            <CalendarIcon
+              className={`inline pb-1 w-4 ${AR('ml-1', 'mr-1')}`}
+            />
             <span className="text-xs text-center sm:text-left">
               {timeago.format(published)}
             </span>
