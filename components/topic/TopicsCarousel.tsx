@@ -15,7 +15,12 @@ const TopicsCarousel: React.FC<any> = ({ topics, active, topicOnClick }) => {
 
   return (
     <>
-      <Carousel items={items} active={active} itemOnClick={topicOnClick} />
+      <Carousel
+        items={items}
+        active={active}
+        itemOnClick={topicOnClick}
+        identifier="topics-carousel"
+      />
     </>
   );
 };

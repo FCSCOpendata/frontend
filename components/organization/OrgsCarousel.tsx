@@ -15,7 +15,12 @@ const OrgsCarousel: React.FC<any> = ({ orgs, active, orgOnClick }) => {
 
   return (
     <>
-      <Carousel items={items} active={active} itemOnClick={orgOnClick} />
+      <Carousel
+        items={items}
+        active={active}
+        itemOnClick={orgOnClick}
+        identifier="orgs-carousel"
+      />
     </>
   );
 };
