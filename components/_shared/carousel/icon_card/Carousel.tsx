@@ -42,15 +42,19 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
         breakpoints={{
           1: {
             slidesPerView: 3,
+            slidesPerGroup: 3
           },
           460: {
             slidesPerView: 4,
+            slidesPerGroup: 4
           },
           720: {
             slidesPerView: 6,
+            slidesPerGroup: 6
           },
           1200: {
             slidesPerView: 10,
+            slidesPerGroup: 10
           },
         }}
         initialSlide={items.findIndex((item) => item.name == active.name)}
