@@ -67,7 +67,7 @@ const Footer: React.FC<any> = ({ settings }) => {
             </p>
             <ul className="flex space-x-6 text-sm list-none">
               {navigation.menu.map((item) => (
-                <li key={item.name}>
+                <li key={item.name} className={AR() ? 'ml-5' : ''}>
                   <Link href={item.href}>
                     <a
                       href={item.href}
