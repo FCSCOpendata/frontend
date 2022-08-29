@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
@@ -14,6 +14,12 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
       locale: e.currentTarget.value.toLocaleLowerCase(),
     });
   }
+
+  useEffect(() => {
+    const dir = router.locale.toLowerCase() == 'ar' ? 'rtl' : 'ltr';
+    document.querySelector('html').setAttribute('dir', dir);
+    document.querySelector('html').setAttribute('lang', router.locale);
+  }, [router.locale]);
 
   return (
     <Disclosure as="nav" className={`bg-white`}>

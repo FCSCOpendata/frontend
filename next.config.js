@@ -47,13 +47,13 @@ module.exports = (phase, { defaultConfig }) => {
               }/dataset/:datasetId/resource/:resourceId/download/:file`,
             },
           ],
-          beforeFiles: [
-            {
-              source: '/ar/:path*',
-              destination: '/under-construction',
-              locale: false,
-            },
-          ],
+          // beforeFiles: [
+          //   {
+          //     source: '/ar/:path*',
+          //     destination: '/under-construction',
+          //     locale: false,
+          //   },
+          // ],
         };
       },
     };
@@ -78,13 +78,13 @@ module.exports = (phase, { defaultConfig }) => {
             }/dataset/:datasetId/resource/:resourceId/download/:file`,
           },
         ],
-        beforeFiles: [
-          {
-            source: '/ar/:path*',
-            destination: '/under-construction',
-            locale: false,
-          },
-        ],
+        // beforeFiles: [
+        //   {
+        //     source: '/ar/:path*',
+        //     destination: '/under-construction',
+        //     locale: false,
+        //   },
+        // ],
       };
     },
     output: 'standalone',
