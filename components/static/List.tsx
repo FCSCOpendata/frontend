@@ -7,6 +7,7 @@ import { GET_POSTS_QUERY } from '../../graphql/queries';
 import Pagination from '../search/Pagination';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { AR } from '../../hooks/locale';
 
 const List: React.FC = () => {
   const router = useRouter();
@@ -33,7 +34,12 @@ const List: React.FC = () => {
 
   return (
     <div className="font-[Avenir] mt-8 mb-12 px-4 sm:mx-12">
-      <h2 className="text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
+      <h2
+        className={`text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4 text-center  ${AR(
+          'md:text-right',
+          'md:text-left'
+        )}`}
+      >
         {meta.pagination.total} articles found
       </h2>
       <ul className="mb-10">
@@ -61,28 +67,43 @@ const List: React.FC = () => {
                 <Link href={`/news/${post.slug}`}>
                   {/* eslint-disable-next-line */}
                   <a className="block focus:outline-none space-y-2 xl:space-y-0">
-                    <h1 className="text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl">
+                    <h1
+                      className={`text-lg font-semibold text-[#202020] text-center ${AR(
+                        'sm:text-right',
+                        'sm:text-left'
+                      )} max-w-xl`}
+                    >
                       {post.title}
                     </h1>
-                    <p className="text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left">
+                    <p
+                      className={`text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center ${AR(
+                        'sm:text-right',
+                        'sm:text-left'
+                      )}`}
+                    >
                       {post.excerpt}
                     </p>
                   </a>
                 </Link>
                 <div className="grow h-full"></div>
                 <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
-                  <div className="mr-4">
+                  <div className={`${AR('ml-4', 'mr-4')}`}>
                     <img
                       src="/images/time.svg"
                       alt="reading time"
-                      className="inline w-4 pb-1 mr-1 grayscale"
+                      className={`inline w-4 pb-1 grayscale ${AR(
+                        'ml-1',
+                        'mr-1'
+                      )}`}
                     />
                     <span className="text-xs text-center sm:text-left">
                       {post.readingTime} min read
                     </span>
                   </div>
                   <div>
-                    <CalendarIcon className="inline pb-1 mr-1 w-4" />
+                    <CalendarIcon
+                      className={`inline pb-1 w-4 ${AR('ml-1', 'mr-1')}}`}
+                    />
                     <span className="text-xs text-center sm:text-left">
                       {timeago.format(post.published)}
                     </span>
