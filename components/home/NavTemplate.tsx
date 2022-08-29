@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { AR } from '../../hooks/locale';
 
 const languages = ['ar', 'en'];
 
@@ -44,7 +45,11 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                     </a>
                   </Link>
                 </div>
-                <div className="hidden lg:ml-8 lg:flex lg:space-x-6">
+                <div
+                  className={`hidden lg:flex lg:space-x-6 ${
+                    AR() ? 'lg:mr-8' : 'lg:ml-8 '
+                  }`}
+                >
                   {menu.map((item, index) => (
                     <Link key={'menu-link' + index} href={item.path}>
                       <a
