@@ -60,7 +60,7 @@ const Pagination: React.FC<{
 
   //  if AR, swap arrow directions
   if (AR()) {
-    let tmp = prevArrowSVG;
+    const tmp = prevArrowSVG;
     prevArrowSVG = nextArrowSVG;
     nextArrowSVG = tmp;
   }

@@ -8,7 +8,10 @@ const Toggle: React.FC<{ onToggle: () => void; expanded: boolean }> = ({
     <button onClick={() => onToggle()}>
       <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
         <span
-          className={`bg-[#CBE9FF] p-[9px] w-[30px] rounded-md ${AR('ml-5', 'mr-5')}`}
+          className={`bg-[#CBE9FF] p-[9px] w-[30px] rounded-md ${AR(
+            'ml-5',
+            'mr-5'
+          )}`}
         >
           <img
             src="/images/plus.svg"
