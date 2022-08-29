@@ -7,6 +7,7 @@ import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
 import { AR } from '../../hooks/locale';
+import Link from 'next/link';
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
@@ -193,15 +194,17 @@ const DataExplorer: React.FC<{
             </p>
           </div>
           <div className="grid xl:justify-items-end align-middle justify-items-start ">
-            <a
-              href={`${router.asPath}/r/${resources[activeTable].name}`}
-              className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
-            >
-              <ExternalLinkIcon
-                className={`w-6 pb-1 inline ${AR('ml-2', 'mr-2')}`}
-              />
-              <span>Build Your Data</span>
-            </a>
+            <Link href={`${router.asPath}/r/${resources[activeTable].name}`}>
+              <a
+                href={`${router.asPath}/r/${resources[activeTable].name}`}
+                className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+              >
+                <ExternalLinkIcon
+                  className={`w-6 pb-1 inline ${AR('ml-2', 'mr-2')}`}
+                />
+                <span>Build Your Data</span>
+              </a>
+            </Link>
           </div>
         </div>
 

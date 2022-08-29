@@ -70,7 +70,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className={`flex flex-wrap mb-70 ${AR('pr-12 pl-20', 'pl-12 pr-20')}`}>
+      <main
+        className={`flex flex-wrap mb-70 ${AR('pr-12 pl-20', 'pl-12 pr-20')}`}
+      >
         <ScrollIndicator
           firstImage={{
             url: '/images/scroll_indicator_icon_1.svg',
@@ -118,8 +120,18 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
 
         {/* Cite */}
-        <div className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR('pr-0', 'pl-0')} w-full grid-cols-1 sm:gap-y-1`}>
-          <div className={`md:col-start-2 md:col-span-6 ${AR('md:-mr-4', 'md:-ml-4')}`}>
+        <div
+          className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR(
+            'pr-0',
+            'pl-0'
+          )} w-full grid-cols-1 sm:gap-y-1`}
+        >
+          <div
+            className={`md:col-start-2 md:col-span-6 ${AR(
+              'md:-mr-4',
+              'md:-ml-4'
+            )}`}
+          >
             <Citation dtype="Dataset" title={result.title} />
           </div>
         </div>
