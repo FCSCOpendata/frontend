@@ -34,6 +34,10 @@
   background: #22b373 !important;
 }
 
+.swiper-button-disabled {
+  display: none !important;
+}
+
 /* nprogress CSS */
 #nprogress {
   pointer-events: none;
