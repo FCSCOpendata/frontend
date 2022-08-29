@@ -6,8 +6,16 @@ const Topic: React.FC = () => {
   return <>Redirecting...</>;
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const apolloClient = initializeApollo();
+
+  //  For this redirect to work it was needed
+  //  to append the locale manually
+  if(locale == 'en')
+    locale = ''
+  else {
+    locale = '/' + locale
+  }
 
   const { data } = await apolloClient.query({
     query: GET_TOPICS_TREE_QUERY,
@@ -19,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     redirect: {
       permanent: false,
-      destination: `/topic/${firstTopicName}`,
+      destination: `${locale}/topic/${firstTopicName}`,
     },
     props: {},
   };
