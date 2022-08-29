@@ -51,9 +51,15 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
           >
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div
-             className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full 
-             ${AR('mr-[-2.5rem] md:mr-[-7rem] xl:mr-[-3.0rem]', 'ml-[-2.5rem] md:ml-[-7rem] xl:ml-[-3.0rem]')}
-             ${AR('px-10 md:pl-[4rem] xl:pl-[7rem]', 'px-10 md:pl-[4rem] xl:pr-[7rem]')} 
+              className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full 
+             ${AR(
+               'mr-[-2.5rem] md:mr-[-7rem] xl:mr-[-3.0rem]',
+               'ml-[-2.5rem] md:ml-[-7rem] xl:ml-[-3.0rem]'
+             )}
+             ${AR(
+               'px-10 md:pl-[4rem] xl:pl-[7rem]',
+               'px-10 md:pl-[4rem] xl:pr-[7rem]'
+             )} 
              w-[calc(100%+5rem)] xl:w-[calc(100%+10rem)]
            `}
             >

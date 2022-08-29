@@ -11,10 +11,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
   //  For this redirect to work it was needed
   //  to append the locale manually
-  if(locale == 'en')
-    locale = ''
+  if (locale == 'en') locale = '';
   else {
-    locale = '/' + locale
+    locale = '/' + locale;
   }
 
   const { data } = await apolloClient.query({
