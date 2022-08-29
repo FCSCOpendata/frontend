@@ -1,4 +1,5 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const nextTranslate = require('next-translate');
 
 module.exports = (phase, { defaultConfig }) => {
   const dms = process.env.DMS;
@@ -25,12 +26,7 @@ module.exports = (phase, { defaultConfig }) => {
       );
     }
 
-    return {
-      i18n: {
-        locales: ['en', 'ar', 'nl-NL'],
-        defaultLocale: 'en',
-        localeDetaction: false,
-      },
+    return nextTranslate({
       publicRuntimeConfig: {
         DMS: dms ? dms.replace(/\/?$/, '') : 'http://mock.ckan',
         CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
@@ -47,22 +43,11 @@ module.exports = (phase, { defaultConfig }) => {
               }/dataset/:datasetId/resource/:resourceId/download/:file`,
             },
           ],
-          beforeFiles: [
-            {
-              source: '/ar/:path*',
-              destination: '/under-construction',
-              locale: false,
-            },
-          ],
         };
       },
-    };
+    });
   }
-  return {
-    i18n: {
-      locales: ['en', 'ar', 'nl-NL'],
-      defaultLocale: 'en',
-    },
+  return nextTranslate({
     publicRuntimeConfig: {
       DMS: dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com',
       CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
@@ -78,15 +63,8 @@ module.exports = (phase, { defaultConfig }) => {
             }/dataset/:datasetId/resource/:resourceId/download/:file`,
           },
         ],
-        beforeFiles: [
-          {
-            source: '/ar/:path*',
-            destination: '/under-construction',
-            locale: false,
-          },
-        ],
       };
     },
     output: 'standalone',
-  };
+  });
 };
