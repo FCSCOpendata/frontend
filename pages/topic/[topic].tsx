@@ -10,7 +10,7 @@ import { initializeApollo } from '../../lib/apolloClient';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import fsPromises from 'fs/promises';
-import path from 'path'
+import path from 'path';
 
 const DeveloperExperience = dynamic(
   () =>
@@ -124,7 +124,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const filePath = path.join(process.cwd(), '/public/configs/topics.json');
     const data = await fsPromises.readFile(filePath, 'utf8');
     return JSON.parse(data)?.topics;
-  }
+  };
 
   const apolloClient = initializeApollo();
 
@@ -150,7 +150,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       variables,
-      topicsConfigs: await getTopicsConfigs()
+      topicsConfigs: await getTopicsConfigs(),
     },
   };
 };

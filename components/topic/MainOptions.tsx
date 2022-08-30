@@ -19,7 +19,7 @@ const MainOptions: React.FC<any> = ({
   topicOnClick,
   searchPage,
   setActiveTopic,
-  configs
+  configs,
 }) => {
   const router = useRouter();
 
@@ -151,7 +151,7 @@ const MainOptions: React.FC<any> = ({
         <TopicHeader
           topic={activeTopic}
           datasetsCount={activeTopic.package_count}
-          color={configs?.filter(el => el.name == topic)[0]?.color}
+          color={configs?.filter((el) => el.name == topic)[0]?.color}
         />
       </div>
       {subtopics?.length > 0 && (

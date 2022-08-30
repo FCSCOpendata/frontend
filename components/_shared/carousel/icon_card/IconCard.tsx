@@ -8,7 +8,12 @@ interface IconCardProps {
   color: string | undefined;
 }
 
-const IconCard: React.FC<IconCardProps> = ({ title, icon, isActive, color }) => {
+const IconCard: React.FC<IconCardProps> = ({
+  title,
+  icon,
+  isActive,
+  color,
+}) => {
   color = color || 'inherit';
   return (
     <>
@@ -21,7 +26,10 @@ const IconCard: React.FC<IconCardProps> = ({ title, icon, isActive, color }) => 
             alt={icon.alt}
           />
         </div>
-        <h3 className="font-avenir font-medium text-md text-center mt-4" style={{ color }}>
+        <h3
+          className="font-avenir font-medium text-md text-center mt-4"
+          style={{ color }}
+        >
           {title}
         </h3>
       </div>
