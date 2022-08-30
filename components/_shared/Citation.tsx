@@ -7,8 +7,8 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
 }) => {
   return (
     <div className={`divide-y divide-slate-400 rounded-xl w-100 `}>
-      <div className="font-[Avenir] text-bold p-2">Cite this {dtype}</div>
-      <div className="font-[Avenir] text-sm p-4">
+      <div className="font-avenir text-bold p-2">Cite this {dtype}</div>
+      <div className="font-avenir text-sm p-4">
         {title} -{' '}
         <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
           {typeof window !== 'undefined' ? window.location.href : ''}

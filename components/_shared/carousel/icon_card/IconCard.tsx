@@ -19,7 +19,7 @@ const IconCard: React.FC<IconCardProps> = ({ title, icon, isActive }) => {
             alt={icon.alt}
           />
         </div>
-        <h3 className="font-[Avenir] font-medium text-md text-center mt-4">
+        <h3 className="font-avenir font-medium text-md text-center mt-4">
           {title}
         </h3>
       </div>

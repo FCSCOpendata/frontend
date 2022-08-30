@@ -340,7 +340,7 @@ export default function FiltersBar({
           {Object.keys(timeFrames).map((timeframe, index) => (
             <button
               key={index}
-              className={`py-2 px-4 rounded-xl font-[Avenir] ${
+              className={`py-2 px-4 rounded-xl font-avenir ${
                 currentTimeIndex === index
                   ? 'bg-button-gradient text-white'
                   : 'text-black'

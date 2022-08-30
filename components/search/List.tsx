@@ -41,7 +41,7 @@ const List: React.FC<{
   return (
     <div>
       <div
-        className={`mt-8 font-[Avenir] ${noXMargin == true ? '' : 'sm:mx-12'}`}
+        className={`mt-8 font-avenir ${noXMargin == true ? '' : 'sm:mx-12'}`}
       >
         <div className="text-center md:text-left text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4">
           {loadSearch ? (

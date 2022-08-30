@@ -21,7 +21,7 @@ export default function SimilarDatasets({ variables }) {
   });
 
   const baseClassName =
-    'flex items-baseline py-4 px-4 justify-start font-[Avenir] text-[18px] font-medium ';
+    'flex items-baseline py-4 px-4 justify-start font-avenir text-[18px] font-medium ';
 
   const getClassName = (type) => {
     const additionalClassName = fq.startsWith(type)
@@ -34,7 +34,7 @@ export default function SimilarDatasets({ variables }) {
     <>
       <div className="flex justify-center w-full xl:p-10">
         <div className="flex flex-col items-between h-full xl:w-2/3 mb-10 w-full">
-          <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
+          <div className="self-center mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
             <p>Explore Similar Datasets</p>
           </div>
           <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">

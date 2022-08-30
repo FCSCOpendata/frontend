@@ -23,7 +23,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   return (
     <>
       <div className="flex flex-col mb-10">
-        <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-[Avenir] font-extrabold text-[36px] items-baseline">
+        <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-avenir font-extrabold text-[36px] items-baseline">
           {resource.format === 'CSV' ? (
             <img
               src="/images/csv-icon.svg"
@@ -47,7 +47,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
             />
           </h1>
         </div>
-        <article className="font-[Avenir] text-[#7C7C7C] text-[20px] font-normal mb-4">
+        <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
           {resource.description?.replace(/<[^>]*>?/gm, '') ||
             'This resource does not have a description yet.'}
         </article>

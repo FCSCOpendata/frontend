@@ -189,7 +189,7 @@ const DataExplorer: React.FC<{
       >
         <div className="flex xl:flex-row flex-col justify-between mb-4">
           <div className="w-2/3">
-            <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
+            <p className="font-medium mb-2 font-avenir text-[30px] text-[#4D4D4D]">
               {resources[activeTable].title || resources[activeTable].name}
             </p>
           </div>
@@ -197,7 +197,7 @@ const DataExplorer: React.FC<{
             <Link href={`${router.asPath}/r/${resources[activeTable].name}`}>
               <a
                 href={`${router.asPath}/r/${resources[activeTable].name}`}
-                className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+                className="rounded-xl bg-button-gradient p-3 text-white font-avenir font-medium text-[20px] h-fit"
               >
                 <ExternalLinkIcon
                   className={`w-6 pb-1 inline ${AR('ml-2', 'mr-2')}`}
@@ -209,7 +209,7 @@ const DataExplorer: React.FC<{
         </div>
 
         <div
-          className={`flex font-[Avenir] text-[20px] text-[#808080] font-normal ${AR(
+          className={`flex font-avenir text-[20px] text-[#808080] font-normal ${AR(
             'pr-4',
             'pl-4'
           )}`}
@@ -248,7 +248,7 @@ const DataExplorer: React.FC<{
             } ${AR(
               'mr-3 ml-5',
               'ml-3 mr-5'
-            )} text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
+            )} text-[#202020] font-avenir text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Preview
@@ -260,7 +260,7 @@ const DataExplorer: React.FC<{
             } ${AR(
               'mr-3 ml-5',
               'ml-3 mr-5'
-            )} text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
+            )} text-[#202020] font-avenir text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Table Schema

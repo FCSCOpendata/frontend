@@ -27,7 +27,7 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
       <Head>
         <title>{title} | Open Data UAE</title>
       </Head>
-      <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full py-6 overflow-hidden">
+      <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-6 overflow-hidden">
         <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
         <h1 className="text-3xl font-extrabold z-10">{title}</h1>
         <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
@@ -51,7 +51,7 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
           </div>
         </div>
       </div>
-      <div className="my-10 grid place-content-center font-[Avenir]">
+      <div className="my-10 grid place-content-center font-avenir">
         <article className="prose prose-stone md:prose-lg lg:prose-xl">
           {image && <img src={image} className="mb-6" alt={title} />}
           <div dangerouslySetInnerHTML={{ __html: html }} />
