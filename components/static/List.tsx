@@ -59,7 +59,7 @@ const List: React.FC = () => {
                     )}.png`
                   }
                   alt={post.title}
-                  className="w-full object-scale-down object-center"
+                  className="w-full object-scale-down object-center rounded-md"
                 />
               </div>
               {/* Title, description & org */}
