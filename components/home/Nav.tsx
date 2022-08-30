@@ -42,6 +42,7 @@ const NavBar: React.FC<any> = ({ settings }) => {
         return {
           title: nav.label,
           path: path.length > 0 ? path : null,
+          matchExp: nav.matchExp
         };
       })
       //  Filters empty paths
