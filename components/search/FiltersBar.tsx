@@ -12,7 +12,7 @@ import FilterCarousel from './filters/FilterCarousel';
 import { SwiperSlide } from 'swiper/react';
 import dynamic from 'next/dynamic';
 import MultiRangeSlider from '../_shared/MultiRangeSlider/MultiRangeSlider';
-
+import useTranslation from 'next-translate/useTranslation';
 const TopicsCarousel = dynamic(() => import('./filters/TopicFilterCarousel'));
 
 export default function FiltersBar({
@@ -22,6 +22,7 @@ export default function FiltersBar({
   filters,
   sideFilter,
 }) {
+  const { t } = useTranslation('common');
   const { query } = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
@@ -146,12 +147,12 @@ export default function FiltersBar({
   const regexForOrgs = /((\borganization\b):\(([^)]+)\))/;
   const matchesForOrgs = regexForOrgs.exec(qvariables.fq);
   const timeFrames = {
-    Custom: null,
-    'Last Year': 1,
-    'Last 2 years': 2,
-    'Last 3 years': 3,
-    'Last 4 years': 4,
-    'Last 5 years': 5,
+    [t('ds-bt-time-cust')]: null,
+    [t('ds-bt-time-1yr')]: 1,
+    [t('ds-bt-time-2yr')]: 2,
+    [t('ds-bt-time-3yr')]: 3,
+    [t('ds-bt-time-4yr')]: 4,
+    [t('ds-bt-time-5yr')]: 5,
   };
   const setTimeSearchValue = (key, index) => {
     if (key !== 'Custom') {
@@ -391,7 +392,7 @@ export default function FiltersBar({
                 className="text-blue-500 font-[Raleway] text-[10px]"
                 onClick={() => clearCustom()}
               >
-                clear
+                {t('ds-bt-time-clear')}
               </button>
             </div>
           </div>

@@ -1,7 +1,9 @@
+import useTranslation from 'next-translate/useTranslation';
 const Toggle: React.FC<{ onToggle: () => void; expanded: boolean }> = ({
   onToggle,
   expanded,
 }) => {
+  const { t } = useTranslation('common');
   return (
     <button onClick={() => onToggle()}>
       <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
@@ -15,7 +17,7 @@ const Toggle: React.FC<{ onToggle: () => void; expanded: boolean }> = ({
             }`}
           />
         </span>
-        Developer Experience
+        {t('dev-exp')}
       </h1>
     </button>
   );

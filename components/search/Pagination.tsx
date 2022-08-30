@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import useTranslation from 'next-translate/useTranslation';
+
 const Pagination: React.FC<{
   count: number;
   setQvariables: any;
   onPageChange?: (page: number) => void;
   initAtPage?: number;
 }> = ({ count, setQvariables, onPageChange, initAtPage }) => {
+  const { t } = useTranslation('common');
   const pageLimit = 5;
 
   const [start, setStart] = useState(0);
@@ -69,7 +72,7 @@ const Pagination: React.FC<{
               fill={`${start < pageLimit ? '#747474' : '#202020'}`}
             />
           </svg>
-          Prev
+          {t('Prev')}
         </span>
       </button>
       {count &&
@@ -97,7 +100,7 @@ const Pagination: React.FC<{
       >
         <span className="flex items-center">
           {' '}
-          Next
+          {t('Next')}
           <svg
             width="19"
             height="15"

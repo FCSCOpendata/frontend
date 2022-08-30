@@ -3,7 +3,7 @@ import SearchForm from '../search/Form';
 import HomeTags from './HomeTags';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   return (
     <div>
@@ -21,7 +21,7 @@ export default function Footer() {
                   </span>
                 </h1>
                 <p className="mt-3 pr-10 text-base text-gray font-normal sm:mt-8 sm:text-xl lg:text-lg xl:text-xl">
-                  {t(`common:description`)}
+                  {t(`description`)}
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 mb-8">
                   <SearchForm />

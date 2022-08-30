@@ -1,8 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_TOPICS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 import { ErrorMessage, Spinner } from '../../_shared';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function Topics() {
+  const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(
     GET_TOPICS_BY_DATASETS_COUNT_QUERY,
     {
@@ -17,11 +19,10 @@ export default function Topics() {
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
-          Discover Topics
+          {t('hm-h-discover')}
         </h2>
         <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
-          Our Data Portal topics will help you to navigate through thousands of
-          datasets. Select a topic you are looking for.
+          {t('hm-p-our-data')}
         </p>
 
         {loading && (

@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
 import FiltersBar from './FiltersBar';
+import useTranslation from 'next-translate/useTranslation';
 
 const SearchForm: React.FC<{
   variables: any;
@@ -10,6 +11,7 @@ const SearchForm: React.FC<{
   setSideFilter: any;
   sideFilter: any;
 }> = ({ variables, setQvariables, setSideFilter, sideFilter }) => {
+  const { t } = useTranslation('common');
   const searchQueryRef = useRef<HTMLInputElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchFormat, setSearchFormat] = useState('');
@@ -41,7 +43,7 @@ const SearchForm: React.FC<{
     <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full py-12 overflow-hidden">
       <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
       <h1 className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10">
-        Search Data
+        {t('ds-h-sear')}
       </h1>
       <div className="xl:flex xl:flex-wrap items-center w-full sm:max-w-xl xl:max-w-none xl:w-9/12 px-4 sm:px-0 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
         <form
@@ -55,13 +57,13 @@ const SearchForm: React.FC<{
             name="search"
             ref={searchQueryRef}
             onKeyPress={handlekeyEvent}
-            placeholder="Search by keyword"
+            placeholder={t('ds-bt-searc')}
             defaultValue={variables.q}
             className="flex-1 bg-white appearance-none focus:ring-0 border-0 ml-2 rounded-xl"
           />
         </form>
         <p className="text-lg text-center xl:text-left bg-button-gradient bg-clip-text text-transparent">
-          Filter by
+          {t('ds-p-filt')}
         </p>
         <div className="flex flex-wrap xl:flex-nowrap justify-center xl:justify-between bg-white w-fit !mx-auto xl:!ml-4 p-2 rounded-xl">
           <div className="flex text-sm">
@@ -73,7 +75,7 @@ const SearchForm: React.FC<{
               <ViewGridIcon className="w-5 mb-0.5" />
               <input
                 type="button"
-                value="Topics"
+                value={t('topics')}
                 onClick={handleClick}
                 className="cursor-pointer"
               />
@@ -90,7 +92,7 @@ const SearchForm: React.FC<{
               />
               <input
                 type="button"
-                value="Organizations"
+                value={t('organization')}
                 onClick={handleClick}
                 className="cursor-pointer"
               />
@@ -107,7 +109,7 @@ const SearchForm: React.FC<{
               />
               <input
                 type="button"
-                value="Time Frame"
+                value={t('ds-bt-time')}
                 onClick={handleClick}
                 className="cursor-pointer"
               />

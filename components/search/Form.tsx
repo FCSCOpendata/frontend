@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
 
 const SearchForm: React.FC = () => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
