@@ -8,6 +8,7 @@ interface ImageHeaderProps {
   image?: { url: string; alt: string };
   badgeText?: string;
   children: React.ReactNode;
+  color?: string;
 }
 
 const ImageHeader: React.FC<ImageHeaderProps> = ({
@@ -16,6 +17,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   image,
   badgeText,
   children,
+  color
 }) => {
   return (
     <>
@@ -64,7 +66,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
            `}
             >
               <div className="pt-[3rem] flex flex-col h-full">
-                <Title icon={icon}>{title}</Title>
+                <Title icon={icon} color={color}>{title}</Title>
                 <p className="mb-8 w-full 2xl:w-[85%] text-[#7C7C7C] grow">
                   {children}
                 </p>

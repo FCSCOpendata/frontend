@@ -1,7 +1,15 @@
 import Carousel from '../_shared/carousel/icon_card/Carousel';
 
-const TopicsCarousel: React.FC<any> = ({ topics, active, topicOnClick }) => {
+const TopicsCarousel: React.FC<any> = ({
+  topics,
+  active,
+  topicOnClick,
+  configs,
+}) => {
   const items = topics.map((topic) => {
+    const itemConfig = configs?.filter((el) => el.name == topic.name);
+    const color = itemConfig[0]?.color;
+
     return {
       name: topic.name,
       title: topic.title || topic.display_name || topic.name,
@@ -10,6 +18,7 @@ const TopicsCarousel: React.FC<any> = ({ topics, active, topicOnClick }) => {
         alt: `${topic.name}--topic`,
       },
       link: `/topic/${topic.name}`,
+      color,
     };
   });
 

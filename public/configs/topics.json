@@ -1,0 +1,49 @@
+{
+    "topics": [
+        {
+            "name": "economy",
+            "color": "#f8ad3b"
+        },
+        {
+            "name": "food-security",
+            "color": "#b7b71c" 
+        },
+        {
+            "name": "education",
+            "color": "#be272d" 
+        },
+        {
+            "name": "environment",
+            "color": "#39b24a" 
+        },
+        {
+            "name": "social",
+            "color": "#29a8df" 
+        },
+        {
+            "name": "health-care",
+            "color": "#00a69a" 
+        },
+        {
+            "name": "sport",
+            "color": "#0071b9" 
+        },
+        {
+            "name": "government",
+            "color": "#a88a62" 
+        },
+        {
+            "name": "technology",
+            "color": "#90278c" 
+        },
+        {
+            "name": "transport",
+            "color": "#d1145a" 
+        },
+        {
+            "name": "infrastructure",
+            "color": "#ee5a24" 
+        }
+
+    ]
+}

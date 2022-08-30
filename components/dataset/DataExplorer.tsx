@@ -166,7 +166,11 @@ const DataExplorer: React.FC<{
                   )}
 
                   <img
-                    src={resource.format ? `/images/${resource.format.toLowerCase()}-icon.svg` : '/images/resources/unknown.svg'}
+                    src={
+                      resource.format
+                        ? `/images/${resource.format.toLowerCase()}-icon.svg`
+                        : '/images/resources/unknown.svg'
+                    }
                     alt="orgs"
                     className="w-10 mb-4"
                   />

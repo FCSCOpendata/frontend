@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 import { initializeApollo } from '../../lib/apolloClient';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
+import fsPromises from 'fs/promises';
+import path from 'path'
 
 const DeveloperExperience = dynamic(
   () =>
@@ -24,7 +26,7 @@ import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/topic/MainOptions';
 import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 
-const Topic: React.FC<any> = ({ variables }) => {
+const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
   const router = useRouter();
   // eslint-disable-next-line prefer-const
   let { searchPage, topic } = router.query;
@@ -87,6 +89,7 @@ const Topic: React.FC<any> = ({ variables }) => {
               topics={mainTopics}
               active={{ name: topic }}
               topicOnClick={handleTopicChange}
+              configs={topicsConfigs}
             />
           </div>
 
@@ -96,6 +99,7 @@ const Topic: React.FC<any> = ({ variables }) => {
             topicOnClick={handleTopicChange}
             searchPage={searchPage}
             setActiveTopic={setActiveTopic}
+            configs={topicsConfigs}
           ></MainOptions>
           <div id="developer-experience">
             <DeveloperExperience
@@ -116,6 +120,12 @@ const Topic: React.FC<any> = ({ variables }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const getTopicsConfigs = async () => {
+    const filePath = path.join(process.cwd(), '/public/configs/topics.json');
+    const data = await fsPromises.readFile(filePath, 'utf8');
+    return JSON.parse(data)?.topics;
+  }
+
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
@@ -140,6 +150,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       variables,
+      topicsConfigs: await getTopicsConfigs()
     },
   };
 };

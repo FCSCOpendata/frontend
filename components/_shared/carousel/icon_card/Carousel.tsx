@@ -14,6 +14,7 @@ interface Item {
     alt: string;
   };
   link: string;
+  color: string | undefined;
 }
 
 interface CarouselProps {
@@ -108,6 +109,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 title={item.title}
                 icon={item.icon}
                 isActive={item.name == active?.name}
+                color={item.color}
               />
             </a>
           </SwiperSlide>
