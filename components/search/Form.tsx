@@ -19,7 +19,7 @@ const SearchForm: React.FC = () => {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="relative items-center flex flex-row w-3/4"
+      className="relative items-center flex flex-row w-3/4 focus:outline-none"
     >
       <input
         id="search2"
@@ -30,7 +30,7 @@ const SearchForm: React.FC = () => {
         }}
         placeholder="Search by keyword and press enter"
         aria-label="Search"
-        className="inline-block w-full pr-10 py-4 border-0 rounded-md leading-none bg-white placeholder:text-slate-400"
+        className="inline-block w-full pr-10 py-4 border-2 border-blue-200 rounded-md leading-none bg-white placeholder:text-slate-400 focus:outline-none focus:ring-0 focus:border-2 focus:border-blue-400"
       />
       <SearchIcon className="w-6 absolute right-3 text-slate-400" />
     </form>
