@@ -4,6 +4,7 @@ import 'swiper/css';
 import { useState } from 'react';
 import { Navigation } from 'swiper';
 import NavButton from '../NavButton';
+import { AR } from '../../../../hooks/locale';
 
 interface Item {
   title: string;
@@ -51,6 +52,7 @@ const Carousel: React.FC<CarouselProps> = ({
         </>
       )}
       <Swiper
+        dir={`${AR('rtl', 'ltr')}`}
         modules={[Navigation]}
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{

@@ -2,6 +2,7 @@ import TopicCard from './TopicCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useState } from 'react';
+import { AR } from '../../../hooks/locale';
 
 interface Item {
   id: any;
@@ -28,6 +29,7 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
   return (
     <>
       <Swiper
+        dir={`${AR('rtl', 'ltr')}`}
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
