@@ -4,12 +4,14 @@ import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { AR } from '../../../hooks/locale';
 
 const FilterCarousel: React.FC<{}> = ({ children }) => {
   const [swiper, setSwiper] = useState(null);
   return (
     <>
       <Swiper
+        dir={`${AR('rtl', 'ltr')}`}
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {

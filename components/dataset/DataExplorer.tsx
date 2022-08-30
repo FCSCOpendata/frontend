@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
+import { AR } from '../../hooks/locale';
+import Link from 'next/link';
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
@@ -123,7 +125,12 @@ const DataExplorer: React.FC<{
 
   return (
     <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
-      <div className="xl:col-span-3 mr-4 w-1/2 h-[718px] overflow-y-auto pt-4 pr-2 overflow-x-hidden">
+      <div
+        className={`xl:col-span-3  w-1/2 h-[718px] overflow-y-auto pt-4 ${AR(
+          'pl-2 ml-4',
+          'pr-2 mr-4'
+        )} overflow-x-hidden`}
+      >
         <div className="flex-col">
           {resources.map((resource, i) => {
             return (
@@ -142,14 +149,17 @@ const DataExplorer: React.FC<{
                     i === activeTable
                       ? 'border-b-4 rounded-b-xl border-b-[#22B373]'
                       : ''
-                  } bg-[#F7FAFC] w-full mb-4 text-left`}
+                  } bg-[#F7FAFC] w-full mb-4 ${AR('text-right', 'text-left')}`}
                   onClick={() => handleTableNameClick(i)}
                 >
                   {i === activeTable ? (
                     <img
                       src="/images/checked-icon.svg"
                       alt="orgs"
-                      className="w-5 h-4 mb-4 absolute -top-2 -right-2"
+                      className={`w-5 h-4 mb-4 absolute -top-2 ${AR(
+                        'right-2',
+                        '-right-2'
+                      )}`}
                     />
                   ) : (
                     ''
@@ -161,7 +171,9 @@ const DataExplorer: React.FC<{
                     className="w-10 mb-4"
                   />
 
-                  <p className="p-0 ml-0">{resource.title || resource.name}</p>
+                  <p className={`p-0 ${AR('mr-0', 'ml-0')}`}>
+                    {resource.title || resource.name}
+                  </p>
                 </button>
               </>
             );
@@ -169,7 +181,12 @@ const DataExplorer: React.FC<{
         </div>
       </div>
       {/* Preview: show Data Explorer if tabular data + datastore active */}
-      <div className="xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl xl:-ml-40">
+      <div
+        className={`xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl ${AR(
+          'xl:-mr-40',
+          'xl:-ml-40'
+        )}`}
+      >
         <div className="flex xl:flex-row flex-col justify-between mb-4">
           <div className="w-2/3">
             <p className="font-medium mb-2 font-[Avenir] text-[30px] text-[#4D4D4D]">
@@ -177,32 +194,47 @@ const DataExplorer: React.FC<{
             </p>
           </div>
           <div className="grid xl:justify-items-end align-middle justify-items-start ">
-            <a
-              href={`${router.asPath}/r/${resources[activeTable].name}`}
-              className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
-            >
-              <ExternalLinkIcon className="w-6 mr-2 pb-1 inline" />
-              <span>Build Your Data</span>
-            </a>
+            <Link href={`${router.asPath}/r/${resources[activeTable].name}`}>
+              <a
+                href={`${router.asPath}/r/${resources[activeTable].name}`}
+                className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+              >
+                <ExternalLinkIcon
+                  className={`w-6 pb-1 inline ${AR('ml-2', 'mr-2')}`}
+                />
+                <span>Build Your Data</span>
+              </a>
+            </Link>
           </div>
         </div>
 
-        <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4">
-          <div className="flex mr-3 items-baseline">
+        <div
+          className={`flex font-[Avenir] text-[20px] text-[#808080] font-normal ${AR(
+            'pr-4',
+            'pl-4'
+          )}`}
+        >
+          <div className={`flex items-baseline ${AR('ml-3', 'mr-3')}`}>
             <button
               onClick={() => download(resources[activeTable].path)}
               className="cursor-pointer"
             >
-              <CloudDownloadIcon className="inline w-5 mr-2" />
+              <CloudDownloadIcon
+                className={`inline w-5 ${AR('ml-2', 'mr-2')}`}
+              />
               Download
             </button>
           </div>
-          <div className="mr-3 text-[#C4C4C4] text-1">|</div>
-          <div className="flex mr-3">
+          <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
+            |
+          </div>
+          <div className={`flex ${AR('ml-3', 'mr-3')}`}>
             <span>{resources[activeTable].count || 'N/A'} rows</span>
           </div>
-          <div className="mr-3 text-[#C4C4C4] text-1">|</div>
-          <div className="flex mr-3">
+          <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
+            |
+          </div>
+          <div className={`flex ${AR('ml-3', 'mr-3')}`}>
             <span>
               {resources[activeTable].schema?.fields?.length || 'N/A'} columns
             </span>
@@ -213,7 +245,10 @@ const DataExplorer: React.FC<{
             className={`${
               previewMode &&
               'font-bold bg-[#CBE9FF] px-8 py-2 rounded-2xl text-[#255B9B]'
-            } ml-3 mr-5 text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
+            } ${AR(
+              'mr-3 ml-5',
+              'ml-3 mr-5'
+            )} text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Preview
@@ -222,19 +257,22 @@ const DataExplorer: React.FC<{
             className={`${
               !previewMode &&
               'font-bold bg-[#CBE9FF] px-8 py-2 rounded-2xl text-[#255B9B]'
-            } ml-3 mr-5 text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
+            } ${AR(
+              'mr-3 ml-5',
+              'ml-3 mr-5'
+            )} text-[#202020] font-[Avenir] text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Table Schema
           </button>
         </div>
         {previewMode && (
-          <div className="ml-3" style={{ height: '370px' }}>
+          <div className={`${AR('mr-3', 'ml-3')}`} style={{ height: '370px' }}>
             {getDataGridTable(resources[activeTable], columnHeaderStyle)}
           </div>
         )}
         {!previewMode && (
-          <div className="ml-3" style={{ height: '370px' }}>
+          <div className={`${AR('mr-3', 'ml-3')}`} style={{ height: '370px' }}>
             {getDataGridSchema(resources[activeTable], columnHeaderStyle)}
           </div>
         )}

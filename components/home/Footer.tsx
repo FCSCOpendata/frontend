@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { AR } from '../../hooks/locale';
 import { dynamicPages } from './Nav';
 
 const Footer: React.FC<any> = ({ settings }) => {
@@ -57,12 +58,16 @@ const Footer: React.FC<any> = ({ settings }) => {
         </div>
         <div className="flex flex-col flex-wrap mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
           <div className="w-full text-center md:text-left">
-            <p className="mt-4 mb-4 text-[#001240] text-lg leading-[22px] font-montserrat font-semibold">
+            <p
+              className={`mt-4 mb-4 text-[#001240] text-lg leading-[22px] font-montserrat font-semibold ${
+                AR() ? 'text-right' : 'text-left'
+              }`}
+            >
               Official Portal of the UAE government
             </p>
             <ul className="flex space-x-6 text-sm list-none">
               {navigation.menu.map((item) => (
-                <li key={item.name}>
+                <li key={item.name} className={AR() ? 'ml-5' : ''}>
                   <Link href={item.href}>
                     <a
                       href={item.href}

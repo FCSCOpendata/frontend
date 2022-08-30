@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
+import { AR } from '../../hooks/locale';
 
 const datasetFiles = [
   { name: 'pdf', icon: '/images/pdf-icon.svg' },
@@ -47,10 +48,18 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
           >
             {/* eslint-disable-next-line */}
             <a className="block focus:outline-none space-y-2 xl:space-y-0">
-              <h1 className="text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl">
+              <h1
+                className={`text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl ${AR(
+                  'sm:text-right'
+                )}`}
+              >
                 {dataset.title}
               </h1>
-              <p className="text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left">
+              <p
+                className={`text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center sm:text-left ${AR(
+                  'sm:text-right'
+                )}`}
+              >
                 {/* Bug: description comes with html tags */}
                 {dataset.description
                   ? dataset.description.replace(/<[^>]*>?/gm, '')

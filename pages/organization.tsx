@@ -6,8 +6,13 @@ const Org: React.FC = () => {
   return <>Redirecting...</>;
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const apolloClient = initializeApollo();
+
+  //  For this redirect to work it was needed
+  //  to append the locale manually
+  if (locale == 'en') locale = '';
+  else locale = '/' + locale;
 
   const { data } = await apolloClient.query({
     query: GET_ORGS_LIST_QUERY,
@@ -19,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     redirect: {
       permanent: false,
-      destination: `/@${firstOrgName}`,
+      destination: `${locale}/@${firstOrgName}`,
     },
     props: {},
   };

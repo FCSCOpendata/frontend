@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { AR } from '../../hooks/locale';
 
 interface image {
   url: string;
@@ -45,7 +46,12 @@ const ScrollIndicator: React.FC<{
 
   return (
     <>
-      <div className="fixed right-5 top-[50%] translate-y-[-50%] z-50 hidden lg:block">
+      <div
+        className={`fixed ${AR(
+          'left-5',
+          'right-5'
+        )} top-[50%] translate-y-[-50%] z-50 hidden lg:block`}
+      >
         <div className="max-w-[60px]">
           <div className="flex justify-center flex-wrap flex-col w-16 relative">
             <img

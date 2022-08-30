@@ -7,9 +7,11 @@ import Hero from '../components/home/Hero';
 import MainOptions from '../components/home/MainOptions';
 import OpenData101 from '../components/home/main/OpenData101';
 import ScrollIndicator from '../components/_shared/ScrollIndicator';
+import { useRouter } from 'next/router';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
   const { t } = useTranslation();
+  const { locale } = useRouter();
   return (
     <>
       <div className="container max-w-full mx-auto">
@@ -35,7 +37,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         />
       </div>
       <div
-        className="relative bg-hero bg-lightestblue hero-pattern overflow-hidden h-screen"
+        className={`relative ${
+          locale.toLowerCase() == 'ar' ? 'bg-hero-RTL' : 'bg-hero'
+        } bg-lightestblue hero-pattern overflow-hidden h-screen`}
         id="hero"
       >
         <Hero />
