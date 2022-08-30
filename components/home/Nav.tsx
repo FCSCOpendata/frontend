@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Template from './NavTemplate';
-
+import useTranslation from 'next-translate/useTranslation';
 //  This variable is for listing the hrefs that
 //  are not related to CMS pages.  Furthermore,
 //  This is needed to check if there should  be
@@ -8,6 +8,7 @@ import Template from './NavTemplate';
 export const dynamicPages = ['search', 'organization', 'topic', 'news'];
 
 const NavBar: React.FC<any> = ({ settings }) => {
+  const { t } = useTranslation('common');
   //  This initial state behaves as a default,
   //  just in case the servers are unavailable
   //  or something like that.
@@ -18,6 +19,14 @@ const NavBar: React.FC<any> = ({ settings }) => {
     { title: 'Open Data 101', path: '/p/open-data-101' },
     { title: 'News', path: '/news' },
   ]);
+
+  const translationTable = {
+    DATASETS: t('dataset'),
+    ORGANIZATIONS: t('organization'),
+    TOPICS: t('topics'),
+    'OPEN DATA 101': t('opendata'),
+    NEWS: t('news'),
+  };
 
   useEffect(() => {
     const cmsNavigation = settings?.settings?.settings?.navigation
@@ -40,7 +49,10 @@ const NavBar: React.FC<any> = ({ settings }) => {
         path = `${!dynamicPages.includes(path) ? '/p' : ''}/${path}`;
 
         return {
-          title: nav.label,
+          title:
+            nav.label in translationTable
+              ? translationTable[nav.label]
+              : nav.label,
           path: path.length > 0 ? path : null,
         };
       })

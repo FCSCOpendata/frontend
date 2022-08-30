@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useEffect } from 'react';
 import { GET_TOPICS_QUERY, GET_TOPIC_QUERY } from '../../graphql/queries';
 import dynamic from 'next/dynamic';
+import useTranslation from 'next-translate/useTranslation';
 
 const SubtopicsCarousel = dynamic(
   () => import('../../components/topic/SubtopicsCarousel')
@@ -20,6 +21,7 @@ const MainOptions: React.FC<any> = ({
   searchPage,
   setActiveTopic,
 }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
 
   //  Loads the selected topic
@@ -154,7 +156,7 @@ const MainOptions: React.FC<any> = ({
       </div>
       {subtopics?.length > 0 && (
         <div className="mb-20" id="subtopics">
-          <h1 className="font-semibold text-3xl mb-6">Sub Topics</h1>
+          <h1 className="font-semibold text-3xl mb-6">{t('tp-h-sub')}</h1>
           <SubtopicsCarousel
             subtopics={subtopics}
             subtopicOnClick={onSutopicClick}
@@ -164,7 +166,7 @@ const MainOptions: React.FC<any> = ({
 
       <div className="mb-20" id="explore-top-datasets">
         <h1 className="font-semibold text-2xl sm:text-3xl">
-          Explore Top Datasets In This Topic ({activeTopic.package_count})
+          {t('tp-h-expl', { count: activeTopic.package_count })}
         </h1>
         <DatasetsList
           topic={activeTopic?.name}
