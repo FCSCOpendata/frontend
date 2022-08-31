@@ -30,7 +30,7 @@ const SearchForm: React.FC = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
-        placeholder="Search by keyword and press enter"
+        placeholder={t('hm-bt-search')}
         aria-label="Search"
         className="inline-block w-full pr-3 py-4 border-0 rounded-md leading-none bg-white placeholder:text-slate-400"
       />
