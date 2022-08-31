@@ -11,7 +11,7 @@ const TopicCard: React.FC<{
     >
       <input
         type="button"
-        value={topic.display_name || topic.title}
+        value={topic.title || topic.display_name}
         className="cursor-pointer"
       />
     </div>

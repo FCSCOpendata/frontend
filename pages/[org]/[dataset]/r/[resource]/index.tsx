@@ -11,6 +11,7 @@ import OpenData101 from '../../../../../components/home/main/OpenData101';
 import DeveloperExperience from '../../../../../components/_shared/developer_experience/DeveloperExperience';
 import ScrollIndicator from '../../../../../components/_shared/ScrollIndicator';
 import Citation from '../../../../../components/_shared/Citation';
+import { fixTranslations } from '../../../../../hooks/locale';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -21,6 +22,9 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
+
+  fixTranslations(result);
+  fixTranslations(resource);
 
   return (
     <>

@@ -57,9 +57,30 @@ export const GET_ORGS_TREE_QUERY = gql`
 
 export const GET_ORG_FULL_INFO_QUERY = gql`
   query org($id: String) {
-    org(id: $id, all_fields: True)
+    org(id: $id, all_fields: True, include_extras: True)
       @rest(type: "Response", path: "organization_show?{args}") {
-      result
+      result {
+        approval_status
+        created
+        description
+        display_name
+        groups
+        id
+        image_display_url
+        image_url
+        is_organization
+        logo_display_url
+        logo_url
+        name
+        description_translated: notes_translated
+        num_followers
+        package_count
+        state
+        tags
+        title
+        title_translated
+        type
+      }
     }
   }
 `;
@@ -82,13 +103,14 @@ export const GET_ORG_WITH_PACKAGES_QUERY = gql`
 
 export const GET_ORGS_QUERY = gql`
   query orgs {
-    orgs(all_fields: True)
+    orgs(all_fields: True, include_extras: True)
       @rest(type: "Response", path: "organization_list?{args}") {
       result @type(title: "Organization") {
         title
         name
         total: package_count
         image: image_url
+        title_translated
       }
     }
   }
@@ -136,7 +158,8 @@ export const GET_ORGS_LIST_QUERY = gql`
 
 export const GET_DATASET_QUERY = gql`
   query dataset($id: String) {
-    dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
+    dataset(id: $id, include_extras: True, all_fields: True)
+      @rest(type: "Response", path: "package_show?{args}") {
       result {
         name
         title
@@ -153,13 +176,14 @@ export const GET_DATASET_QUERY = gql`
         resources {
           id
           name
-          title
+          title: name
           description
           path: url
           format
           created
           updated: metadata_modified
           size
+          title_translated: name_translated
         }
         organization {
           name
@@ -168,6 +192,10 @@ export const GET_DATASET_QUERY = gql`
         }
         groups
         tags
+        title_translated
+        author_translated
+        description_translated: notes_translated
+        maintainer_translated
       }
     }
   }
@@ -198,8 +226,11 @@ export const SEARCH_QUERY = gql`
             title
             description
             image: image_url
+            title_translated
           }
           groups
+          title_translated
+          description_translated: notes_translated
         }
       }
     }
@@ -340,7 +371,7 @@ export const GET_POPULAR_DATASETS_QUERY = gql`
 
 export const GET_COLLECTIONS_QUERY = gql`
   query collections {
-    collections(all_fields: True)
+    collections(all_fields: True, include_extras: True)
       @rest(type: "Response", path: "group_list?{args}") {
       result
     }

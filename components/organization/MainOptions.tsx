@@ -17,6 +17,7 @@ const SubOrgsCarousel = dynamic(() => import('./SubOrgsCarousel'));
 
 import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
+import { fixTranslations } from '../../hooks/locale';
 
 const MainOptions: React.FC<any> = ({
   org,
@@ -128,6 +129,9 @@ const MainOptions: React.FC<any> = ({
       });
     }, 250);
   };
+
+  fixTranslations(activeOrg);
+  subOrgs.forEach(subOrg => fixTranslations(subOrg));
 
   return (
     <>
