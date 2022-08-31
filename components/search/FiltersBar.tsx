@@ -247,7 +247,7 @@ export default function FiltersBar({
           </div>
 
           <div className="w-100 max-w-6xl mt-2">
-            <div className='flex flex-stretch'>
+            <div className="flex flex-stretch">
               <FilterCarousel>
                 {topics[currentIndex].children.map((sub, index) => (
                   <SwiperSlide key={index} className="p-1">

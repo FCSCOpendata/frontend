@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
           <img
             src={image.url}
             alt={image.alt}
-            className="w-full h-full object-center object-scale-down"
+            className="w-full h-full object-center rounded-xl object-scale-down"
           />
         </div>
         <div
