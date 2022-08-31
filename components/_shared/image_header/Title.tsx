@@ -9,7 +9,7 @@ const Title: React.FC<any> = ({ icon, color, children }) => {
       >
         {icon?.url && (
           <span
-            className={`border-[1px] rounded-full inline-block overflow-hidden min-w-[30px] w-[30px] sm:min-w-[40px] sm:w-[52px] h-[30px] sm:h-[52px] p-[6px] flex items-center justify-center ${AR(
+            className={`border-[1px] rounded-full inline-block overflow-hidden min-w-[30px] w-[30px] sm:min-w-[52px] sm:w-[52px] h-[30px] sm:h-[52px] p-[6px] flex items-center justify-center ${AR(
               'ml-2 sm:ml-4',
               'mr-2 sm:mr-4'
             )}`}
