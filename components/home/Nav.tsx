@@ -20,14 +20,6 @@ const NavBar: React.FC<any> = ({ settings }) => {
     { title: 'News', path: '/news' },
   ]);
 
-  const translationTable = {
-    DATASETS: t('dataset'),
-    ORGANIZATIONS: t('organization'),
-    TOPICS: t('topics'),
-    'OPEN DATA 101': t('opendata'),
-    NEWS: t('news'),
-  };
-
   useEffect(() => {
     const cmsNavigation = settings?.settings?.settings?.navigation
       ?.map((nav) => {
@@ -49,10 +41,7 @@ const NavBar: React.FC<any> = ({ settings }) => {
         path = `${!dynamicPages.includes(path) ? '/p' : ''}/${path}`;
 
         return {
-          title:
-            nav.label in translationTable
-              ? translationTable[nav.label]
-              : nav.label,
+          title: nav.label,
           path: path.length > 0 ? path : null,
         };
       })
