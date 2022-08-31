@@ -32,7 +32,7 @@ const SearchForm: React.FC = () => {
         }}
         placeholder={t('hm-bt-search')}
         aria-label="Search"
-        className="inline-block w-full pr-10 py-4 border-2 border-blue-200 rounded-md leading-none bg-white placeholder:text-slate-400 focus:outline-none focus:ring-0 focus:border-2 focus:border-blue-400"
+        className="inline-block w-full pr-10 py-4 border-2 border-[#4996c8] rounded-md leading-none bg-white placeholder:text-slate-400 focus:outline-none focus:ring-0 focus:border-2 focus:border-[#4996c8]"
       />
       <SearchIcon className="w-6 absolute right-3 text-slate-400" />
     </form>
