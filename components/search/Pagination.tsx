@@ -72,7 +72,7 @@ const Pagination: React.FC<{
               fill={`${start < pageLimit ? '#747474' : '#202020'}`}
             />
           </svg>
-          {t('Prev')}
+          {t('prev')}
         </span>
       </button>
       {count &&
@@ -100,7 +100,7 @@ const Pagination: React.FC<{
       >
         <span className="flex items-center">
           {' '}
-          {t('Next')}
+          {t('next')}
           <svg
             width="19"
             height="15"

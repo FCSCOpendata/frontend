@@ -69,7 +69,7 @@ const SearchForm: React.FC<{
           <div className="flex text-sm">
             <div
               className={`flex space-x-1 ${
-                filter == 'Topics' && activeFilterClass
+                filter == t('topics') && activeFilterClass
               } rounded-xl px-10 py-2 cursor-pointer`}
             >
               <ViewGridIcon className="w-5 mb-0.5" />
@@ -82,7 +82,7 @@ const SearchForm: React.FC<{
             </div>
             <div
               className={`flex space-x-1 ${
-                filter == 'Organizations' && activeFilterClass
+                filter == t('organization') && activeFilterClass
               } rounded-xl px-10 py-2 cursor-pointer`}
             >
               <img
@@ -99,7 +99,7 @@ const SearchForm: React.FC<{
             </div>
             <div
               className={`flex space-x-1 ${
-                filter == 'Time Frame' && activeFilterClass
+                filter == t('ds-bt-time') && activeFilterClass
               } rounded-xl px-10 py-2 cursor-pointer`}
             >
               <img

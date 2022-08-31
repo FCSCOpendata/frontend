@@ -7,8 +7,10 @@ import { GET_POSTS_QUERY } from '../../graphql/queries';
 import Pagination from '../search/Pagination';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 
 const List: React.FC = () => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const initialPage = Number(router.query.page) || 1;
 
