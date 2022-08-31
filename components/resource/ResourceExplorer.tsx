@@ -107,7 +107,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
       {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-12 p-10 bg-[#F7FAFC] rounded-2xl">
         <div className="flex xl:flex-row flex-col justify-between mb-4">
-          <div className="flex font-[Avenir] text-[20px] text-[#808080] font-normal pl-4 w-2/3 xl:flex-row flex-col">
+          <div className="flex font-avenir text-[20px] text-[#808080] font-normal pl-4 w-2/3 xl:flex-row flex-col">
             <div className="flex xl:mr-3 items-baseline mb-2">
               <button
                 onClick={() => download(resources[activeTable].path)}
@@ -135,7 +135,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
           </div>
           <div className="grid justify-items-end align-middle">
             <button
-              className="rounded-xl bg-button-gradient p-3 text-white font-[Avenir] font-medium text-[20px] h-fit"
+              className="rounded-xl bg-button-gradient p-3 text-white font-avenir font-medium text-[20px] h-fit"
               onClick={() => download(resources[activeTable].path)}
             >
               <CloudDownloadIcon className="w-6 mr-2 pb-1 inline" />
@@ -149,7 +149,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
             className={`${
               previewMode &&
               'font-bold bg-[#CBE9FF] xl:px-8 xl:py-2 px-2 rounded-2xl text-[#255B9B]'
-            } ml-3 xl:mr-8 mr-2 text-[#255B9B] font-[Avenir] xl:text-[20px] xl:font-medium xl:text-center focus:outline-none`}
+            } ml-3 xl:mr-8 mr-2 text-[#255B9B] font-avenir xl:text-[20px] xl:font-medium xl:text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
             Hide/Show Schema

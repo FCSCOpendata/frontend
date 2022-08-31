@@ -40,7 +40,7 @@ const SearchForm: React.FC<{
   };
 
   return (
-    <div className="relative bg-[#F7FAFC] font-[Avenir] flex flex-col items-center justify-center w-full py-12 overflow-hidden">
+    <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-12 overflow-hidden">
       <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
       <h1 className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10">
         {t('ds-h-sear')}

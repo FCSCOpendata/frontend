@@ -21,7 +21,7 @@ export default function SimilarDatasets({ variables }) {
   });
 
   const baseClassName =
-    'flex items-baseline py-4 px-4 justify-start font-[Avenir] text-[18px] font-medium ';
+    'flex items-baseline py-4 px-4 justify-start font-avenir text-[18px] font-medium ';
 
   const getClassName = (type) => {
     const additionalClassName = fq.startsWith(type)
@@ -34,7 +34,7 @@ export default function SimilarDatasets({ variables }) {
     <>
       <div className="flex justify-center w-full xl:p-10">
         <div className="flex flex-col items-between h-full xl:w-2/3 mb-10 w-full">
-          <div className="self-center mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
+          <div className="self-center mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
             <p>Explore Similar Datasets</p>
           </div>
           <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
@@ -90,10 +90,14 @@ export default function SimilarDatasets({ variables }) {
             ?.slice(0, 4)
             .map((item, index) => {
               return (
-                <a key={index} href={`/topic/${item.name}`} className="group">
+                <a
+                  key={index}
+                  href={`/@${item.organization.name}/${item.name}`}
+                  className="group"
+                >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">
-                    {/* <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" /> */}
-                    <div className="aspect-w-1 aspect-h-1">
+                    <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+                    <div className="min-h-[12vw]">
                       <img
                         src={
                           fq.startsWith('groups')
@@ -103,10 +107,10 @@ export default function SimilarDatasets({ variables }) {
                               '/images/dubai-robocop.png'
                         }
                         alt={item.title}
-                        className="w-full h-full object-center object-scale-down"
+                        className="w-full h-full object-center object-scale-down rounded-xl"
                       />
                     </div>
-                    <p className="p-4 text-sm text-white leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:border-[#22B373] border-b-4 group-hover:text-black">
+                    <p className="absolute bottom-0 left-0 transition-all w-full p-4 text-sm text-white leading-4 font-avenir font-semibold group-hover:bg-slate-200 group-hover:opacity-75  group-hover:text-black">
                       {item.title}
                     </p>
                   </div>

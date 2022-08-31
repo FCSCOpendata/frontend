@@ -1,5 +1,6 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { AR } from '../../../hooks/locale';
 import CopyIconButton from '../CopyIconButton';
 
 const Code: React.FC<any> = ({ language, children }) => {
@@ -9,7 +10,7 @@ const Code: React.FC<any> = ({ language, children }) => {
             check  it   later  as  it  doesn't  seem  to  be  a 
             straightforward implementation */}
       <div className="rounded-lg relative">
-        <div className="absolute right-5 top-[1rem] z-50">
+        <div className={`absolute ${AR('left-5', 'right-5')} top-[1rem] z-50`}>
           <CopyIconButton
             hintBeforeCopy="Copy this snippet"
             hintAfterCopy="Copied"

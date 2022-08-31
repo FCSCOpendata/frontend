@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import NavButton from '../NavButton';
+import { AR } from '../../../../hooks/locale';
 
 interface Item {
   title: string;
@@ -36,6 +37,7 @@ const Carousel: React.FC<{
         </div>
 
         <Swiper
+          dir={`${AR('rtl', 'ltr')}`}
           modules={[Navigation, Pagination]}
           navigation={{
             prevEl: '.nav-prev-button',

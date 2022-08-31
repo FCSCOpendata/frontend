@@ -4,6 +4,7 @@ import 'swiper/css';
 import { useState } from 'react';
 import { Navigation } from 'swiper';
 import NavButton from '../NavButton';
+import { AR } from '../../../../hooks/locale';
 
 interface Item {
   title: string;
@@ -13,50 +14,73 @@ interface Item {
     alt: string;
   };
   link: string;
+  color: string | undefined;
 }
 
 interface CarouselProps {
   items: Item[];
   active: { name: string };
   itemOnClick: (item: any) => any;
+  identifier: string;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  items,
+  active,
+  itemOnClick,
+  identifier,
+}) => {
   const [swiper, setSwiper] = useState(null);
 
   return (
     <div className="group relative">
       {items.length > 10 && (
         <>
-          <div className="transition-all opacity-0 group-hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button">
+          <div
+            className={`transition-all opacity-0 group-hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button${
+              identifier ? '--' + identifier : ''
+            }`}
+          >
             <NavButton orientation="left" />
           </div>
-          <div className="transition-all opacity-0 group-hover:opacity-100  absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button">
+          <div
+            className={`transition-all opacity-0 group-hover:opacity-100  absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button${
+              identifier ? '--' + identifier : ''
+            }`}
+          >
             <NavButton orientation="right" />
           </div>
         </>
       )}
       <Swiper
+        dir={`${AR('rtl', 'ltr')}`}
         modules={[Navigation]}
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
             slidesPerView: 3,
+            slidesPerGroup: 3,
           },
           460: {
             slidesPerView: 4,
+            slidesPerGroup: 4,
           },
           720: {
             slidesPerView: 6,
+            slidesPerGroup: 6,
           },
           1200: {
             slidesPerView: 10,
+            slidesPerGroup: 10,
           },
         }}
         initialSlide={items.findIndex((item) => item.name == active.name)}
+        //  As there are more than one slider on some pages
+        //  it's needed to have different  identifiers  for
+        //  each instance
         navigation={{
-          prevEl: '.nav-prev-button',
-          nextEl: '.nav-next-button',
+          prevEl: `.nav-prev-button${identifier ? '--' + identifier : ''}`,
+          nextEl: `.nav-next-button${identifier ? '--' + identifier : ''}`,
         }}
       >
         {items.map((item, index) => (
@@ -85,6 +109,7 @@ const Carousel: React.FC<CarouselProps> = ({ items, active, itemOnClick }) => {
                 title={item.title}
                 icon={item.icon}
                 isActive={item.name == active?.name}
+                color={item.color}
               />
             </a>
           </SwiperSlide>

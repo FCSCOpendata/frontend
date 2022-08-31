@@ -10,7 +10,7 @@ const UnderConstruction = () => {
           Coming <span className="soon">Soon</span>
         </div>
       </div>
-      <div className="text-center font-[Avenir] pt-60">
+      <div className="text-center font-avenir pt-60">
         <h1 className="text-4xl">This page is under construction</h1>
         <p className="text-lg opacity-50">
           Switch to English for more content,{' '}

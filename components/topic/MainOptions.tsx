@@ -20,6 +20,7 @@ const MainOptions: React.FC<any> = ({
   topicOnClick,
   searchPage,
   setActiveTopic,
+  configs,
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
@@ -65,7 +66,7 @@ const MainOptions: React.FC<any> = ({
   } = useQuery(GET_TOPICS_QUERY, {
     notifyOnNetworkStatusChange: true,
     variables: {
-      groups: `[${subtopicsFilter.join(',')}]`,
+      groups: `[${subtopicsFilter?.join(',')}]`,
     },
   });
 
@@ -86,7 +87,7 @@ const MainOptions: React.FC<any> = ({
   //  indicator icon
   useEffect(() => {
     if (topicData) {
-      const tmp = topicData.topic.result;
+      const tmp = topicData?.topic?.result;
       setActiveTopic({
         topic: { icon: { url: tmp?.logo_display_url || tmp?.logo_url } },
       });
@@ -152,6 +153,7 @@ const MainOptions: React.FC<any> = ({
         <TopicHeader
           topic={activeTopic}
           datasetsCount={activeTopic.package_count}
+          color={configs?.filter((el) => el.name == topic)[0]?.color}
         />
       </div>
       {subtopics?.length > 0 && (

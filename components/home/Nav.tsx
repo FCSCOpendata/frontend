@@ -40,9 +40,15 @@ const NavBar: React.FC<any> = ({ settings }) => {
         //  Adds the '/p/' if necessary
         path = `${!dynamicPages.includes(path) ? '/p' : ''}/${path}`;
 
+        //  Can be refactored in  case  there's
+        //  any other page that needs this kind
+        //  kind of handling.
+        const matchExp = path == '/organization' ? '/@' : undefined;
+
         return {
           title: nav.label,
           path: path.length > 0 ? path : null,
+          matchExp: matchExp,
         };
       })
       //  Filters empty paths

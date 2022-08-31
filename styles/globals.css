@@ -12,6 +12,13 @@
   height: 750px;
 }
 
+.bg-hero-RTL {
+  background-size: cover;
+  background-image: url('/images/dashed-rtl.png'), url('/images/hero.svg');
+  background-position: 40% 50%;
+  height: 750px;
+}
+
 .vertical-text {
   transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
@@ -32,6 +39,10 @@
 
 .swiper-bullet-active {
   background: #22b373 !important;
+}
+
+.swiper-button-disabled {
+  display: none !important;
 }
 
 /* nprogress CSS */

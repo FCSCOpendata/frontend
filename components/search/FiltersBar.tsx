@@ -248,13 +248,13 @@ export default function FiltersBar({
           </div>
 
           <div className="w-100 max-w-6xl mt-2">
-            <div>
+            <div className="flex flex-stretch">
               <FilterCarousel>
                 {topics[currentIndex].children.map((sub, index) => (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} className="p-1">
                     <button
                       key={sub.id}
-                      className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
+                      className="group relative flex flex-wrap bg-gray-200 h-full w-full rounded-xl overflow-hidden"
                       onClick={(e) => filterSearch(e, 'groups', sub.name)}
                     >
                       <img
@@ -262,10 +262,11 @@ export default function FiltersBar({
                           sub.image_display_url || `/images/topics/topic-1.png`
                         }
                         alt={sub.title}
-                        className="absolute left-0 top-0 w-full h-full object-scale-down z-0"
+                        width="100%"
+                        className="w-full h-full object-scale-down z-0"
                       />
                       <span
-                        className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
+                        className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
                         id={`${
                           matchesForGroups &&
                           matchesForGroups[3].includes(sub.name)
@@ -276,7 +277,7 @@ export default function FiltersBar({
                         //  NOTE: z-index removed because it makes
                         //  the onclick not work and  doen't  seem
                         //  to be necessary for the UI. Was `z-10`
-                        className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                        className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 transition-all group-hover:opacity-75 group-hover:text-black font-avenir"
                       >
                         {sub.title}
                       </label>
@@ -305,11 +306,11 @@ export default function FiltersBar({
                   >
                     <img
                       src={org.image || '/images/org-default.png'}
-                      alt=""
-                      className="absolute left-0 top-0 w-full h-full object-scale-down z-0"
+                      alt={org.name}
+                      className="w-full object-scale-down z-0 rounded-xl"
                     />
                     <span
-                      className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10"
+                      className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
                       id={`${
                         matchesForOrgs && matchesForOrgs[3].includes(org.name)
                       }`}
@@ -319,7 +320,7 @@ export default function FiltersBar({
                       //  NOTE: z-index removed because it makes
                       //  the onclick not work and  doen't  seem
                       //  to be necessary for the UI. Was `z-10`
-                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black"
+                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 transition-all group-hover:opacity-75 group-hover:text-black font-avenir"
                     >
                       {org.title}
                     </label>
@@ -340,7 +341,7 @@ export default function FiltersBar({
           {Object.keys(timeFrames).map((timeframe, index) => (
             <button
               key={index}
-              className={`py-2 px-4 rounded-xl font-[Avenir] ${
+              className={`py-2 px-4 rounded-xl font-avenir ${
                 currentTimeIndex === index
                   ? 'bg-button-gradient text-white'
                   : 'text-black'

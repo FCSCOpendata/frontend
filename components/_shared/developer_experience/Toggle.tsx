@@ -1,4 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
+import { AR } from '../../../hooks/locale';
 const Toggle: React.FC<{ onToggle: () => void; expanded: boolean }> = ({
   onToggle,
   expanded,
@@ -7,7 +8,12 @@ const Toggle: React.FC<{ onToggle: () => void; expanded: boolean }> = ({
   return (
     <button onClick={() => onToggle()}>
       <h1 className="font-semibold text-3xl mb-6 flex items-center pointer">
-        <span className="bg-[#CBE9FF] p-[9px] w-[30px] rounded-md mr-5">
+        <span
+          className={`bg-[#CBE9FF] p-[9px] w-[30px] rounded-md ${AR(
+            'ml-5',
+            'mr-5'
+          )}`}
+        >
           <img
             src="/images/plus.svg"
             width={12}

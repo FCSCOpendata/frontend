@@ -58,7 +58,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
     <>
       <div className="flex  justify-start w-full py-10 pl-0">
         <div className="flex flex-col items-between h-full w-1/2 mb-10">
-          <div className="self-start mb-4 font-[Avenir] text-[30px] font-extrabold text-[#4D4D4D]">
+          <div className="self-start mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
             <p>Create Visualization</p>
           </div>
           <div className="flex xl:flex-row flex-col bg-[#F7FAFC] justify-between p-2 rounded-xl xl:w-4/6">
@@ -67,7 +67,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 switchTab
                   ? 'bg-button-gradient rounded-2xl text-white'
                   : 'text-[#202020]'
-              }  justify-center font-[Avenir] text-[18px] font-medium`}
+              }  justify-center font-avenir text-[18px] font-medium`}
               onClick={() => setswitchTab(true)}
             >
               <img
@@ -82,7 +82,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 switchTab
                   ? 'text-[#202020]'
                   : 'bg-button-gradient rounded-2xl text-white'
-              } justify-center font-[Avenir] text-[18px] font-medium1`}
+              } justify-center font-avenir text-[18px] font-medium1`}
               onClick={() => setswitchTab(false)}
             >
               <img
@@ -101,30 +101,30 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
             <Chart view={view} />
           </div>
           <div className="col-span-4 rounded-lg flex flex-col p-8 bg-[#F7FAFC]">
-            <h1 className="font-[Avenir] text-[30px] text-[#343434] font-bold mb-8">
+            <h1 className="font-avenir text-[30px] text-[#343434] font-bold mb-8">
               Visualization Builder
             </h1>
             <div className="flex flex-col mb-4">
-              <span className="mb-2 font-[Avenir] font-semibold text-[18px] text-[#424242]">
+              <span className="mb-2 font-avenir font-semibold text-[18px] text-[#424242]">
                 Chart Type
               </span>
               <select
                 value={view.spec.type}
                 onChange={handleChartTypeChange}
-                className="rounded-xl outline-none border-none font-[Avenir] font-medium text-[16px] p-4"
+                className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
                 <option value="bar">Bar Chart</option>
                 <option value="line">Line Chart</option>
               </select>
             </div>
             <div className="flex flex-col mb-4">
-              <span className="mb-2 font-[Avenir] font-semibold text-[18px] text-[#424242]">
+              <span className="mb-2 font-avenir font-semibold text-[18px] text-[#424242]">
                 Dimension (field for x axis)
               </span>
               <select
                 value={view.spec.group}
                 onChange={handleDimensionChange}
-                className="rounded-xl outline-none border-none font-[Avenir] font-medium text-[16px] p-4"
+                className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
                 {fields.map((field, index) => (
                   <option key={`dimension-${index}`} value={field.id}>
@@ -134,13 +134,13 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
               </select>
             </div>
             <div className="flex flex-col mb-10">
-              <span className="mb-2 font-[Avenir] font-semibold text-[18px] text-[#424242]">
+              <span className="mb-2 font-avenir font-semibold text-[18px] text-[#424242]">
                 Measure (field for y axis)
               </span>
               <select
                 value={view.spec.series[0] || ''}
                 onChange={handleMeasureChange}
-                className="rounded-xl outline-none border-none font-[Avenir] font-medium text-[16px] p-4"
+                className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
                 {fields.map((field, index) => (
                   <option key={`measure-${index}`} value={field.id}>

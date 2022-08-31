@@ -6,7 +6,7 @@ export default function Map() {
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto pb-16 sm:pb-24 lg:max-w-7xl">
-        <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
+        <h2 className="block text-3xl text-center font-avenir font-extrabold">
           {t('hm-h-expl')}
         </h2>
         <p className="mt-3 mb-8 text-center text-base text-gray font-normal">

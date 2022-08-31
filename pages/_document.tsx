@@ -2,9 +2,17 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 const GA_TRACKING_ID = 'G-NX72GYFHFS';
 export default class CustomDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps, locale: ctx?.locale || 'en' };
+  }
+
   render() {
     return (
-      <Html>
+      <Html
+        dir={this.props.locale.toLowerCase() === 'ar' ? 'rtl' : 'ltr'}
+        lang={this.props.locale}
+      >
         <Head>
           <script
             async

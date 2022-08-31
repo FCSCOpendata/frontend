@@ -1,3 +1,5 @@
+import { AR } from '../../../../hooks/locale';
+
 interface CardProps {
   title: string;
   icon?: {
@@ -19,13 +21,23 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
           <img
             src={image.url}
             alt={image.alt}
-            className="w-full h-full object-center object-scale-down"
+            className="w-full h-full object-center rounded-xl object-scale-down"
           />
         </div>
-        <div className="absolute py-4 bottom-0 inset-x-0 text-white text-m pl-5 leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center">
+        <div
+          className={`absolute py-4 bottom-0 inset-x-0 text-white text-m ${AR(
+            'pr-5',
+            'pl-5'
+          )} leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center`}
+        >
           <h3 className="font-avenir font-bold">{title}</h3>
           {!!icon.url && (
-            <div className="block overflow-hidden w-[40px] h-[40px] mr-4">
+            <div
+              className={`block overflow-hidden w-[40px] h-[40px] ${AR(
+                'ml-4',
+                'mr-4'
+              )}`}
+            >
               <img
                 src={icon.url}
                 alt={icon.alt}
