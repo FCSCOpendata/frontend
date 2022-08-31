@@ -123,7 +123,7 @@ const DataExplorer: React.FC<{
     }
   };
 
-  resources.forEach(el => fixTranslations(el))
+  resources.forEach((el) => fixTranslations(el));
 
   return (
     <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">

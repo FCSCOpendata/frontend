@@ -131,7 +131,7 @@ const MainOptions: React.FC<any> = ({
   };
 
   fixTranslations(activeOrg);
-  subOrgs.forEach(subOrg => fixTranslations(subOrg));
+  subOrgs.forEach((subOrg) => fixTranslations(subOrg));
 
   return (
     <>

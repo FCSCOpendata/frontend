@@ -233,9 +233,9 @@ export default function FiltersBar({
     });
   };
 
-  topics.forEach(el => fixTranslations(el));
-  orgsResults.forEach(el => fixTranslations(el));
-  collectionsResults.forEach(el => fixTranslations(el));
+  topics.forEach((el) => fixTranslations(el));
+  orgsResults.forEach((el) => fixTranslations(el));
+  collectionsResults.forEach((el) => fixTranslations(el));
 
   return (
     <div className="">

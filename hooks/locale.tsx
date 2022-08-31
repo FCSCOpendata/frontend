@@ -24,9 +24,8 @@ export const AR = (
 };
 
 export const fixTranslations = (obj: any) => {
-  if(!obj)
-    return;
-  
+  if (!obj) return;
+
   let { locale } = useRouter();
   locale = locale.toLocaleLowerCase();
 
@@ -46,5 +45,4 @@ export const fixTranslations = (obj: any) => {
   fixField('description', 'description_translated');
   fixField('author', 'author_translated');
   fixField('maintainer', 'maintainer_translated');
-
 };

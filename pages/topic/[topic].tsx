@@ -59,9 +59,9 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
   topic = topic ? topic : topicsTreeData.topics.result[0].name;
 
   //  Adjust obj translations
-  mainTopics.forEach(topic => {
-    fixTranslations(topic)
-  }); 
+  mainTopics.forEach((topic) => {
+    fixTranslations(topic);
+  });
 
   return (
     <>
