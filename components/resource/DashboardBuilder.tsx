@@ -141,11 +141,11 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
           </button>
         ))}
       </div>
-      <div className="bg-white rounded-3xl font-[Avenir] px-20 py-10">
+      <div className="bg-white rounded-3xl font-avenir px-20 py-10">
         <span className="font-semibold">
           {dashboards[activeIndex].description}
         </span>
-        <ul className="list-disc mt-4 font-[Avenir]">
+        <ul className="list-disc mt-4 font-avenir">
           {dashboards[activeIndex].items.map((item, index) => {
             return (
               <li className="mb-2" key={index}>

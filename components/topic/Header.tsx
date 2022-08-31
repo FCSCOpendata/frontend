@@ -1,6 +1,6 @@
 import ImageHeader from '../_shared/image_header/ImageHeader';
 
-const Header: React.FC<any> = ({ topic, datasetsCount }) => {
+const Header: React.FC<any> = ({ topic, datasetsCount, color }) => {
   const icon = {
     url: topic.logo_display_url || '/images/no_icon_topic.png',
     alt: `${topic.name}---topic`,
@@ -23,6 +23,7 @@ const Header: React.FC<any> = ({ topic, datasetsCount }) => {
         icon={icon}
         badgeText={badgeText}
         image={image}
+        color={color}
       >
         {description}
       </ImageHeader>

@@ -36,7 +36,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               )}.png`
             }
             alt={dataset.organization.title}
-            className="w-full object-scale-down object-center"
+            className="w-full object-scale-down object-center rounded-md"
           />
         </div>
         {/* Title, description & org */}

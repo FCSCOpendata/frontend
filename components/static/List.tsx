@@ -33,7 +33,7 @@ const List: React.FC = () => {
   const { posts, meta } = data.posts;
 
   return (
-    <div className="font-[Avenir] mt-8 mb-12 px-4 sm:mx-12">
+    <div className="font-avenir mt-8 mb-12 px-4 sm:mx-12">
       <h2
         className={`text-2xl text-[#4D4D4D] font-extrabold tracking-tight capitalize px-2 mb-4 text-center  ${AR(
           'md:text-right',
@@ -59,7 +59,7 @@ const List: React.FC = () => {
                     )}.png`
                   }
                   alt={post.title}
-                  className="w-full object-scale-down object-center"
+                  className="w-full object-scale-down object-center rounded-md"
                 />
               </div>
               {/* Title, description & org */}

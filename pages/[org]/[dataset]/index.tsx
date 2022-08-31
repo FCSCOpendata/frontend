@@ -96,7 +96,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         {/* Resource display */}
         <div className="flex flex-col w-full">
-          <div className="flex flex-row items-baseline font-[Avenir] font-medium text-[16px] text-[#4D4D4D] leading-6 mb-4">
+          <div className="flex flex-row items-baseline font-avenir font-medium text-[16px] text-[#4D4D4D] leading-6 mb-4">
             <SelectorIcon className={`w-4 ${AR('ml-2', 'mr-2')}`} />
             <button
               className={`${AR('ml-4', 'mr-4')}`}

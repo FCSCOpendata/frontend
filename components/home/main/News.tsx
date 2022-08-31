@@ -23,7 +23,7 @@ export default function News() {
   //  and could be better written.
   return (
     <>
-      <h2 className="block text-3xl text-center font-[Avenir] font-extrabold">
+      <h2 className="block text-3xl text-center font-avenir font-extrabold">
         What&apos;s New
       </h2>
       <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
@@ -49,7 +49,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-full" />
                 )}
-                <p className="absolute p-8 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
+                <p className="absolute p-8 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[0].title}
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-36" />
                 )}
-                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
+                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[1]?.title}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-60" />
                 )}
-                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
+                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[2]?.title}
                 </p>
               </div>
@@ -120,7 +120,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-60" />
                 )}
-                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
+                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[3]?.title}
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-36" />
                 )}
-                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-[Avenir] font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
+                <p className="absolute px-8 py-4 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
                   {posts[4]?.title}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export default function News() {
           </div>
         </div>
       </div>
-      <div className="mt-12 font-[Avenir] text-lg text-center">
+      <div className="mt-12 font-avenir text-lg text-center">
         <Link href="/news">
           <a href="/news">
             See all news <ArrowRightIcon className="inline w-4 ml-4" />
