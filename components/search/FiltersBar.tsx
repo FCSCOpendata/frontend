@@ -234,7 +234,7 @@ export default function FiltersBar({
 
   return (
     <div className="">
-      {filters === 'Topics' && (
+      {filters === t('topics') && (
         <>
           <div className="w-100 max-w-6xl bg-white">
             <div id="topics">
@@ -292,7 +292,7 @@ export default function FiltersBar({
           </div>
         </>
       )}
-      {filters === 'Organizations' && (
+      {filters === t('organization') && (
         <div className="w-100 max-w-6xl mt-2">
           <div>
             <FilterCarousel>
@@ -335,7 +335,7 @@ export default function FiltersBar({
         </div>
       )}
 
-      {filters === 'Time Frame' && (
+      {filters === t('ds-bt-time') && (
         <div className="w-full can mt-2 bg-white">
           {Object.keys(timeFrames).map((timeframe, index) => (
             <button
@@ -353,7 +353,7 @@ export default function FiltersBar({
         </div>
       )}
 
-      {currentTimeIndex === 0 && filters === 'Time Frame' && (
+      {currentTimeIndex === 0 && filters === t('ds-bt-time') && (
         <div className="w-full mt-4">
           <div className="flex flex-col w-1/2  pt-6 px-8 font-[Raleway] bg-white relative rounded-xl triangle">
             <div>
