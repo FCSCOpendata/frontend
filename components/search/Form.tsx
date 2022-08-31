@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
 
 const SearchForm: React.FC = () => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -28,7 +30,7 @@ const SearchForm: React.FC = () => {
         onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
-        placeholder="Search by keyword and press enter"
+        placeholder={t('hm-bt-search')}
         aria-label="Search"
         className="inline-block w-full pr-10 py-4 border-2 border-blue-200 rounded-md leading-none bg-white placeholder:text-slate-400 focus:outline-none focus:ring-0 focus:border-2 focus:border-blue-400"
       />

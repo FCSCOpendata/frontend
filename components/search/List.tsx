@@ -4,6 +4,7 @@ import { SEARCH_QUERY } from '../../graphql/queries';
 import Pagination from './Pagination';
 import ListCard from './ListCard';
 import { useEffect } from 'react';
+import useTranslation from 'next-translate/useTranslation';
 
 const List: React.FC<{
   //  TODO: improve this parameterization
@@ -23,6 +24,7 @@ const List: React.FC<{
   page,
   setCount,
 }) => {
+  const { t } = useTranslation('common');
   const {
     loading: loadSearch,
     error: errorSearch,
@@ -51,7 +53,9 @@ const List: React.FC<{
           ) : show_amount != false ? (
             searchResults?.count +
             ' ' +
-            (searchResults?.count === 1 ? 'dataset' : 'datasets')
+            (searchResults?.count === 1
+              ? t('dataset-singular')
+              : t('dataset-plural'))
           ) : (
             ''
           )}

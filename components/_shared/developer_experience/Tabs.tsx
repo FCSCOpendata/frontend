@@ -1,8 +1,10 @@
 import React from 'react';
 import Code from './Code';
 import Text from './Text';
+import useTranslation from 'next-translate/useTranslation';
 
 const Tabs: React.FC<{ api: string }> = ({ api }) => {
+  const { t } = useTranslation('common');
   const [activeIdx, setActiveIdx] = React.useState(0);
 
   const technologies = [
@@ -29,7 +31,7 @@ const Tabs: React.FC<{ api: string }> = ({ api }) => {
       case 'py':
         return (
           <>
-            <Text>Interact with our functional api in Python</Text>
+            <Text>{t('dev-exp-text', { lang: 'Python' })}</Text>
             <Code language="python">
               {`
 import request
@@ -45,7 +47,7 @@ print(data)
       case 'js':
         return (
           <>
-            <Text>Interact with our functional api in JavaScript</Text>
+            <Text>{t('dev-exp-text', { lang: 'Javascript' })}</Text>
             <Code language="javascript">
               {`
 const data = fetch("${api}")
@@ -60,7 +62,7 @@ const data = fetch("${api}")
       case 'curl':
         return (
           <>
-            <Text>Interact with our functional api in cURL</Text>
+            <Text>{t('dev-exp-text', { lang: 'cURL' })}</Text>
             <Code language="curl">
               {`
 curl ${api}
@@ -73,7 +75,7 @@ curl ${api}
       case 'R':
         return (
           <>
-            <Text>Interact with our functional api in R</Text>
+            <Text>{t('dev-exp-text', { lang: 'R' })}</Text>
             <Code language="curl">
               {`
 # installing packages

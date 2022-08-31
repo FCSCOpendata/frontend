@@ -4,7 +4,7 @@ import HomeTags from './HomeTags';
 import { AR } from '../../hooks/locale';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   return (
     <div>
@@ -20,17 +20,17 @@ export default function Footer() {
                 <h1
                   className={`mt-24 font-poppins mt-1 block text-3xl font-semibold sm:text-4xl xl:text-4xl leading-[3.5rem]`}
                 >
-                  <span className={`block text-black`}>
-                    Welcome to the world
-                  </span>
-                  <span className="block text-black">of UAE Open Data!</span>
+                  <span
+                    className={`block text-black whitespace-pre-line`}
+                    dangerouslySetInnerHTML={{ __html: t('welcome-note') }}
+                  />
                 </h1>
                 <p
                   className={`mt-3 text-base text-gray font-normal sm:mt-8 sm:text-xl lg:text-lg xl:text-xl ${
                     AR() ? 'pl-10' : 'pr-10'
                   }`}
                 >
-                  {t(`common:description`)}
+                  {t(`description`)}
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 mb-8">
                   <SearchForm />

@@ -2,18 +2,20 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AR } from '../../hooks/locale';
 import { dynamicPages } from './Nav';
+import useTranslation from 'next-translate/useTranslation';
 
 const Footer: React.FC<any> = ({ settings }) => {
+  const { t } = useTranslation('common');
   const [navigation, setNavigation] = useState({
     menu: [
-      { name: 'Datasets', href: '/search' },
-      { name: 'Organizations', href: '/organization' },
-      { name: 'Topics', href: '/topic' },
-      { name: 'Open Data 101', href: '/p/open-data-101' },
-      { name: 'News', href: '/news' },
-      { name: 'About', href: '/p/about' },
-      { name: 'Terms of Use', href: '/p/terms-of-use' },
-      { name: 'Contact', href: '/p/contact' },
+      { name: t('dataset'), href: '/search' },
+      { name: t('organization'), href: '/organization' },
+      { name: t('topics'), href: '/topic' },
+      { name: t('opendata'), href: '/p/open-data-101' },
+      { name: t('news'), href: '/news' },
+      { name: t('about'), href: '/p/about' },
+      { name: t('terms'), href: '/p/terms-of-use' },
+      { name: t('contact'), href: '/p/contact' },
     ],
     social: [],
   });
@@ -63,7 +65,7 @@ const Footer: React.FC<any> = ({ settings }) => {
                 AR() ? 'text-right' : 'text-left'
               }`}
             >
-              Official Portal of the UAE government
+              {t('ft-h-offi')}
             </p>
             <ul className="flex space-x-6 text-sm list-none">
               {navigation.menu.map((item) => (

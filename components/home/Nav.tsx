@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Template from './NavTemplate';
-
+import useTranslation from 'next-translate/useTranslation';
 //  This variable is for listing the hrefs that
 //  are not related to CMS pages.  Furthermore,
 //  This is needed to check if there should  be
@@ -8,6 +8,7 @@ import Template from './NavTemplate';
 export const dynamicPages = ['search', 'organization', 'topic', 'news'];
 
 const NavBar: React.FC<any> = ({ settings }) => {
+  const { t } = useTranslation('common');
   //  This initial state behaves as a default,
   //  just in case the servers are unavailable
   //  or something like that.

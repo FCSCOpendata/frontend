@@ -3,8 +3,10 @@ import { useQuery } from '@apollo/react-hooks';
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_POSTS_QUERY } from '../../../graphql/queries';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function News() {
+  const { t } = useTranslation('common');
   const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
     variables: { limit: 5, page: 1 },
     // Setting this value to true will make the component rerender when
@@ -24,11 +26,10 @@ export default function News() {
   return (
     <>
       <h2 className="block text-3xl text-center font-avenir font-extrabold">
-        What&apos;s New
+        {t('hm-h-what')}
       </h2>
       <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
-        Our Data Portal topics will help you to navigate throw thousands of
-        datasets. Select a topic you are looking for.
+        {t('hm-p-our-data')}
       </p>
       <div className="container mx-auto flex flex-wrap h-96">
         <div className="flex flex-wrap w-full">
@@ -152,7 +153,7 @@ export default function News() {
       <div className="mt-12 font-avenir text-lg text-center">
         <Link href="/news">
           <a href="/news">
-            See all news <ArrowRightIcon className="inline w-4 ml-4" />
+            {t('hm-a-see')} <ArrowRightIcon className="inline w-4 ml-4" />
           </a>
         </Link>
       </div>

@@ -5,6 +5,7 @@ import {
   GET_ORG_FULL_INFO_QUERY,
 } from '../../graphql/queries';
 import dynamic from 'next/dynamic';
+import useTranslation from 'next-translate/useTranslation';
 
 const DatasetsList = dynamic(
   () => import('../../components/organization/DatasetsList')
@@ -23,6 +24,7 @@ const MainOptions: React.FC<any> = ({
   orgOnClick,
   setActiveOrg,
 }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const { searchPage } = router.query;
 
@@ -134,15 +136,14 @@ const MainOptions: React.FC<any> = ({
       </div>
       {children?.length > 0 && (
         <div className="mb-20">
-          <h1 className="font-semibold text-3xl mb-6">Sub Organizations</h1>
+          <h1 className="font-semibold text-3xl mb-6">{t('og-h-sub')}</h1>
           <SubOrgsCarousel orgs={subOrgs} orgOnClick={onSubOrgClick} />
         </div>
       )}
 
       <div className="mb-20" id="explore-top-datasets">
         <h1 className="font-semibold text-2xl sm:text-3xl">
-          Explore Top Datasets In This Organization ({activeOrg?.package_count}
-          )
+          {t('og-h-expl', { count: activeOrg?.package_count })}
         </h1>
         <DatasetsList
           // TODO: improve this logic
