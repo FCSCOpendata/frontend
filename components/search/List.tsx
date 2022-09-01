@@ -60,7 +60,7 @@ const List: React.FC<{
             searchResults?.count +
             ' ' +
             (searchResults?.count === 1
-              ? t('dataset-singular')
+              ? t('dataset-single')
               : t('dataset-plural'))
           ) : (
             ''

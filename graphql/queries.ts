@@ -199,6 +199,7 @@ export const GET_DATASET_QUERY = gql`
         author_translated
         description_translated: notes_translated
         maintainer_translated
+        total_downloads
       }
     }
   }

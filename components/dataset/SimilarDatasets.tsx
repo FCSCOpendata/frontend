@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY, SEARCH_QUERY } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
+import useTranslation from 'next-translate/useTranslation';
 import { fixTranslations } from '../../hooks/locale';
 
 export default function SimilarDatasets({ variables }) {
+  const { t } = useTranslation('common');
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
     variables,
     notifyOnNetworkStatusChange: true,
@@ -40,7 +42,7 @@ export default function SimilarDatasets({ variables }) {
       <div className="flex justify-center w-full xl:p-10">
         <div className="flex flex-col items-between h-full xl:w-2/3 mb-10 w-full">
           <div className="self-center mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
-            <p>Explore Similar Datasets</p>
+            <p>{t('explore-s-datasets')}</p>
           </div>
           <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
             <button
@@ -52,7 +54,7 @@ export default function SimilarDatasets({ variables }) {
                 alt="orgs"
                 className="w-4 h-4 mr-2"
               />
-              {result.groups[0]?.title} Topic
+              {result.groups[0]?.title} {t('topic')}
             </button>
             <button
               onClick={() => setFq(`tags:"${result.tags[0]?.name}"`)}
@@ -63,7 +65,7 @@ export default function SimilarDatasets({ variables }) {
                 alt="orgs"
                 className="w-4 h-4 text-white mr-2"
               />
-              {result.tags[0]?.display_name} Keyword
+              {result.tags[0]?.display_name} {t('keyword')}
             </button>
             <button
               onClick={() => setFq(`organization:${result.organization.name}`)}

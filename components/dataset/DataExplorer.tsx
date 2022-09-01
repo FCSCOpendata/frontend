@@ -8,6 +8,7 @@ import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
 import { AR, fixTranslations } from '../../hooks/locale';
 import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
  * an interface to interact with a resource. That means you can do things like
@@ -20,6 +21,7 @@ const DataExplorer: React.FC<{
   enableSelect: boolean;
   setSelectData: any;
 }> = ({ resources, columnHeaderStyle, enableSelect, setSelectData }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
 
   const [activeTable, setActiveTable] = useState(0);
@@ -208,7 +210,7 @@ const DataExplorer: React.FC<{
                 <ExternalLinkIcon
                   className={`w-6 pb-1 inline ${AR('ml-2', 'mr-2')}`}
                 />
-                <span>Build Your Data</span>
+                <span>{t('build-data')}</span>
               </a>
             </Link>
           </div>
@@ -228,21 +230,24 @@ const DataExplorer: React.FC<{
               <CloudDownloadIcon
                 className={`inline w-5 ${AR('ml-2', 'mr-2')}`}
               />
-              Download
+              {t('download')}
             </button>
           </div>
           <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
             |
           </div>
           <div className={`flex ${AR('ml-3', 'mr-3')}`}>
-            <span>{resources[activeTable].count || 'N/A'} rows</span>
+            <span>
+              {resources[activeTable].count || 'N/A'} {t('rows')}
+            </span>
           </div>
           <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
             |
           </div>
           <div className={`flex ${AR('ml-3', 'mr-3')}`}>
             <span>
-              {resources[activeTable].schema?.fields?.length || 'N/A'} columns
+              {resources[activeTable].schema?.fields?.length || 'N/A'}{' '}
+              {t('columns')}
             </span>
           </div>
         </div>
@@ -257,7 +262,7 @@ const DataExplorer: React.FC<{
             )} text-[#202020] font-avenir text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
-            Preview
+            {t('preview')}
           </button>
           <button
             className={`${
@@ -269,7 +274,7 @@ const DataExplorer: React.FC<{
             )} text-[#202020] font-avenir text-[20px] font-medium text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
-            Table Schema
+            {t('table-schema')}
           </button>
         </div>
         {previewMode && (

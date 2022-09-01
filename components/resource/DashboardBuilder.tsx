@@ -1,7 +1,9 @@
 import CopyIconButton from '../_shared/CopyIconButton';
 import { useState } from 'react';
+import useTranslation from 'next-translate/useTranslation';
 
 const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
+  const { t } = useTranslation('common');
   const [activeIndex, setActiveIndex] = useState(0);
 
   const dashboards = [
@@ -157,8 +159,8 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
                     </a>
                     <CopyIconButton
                       id={`databuilder-${index}`}
-                      hintBeforeCopy="Copy this snippet"
-                      hintAfterCopy="Copied"
+                      hintBeforeCopy={t('copy-snippet')}
+                      hintAfterCopy={t('copied')}
                       content={item.url}
                     />
                   </div>

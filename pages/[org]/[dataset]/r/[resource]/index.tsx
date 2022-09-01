@@ -12,8 +12,10 @@ import DeveloperExperience from '../../../../../components/_shared/developer_exp
 import ScrollIndicator from '../../../../../components/_shared/ScrollIndicator';
 import Citation from '../../../../../components/_shared/Citation';
 import { fixTranslations } from '../../../../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
 
   if (loading) return <div>Loading</div>;
@@ -69,7 +71,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
 
         {/* Citation */}
         <div className="w-full mb-8">
-          <Citation dtype="Resource" title={resource.name} />
+          <Citation dtype={t('resource-single')} title={resource.name} />
         </div>
         {/* Create Visualization */}
         <div className="w-full mb-8" id="chart-builder">
