@@ -253,7 +253,7 @@ export default function FiltersBar({
           </div>
 
           <div className="w-100 max-w-6xl mt-2">
-            <div className="flex flex-stretch">
+            <div>
               <FilterCarousel>
                 {topics[currentIndex].children.map((sub, index) => (
                   <SwiperSlide key={index} className="p-1">
@@ -268,7 +268,7 @@ export default function FiltersBar({
                         }
                         alt={sub.title}
                         width="100%"
-                        className="w-full h-full object-scale-down z-0"
+                        className="top-0 w-full h-full object-scale-down z-0"
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
@@ -312,7 +312,7 @@ export default function FiltersBar({
                     <img
                       src={org.image || '/images/org-default.png'}
                       alt={org.name}
-                      className="w-full object-scale-down z-0 rounded-xl"
+                      className="absolute left-0 top-0 w-full object-scale-down z-0 rounded-xl"
                     />
                     <span
                       className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
