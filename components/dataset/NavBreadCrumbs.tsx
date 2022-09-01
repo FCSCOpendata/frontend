@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function NavBreadCrumbs({ navInfo }) {
+  const { t } = useTranslation('common');
   return (
     <div className=" mt--2 mb-8 font-avenir">
       <div className="flex flex-1 bg-[#F7FAFC] bg-waves pl-2">
@@ -9,7 +11,7 @@ export default function NavBreadCrumbs({ navInfo }) {
           <li>
             <Link href="/search">
               <a className="group relative">
-                Datasets
+                {t('dataset')}
                 <span
                   className={`hidden lg:opacity-0 lg:flex absolute left-1 right-1 -bottom-2.5 h-0.5 ease-in-out duration-300
                   group-hover:bg-nav-underline lg:group-hover:opacity-100`}

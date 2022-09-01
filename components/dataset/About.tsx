@@ -4,8 +4,11 @@ import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Tags } from '../../components/_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 import { AR } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
+import { CloudDownloadIcon } from '@heroicons/react/outline';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
 
   if (loading) return <div>Loading</div>;
@@ -35,18 +38,32 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <img src="/images/print-icon.svg" alt="orgs" className="w-5 h-3 " />
-          <span>{'Created ' + timeago.format(result.created)}</span>
+          <span>
+            {t('created') +
+              ' ' +
+              new Date(result.created).toLocaleDateString('en-GB')}
+          </span>
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <img src="/images/clock-icon.svg" alt="orgs" className="w-5 h-3" />
           <span>
-            {'Updated ' + new Date(result.updated).toLocaleDateString('en-GB')}
+            {t('updated') +
+              ' ' +
+              new Date(result.updated).toLocaleDateString('en-GB')}
           </span>
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <img src="/images/book-icon.svg" alt="orgs" className="w-5  h-3" />
           <span>{result.license_title}</span>
         </div>
+        {result.total_downloads > 1 ? (
+          <div className="font-avenir flex text-sm py-2 items-baseline">
+            <CloudDownloadIcon className={`w-5  h-3`} />
+            <span>{result.total_downloads}</span>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
         {result.description?.replace(/<[^>]*>?/gm, '') ||

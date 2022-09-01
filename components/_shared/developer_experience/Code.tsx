@@ -2,8 +2,10 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { AR } from '../../../hooks/locale';
 import CopyIconButton from '../CopyIconButton';
+import useTranslation from 'next-translate/useTranslation';
 
 const Code: React.FC<any> = ({ language, children }) => {
+  const { t } = useTranslation('common');
   return (
     <>
       {/*   TODO: the background of the code should be #FEFEFE,
@@ -12,8 +14,8 @@ const Code: React.FC<any> = ({ language, children }) => {
       <div className="rounded-lg relative">
         <div className={`absolute ${AR('left-5', 'right-5')} top-[1rem] z-50`}>
           <CopyIconButton
-            hintBeforeCopy="Copy this snippet"
-            hintAfterCopy="Copied"
+            hintBeforeCopy={t('copy-snippet')}
+            hintAfterCopy={t('copied')}
             content={children}
             id="dev"
           />

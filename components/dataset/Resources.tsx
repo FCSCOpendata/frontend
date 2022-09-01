@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useState, useRef } from 'react';
-
+import useTranslation from 'next-translate/useTranslation';
 const Resources: React.FC<{ datasetData: any }> = ({ datasetData }) => {
+  const { t } = useTranslation('common');
   const [downloadInfo, setDownloadInfo] = useState([]);
   const [activateSelect, setActivateSelect] = useState(false);
   const countRef = useRef<HTMLInputElement>(null);

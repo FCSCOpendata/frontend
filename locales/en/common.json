@@ -60,6 +60,7 @@
   "updated": "Updated",
   "created": "Created",
   "download-all": "Download all",
+  "download-select": "Download Selected",
   "select": "Select",
   "columns": "columns",
   "rows": "rows",
@@ -67,10 +68,9 @@
   "preview": "Preview",
   "build-data": "Build Your Data",
   "download": "Download",
-  "cite-dataset": "Cite this Dataset",
   "explore-s-datasets": "Explore Similar Datasets",
   "hide-show": "Hide/Show Schema",
-  "cite-resource": "Cite this Resource",
+  "cite": "Cite this",
   "create-viz": "Create Visualization",
   "build-dashboard": "Build Your Own Dashboard",
   "build-chart": "Build Basic Charts",
@@ -79,5 +79,10 @@
   "bar-chart": "Bar Chart",
   "line-chart": "Line Chart",
   "dimension": "Dimension (field for x axis)",
-  "measure": "Measure (field for y axis)"
+  "measure": "Measure (field for y axis)",
+  "copied": "Copied",
+  "defualt-descrp": "This dataset does not have a description yet.",
+  "topic": "Topic",
+  "keyword": "Keyword",
+  "default-rdescrp": "This resource does not have a description yet."
 }

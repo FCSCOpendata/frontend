@@ -17,8 +17,10 @@ import { useState } from 'react';
 import ScrollIndicator from '../../../components/_shared/ScrollIndicator';
 import Citation from '../../../components/_shared/Citation';
 import { AR } from '../../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
   const [enableSelect, setEnableSelect] = useState(false);
   const [selectData, setSelectData] = useState({});
@@ -102,11 +104,11 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
               className={`${AR('ml-4', 'mr-4')}`}
               onClick={() => setEnableSelect(!enableSelect)}
             >
-              Select
+              {t('select')}
             </button>
             <CloudDownloadIcon className={`w-4 ${AR('ml-2', 'mr-2')}`} />
             <button onClick={() => downloadAll()}>
-              {enableSelect ? 'Download Selected' : 'Download all'}
+              {enableSelect ? t('download-select') : t('download-all')}
             </button>
           </div>
           <div className="flex flex-row mb-10">
@@ -132,7 +134,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
               'md:-ml-4'
             )}`}
           >
-            <Citation dtype="Dataset" title={result.title} />
+            <Citation dtype={t('dataset')} title={result.title} />
           </div>
         </div>
         {/* Similar Dataset */}

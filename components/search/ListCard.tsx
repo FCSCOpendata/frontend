@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { AR } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
+import { CloudDownloadIcon } from '@heroicons/react/outline';
 
 const datasetFiles = [
   { name: 'pdf', icon: '/images/pdf-icon.svg' },
@@ -16,6 +17,7 @@ const datasetFiles = [
 ];
 
 const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
+  const { t } = useTranslation('common');
   const availableFormats = dataset.resources.map((item) =>
     item.format.toLowerCase()
   );
@@ -90,7 +92,9 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
             />
             <span className="text-xs">
               {dataset.resources.length}&nbsp;
-              {dataset.resources.length > 1 ? 'resources' : 'resource'}
+              {dataset.resources.length > 1
+                ? t('resource-plural')
+                : t('resource-plural')}
             </span>
           </div>
           <div className="whitespace-nowrap">
@@ -100,7 +104,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               className="inline grayscale mr-1 w-4"
             />
             <span className="text-xs capitalize">
-              {timeago.format(dataset.updated)}
+              {new Date(dataset.updated).toLocaleDateString('en-GB')}
             </span>
           </div>
           <div className="whitespace-nowrap">
@@ -109,6 +113,14 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               {dataset.startPeriod} - {dataset.endPeriod}
             </span>
           </div>
+          {dataset.total_downloads > 1 ? (
+            <div className="whitespace-nowrap">
+              <CloudDownloadIcon className={`w-5  h-3`} />
+              <span>{dataset.total_downloads}</span>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
         {/* file icons */}
         <div className="grid grid-flow-col xl:grid-flow-row gap-4 xl:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 xl:ml-8 h-full xl:border-l-2 border-[#E6E6E6]">
