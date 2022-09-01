@@ -1,8 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
+import useTranslation from 'next-translate/useTranslation';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
     variables,
     // Setting this value to true will make the component rerender when
@@ -49,7 +51,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         </div>
         <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
           {resource.description?.replace(/<[^>]*>?/gm, '') ||
-            'This resource does not have a description yet.'}
+            t('default-rdescrp')}
         </article>
       </div>
     </>

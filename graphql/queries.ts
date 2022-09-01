@@ -168,6 +168,7 @@ export const GET_DATASET_QUERY = gql`
         }
         groups
         tags
+        total_downloads
       }
     }
   }

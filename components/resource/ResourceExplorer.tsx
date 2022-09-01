@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
+import useTranslation from 'next-translate/useTranslation';
 
 /**
  * Opens a frictionless resource in data explorer. Data explorer gives you
@@ -20,6 +21,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
   dataset,
   columnHeaderStyle,
 }) => {
+  const { t } = useTranslation('common');
   const { resources } = dataset;
   const [activeTable, setActiveTable] = useState(0);
   const [previewMode, setPreviewMode] = useState(true);
@@ -114,14 +116,16 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
                 className="cursor-pointer"
               >
                 <CloudDownloadIcon className="inline w-5 mr-2" />
-                Download
+                {t('download')}
               </button>
             </div>
             <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
               |
             </div>
             <div className="flex xl:mr-3 mb-2">
-              <span>{resources[activeTable].count || 'N/A'} rows</span>
+              <span>
+                {resources[activeTable].count || 'N/A'} {t('rows')}
+              </span>
             </div>
             <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
               |
@@ -129,7 +133,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
             <div className="flex mr-3">
               <span>
                 {resources[activeTable].schema?.fields?.length || 'N/A'}{' '}
-                columns
+                {t('columns')}
               </span>
             </div>
           </div>
@@ -139,7 +143,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
               onClick={() => download(resources[activeTable].path)}
             >
               <CloudDownloadIcon className="w-6 mr-2 pb-1 inline" />
-              <span>Download</span>
+              <span>{t('download')}</span>
             </button>
           </div>
         </div>
@@ -152,7 +156,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
             } ml-3 xl:mr-8 mr-2 text-[#255B9B] font-avenir xl:text-[20px] xl:font-medium xl:text-center focus:outline-none`}
             onClick={() => setPreviewMode(!previewMode)}
           >
-            Hide/Show Schema
+            {t('hide-show')}
           </button>
           <CalendarIcon className="w-6 xl:mr-4" />
           <div className="mt-3" title="This resource's start period.">

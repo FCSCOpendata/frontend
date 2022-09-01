@@ -8,8 +8,10 @@ import Pagination from '../search/Pagination';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { AR } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const List: React.FC = () => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const initialPage = Number(router.query.page) || 1;
 
@@ -40,7 +42,7 @@ const List: React.FC = () => {
           'md:text-left'
         )}`}
       >
-        {meta.pagination.total} articles found
+        {meta.pagination.total} {t('article-found')}
       </h2>
       <ul className="mb-10">
         {posts.map((post, index) => (

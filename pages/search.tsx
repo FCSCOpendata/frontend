@@ -8,12 +8,14 @@ import { useEffect, useState } from 'react';
 import DeveloperExperience from '../components/_shared/developer_experience/DeveloperExperience';
 import ScrollIndicator from '../components/_shared/ScrollIndicator';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 
 type Props = {
   variables: any;
 };
 
 const Search: React.FC<Props> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const { searchPage } = router.query;
 
@@ -70,7 +72,8 @@ const Search: React.FC<Props> = ({ variables }) => {
         <div className="mb-12 mx-10 md:mx-28 mt-12">
           <div className="px-4">
             <h1 className="font-semibold text-xl sm:text-2xl">
-              {amount} dataset{amount == 1 ? '' : 's'}
+              {amount}{' '}
+              {amount == 1 ? t('dataset-single') : t('dataset-plural')}
             </h1>
 
             <List

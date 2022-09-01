@@ -402,10 +402,10 @@ export default function FiltersBar({
       {(sideFilter.groups.length > 0 ||
         sideFilter.organization.length > 0) && (
         <div className="flex flex-col">
-          <span className="font-bold">Active Filters</span>
+          <span className="font-bold">{t('active-filters')}</span>
           {sideFilter.groups.length > 0 && (
             <div className="flex w-100 max-w-6xl items-between">
-              <span className="mt-2 font-bold">Topics:</span>
+              <span className="mt-2 font-bold">{t('topics')}:</span>
               <div className="flex flex-wrap ml-12">
                 {sideFilter.groups.map((group, index) => (
                   <div
@@ -426,7 +426,7 @@ export default function FiltersBar({
           )}
           {sideFilter.organization.length > 0 && (
             <div className="flex w-100 max-w-6xl items-between mt-4">
-              <span className="mt-2 font-bold">Organization:</span>
+              <span className="mt-2 font-bold">{t('organization')}:</span>
               <div className="flex flex-wrap">
                 {sideFilter.organization.map((org, index) => (
                   <div
