@@ -113,14 +113,14 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               {dataset.startPeriod} - {dataset.endPeriod}
             </span>
           </div>
-          {dataset.total_downloads > 1 ? (
+          {/* {dataset.total_downloads > 1 ? (
             <div className="whitespace-nowrap">
               <CloudDownloadIcon className={`w-5  h-3`} />
               <span>{dataset.total_downloads}</span>
             </div>
           ) : (
             ''
-          )}
+          )} */}
         </div>
         {/* file icons */}
         <div className="grid grid-flow-col xl:grid-flow-row gap-4 xl:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 xl:ml-8 h-full xl:border-l-2 border-[#E6E6E6]">
