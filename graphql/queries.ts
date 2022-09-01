@@ -269,11 +269,11 @@ export const GET_STATS_QUERY = gql`
 `;
 
 export const GET_POSTS_QUERY = gql`
-  query posts($limit: Int, $page: Int) {
-    posts(limit: $limit, page: $page)
+  query posts($limit: Int, $page: Int, $tag: String = "ar") {
+    posts(limit: $limit, page: $page, tag: $tag)
       @rest(
         type: "Posts"
-        path: "posts/?limit={args.limit}&page={args.page}"
+        path: "posts/?limit={args.limit}&page={args.page}&filter=tag%3A{args.tag}"
         endpoint: "ghost"
       ) {
       posts {
@@ -292,11 +292,11 @@ export const GET_POSTS_QUERY = gql`
 `;
 
 export const GET_NEXT_POSTS_QUERY = gql`
-  query posts($limit: Int, $after: String, $slug: String) {
-    posts(limit: $limit, after: $after, slug: $slug)
+  query posts($limit: Int, $after: String, $slug: String, $tag: String = "ar") {
+    posts(limit: $limit, after: $after, slug: $slug, tag: $tag)
       @rest(
         type: "Posts"
-        path: "posts/?limit={args.limit}&order=published_at%20desc&filter=published_at%3A<={args.after}%2Bslug%3A-{args.slug}"
+        path: "posts/?limit={args.limit}&order=published_at%20desc&filter=published_at%3A<={args.after}%2Bslug%3A-{args.slug}%2Btag%3A{args.tag}"
         endpoint: "ghost"
       ) {
       posts {

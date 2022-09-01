@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_NEXT_POSTS_QUERY } from '../../graphql/queries';
+import { AR } from '../../hooks/locale';
 import { ErrorMessage, Spinner } from '../_shared';
 
 const SuggestedReads: React.FC<any> = ({ from }) => {
@@ -9,7 +10,7 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
   const after = new Date(from.published).toISOString();
 
   const { loading, error, data } = useQuery(GET_NEXT_POSTS_QUERY, {
-    variables: { limit: 4, after, slug },
+    variables: { limit: 4, after, slug, tag: AR('ar', '-ar') },
   });
 
   if (!loading && !error && !data?.posts.posts.length) return <></>;

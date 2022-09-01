@@ -4,11 +4,13 @@ import { ArrowRightIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_POSTS_QUERY } from '../../../graphql/queries';
 import useTranslation from 'next-translate/useTranslation';
+import { AR } from '../../../hooks/locale';
 
 export default function News() {
   const { t } = useTranslation('common');
+
   const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
-    variables: { limit: 5, page: 1 },
+    variables: { limit: 5, page: 1, tag: AR('ar', '-ar') },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
