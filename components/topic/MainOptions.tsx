@@ -13,6 +13,7 @@ const DatasetsList = dynamic(
 const TopicHeader = dynamic(() => import('../../components/topic/Header'));
 import { ErrorMessage, Spinner } from '../../components/_shared';
 import { useRouter } from 'next/router';
+import { fixTranslations } from '../../hooks/locale';
 
 const MainOptions: React.FC<any> = ({
   topic,
@@ -146,6 +147,10 @@ const MainOptions: React.FC<any> = ({
       });
     }, 250);
   };
+
+  //  Adjust obj translations
+  fixTranslations(activeTopic);
+  subtopics.forEach((subtopic) => fixTranslations(subtopic));
 
   return (
     <>

@@ -24,6 +24,7 @@ const OpenData101 = dynamic(
 import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/organization/MainOptions';
 import ScrollIndicator from '../../components/_shared/ScrollIndicator';
+import { fixTranslations } from '../../hooks/locale';
 
 const Organization: React.FC<any> = ({ variables }) => {
   const router = useRouter();
@@ -61,11 +62,11 @@ const Organization: React.FC<any> = ({ variables }) => {
 
   const orgs = orgsData.orgs.result;
 
+  orgs.forEach((el) => fixTranslations(el));
+
   return (
     <>
       <Head>
-        {/* TODO: should be the name of the active
-            org here */}
         <title>Portal | Organizations</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>

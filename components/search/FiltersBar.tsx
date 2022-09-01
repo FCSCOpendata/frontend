@@ -13,6 +13,7 @@ import { SwiperSlide } from 'swiper/react';
 import dynamic from 'next/dynamic';
 import MultiRangeSlider from '../_shared/MultiRangeSlider/MultiRangeSlider';
 import useTranslation from 'next-translate/useTranslation';
+import { fixTranslations } from '../../hooks/locale';
 const TopicsCarousel = dynamic(() => import('./filters/TopicFilterCarousel'));
 
 export default function FiltersBar({
@@ -231,6 +232,10 @@ export default function FiltersBar({
       return newFilter;
     });
   };
+
+  topics.forEach((el) => fixTranslations(el));
+  orgsResults.forEach((el) => fixTranslations(el));
+  collectionsResults.forEach((el) => fixTranslations(el));
 
   return (
     <div className="">

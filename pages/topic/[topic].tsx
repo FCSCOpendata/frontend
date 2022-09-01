@@ -25,6 +25,7 @@ const OpenData101 = dynamic(
 import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/topic/MainOptions';
 import ScrollIndicator from '../../components/_shared/ScrollIndicator';
+import { fixTranslations } from '../../hooks/locale';
 
 const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
   const router = useRouter();
@@ -56,6 +57,11 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
   const mainTopics = mainTopicsData.topics.result;
   const topicsTree = topicsTreeData.topics.result;
   topic = topic ? topic : topicsTreeData.topics.result[0].name;
+
+  //  Adjust obj translations
+  mainTopics.forEach((topic) => {
+    fixTranslations(topic);
+  });
 
   return (
     <>

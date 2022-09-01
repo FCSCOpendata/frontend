@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 import ListCard from './ListCard';
 import { useEffect } from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import { fixTranslations } from '../../hooks/locale';
 
 const List: React.FC<{
   //  TODO: improve this parameterization
@@ -39,6 +40,11 @@ const List: React.FC<{
   useEffect(() => {
     if (setCount) setCount(searchResults?.count | 0);
   }, [searchResults]);
+
+  searchResults?.results.forEach((el) => {
+    fixTranslations(el);
+    fixTranslations(el.organization);
+  });
 
   return (
     <div>

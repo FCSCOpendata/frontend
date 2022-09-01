@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
 import useTranslation from 'next-translate/useTranslation';
+import { fixTranslations } from '../../hooks/locale';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -22,6 +23,9 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
     (item) => item.name === variables.resource
   );
 
+  fixTranslations(result);
+  fixTranslations(resource);
+
   return (
     <>
       <div className="flex flex-col mb-10">
@@ -41,7 +45,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           )}
 
           <h1 className="inline mr-4">
-            {resource.name}{' '}
+            {resource.title}{' '}
             <img
               src="/images/plant-icon.svg"
               alt="Dataset title"

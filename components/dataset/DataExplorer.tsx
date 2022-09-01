@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { CloudDownloadIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import { GET_DATASTORE_DATA } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
-import { AR } from '../../hooks/locale';
+import { AR, fixTranslations } from '../../hooks/locale';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 /**
@@ -124,6 +124,8 @@ const DataExplorer: React.FC<{
       });
     }
   };
+
+  resources.forEach((el) => fixTranslations(el));
 
   return (
     <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">

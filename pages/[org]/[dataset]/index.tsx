@@ -16,7 +16,7 @@ import JSZip from 'jszip';
 import { useState } from 'react';
 import ScrollIndicator from '../../../components/_shared/ScrollIndicator';
 import Citation from '../../../components/_shared/Citation';
-import { AR } from '../../../hooks/locale';
+import { AR, fixTranslations } from '../../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
@@ -59,6 +59,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
       })
       .catch(console.error);
   };
+
+  fixTranslations(result);
+  fixTranslations(result.organization);
+  result.resources.forEach((res) => fixTranslations(res));
 
   return (
     <>
