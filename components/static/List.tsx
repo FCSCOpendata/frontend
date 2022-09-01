@@ -103,10 +103,13 @@ const List: React.FC = () => {
                     </span>
                   </div>
                   <div>
-                    <CalendarIcon
-                      className={`inline pb-1 w-4`}
-                    />
-                    <span className={`text-xs text-center sm:text-left ${AR('mr-1', 'ml-1')}`}>
+                    <CalendarIcon className={`inline pb-1 w-4`} />
+                    <span
+                      className={`text-xs text-center sm:text-left ${AR(
+                        'mr-1',
+                        'ml-1'
+                      )}`}
+                    >
                       {timeago.format(post.published)}
                     </span>
                   </div>
