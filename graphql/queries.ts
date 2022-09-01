@@ -292,7 +292,12 @@ export const GET_POSTS_QUERY = gql`
 `;
 
 export const GET_NEXT_POSTS_QUERY = gql`
-  query posts($limit: Int, $after: String, $slug: String, $tag: String = "ar") {
+  query posts(
+    $limit: Int
+    $after: String
+    $slug: String
+    $tag: String = "ar"
+  ) {
     posts(limit: $limit, after: $after, slug: $slug, tag: $tag)
       @rest(
         type: "Posts"
