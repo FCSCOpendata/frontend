@@ -59,7 +59,7 @@ export default function Orgs() {
     [229.145, 97.4343],
   ].slice(0, result.length);
 
-  result.forEach(org => fixTranslations(org));
+  result.forEach((org) => fixTranslations(org));
 
   return (
     <svg
