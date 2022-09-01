@@ -73,7 +73,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
             <img
               src="/images/library-icon.svg"
               alt="orgs"
-              className="w-4 mb-1 grayscale"
+              className={`w-4 mb-1 grayscale ${AR('ml-2')}`}
             />
             <span className="text-xs text-center sm:text-left capitalize">
               {dataset.organization.title || dataset.organization.name}
@@ -88,7 +88,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
             <img
               src="/images/page.svg"
               alt="t"
-              className="inline grayscale mr-1 w-4"
+              className={`inline grayscale ${AR('ml-1', 'mr-1')} w-4`}
             />
             <span className="text-xs">
               {dataset.resources.length}&nbsp;
@@ -101,14 +101,14 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
             <img
               src="/images/time.svg"
               alt="t"
-              className="inline grayscale mr-1 w-4"
+              className={`inline grayscale ${AR('ml-1', 'mr-1')} w-4`}
             />
             <span className="text-xs capitalize">
               {new Date(dataset.updated).toLocaleDateString('en-GB')}
             </span>
           </div>
           <div className="whitespace-nowrap">
-            <CalendarIcon className="inline mr-1 w-4" />
+            <CalendarIcon className={`inline ${AR('ml-1', 'mr-1')} w-4`} />
             <span className="text-xs capitalize">
               {dataset.startPeriod} - {dataset.endPeriod}
             </span>
