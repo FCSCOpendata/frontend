@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY, SEARCH_QUERY } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
+import { fixTranslations } from '../../hooks/locale';
 
 export default function SimilarDatasets({ variables }) {
   const { loading, error, data } = useQuery(GET_DATASET_QUERY, {
@@ -29,6 +30,10 @@ export default function SimilarDatasets({ variables }) {
       : '';
     return baseClassName + additionalClassName;
   };
+
+  fixTranslations(result?.groups[0]);
+  fixTranslations(result?.tags[0]);
+  fixTranslations(result?.organization);
 
   return (
     <>
@@ -89,6 +94,7 @@ export default function SimilarDatasets({ variables }) {
           similarDatasetsResponse.data?.search.result.results
             ?.slice(0, 4)
             .map((item, index) => {
+              fixTranslations(item);
               return (
                 <a
                   key={index}

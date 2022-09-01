@@ -29,7 +29,7 @@ export const fixTranslations = (obj: any) => {
   let { locale } = useRouter();
   locale = locale.toLocaleLowerCase();
 
-  const fixField = (field, translatedField) => {
+  const fixField = (field: string, translatedField: string) => {
     if (translatedField in obj && field in obj) {
       if (
         obj[translatedField] &&

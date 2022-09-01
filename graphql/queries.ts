@@ -123,6 +123,7 @@ export const GET_ORGS_BY_DATASETS_COUNT_QUERY = gql`
       include_datasets_count: True
       sort: "package_count desc"
       all_fields: True
+      include_extras: True
     ) @rest(type: "Response", path: "organization_list?{args}") {
       result {
         id
@@ -131,6 +132,7 @@ export const GET_ORGS_BY_DATASETS_COUNT_QUERY = gql`
         image_url
         image_display_url
         total: package_count
+        title_translated
       }
     }
   }
@@ -189,6 +191,7 @@ export const GET_DATASET_QUERY = gql`
           name
           title
           image: image_url
+          title_translated
         }
         groups
         tags
@@ -407,6 +410,7 @@ export const GET_TOPICS_BY_DATASETS_COUNT_QUERY = gql`
       include_datasets_count: True
       sort: "package_count desc"
       all_fields: True
+      include_extras: True
     ) @rest(type: "Response", path: "group_list?{args}") {
       result {
         id
@@ -414,6 +418,7 @@ export const GET_TOPICS_BY_DATASETS_COUNT_QUERY = gql`
         title
         image_url
         image_display_url
+        title_translated
       }
     }
   }

@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_TOPICS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 import { ErrorMessage, Spinner } from '../../_shared';
 import useTranslation from 'next-translate/useTranslation';
+import { fixTranslations } from '../../../hooks/locale';
 
 export default function Topics() {
   const { t } = useTranslation('common');
@@ -36,25 +37,28 @@ export default function Topics() {
         <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 gap-x-1 lg:grid-cols-5 xl:grid-cols-5 xl:gap-x-1">
           {!loading &&
             !error &&
-            data.topics.result.map((topic, index) => (
-              <a
-                key={index}
-                href={`/topic/${topic.name}`}
-                className="group h-full w-full flex flex-stretch"
-              >
-                <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
-                  <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
-                  <img
-                    src={topic.image_display_url}
-                    alt={topic.title}
-                    className="w-full h-full object-center object-scale-down"
-                  />
-                  <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
-                    {topic.title}
-                  </p>
-                </div>
-              </a>
-            ))}
+            data.topics.result.map((topic, index) => {
+              fixTranslations(topic);
+              return (
+                <a
+                  key={index}
+                  href={`/topic/${topic.name}`}
+                  className="group h-full w-full flex flex-stretch"
+                >
+                  <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+                    <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+                    <img
+                      src={topic.image_display_url}
+                      alt={topic.title}
+                      className="w-full h-full object-center object-scale-down"
+                    />
+                    <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
+                      {topic.title}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_ORGS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
+import { fixTranslations } from '../../../hooks/locale';
 
 export default function Orgs() {
   const router = useRouter();
@@ -57,6 +58,8 @@ export default function Orgs() {
     [353.942, 281.682],
     [229.145, 97.4343],
   ].slice(0, result.length);
+
+  result.forEach(org => fixTranslations(org));
 
   return (
     <svg

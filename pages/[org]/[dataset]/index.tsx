@@ -59,6 +59,8 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   };
 
   fixTranslations(result);
+  fixTranslations(result.organization);
+  result.resources.forEach(res => fixTranslations(res))
 
   return (
     <>
