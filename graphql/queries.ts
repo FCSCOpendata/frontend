@@ -270,7 +270,7 @@ export const GET_STATS_QUERY = gql`
 `;
 
 export const GET_POSTS_QUERY = gql`
-  query posts($limit: Int, $page: Int, $tag: String = "ar") {
+  query posts($limit: Int, $page: Int, $tag: String = "hash-arabic") {
     posts(limit: $limit, page: $page, tag: $tag)
       @rest(
         type: "Posts"
@@ -297,7 +297,7 @@ export const GET_NEXT_POSTS_QUERY = gql`
     $limit: Int
     $after: String
     $slug: String
-    $tag: String = "ar"
+    $tag: String = "hash-arabic"
   ) {
     posts(limit: $limit, after: $after, slug: $slug, tag: $tag)
       @rest(

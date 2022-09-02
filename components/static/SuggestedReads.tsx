@@ -10,7 +10,12 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
   const after = new Date(from.published).toISOString();
 
   const { loading, error, data } = useQuery(GET_NEXT_POSTS_QUERY, {
-    variables: { limit: 4, after, slug, tag: AR('ar', '-ar') },
+    variables: {
+      limit: 4,
+      after,
+      slug,
+      tag: AR('hash-arabic', '-hash-arabic'),
+    },
   });
 
   if (!loading && !error && !data?.posts.posts.length) return <></>;

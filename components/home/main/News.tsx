@@ -10,7 +10,7 @@ export default function News() {
   const { t } = useTranslation('common');
 
   const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
-    variables: { limit: 5, page: 1, tag: AR('ar', '-ar') },
+    variables: { limit: 5, page: 1, tag: AR('hash-arabic', '-hash-arabic') },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
