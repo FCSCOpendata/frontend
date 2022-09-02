@@ -13,7 +13,7 @@ import { SwiperSlide } from 'swiper/react';
 import dynamic from 'next/dynamic';
 import MultiRangeSlider from '../_shared/MultiRangeSlider/MultiRangeSlider';
 import useTranslation from 'next-translate/useTranslation';
-import { fixTranslations } from '../../hooks/locale';
+import { AR, fixTranslations } from '../../hooks/locale';
 const TopicsCarousel = dynamic(() => import('./filters/TopicFilterCarousel'));
 
 export default function FiltersBar({
@@ -65,11 +65,11 @@ export default function FiltersBar({
   const orgsResults = dataOrgs.orgs.result;
   const collectionsResults = dataCollections.collections.result;
 
-  const filterSearch = (event, btnType, name) => {
+  const filterSearch = (event, btnType, item) => {
     if (event.target.id !== 'true') {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
-        newFilter[btnType].push(name);
+        newFilter[btnType].push(item);
 
         const fq = generateFq(newFilter);
 
@@ -80,7 +80,7 @@ export default function FiltersBar({
         return newFilter;
       });
     } else if (btnType === 'keyword') {
-      const fq = `tags:${name}`;
+      const fq = `tags:${item}`;
       setQvariables((prev) => ({
         ...prev,
         fq: fq,
@@ -88,7 +88,7 @@ export default function FiltersBar({
     } else {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
-        const index = newFilter[btnType].indexOf(name);
+        const index = newFilter[btnType].indexOf(item);
         newFilter[btnType].splice(index, 1);
 
         const fq = generateFq(newFilter);
@@ -104,18 +104,22 @@ export default function FiltersBar({
   };
 
   const generateFq = (sideFilter) => {
+    const getValue = (item) => {
+      return typeof item === 'string' ? item : item.name;
+    };
+
     let fq = query.fq || '';
     let keyIndex = 0;
     for (const key of Object.keys(sideFilter)) {
       if (sideFilter[key].length > 0) {
         let innerFq;
         if (keyIndex > 0) {
-          innerFq = `+${key}:(${sideFilter[key][0]}`;
+          innerFq = `+${key}:(${getValue(sideFilter[key][0])}`;
         } else {
-          innerFq = `${key}:(${sideFilter[key][0]}`;
+          innerFq = `${key}:(${getValue(sideFilter[key][0])}`;
         }
         for (let i = 1; i < sideFilter[key].length; i++) {
-          innerFq += ` OR ${sideFilter[key][i]}`;
+          innerFq += ` OR ${getValue(sideFilter[key][i])}`;
         }
 
         fq += ' ' + innerFq + ')';
@@ -237,6 +241,9 @@ export default function FiltersBar({
   orgsResults.forEach((el) => fixTranslations(el));
   collectionsResults.forEach((el) => fixTranslations(el));
 
+  sideFilter.groups.forEach((el) => fixTranslations(el));
+  sideFilter.organization.forEach((el) => fixTranslations(el));
+
   return (
     <div className="">
       {filters === t('topics') && (
@@ -260,7 +267,7 @@ export default function FiltersBar({
                     <button
                       key={sub.id}
                       className="group relative flex flex-wrap bg-gray-200 h-full w-full rounded-xl overflow-hidden"
-                      onClick={(e) => filterSearch(e, 'groups', sub.name)}
+                      onClick={(e) => filterSearch(e, 'groups', sub)}
                     >
                       <img
                         src={
@@ -307,7 +314,7 @@ export default function FiltersBar({
                   <button
                     key={org.id}
                     className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
-                    onClick={(e) => filterSearch(e, 'organization', org.name)}
+                    onClick={(e) => filterSearch(e, 'organization', org)}
                   >
                     <img
                       src={org.image || '/images/org-default.png'}
@@ -414,10 +421,15 @@ export default function FiltersBar({
               <div className="flex flex-wrap ml-12">
                 {sideFilter.groups.map((group, index) => (
                   <div
-                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    className={`${AR(
+                      'mr-2',
+                      'ml-2'
+                    )} px-2 bg-blue-100 rounded-lg mt-2`}
                     key={index}
                   >
-                    <span className="mr-2">{group}</span>
+                    <span className={`${AR('ml-2', 'mr-2')}`}>
+                      {group.title}
+                    </span>
                     <button
                       id="true"
                       onClick={(e) => filterSearch(e, 'groups', group)}
@@ -435,10 +447,15 @@ export default function FiltersBar({
               <div className="flex flex-wrap">
                 {sideFilter.organization.map((org, index) => (
                   <div
-                    className="ml-2 px-2 bg-blue-100 rounded-lg mt-2"
+                    className={`${AR(
+                      'mr-2',
+                      'ml-2'
+                    )} px-2 bg-blue-100 rounded-lg mt-2`}
                     key={index}
                   >
-                    <span className="mr-2">{org}</span>
+                    <span className={`${AR('ml-2', 'mr-2')}`}>
+                      {org.title}
+                    </span>
                     <button
                       id="true"
                       onClick={(e) => filterSearch(e, 'organization', org)}
