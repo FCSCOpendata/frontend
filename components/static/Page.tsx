@@ -6,8 +6,11 @@ import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_PAGE_QUERY } from '../../graphql/queries';
 import { AR } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const Page: React.FC<{ slug: string }> = ({ slug }) => {
+  const { t } = useTranslation('common');
+
   const { loading, error, data } = useQuery(GET_PAGE_QUERY, {
     variables: { slug },
     // Setting this value to true will make the component rerender when
@@ -25,7 +28,9 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
   return (
     <>
       <Head>
-        <title>{title} | Open Data UAE</title>
+        <title>
+          {title} | {t('title')}
+        </title>
       </Head>
       <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-6 overflow-hidden">
         <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />

@@ -7,7 +7,9 @@ const News: React.FC = () => {
   return (
     <>
       <Head>
-        <title>News | Open Data UAE</title>
+        <title>
+          {t('news')} | {t('title')}
+        </title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-6 overflow-hidden">
