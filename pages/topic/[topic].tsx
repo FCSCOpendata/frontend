@@ -26,8 +26,10 @@ import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/topic/MainOptions';
 import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 import { fixTranslations } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   // eslint-disable-next-line prefer-const
   let { searchPage, topic } = router.query;
@@ -66,7 +68,7 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
   return (
     <>
       <Head>
-        <title>Portal | Topics</title>
+        <title>{`${t('topics')} | ${t('title')}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">

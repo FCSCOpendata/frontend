@@ -25,8 +25,10 @@ import { ErrorMessage } from '../../components/_shared';
 import MainOptions from '../../components/organization/MainOptions';
 import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 import { fixTranslations } from '../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 const Organization: React.FC<any> = ({ variables }) => {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const { org: orgParam } = router.query;
   const org = (orgParam as string).replace('@', '');
@@ -67,7 +69,7 @@ const Organization: React.FC<any> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Portal | Organizations</title>
+        <title>{`${t('organization')} | ${t('title')}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
