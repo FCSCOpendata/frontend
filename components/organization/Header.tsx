@@ -1,6 +1,9 @@
+import useTranslation from 'next-translate/useTranslation';
 import ImageHeader from '../_shared/image_header/ImageHeader';
 
 const Header: React.FC<any> = ({ org, datasetsCount }) => {
+  const { t } = useTranslation('common');
+
   const icon = {
     url: org.logo_display_url || '/images/no_icon_org.svg',
     alt: `${org.name}--organization`,
@@ -12,8 +15,8 @@ const Header: React.FC<any> = ({ org, datasetsCount }) => {
   const description = org.description;
 
   const datasetsCountText = isNaN(datasetsCount) ? 0 : datasetsCount;
-  const badgeText = `${datasetsCount} dataset${
-    datasetsCountText == 1 ? '' : 's'
+  const badgeText = `${datasetsCount} ${
+    datasetsCountText == 1 ? t('dataset-single') : t('dataset-plural')
   }`;
 
   return (
