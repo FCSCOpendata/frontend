@@ -65,7 +65,7 @@ export default function SimilarDatasets({ variables }) {
                 alt="orgs"
                 className="w-4 h-4 text-white mr-2"
               />
-              {result.tags[0]?.display_name} {t('keyword')}
+              {result.tags[0]?.name} {t('keyword')}
             </button>
             <button
               onClick={() => setFq(`organization:${result.organization.name}`)}
