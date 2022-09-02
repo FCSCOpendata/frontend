@@ -3,7 +3,7 @@ import * as timeago from 'timeago.js';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Tags } from '../../components/_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
-import { AR } from '../../hooks/locale';
+import { AR, fixTranslations } from '../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 import { CloudDownloadIcon } from '@heroicons/react/outline';
 
@@ -14,6 +14,8 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (loading) return <div>Loading</div>;
   if (error) return <ErrorMessage message="Error loading dataset" />;
   const { result } = data.dataset;
+
+  result.tags.forEach((el) => fixTranslations(el));
 
   return (
     <div className="flex flex-col mb-10">

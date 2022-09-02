@@ -225,6 +225,7 @@ export const SEARCH_QUERY = gql`
           resources
           startPeriod: start_period
           endPeriod: end_period
+          total_downloads
           organization {
             name
             title

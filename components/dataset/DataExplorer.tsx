@@ -278,12 +278,12 @@ const DataExplorer: React.FC<{
           </button>
         </div>
         {previewMode && (
-          <div className={`${AR('mr-3', 'ml-3')}`} style={{ height: '370px' }}>
+          <div className="mr-3" style={{ height: '370px' }} dir="ltr">
             {getDataGridTable(resources[activeTable], columnHeaderStyle)}
           </div>
         )}
         {!previewMode && (
-          <div className={`${AR('mr-3', 'ml-3')}`} style={{ height: '370px' }}>
+          <div className="mr-3" style={{ height: '370px' }} dir="ltr">
             {getDataGridSchema(resources[activeTable], columnHeaderStyle)}
           </div>
         )}

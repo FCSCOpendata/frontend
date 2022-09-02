@@ -48,7 +48,7 @@ const Search: React.FC<Props> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Search Datasets | Open Data UAE</title>
+        <title>{`${t('dataset')} | ${t('title')}`}</title>
       </Head>
       <ScrollIndicator
         firstImage={{

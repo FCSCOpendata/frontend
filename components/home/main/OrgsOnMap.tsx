@@ -3,8 +3,10 @@ import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../../_shared';
 import { GET_ORGS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 import { fixTranslations } from '../../../hooks/locale';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function Orgs() {
+  const { t } = useTranslation('common');
   const router = useRouter();
 
   function showInfo(e) {
@@ -139,7 +141,7 @@ export default function Orgs() {
                 dy="1.5em"
                 textAnchor="middle"
               >
-                {org.total + ' datasets'}
+                {org.total + ` ${t('dataset-plural')}`}
               </tspan>
             </text>
           );
