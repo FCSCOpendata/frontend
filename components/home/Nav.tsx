@@ -70,8 +70,8 @@ const NavBar: React.FC<any> = ({ settings }) => {
         const matchExp = path == '/organization' ? '/@' : undefined;
 
         let label = nav.label.en;
-        
-        if(locale.toLocaleLowerCase() == 'ar' && nav.label.ar) {
+
+        if (locale.toLocaleLowerCase() == 'ar' && nav.label.ar) {
           label = nav.label.ar;
         }
 

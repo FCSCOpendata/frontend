@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { AR } from '../../hooks/locale';
 import { dynamicPages } from './Nav';
 import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
 
 const Footer: React.FC<any> = ({ settings }) => {
+  const { locale } = useRouter();
   const { t } = useTranslation('common');
   const [navigation, setNavigation] = useState({
     menu: [
@@ -21,7 +23,29 @@ const Footer: React.FC<any> = ({ settings }) => {
   });
 
   useEffect(() => {
-    const cmsNavigation = settings?.settings?.settings?.secondary_navigation
+    const navigation_en = settings?.settings?.settings?.secondary_navigation.filter(
+      (nav) => !nav.url.includes('/ar-')
+    );
+
+    const navigation_ar = settings?.settings?.settings?.secondary_navigation.filter(
+      (nav) => nav.url.includes('/ar-')
+    );
+
+    const navigation = navigation_en?.map((nav) => {
+      const ar = navigation_ar?.find(
+        (el) => el.url.replace('/ar-', '/') == nav.url
+      );
+
+      return {
+        label: {
+          en: nav.label,
+          ar: ar?.label,
+        },
+        url: nav.url,
+      };
+    });
+
+    const cmsNavigation = navigation
       ?.map((nav) => {
         // The URL can be absolute or relative
         // Gets the last segment of the URL
@@ -35,8 +59,13 @@ const Footer: React.FC<any> = ({ settings }) => {
         path = path.replaceAll('/', '');
         path = `${!dynamicPages.includes(path) ? '/p' : ''}/${path}`;
 
+        let label = nav.label.en;
+        if (locale.toLocaleLowerCase() == 'ar' && nav.label.ar) {
+          label = nav.label.ar;
+        }
+
         return {
-          name: nav.label,
+          name: label,
           href: path.length > 0 ? path : null,
         };
       })
@@ -45,7 +74,7 @@ const Footer: React.FC<any> = ({ settings }) => {
     if (cmsNavigation) {
       setNavigation({ menu: cmsNavigation, social: [] });
     }
-  }, [settings]);
+  }, [settings, locale]);
 
   return (
     <footer className="relative overflow-hidden">
