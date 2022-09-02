@@ -168,12 +168,12 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
           </div>
         </div>
         {previewMode && (
-          <div className="ml-3" style={{ height: '370px' }}>
+          <div className="ml-3" style={{ height: '370px' }} dir="ltr">
             {getDataGridTable(resources[activeTable], columnHeaderStyle)}
           </div>
         )}
         {!previewMode && (
-          <div className="ml-3" style={{ height: '370px' }}>
+          <div className="ml-3" style={{ height: '370px' }} dir="ltr">
             {getDataGridSchema(resources[activeTable], columnHeaderStyle)}
           </div>
         )}

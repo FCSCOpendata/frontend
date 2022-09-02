@@ -77,7 +77,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 alt="orgs"
                 className="w-4  h-4 mr-2"
               />
-              {t('Build Basic Charts')}
+              {t('build-chart')}
             </button>
             <button
               className={`flex items-baseline py-4 px-4 ${

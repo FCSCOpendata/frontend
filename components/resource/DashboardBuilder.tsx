@@ -15,7 +15,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
           text: 'Choose OData connector from the list',
         },
         {
-          text: 'Copy and paste OData URL for desired resource, see the sample:',
+          text: 'Copy and paste OData URL for desired resource, see the sample',
           url: `${
             typeof window !== 'undefined'
               ? window.location.origin + '/api/datastore/odata/' + resource.id
@@ -34,7 +34,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
     },
     {
       platform: 'QlikSense',
-      description: 'For QlikSense using REST method:',
+      description: 'For QlikSense using REST method',
       items: [
         {
           text: 'On the home page, Add new -> Data connection',
@@ -70,7 +70,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
     },
     {
       platform: 'PowerBI',
-      description: 'For PowerBI using WEB method:',
+      description: 'For PowerBI using WEB method',
       items: [
         {
           text: 'You have to run powerBI Desktop in order to import data',
