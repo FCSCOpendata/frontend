@@ -23,13 +23,15 @@ const Footer: React.FC<any> = ({ settings }) => {
   });
 
   useEffect(() => {
-    const navigation_en = settings?.settings?.settings?.secondary_navigation.filter(
-      (nav) => !nav.url.includes('/ar-')
-    );
+    const navigation_en =
+      settings?.settings?.settings?.secondary_navigation.filter(
+        (nav) => !nav.url.includes('/ar-')
+      );
 
-    const navigation_ar = settings?.settings?.settings?.secondary_navigation.filter(
-      (nav) => nav.url.includes('/ar-')
-    );
+    const navigation_ar =
+      settings?.settings?.settings?.secondary_navigation.filter((nav) =>
+        nav.url.includes('/ar-')
+      );
 
     const navigation = navigation_en?.map((nav) => {
       const ar = navigation_ar?.find(
