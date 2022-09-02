@@ -194,7 +194,13 @@ export const GET_DATASET_QUERY = gql`
           title_translated
         }
         groups
-        tags
+        tags {
+          name
+          display_name
+          title: name
+          title_translated: name_translated
+          id
+        }
         title_translated
         author_translated
         description_translated: notes_translated
@@ -450,7 +456,13 @@ export const GET_KEYWORDS_QUERY = gql`
       result {
         search_facets {
           tags {
-            items
+            items {
+              id
+              count
+              name
+              title: name
+              title_translated: name_translated
+            }
           }
         }
       }

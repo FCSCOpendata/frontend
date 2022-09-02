@@ -53,7 +53,7 @@ export default function News() {
                   <div className="w-full h-full" />
                 )}
                 <p className="absolute p-8 bottom-0 inset-x-0 text-white text-xl leading-9 font-avenir font-medium group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black">
-                  {posts[0].title}
+                  {posts[0]?.title}
                 </p>
               </div>
             </a>
