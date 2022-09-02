@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_KEYWORDS_QUERY } from '../../graphql/queries';
 import { Tags } from '../_shared';
+import { fixTranslations } from '../../hooks/locale';
 
 const HomeTags: React.FC = () => {
   const { loading, error, data } = useQuery(GET_KEYWORDS_QUERY, {
@@ -18,6 +19,8 @@ const HomeTags: React.FC = () => {
   const { tags } = data.keywords.result.search_facets;
   const tagsToShow =
     tags.items && tags.items.sort((a, b) => a.count - b.count).slice(0, 3);
+
+  tags?.items?.forEach((el) => fixTranslations(el));
 
   return (
     <>
