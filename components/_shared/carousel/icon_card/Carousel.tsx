@@ -82,7 +82,7 @@ const Carousel: React.FC<CarouselProps> = ({
         //  each instance
         navigation={{
           prevEl: AR(nextEl, prevEl) as string,
-          nextEl: AR(prevEl, nextEl) as string
+          nextEl: AR(prevEl, nextEl) as string,
         }}
       >
         {items.map((item, index) => (
