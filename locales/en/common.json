@@ -84,5 +84,7 @@
   "defualt-descrp": "This dataset does not have a description yet.",
   "topic": "Topic",
   "keyword": "Keyword",
-  "default-rdescrp": "This resource does not have a description yet."
+  "default-rdescrp": "This resource does not have a description yet.",
+  "share-subject": "Share Dataset",
+  "share-dataset": "Share this Dataset"
 }
