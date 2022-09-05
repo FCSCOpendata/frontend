@@ -38,14 +38,14 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
             identifier ? '--' + identifier : ''
           }`}
         >
-          <NavButton orientation="left" />
+          <NavButton size="small" orientation="left" />
         </div>
         <div
           className={`transition-all opacity-0 group-hover:opacity-100  absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button${
             identifier ? '--' + identifier : ''
           }`}
         >
-          <NavButton orientation="right" />
+          <NavButton size="small" orientation="right" />
         </div>
         <Swiper
           dir={`${AR('rtl', 'ltr')}`}

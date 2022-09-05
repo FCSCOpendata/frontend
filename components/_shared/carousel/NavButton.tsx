@@ -1,9 +1,17 @@
-const NavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
-  orientation,
-}) => {
+const sizes = {
+  small: 'w-[30px] h-[30px]',
+  medium: 'w-[45px] h-[45px]',
+};
+
+const NavButton: React.FC<{
+  orientation: 'left' | 'right';
+  size?: 'small' | 'medium';
+}> = ({ orientation, size }) => {
   return (
     <>
-      <button className="bg-[#F7FAFC] w-[45px] h-[45px] rounded-full flex justify-center items-center">
+      <button
+        className={`bg-[#F7FAFC] w-[${sizes[size]}px] h-[${sizes[size]}px] rounded-full flex justify-center items-center`}
+      >
         <img
           src="/images/arrow.svg"
           width={18}
@@ -15,6 +23,6 @@ const NavButton: React.FC<{ orientation: 'left' | 'right' }> = ({
   );
 };
 
-NavButton.defaultProps = { orientation: 'left' };
+NavButton.defaultProps = { orientation: 'left', size: 'medium' };
 
 export default NavButton;
