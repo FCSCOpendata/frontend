@@ -255,6 +255,7 @@ export default function FiltersBar({
                 active={{ name: null }}
                 currentIndex={currentIndex}
                 itemOnClick={setCurrentIndex}
+                identifier="topics"
               />
             </div>
           </div>
