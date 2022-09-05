@@ -250,13 +250,13 @@ export default function FiltersBar({
       {filters === t('topics') && (
         <>
           <div className="w-100 max-w-6xl bg-white">
-            <div id="topics-carousel">
+            <div id="topics">
               <TopicsCarousel
                 items={topics}
                 active={{ name: null }}
                 currentIndex={currentIndex}
                 itemOnClick={setCurrentIndex}
-                identifier="topics"
+                identifier="topics-carousel"
               />
             </div>
           </div>
