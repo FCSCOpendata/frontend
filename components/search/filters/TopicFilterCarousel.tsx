@@ -53,24 +53,24 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
           onSwiper={(instance) => setSwiper(instance)}
           breakpoints={{
             1: {
-              slidesPerView: 2.5,
-              slidesPerGroup: 2.5,
+              slidesPerView: 2,
+              slidesPerGroup: 2,
             },
             460: {
-              slidesPerView: 3.5,
-              slidesPerGroup: 3.5,
+              slidesPerView: 3,
+              slidesPerGroup: 3,
             },
             720: {
-              slidesPerView: 5.5,
-              slidesPerGroup: 5.5,
+              slidesPerView: 5,
+              slidesPerGroup: 5,
             },
             1200: {
-              slidesPerView: 5.5,
-              slidesPerGroup: 5.5,
+              slidesPerView: 5,
+              slidesPerGroup: 5,
             },
             1280: {
-              slidesPerView: 6.5,
-              slidesPerGroup: 6.5,
+              slidesPerView: 6,
+              slidesPerGroup: 6,
             },
           }}
           initialSlide={items.findIndex((item) => item.name == active.name)}
