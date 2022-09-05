@@ -17,6 +17,7 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
         <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
           {typeof window !== 'undefined' ? window.location.href : ''}
         </span>
+        &nbsp;
         <CopyIconButton
           hintBeforeCopy={t('copy-snippet')}
           hintAfterCopy={t('copied')}

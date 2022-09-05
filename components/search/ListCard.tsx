@@ -113,7 +113,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               {dataset.startPeriod} - {dataset.endPeriod}
             </span>
           </div>
-          {dataset.total_downloads > 1 ? (
+          {dataset.total_downloads > 0 ? (
             <div className="whitespace-nowrap">
               <CloudDownloadIcon
                 className={`inline w-5  h-3 ${AR('ml-1', 'mr-1')}`}

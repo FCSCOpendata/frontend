@@ -10,7 +10,7 @@ export default function NavBreadCrumbs({ navInfo }) {
           <li>
             <Link href="/search">
               <a className="group relative">
-                {t('dataset')}
+                {t('datasets')}
                 <span
                   className={`hidden lg:opacity-0 lg:flex absolute left-1 right-1 -bottom-2.5 h-0.5 ease-in-out duration-300
                   group-hover:bg-nav-underline lg:group-hover:opacity-100`}
