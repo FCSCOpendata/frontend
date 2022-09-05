@@ -10,7 +10,7 @@ const NavButton: React.FC<{
   return (
     <>
       <button
-        className={`bg-[#F7FAFC] w-[${sizes[size]}px] h-[${sizes[size]}px] rounded-full flex justify-center items-center`}
+        className={`bg-[#F7FAFC] ${sizes[size]} rounded-full flex justify-center items-center`}
       >
         <img
           src="/images/arrow.svg"

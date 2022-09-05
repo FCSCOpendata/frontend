@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import MultiRangeSlider from '../_shared/MultiRangeSlider/MultiRangeSlider';
 import useTranslation from 'next-translate/useTranslation';
 import { AR, fixTranslations } from '../../hooks/locale';
+import NavButton from '../_shared/carousel/NavButton';
 const TopicsCarousel = dynamic(() => import('./filters/TopicFilterCarousel'));
 
 export default function FiltersBar({
@@ -249,7 +250,7 @@ export default function FiltersBar({
       {filters === t('topics') && (
         <>
           <div className="w-100 max-w-6xl bg-white">
-            <div id="topics">
+            <div id="topics-carousel">
               <TopicsCarousel
                 items={topics}
                 active={{ name: null }}
@@ -261,28 +262,86 @@ export default function FiltersBar({
           </div>
 
           <div className="w-100 max-w-6xl mt-2">
-            <div>
-              <FilterCarousel>
-                {topics[currentIndex].children.map((sub, index) => (
+            <div className="relative">
+              <div className="peer">
+                <FilterCarousel identifier="sub-topics-carousel">
+                  {topics[currentIndex].children.map((sub, index) => (
+                    <SwiperSlide key={index} className="p-1">
+                      <button
+                        key={sub.id}
+                        className="group relative flex flex-wrap bg-gray-200 h-full w-full rounded-xl overflow-hidden"
+                        onClick={(e) => filterSearch(e, 'groups', sub)}
+                      >
+                        <img
+                          src={
+                            sub.image_display_url ||
+                            `/images/topics/topic-1.png`
+                          }
+                          alt={sub.title}
+                          width="100%"
+                          className="top-0 w-full h-full object-scale-down z-0"
+                        />
+                        <span
+                          className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
+                          id={`${
+                            matchesForGroups &&
+                            matchesForGroups[3].includes(sub.name)
+                          }`}
+                        />
+                        <label
+                          htmlFor={`checkbox-${index}`}
+                          //  NOTE: z-index removed because it makes
+                          //  the onclick not work and  doen't  seem
+                          //  to be necessary for the UI. Was `z-10`
+                          className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 transition-all group-hover:opacity-75 group-hover:text-black font-avenir"
+                        >
+                          {sub.title}
+                        </label>
+                        {matchesForGroups &&
+                          matchesForGroups[3].includes(sub.name) && (
+                            <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600" />
+                          )}
+                      </button>
+                    </SwiperSlide>
+                  ))}
+                </FilterCarousel>
+              </div>
+              <div
+                className={`transition-all opacity-0 peer-hover:opacity-100 hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button--sub-topics-carousel`}
+              >
+                <NavButton orientation="left" />
+              </div>
+              <div
+                className={`transition-all opacity-0 peer-hover:opacity-100 hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button--sub-topics-carousel`}
+              >
+                <NavButton orientation="right" />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      {filters === t('organization') && (
+        <div className="w-100 max-w-6xl mt-2">
+          <div className="relative">
+            <div className="peer">
+              <FilterCarousel identifier="orgs-carousel">
+                {orgsResults.map((org, index) => (
                   <SwiperSlide key={index} className="p-1">
                     <button
-                      key={sub.id}
-                      className="group relative flex flex-wrap bg-gray-200 h-full w-full rounded-xl overflow-hidden"
-                      onClick={(e) => filterSearch(e, 'groups', sub)}
+                      key={org.id}
+                      className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
+                      onClick={(e) => filterSearch(e, 'organization', org)}
                     >
                       <img
-                        src={
-                          sub.image_display_url || `/images/topics/topic-1.png`
-                        }
-                        alt={sub.title}
-                        width="100%"
-                        className="top-0 w-full h-full object-scale-down z-0"
+                        src={org.image || '/images/org-default.png'}
+                        alt={org.name}
+                        className="absolute left-0 top-0 w-full object-scale-down z-0 rounded-xl"
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
                         id={`${
-                          matchesForGroups &&
-                          matchesForGroups[3].includes(sub.name)
+                          matchesForOrgs &&
+                          matchesForOrgs[3].includes(org.name)
                         }`}
                       />
                       <label
@@ -292,59 +351,27 @@ export default function FiltersBar({
                         //  to be necessary for the UI. Was `z-10`
                         className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 transition-all group-hover:opacity-75 group-hover:text-black font-avenir"
                       >
-                        {sub.title}
+                        {org.title}
                       </label>
-                      {matchesForGroups &&
-                        matchesForGroups[3].includes(sub.name) && (
-                          <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-600" />
+                      {matchesForOrgs &&
+                        matchesForOrgs[3].includes(org.name) && (
+                          <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 z-0" />
                         )}
                     </button>
                   </SwiperSlide>
                 ))}
               </FilterCarousel>
             </div>
-          </div>
-        </>
-      )}
-      {filters === t('organization') && (
-        <div className="w-100 max-w-6xl mt-2">
-          <div>
-            <FilterCarousel>
-              {orgsResults.map((org, index) => (
-                <SwiperSlide key={index}>
-                  <button
-                    key={org.id}
-                    className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
-                    onClick={(e) => filterSearch(e, 'organization', org)}
-                  >
-                    <img
-                      src={org.image || '/images/org-default.png'}
-                      alt={org.name}
-                      className="absolute left-0 top-0 w-full object-scale-down z-0 rounded-xl"
-                    />
-                    <span
-                      className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
-                      id={`${
-                        matchesForOrgs && matchesForOrgs[3].includes(org.name)
-                      }`}
-                    />
-                    <label
-                      htmlFor={`checkbox-${index}`}
-                      //  NOTE: z-index removed because it makes
-                      //  the onclick not work and  doen't  seem
-                      //  to be necessary for the UI. Was `z-10`
-                      className="absolute left-0 bottom-0 text-white text-sm font-semibold w-full p-4 cursor-pointer select-none group-hover:bg-slate-200 transition-all group-hover:opacity-75 group-hover:text-black font-avenir"
-                    >
-                      {org.title}
-                    </label>
-                    {matchesForOrgs &&
-                      matchesForOrgs[3].includes(org.name) && (
-                        <CheckCircleIcon className="absolute top-1 right-1 w-5 text-green-800 z-0" />
-                      )}
-                  </button>
-                </SwiperSlide>
-              ))}
-            </FilterCarousel>
+            <div
+              className={`transition-all opacity-0 peer-hover:opacity-100 hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button--orgs-carousel`}
+            >
+              <NavButton orientation="left" />
+            </div>
+            <div
+              className={`transition-all opacity-0 peer-hover:opacity-100 hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button--orgs-carousel`}
+            >
+              <NavButton orientation="right" />
+            </div>
           </div>
         </div>
       )}
