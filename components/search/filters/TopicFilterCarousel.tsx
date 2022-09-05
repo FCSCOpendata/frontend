@@ -29,6 +29,8 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
   identifier,
 }) => {
   const [swiper, setSwiper] = useState(null);
+  const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
+  const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
 
   return (
     <>
@@ -75,8 +77,8 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
           }}
           initialSlide={items.findIndex((item) => item.name == active.name)}
           navigation={{
-            prevEl: `.nav-prev-button${identifier ? '--' + identifier : ''}`,
-            nextEl: `.nav-next-button${identifier ? '--' + identifier : ''}`,
+            prevEl: AR(nextEl, prevEl) as string,
+            nextEl: AR(prevEl, nextEl) as string,
           }}
         >
           {items.map((item, index) => (

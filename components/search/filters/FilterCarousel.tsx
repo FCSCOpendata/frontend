@@ -11,6 +11,8 @@ const FilterCarousel: React.FC<{ identifier: string }> = ({
   children,
   identifier,
 }) => {
+  const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
+  const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
   const [swiper, setSwiper] = useState(null);
   return (
     <>
@@ -41,8 +43,8 @@ const FilterCarousel: React.FC<{ identifier: string }> = ({
           },
         }}
         navigation={{
-          prevEl: `.nav-prev-button${identifier ? '--' + identifier : ''}`,
-          nextEl: `.nav-next-button${identifier ? '--' + identifier : ''}`,
+          prevEl: AR(nextEl, prevEl) as string,
+          nextEl: AR(prevEl, nextEl) as string,
         }}
       >
         {children}
