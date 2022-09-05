@@ -4,7 +4,7 @@ import { ShareIcon } from '@heroicons/react/outline';
 
 const Share: React.FC<{ title: string }> = ({ title }) => {
   const { t } = useTranslation('common');
-  const subject = t('share-subject');
+  const subject = `${t('share-subject')} ${title}`;
   return (
     <div className={`divide-y divide-slate-400 rounded-xl w-100 `}>
       <div className="font-avenir text-bold p-2">{t('share-dataset')}</div>
