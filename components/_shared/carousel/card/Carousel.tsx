@@ -26,6 +26,9 @@ const Carousel: React.FC<{
   items: Item[];
   itemOnClick: (item: any) => any;
 }> = ({ items, itemOnClick }) => {
+  const prevEl = '.nav-prev-button';
+  const nextEl = '.nav-next-button';
+
   return (
     <>
       <div className="relative">
@@ -40,8 +43,8 @@ const Carousel: React.FC<{
           dir={`${AR('rtl', 'ltr')}`}
           modules={[Navigation, Pagination]}
           navigation={{
-            prevEl: '.nav-prev-button',
-            nextEl: '.nav-next-button',
+            prevEl: AR(nextEl, prevEl) as string,
+            nextEl: AR(prevEl, nextEl) as string,
           }}
           pagination={{
             el: '.pagination',
