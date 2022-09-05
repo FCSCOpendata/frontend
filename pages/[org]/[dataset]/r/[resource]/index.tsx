@@ -71,7 +71,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
 
         {/* Citation */}
         <div className="w-full mb-8">
-          <Citation dtype={t('resource-single')} title={resource.name} />
+          <Citation dtype={t('resource-single')} title={resource.title} />
         </div>
         {/* Create Visualization */}
         <div className="w-full mb-8" id="chart-builder">
