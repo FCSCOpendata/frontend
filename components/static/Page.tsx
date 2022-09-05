@@ -12,7 +12,7 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
   const { t } = useTranslation('common');
 
   const { loading, error, data } = useQuery(GET_PAGE_QUERY, {
-    variables: { slug },
+    variables: { slug: AR(`ar-${slug}`, slug) },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data

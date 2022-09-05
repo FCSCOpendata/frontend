@@ -23,7 +23,7 @@ const List: React.FC = () => {
   };
 
   const { loading, error, data } = useQuery(GET_POSTS_QUERY, {
-    variables: { limit: 5, page },
+    variables: { limit: 5, page, tag: AR('hash-arabic', '-hash-arabic') },
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
