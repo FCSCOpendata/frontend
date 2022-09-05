@@ -10,7 +10,7 @@ const Footer: React.FC<any> = ({ settings }) => {
   const { t } = useTranslation('common');
   const [navigation, setNavigation] = useState({
     menu: [
-      { name: t('dataset'), href: '/search' },
+      { name: t('datasets'), href: '/search' },
       { name: t('organization'), href: '/organization' },
       { name: t('topics'), href: '/topic' },
       { name: t('opendata'), href: '/p/open-data-101' },

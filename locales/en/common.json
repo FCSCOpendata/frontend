@@ -24,7 +24,6 @@
   "ds-bt-time-4yr": "Last 4 Years",
   "ds-bt-time-5yr": "Last 5 Years",
   "ds-bt-time-clear": "clear",
-  "ds-h-data": "Datasets",
   "ds-s-reso": "Resources",
   "ds-s-week": "Week Ago",
   "dev-exp": "Developer Experience",
@@ -41,7 +40,8 @@
   "tp-s-week": "Week Ago",
   "tp-s-reso": "Resource",
   "ft-h-offi": "Official Portal of the UAE Government",
-  "dataset": "Datasets",
+  "dataset": "Dataset",
+  "datasets": "Datasets",
   "organization": "Organizations",
   "topics": "Topics",
   "opendata": "Open Data 101",
@@ -84,5 +84,7 @@
   "defualt-descrp": "This dataset does not have a description yet.",
   "topic": "Topic",
   "keyword": "Keyword",
-  "default-rdescrp": "This resource does not have a description yet."
+  "default-rdescrp": "This resource does not have a description yet.",
+  "share-dataset": "Share Dataset",
+  "share-subject": "(UAE Open Data)"
 }

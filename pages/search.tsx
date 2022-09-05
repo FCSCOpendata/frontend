@@ -48,7 +48,7 @@ const Search: React.FC<Props> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>{`${t('dataset')} | ${t('title')}`}</title>
+        <title>{`${t('datasets')} | ${t('title')}`}</title>
       </Head>
       <ScrollIndicator
         firstImage={{

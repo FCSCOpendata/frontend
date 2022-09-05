@@ -58,7 +58,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           <img src="/images/book-icon.svg" alt="orgs" className="w-5  h-3" />
           <span>{result.license_title}</span>
         </div>
-        {result.total_downloads > 1 ? (
+        {result.total_downloads > 0 ? (
           <div className="font-avenir flex text-sm py-2 items-baseline">
             <CloudDownloadIcon className={`w-5  h-3`} />
             <span>{result.total_downloads}</span>
