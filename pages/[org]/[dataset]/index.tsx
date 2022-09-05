@@ -22,7 +22,10 @@ import Share from '../../../components/_shared/Share';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
-  const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
+  const { data, loading, error } = useQuery(GET_DATASET_QUERY, {
+    variables,
+    notifyOnNetworkStatusChange: true,
+  });
   const [enableSelect, setEnableSelect] = useState(false);
   const [selectData, setSelectData] = useState({});
 
@@ -192,7 +195,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
+      //  Had to comment that out because otherwise
+      //  query result set causes an typename error
+      //  initialApolloState: apolloClient?.cache?.extract(),
       variables,
     },
   };

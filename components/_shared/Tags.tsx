@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AR } from '../../hooks/locale';
 
 const Tags: React.FC<{ tags: any[]; style: string }> = ({ tags, style }) => {
   const colors = [
@@ -17,7 +18,12 @@ const Tags: React.FC<{ tags: any[]; style: string }> = ({ tags, style }) => {
   ];
 
   const getColors = (index) => {
-    return `inline-flex items-center mr-3 px-5 py-1.5 border border-transparent text-xs rounded-full text-[${colors[index].text}] bg-[${colors[index].color}]`;
+    return `inline-flex items-center ${AR(
+      'ml-3',
+      `mr-3`
+    )} px-5 py-1.5 border border-transparent text-xs rounded-full text-[${
+      colors[index].text
+    }] bg-[${colors[index].color}]`;
   };
 
   return (

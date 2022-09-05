@@ -194,7 +194,13 @@ export const GET_DATASET_QUERY = gql`
           title_translated
         }
         groups
-        tags
+        tags {
+          name
+          display_name
+          title: name
+          title_translated: name_translated
+          id
+        }
         title_translated
         author_translated
         description_translated: notes_translated
@@ -270,11 +276,11 @@ export const GET_STATS_QUERY = gql`
 `;
 
 export const GET_POSTS_QUERY = gql`
-  query posts($limit: Int, $page: Int) {
-    posts(limit: $limit, page: $page)
+  query posts($limit: Int, $page: Int, $tag: String = "hash-arabic") {
+    posts(limit: $limit, page: $page, tag: $tag)
       @rest(
         type: "Posts"
-        path: "posts/?limit={args.limit}&page={args.page}"
+        path: "posts/?limit={args.limit}&page={args.page}&filter=tag%3A{args.tag}"
         endpoint: "ghost"
       ) {
       posts {
@@ -293,11 +299,16 @@ export const GET_POSTS_QUERY = gql`
 `;
 
 export const GET_NEXT_POSTS_QUERY = gql`
-  query posts($limit: Int, $after: String, $slug: String) {
-    posts(limit: $limit, after: $after, slug: $slug)
+  query posts(
+    $limit: Int
+    $after: String
+    $slug: String
+    $tag: String = "hash-arabic"
+  ) {
+    posts(limit: $limit, after: $after, slug: $slug, tag: $tag)
       @rest(
         type: "Posts"
-        path: "posts/?limit={args.limit}&order=published_at%20desc&filter=published_at%3A<={args.after}%2Bslug%3A-{args.slug}"
+        path: "posts/?limit={args.limit}&order=published_at%20desc&filter=published_at%3A<={args.after}%2Bslug%3A-{args.slug}%2Btag%3A{args.tag}"
         endpoint: "ghost"
       ) {
       posts {
@@ -445,7 +456,13 @@ export const GET_KEYWORDS_QUERY = gql`
       result {
         search_facets {
           tags {
-            items
+            items {
+              id
+              count
+              name
+              title: name
+              title_translated: name_translated
+            }
           }
         }
       }

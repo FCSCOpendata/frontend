@@ -87,7 +87,7 @@ export default function Orgs() {
           return (
             <>
               <circle
-                key={`circle-${index}`}
+                key={`circle-1-${index}`}
                 id={`circle-${index}`}
                 onMouseOver={showInfo}
                 onMouseLeave={hideInfo}
@@ -100,7 +100,7 @@ export default function Orgs() {
                 strokeWidth="3"
               />
               <circle
-                key={`circle-${index}`}
+                key={`circle-2-${index}`}
                 id={`circle-${index}`}
                 onMouseOver={showInfo}
                 onMouseLeave={hideInfo}
