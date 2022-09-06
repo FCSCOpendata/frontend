@@ -30,6 +30,8 @@ const Carousel: React.FC<CarouselProps> = ({
   itemOnClick,
   identifier,
 }) => {
+  const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
+  const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
   const [swiper, setSwiper] = useState(null);
 
   return (
@@ -79,8 +81,8 @@ const Carousel: React.FC<CarouselProps> = ({
         //  it's needed to have different  identifiers  for
         //  each instance
         navigation={{
-          prevEl: `.nav-prev-button${identifier ? '--' + identifier : ''}`,
-          nextEl: `.nav-next-button${identifier ? '--' + identifier : ''}`,
+          prevEl: AR(nextEl, prevEl) as string,
+          nextEl: AR(prevEl, nextEl) as string,
         }}
       >
         {items.map((item, index) => (
