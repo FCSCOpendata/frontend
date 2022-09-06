@@ -6,7 +6,7 @@ import { ErrorMessage, Spinner } from '../_shared';
 
 const SuggestedReads: React.FC<any> = ({ from }) => {
   if (!from || !Object.keys(from).length) return <></>;
-  
+
   const { t } = useTranslation('common');
   const slug = from.slug;
   const after = new Date(from.published).toISOString();
@@ -37,7 +37,7 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
             {data?.posts.posts.map((suggestion, index) => (
               <a
                 key={index}
-                href={`/news/${suggestion.slug}`}
+                href={`${AR('/ar')}/news/${suggestion.slug}`}
                 className="m-1 relative"
               >
                 <div className="aspect-w-16 aspect-h-9 m-1 relative">
