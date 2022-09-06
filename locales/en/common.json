@@ -86,5 +86,6 @@
   "keyword": "Keyword",
   "default-rdescrp": "This resource does not have a description yet.",
   "share-dataset": "Share Dataset",
-  "share-subject": "(UAE Open Data)"
+  "share-subject": "(UAE Open Data)",
+  "next-reads": "Next Reads"
 }
