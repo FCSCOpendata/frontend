@@ -12,7 +12,9 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
   return (
     <>
       <Head>
-        <title>t{'title'} | {slug}</title>
+        <title>
+          t{'title'} | {slug}
+        </title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Post slug={slug} setPost={setPost} />

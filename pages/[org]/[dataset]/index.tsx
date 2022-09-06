@@ -71,7 +71,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>{t('title')} | {result.title || result.name}</title>
+        <title>
+          {t('title')} | {result.title || result.name}
+        </title>
       </Head>
       <NavBreadCrumbs
         navInfo={{
