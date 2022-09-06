@@ -26,6 +26,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   );
 
   fixTranslations(result);
+  fixTranslations(result.organization);
   fixTranslations(resource);
 
   return (

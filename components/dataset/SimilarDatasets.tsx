@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY, SEARCH_QUERY } from '../../graphql/queries';
 import { ErrorMessage, Spinner } from '../_shared';
 import useTranslation from 'next-translate/useTranslation';
-import { fixTranslations } from '../../hooks/locale';
+import { AR, fixTranslations } from '../../hooks/locale';
 
 export default function SimilarDatasets({ variables }) {
   const { t } = useTranslation('common');
@@ -100,7 +100,7 @@ export default function SimilarDatasets({ variables }) {
               return (
                 <a
                   key={index}
-                  href={`/@${item.organization.name}/${item.name}`}
+                  href={`${AR('/ar')}/@${item.organization.name}/${item.name}`}
                   className="group"
                 >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">

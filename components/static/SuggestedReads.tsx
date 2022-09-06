@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
+import useTranslation from 'next-translate/useTranslation';
 import { GET_NEXT_POSTS_QUERY } from '../../graphql/queries';
 import { AR } from '../../hooks/locale';
 import { ErrorMessage, Spinner } from '../_shared';
@@ -6,6 +7,7 @@ import { ErrorMessage, Spinner } from '../_shared';
 const SuggestedReads: React.FC<any> = ({ from }) => {
   if (!from || !Object.keys(from).length) return <></>;
 
+  const { t } = useTranslation('common');
   const slug = from.slug;
   const after = new Date(from.published).toISOString();
 
@@ -24,7 +26,7 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
     <>
       <div className="my-20 py-20 mx-5 md:mx-28">
         <div className="block mx-auto">
-          <h1 className="font-semibold text-2xl px-1">Next reads</h1>
+          <h1 className="font-semibold text-2xl px-1">{t('next-reads')}</h1>
           {error && <ErrorMessage message="Error loading suggested reads" />}
           {loading && (
             <div className="w-full flex justify-center">
@@ -35,7 +37,7 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
             {data?.posts.posts.map((suggestion, index) => (
               <a
                 key={index}
-                href={`/news/${suggestion.slug}`}
+                href={`${AR('/ar')}/news/${suggestion.slug}`}
                 className="m-1 relative"
               >
                 <div className="aspect-w-16 aspect-h-9 m-1 relative">
