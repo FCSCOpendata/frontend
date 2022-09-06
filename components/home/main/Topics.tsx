@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_TOPICS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 import { ErrorMessage, Spinner } from '../../_shared';
 import useTranslation from 'next-translate/useTranslation';
-import { fixTranslations } from '../../../hooks/locale';
+import { AR, fixTranslations } from '../../../hooks/locale';
 
 export default function Topics() {
   const { t } = useTranslation('common');
@@ -42,7 +42,7 @@ export default function Topics() {
               return (
                 <a
                   key={index}
-                  href={`/topic/${topic.name}`}
+                  href={`${AR('/ar')}/topic/${topic.name}`}
                   className="group h-full w-full flex flex-stretch"
                 >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">

@@ -20,7 +20,7 @@ export const AR = (
     return ifFalse;
   }
 
-  return null;
+  return "";
 };
 
 export const fixTranslations = (obj: any) => {
