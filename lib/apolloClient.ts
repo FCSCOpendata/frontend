@@ -64,7 +64,7 @@ const restLink = new RestLink({
         if (data.result.tags != null) {
           data.result.tags = data.result.tags.map((item) => {
             return { __typename: 'Resource', ...item };
-          })
+          });
         }
       }
       return data;
