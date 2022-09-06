@@ -20,19 +20,22 @@ const Code: React.FC<any> = ({ language, children }) => {
             id="dev"
           />
         </div>
-        <SyntaxHighlighter
-          language={language}
-          style={docco}
-          customStyle={{
-            backgroundColor: '#FEFEFE',
-            borderRadius: '25px',
-            padding: '10px',
-            paddingLeft: '40px',
-            paddingRigth: '20px',
-          }}
-        >
-          {children}
-        </SyntaxHighlighter>
+        <div dir="ltr">
+          <SyntaxHighlighter
+            language={language}
+            style={docco}
+            customStyle={{
+              backgroundColor: '#FEFEFE',
+              borderRadius: '25px',
+              padding: '10px',
+              paddingLeft: '40px',
+              paddingRigth: '20px',
+              textAlign: AR('right', 'left'),
+            }}
+          >
+            {children}
+          </SyntaxHighlighter>
+        </div>
       </div>
     </>
   );
