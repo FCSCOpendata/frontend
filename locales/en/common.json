@@ -87,5 +87,6 @@
   "default-rdescrp": "This resource does not have a description yet.",
   "share-dataset": "Share this Dataset",
   "share-subject": "(UAE Open Data)",
-  "rate-dataset": "Rate this Dataset"
+  "rate-dataset": "Rate this Dataset",
+  "next-reads": "Next Reads"
 }

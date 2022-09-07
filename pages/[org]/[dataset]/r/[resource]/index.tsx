@@ -26,12 +26,13 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   );
 
   fixTranslations(result);
+  fixTranslations(result.organization);
   fixTranslations(resource);
 
   return (
     <>
       <Head>
-        <title>{resource.title || resource.name} | Open Data UAE</title>
+        <title>{`${t('title')} | ${resource.title || resource.name}`}</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <NavBreadCrumbs
