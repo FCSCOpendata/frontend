@@ -236,34 +236,45 @@ export default function Org({ variables }) {
   );
 }
 ```
+
 #### Add a new data source
 
 TODO
 
 ### CMS
-  
+
 This project uses [GhostCMS](https://ghost.org/) as a Content Management System. That's where pages and posts are managed, as well as other settings, such as the navbar and footer links.
+
 #### Tags
+
 Tags are a way of categorizing items. Whenever in GhostCMS you create an item, such as posts and pages, you are gonna see that there's always a field to associate tags to that item ([click here to read more about tags in GhostCMS](https://ghost.org/help/organising-content/)). Tags in this context also serve as an identifier for special functions. The following tags are needed for some special features in this application:
-- `#arabic` 
-    - This tag _must_ be applied to _posts_ (or news) that are written in Arabic and are meant to be listed only when the language is set to 'ar'. If a post doesn't have this tag, it's assumed that the post is written in English and that it should be displayed when the language is set to 'en'.
-    - It's recommended to also use this tag for pages that are written in Arabic.
+
+- `#arabic`
+  - This tag _must_ be applied to _posts_ (or news) that are written in Arabic and are meant to be listed only when the language is set to 'ar'. If a post doesn't have this tag, it's assumed that the post is written in English and that it should be displayed when the language is set to 'en'.
+  - It's recommended to also use this tag for pages that are written in Arabic.
 - `#hero-section`
-    - TODO
-  
-    
+  - TODO
+
 To create a tag, simply:
+
 1. Navigate to the GhostCMS instance
 2. On the left menu, click on `Tags`
 3. At the top right corner of the page, click on `New tag`
 4. Insert the exact name of the tag, as mentioned above (the _Slug_ field is going to update automatically, leave it as it's)
 5. Click on the `Save` button
+
 #### Posts
-Posts are being used to provide articles under the `news` page for the front end appication. Posts have bilingual support as mentioned above, the related recommendation is that when creating posts in Arabic to preppend `/ar-` to the post's URL, in order to make it more consistent application wide. So, for example, if there was a post about health status, the URL for the English version could be `/health-status` and if this post was to be translated, the URL for the Arabic equivalent post would be `/ar-health-status`. 
+
+Posts are being used to provide articles under the `news` page for the front end appication. Posts have bilingual support as mentioned above, the related recommendation is that when creating posts in Arabic to preppend `/ar-` to the post's URL, in order to make it more consistent application wide. So, for example, if there was a post about health status, the URL for the English version could be `/health-status` and if this post was to be translated, the URL for the Arabic equivalent post would be `/ar-health-status`.
+
 #### Pages
+
 Pages serve as a way to provide easily editable static content to the users. When creating a page, pay attention to the URL you are setting up, as you can make a navbar or footer link redirect to this page.
+
 ##### Bilingual support
+
 As this portal has bilingual support (Arabic and English), whenever you create a page in English you should also create it's equivalent in Arabic. To do this, follow the following instructions:
+
 1. Navigate to GhostCMS
 2. Create the desired page or navigate to the page you want to provide Arabic support
 3. Take note os the URL for this page (e.g. `/terms-of-use`)
@@ -273,44 +284,44 @@ As this portal has bilingual support (Arabic and English), whenever you create a
 7. (Recommended) Apply the `#arabic` tag to the Arabic equivalent page
 
 #### Navbar and Footer
+
 Navbar and footer links can be managed from GhostCMS by navigating to `GhostCMS / Settings / Navigation`. In this page there are the `PRIMARY NAVIGATION` and the `SECONDARY NAVIGATION`, which control the navbar and the footer links, respectively. Here you can freely create, delete, edit and sort the navbar/footer items.
 When adding a new item, it can point to a CMS page or to a front end page. The front end pages are:
+
 - `/search`
 - `/topic`
 - `/organization`
-- `/news`  
-  
+- `/news`
+
 Note that these are pages that are not handled by GhostCMS and it's URLs should aways link to the front end address (e.g. if you want to point to `search`, the nav item URL could be: `https://frontend.fcsc.production.datopian.com/search`).
 
-  
 For pages that are handled by GhostCMS, e.g.:
+
 - Open Data 101
 - Terms of Use
-- About  
+- About
 
 The URL should always have the GhostCMS instance URL prepprended (e.g. if you want to point to `Open Data 101`, the nav item URL could be `https://cms.fcsc.develop.datopian.com/open-data-101`). Please note that there must be an actual page created in the CMS that uses this URL, otherwise the link is going to present a `404 - Page not found` error.
 
 ##### Bilingual support
+
 The translation of nav items is also supported. To create an Arabic equivalent for an item you can simply copy the URL from the English version, create a new item with the desired title and add the English version URL just modifying the last segment of it to have a `ar-` prepprended. Note that the URL for both languages must be an exact match except for the `ar-`. Here's an example:
-1. Let's say we want to have a nav link that leads to the topics page. 
+
+1. Let's say we want to have a nav link that leads to the topics page.
 2. First, we create a new entry in the list with the title `TOPICS` linking to `https://frontend.fcsc.production.datopian.com/topic`.
-3. Next, we create a new entry in the list with the title `المواضيع` linking to `https://frontend.fcsc.production.datopian.com/topic`.  
+3. Next, we create a new entry in the list with the title `المواضيع` linking to `https://frontend.fcsc.production.datopian.com/topic`.
 
 That's it. Now, when the page is rendered in Arabic, the `TOPICS` is gonna show up translated.  
-*_NOTE_*: the English version works as a master list, so if there's isn't an English version of a link, it's not gonna show up, and if a link doesn't have an Arabic version, it's gonna be always shown in English.
-  
-This example in GhostCMS would look like:  
-  
+_*NOTE*_: the English version works as a master list, so if there's isn't an English version of a link, it's not gonna show up, and if a link doesn't have an Arabic version, it's gonna be always shown in English.
+
+This example in GhostCMS would look like:
+
 **PRIMARY NAVIGATION**
 |Title | URL|
 | -----| ---|
 |TOPICS | https://frontend.fcsc.production.datopian.com/topic|
 |المواضيع | https://frontend.fcsc.production.datopian.com/ar-topic|
- 
 
-  
-    
-  
 All the above works exactly the same for footer links.
 
 ### Tests
