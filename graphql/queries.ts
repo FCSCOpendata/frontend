@@ -163,6 +163,7 @@ export const GET_DATASET_QUERY = gql`
     dataset(id: $id, include_extras: True, all_fields: True)
       @rest(type: "Response", path: "package_show?{args}") {
       result {
+        id
         name
         title
         size
@@ -206,6 +207,8 @@ export const GET_DATASET_QUERY = gql`
         description_translated: notes_translated
         maintainer_translated
         total_downloads
+        rating
+        rating_count
       }
     }
   }
