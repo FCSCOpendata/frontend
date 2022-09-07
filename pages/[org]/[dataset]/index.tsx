@@ -19,6 +19,7 @@ import Citation from '../../../components/_shared/Citation';
 import { AR, fixTranslations } from '../../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 import Share from '../../../components/_shared/Share';
+import Rate from '../../../components/dataset/Rate';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -68,6 +69,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   fixTranslations(result.organization);
   result.resources.forEach((res) => fixTranslations(res));
 
+  console.log('RESULT: ', result);
   return (
     <>
       <Head>
@@ -159,6 +161,21 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             )}`}
           >
             <Share title={result.title} />
+          </div>
+        </div>
+        <div
+          className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR(
+            'pr-0',
+            'pl-0'
+          )} w-full grid-cols-1 sm:gap-y-1`}
+        >
+          <div
+            className={`md:col-start-2 md:col-span-6 ${AR(
+              'md:-mr-4',
+              'md:-ml-4'
+            )}`}
+          >
+            <Rate title={result.title} id={result.id} />
           </div>
         </div>
         {/* Similar Dataset */}
