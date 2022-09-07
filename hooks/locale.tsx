@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 
 export const AR = (
-  ifTrue: string | HTMLElement = null,
-  ifFalse: string | HTMLElement = null
+  ifTrue: string | HTMLElement | boolean = null,
+  ifFalse: string | HTMLElement | boolean = null
 ) => {
   const { locale } = useRouter();
 
