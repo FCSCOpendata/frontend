@@ -42,6 +42,60 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         } bg-lightestblue hero-pattern overflow-hidden h-screen`}
         id="hero"
       >
+        {/* Hero image tiles */}
+        <div
+          className="absolute 
+          2xl:right-[32%] 2xl:top-[2%]
+          xl:right-[26%] xl:top-[5%]
+          lg:right-[18%] lg:top-[5%]
+          hidden lg:block"
+        >
+          <img
+            src="/images/hero-image-1.svg"
+            className="rounded-2xl"
+            alt="First header item"
+          />
+        </div>
+        <div
+          className="absolute 
+          2xl:right-[17%] 2xl:top-[15%]
+          xl:right-[10%] xl:top-[22%]
+          lg:right-[-2%] lg:top-[22%]
+          hidden lg:block"
+        >
+          <img
+            src="/images/hero-image-2.svg"
+            className="rounded-2xl"
+            alt="Second header item"
+          />
+        </div>
+        <div
+          className="absolute 
+          2xl:right-[35%] 2xl:top-[45%]
+          xl:right-[30%] xl:top-[45%]
+          lg:right-[24%] lg:top-[48%]
+          hidden lg:block"
+        >
+          <img
+            src="/images/hero-image-3.svg"
+            className="rounded-2xl"
+            alt="Third header item"
+          />
+        </div>
+        <div
+          className="absolute 
+          2xl:right-[20%] 2xl:top-[70%]
+          xl:right-[15%] xl:top-[70%]
+          lg:right-[12%] lg:top-[78%]
+          hidden lg:block"
+        >
+          <img
+            src="/images/hero-image-4.svg"
+            className="rounded-2xl"
+            alt="Fourth header item"
+          />
+        </div>
+
         <Hero />
       </div>
       <MainOptions />
