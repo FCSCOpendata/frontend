@@ -324,3 +324,8 @@ div.MuiDataGrid-filterFormDeleteIcon {
   border-left: solid 10px transparent;
   border-right: solid 10px transparent;
 }
+
+svg.star-svg {
+  display: inline;
+  background-color: white;
+}
