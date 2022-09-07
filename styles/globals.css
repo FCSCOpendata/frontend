@@ -15,7 +15,8 @@
 
 .bg-hero-RTL {
   background-size: cover;
-  background-image: url('/images/dashed-rtl.png'), url('/images/hero.svg');
+  background-image: url('/images/hero-dashed-line-rtl.svg'),
+    url('/images/hero-background.svg');
   background-position: 40% 50%;
   height: 750px;
 }
