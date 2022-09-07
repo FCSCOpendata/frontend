@@ -20,17 +20,20 @@ const Code: React.FC<any> = ({ language, children }) => {
             id="dev"
           />
         </div>
-        <div dir="ltr">
+        <div
+          dir="ltr"
+          className={`${AR(
+            'text-right',
+            'text-left'
+          )} overflow-x-scroll whitespace-nowrap rounded-3xl bg-[#FEFEFE] p-[10px] pl-[40px] pr-[20px]`}
+        >
           <SyntaxHighlighter
             language={language}
+            className="syntax"
             style={docco}
             customStyle={{
               backgroundColor: '#FEFEFE',
-              borderRadius: '25px',
-              padding: '10px',
-              paddingLeft: '40px',
-              paddingRigth: '20px',
-              textAlign: AR('right', 'left'),
+              display: 'inline-block',
             }}
           >
             {children}
