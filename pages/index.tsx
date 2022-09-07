@@ -8,8 +8,68 @@ import MainOptions from '../components/home/MainOptions';
 import OpenData101 from '../components/home/main/OpenData101';
 import ScrollIndicator from '../components/_shared/ScrollIndicator';
 import { useRouter } from 'next/router';
+import { GET_PAGES_BY_TAG_QUERY } from '../graphql/queries';
+import { useQuery } from '@apollo/react-hooks';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
+  //  This gets the CMS page that has the tag
+  //  'hash-hero-section' to pull the  custom
+  //  images for the header
+  const { data } = useQuery(GET_PAGES_BY_TAG_QUERY, {
+    variables: {
+      tag: 'hash-hero-section',
+    },
+  });
+
+  const page =
+    data?.page?.pages && data?.page?.pages.length > 0
+      ? data?.page?.pages[0]
+      : {};
+  const heroImages = [
+    {
+      url: '/images/hero-image-1.svg',
+      alt: 'UAE places and attractions',
+    },
+    {
+      url: '/images/hero-image-2.svg',
+      alt: 'Workspace',
+    },
+    {
+      url: '/images/hero-image-3.svg',
+      alt: 'Police robot',
+    },
+    {
+      url: '/images/hero-image-4.svg',
+      alt: 'Beautiful beach in the UAE',
+    },
+  ];
+
+  if(Object.keys(page).length) {
+    const html = page.html;
+    const regexp = /(?<=<img).*?(?=>)/g;
+    const images = html.match(regexp);
+
+    const getProps = (entry) => {
+      let url = entry.match(/(?<=src=").*?(?=")/)
+      let alt = entry.match(/(?<=alt=").*?(?=")/)
+
+      url = url ? url[0] : null;
+      alt = alt ? alt[0] : "";
+
+      return {
+        url,
+        alt
+      }
+    }
+
+    let i;
+    let max = heroImages.length < images.length ? heroImages.length : images.length;
+    for(i = 0; i < max; i++) {
+      heroImages[i] = getProps(images[i]); 
+    }
+
+  }
+
   const { t } = useTranslation();
   const { locale } = useRouter();
   return (
@@ -51,9 +111,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           hidden lg:block"
         >
           <img
-            src="/images/hero-image-1.svg"
+            src={heroImages[0].url}
             className="rounded-2xl"
-            alt="UAE places and attractions"
+            alt={heroImages[0].alt}
           />
         </div>
         <div
@@ -64,9 +124,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           hidden lg:block"
         >
           <img
-            src="/images/hero-image-2.svg"
+            src={heroImages[1].url}
             className="rounded-2xl"
-            alt="Workspace"
+            alt={heroImages[1].alt}
           />
         </div>
         <div
@@ -77,9 +137,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           hidden lg:block"
         >
           <img
-            src="/images/hero-image-3.svg"
+            src={heroImages[2].url}
             className="rounded-2xl"
-            alt="Police robot"
+            alt={heroImages[2].alt}
           />
         </div>
         <div
@@ -90,9 +150,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           hidden lg:block"
         >
           <img
-            src="/images/hero-image-4.svg"
+            src={heroImages[3].url}
             className="rounded-2xl"
-            alt="Beautiful beach in the UAE"
+            alt={heroImages[3].alt}
           />
         </div>
 
@@ -111,6 +171,14 @@ export const getServerSideProps: GetServerSideProps = async ({
   locales,
 }) => {
   const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GET_PAGES_BY_TAG_QUERY,
+    variables: {
+      //  This value is fixed
+      tag: 'hash-hero-section',
+    },
+  });
 
   return {
     props: {
