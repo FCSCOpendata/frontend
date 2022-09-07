@@ -53,7 +53,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <img
             src="/images/hero-image-1.svg"
             className="rounded-2xl"
-            alt="First header item"
+            alt="UAE places and attractions"
           />
         </div>
         <div
@@ -66,7 +66,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <img
             src="/images/hero-image-2.svg"
             className="rounded-2xl"
-            alt="Second header item"
+            alt="Workspace"
           />
         </div>
         <div
@@ -79,7 +79,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <img
             src="/images/hero-image-3.svg"
             className="rounded-2xl"
-            alt="Third header item"
+            alt="Police robot"
           />
         </div>
         <div
@@ -92,7 +92,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <img
             src="/images/hero-image-4.svg"
             className="rounded-2xl"
-            alt="Fourth header item"
+            alt="Beautiful beach in the UAE"
           />
         </div>
 
