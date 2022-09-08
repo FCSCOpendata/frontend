@@ -7,14 +7,16 @@
 
 .bg-hero {
   background-size: cover;
-  background-image: url('/images/dashed.png'), url('/images/hero.svg');
+  background-image: url('/images/hero-dashed-line.svg'),
+    url('/images/hero-background.svg');
   background-position: 40% 50%;
   height: 750px;
 }
 
 .bg-hero-RTL {
   background-size: cover;
-  background-image: url('/images/dashed-rtl.png'), url('/images/hero.svg');
+  background-image: url('/images/hero-dashed-line-rtl.svg'),
+    url('/images/hero-background.svg');
   background-position: 40% 50%;
   height: 750px;
 }
