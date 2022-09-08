@@ -88,5 +88,15 @@
   "share-dataset": "Share this Dataset",
   "share-subject": "(UAE Open Data)",
   "rate-dataset": "Rate this Dataset",
-  "next-reads": "Next Reads"
+  "next-reads": "Next Reads",
+  "goto-site": "Go to bayanat.ae [{{link}}] for more dataset",
+  "bad": "(bad)",
+  "passable": "(passable)",
+  "ok": "(ok)",
+  "good": "(good)",
+  "excellent": "(excellent)",
+  "no-rating": "(no rating given)",
+  "share": "Share",
+  "cited": "Cite",
+  "rate": "Rate"
 }

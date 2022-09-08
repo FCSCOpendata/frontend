@@ -6,6 +6,9 @@ import { GET_DATASET_QUERY } from '../../graphql/queries';
 import { AR, fixTranslations } from '../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 import { CloudDownloadIcon } from '@heroicons/react/outline';
+import Share from './Share';
+import Citation from './Citation';
+import Rate from './Rate';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -66,6 +69,20 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
         ) : (
           ''
         )}
+      </div>
+      <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal items-baseline">
+        <div className="font-avenir flex text-sm py-2 items-baseline">
+          <span>{t('share')}: </span>
+          <Share title={result.title} />
+        </div>
+        <div className="font-avenir flex text-sm py-2 items-baseline">
+          <span>{t('cited')}: </span>
+          <Citation title={result.title} />
+        </div>
+        <div className="font-avenir flex text-sm py-2 items-baseline">
+          <span>{t('rate')}: </span>
+          <Rate title={result.title} id={result.id} />
+        </div>
       </div>
       <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
         {result.description?.replace(/<[^>]*>?/gm, '') ||
