@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        '3xl': '1600px' 
+        '3xl': '1600px',
       },
       colors: {
         accent: '#00BBC2',
