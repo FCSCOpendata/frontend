@@ -18,10 +18,8 @@ const IconCard: React.FC<IconCardProps> = ({
   return (
     <>
       <div className={`${isActive ? 'text-[#22B373]' : ''}`}>
-        <div className="h-10 flex justify-center">
+        <div className="h-[60px] flex justify-center">
           <img
-            //  TODO: check what blank image to put when
-            //  there's no image
             src={icon.url || '/images/no-image.svg'}
             alt={icon.alt}
           />
