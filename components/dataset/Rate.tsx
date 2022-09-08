@@ -44,25 +44,26 @@ const Rate: React.FC<{
   };
 
   return (
-    <div className={`divide-y divide-slate-400 rounded-xl w-100 `}>
-      <div className="font-avenir text-bold p-2">{t('rate-dataset')}</div>
-      <div className="font-avenir text-sm p-4">
-        {title} -{' '}
-        <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
-          <Rating
-            onClick={handleRating}
-            ratingValue={rating}
-            size={25}
-            allowHover={false}
-            transition
-            showTooltip
-            rtl={AR(true, false) as boolean}
-            emptyIcon={<StarIcon size={25} />}
-            tooltipArray={['Bad', 'Passable', 'Ok', 'Good', 'Excellent']}
-          />
-        </span>
-      </div>
-    </div>
+    <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
+      <Rating
+        onClick={handleRating}
+        ratingValue={rating}
+        size={15}
+        allowHover={false}
+        transition
+        showTooltip
+        rtl={AR(true, false) as boolean}
+        emptyIcon={<StarIcon size={15} />}
+        tooltipDefaultText={`${t('no-rating')}`}
+        tooltipArray={[
+          t('bad'),
+          t('passable'),
+          t('ok'),
+          t('good'),
+          t('excellent'),
+        ]}
+      />
+    </span>
   );
 };
 
