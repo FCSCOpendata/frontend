@@ -12,7 +12,7 @@ const Code: React.FC<any> = ({ language, children }) => {
             check  it   later  as  it  doesn't  seem  to  be  a 
             straightforward implementation */}
       <div className="rounded-lg relative">
-        <div className={`absolute ${AR('left-5', 'right-5')} top-[1rem] z-50`}>
+        <div className={`absolute right-5 top-[1rem] z-50`}>
           <CopyIconButton
             hintBeforeCopy={t('copy-snippet')}
             hintAfterCopy={t('copied')}
@@ -20,20 +20,17 @@ const Code: React.FC<any> = ({ language, children }) => {
             id="dev"
           />
         </div>
-        <div
-          dir="ltr"
-          className={`${AR(
-            'text-right',
-            'text-left'
-          )} overflow-x-scroll whitespace-nowrap rounded-3xl bg-[#FEFEFE] p-[10px] pl-[40px] pr-[20px]`}
-        >
+        <div dir="ltr">
           <SyntaxHighlighter
             language={language}
             className="syntax"
             style={docco}
             customStyle={{
               backgroundColor: '#FEFEFE',
-              display: 'inline-block',
+              borderRadius: '25px',
+              padding: '10px',
+              paddingLeft: '40px',
+              paddingRigth: '20px',
             }}
           >
             {children}
