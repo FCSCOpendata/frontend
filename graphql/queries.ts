@@ -329,6 +329,19 @@ export const GET_NEXT_POSTS_QUERY = gql`
   }
 `;
 
+export const GET_PAGES_BY_TAG_QUERY = gql`
+  query page($tag: String) {
+    page(tag: $tag)
+      @rest(
+        type: "Page"
+        path: "pages?filter=tag%3A{args.tag}"
+        endpoint: "ghost"
+      ) {
+      pages
+    }
+  }
+`;
+
 export const GET_PAGE_QUERY = gql`
   query page($slug: String) {
     page(slug: $slug)
