@@ -127,7 +127,10 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
   ];
 
   return (
-    <div className="w-full bg-[#F7FAFC] px-5 sm:px-16 py-5 sm:py-14 rounded-3xl">
+    <div
+      className="w-full bg-[#F7FAFC] px-5 sm:px-16 py-5 sm:py-14 rounded-3xl"
+      dir="ltr"
+    >
       <div className="mb-8">
         {dashboards.map((dashboard, index) => (
           <button
