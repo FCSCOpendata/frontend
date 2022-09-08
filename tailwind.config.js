@@ -8,6 +8,9 @@ module.exports = {
   darkMode: 'media', // or 'class'
   theme: {
     extend: {
+      screens: {
+        '3xl': '1600px' 
+      },
       colors: {
         accent: '#00BBC2',
         lightaccent: '#00bbc24d',
