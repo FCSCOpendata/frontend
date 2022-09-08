@@ -16,7 +16,10 @@ const Share: React.FC<{ title: string }> = ({ title }) => {
           <a
             href={`mailto:?subject=${subject}&body=${title} - ${
               typeof window !== 'undefined' ? window.location.href : ''
-            }`}
+            } %0d%0a %0d%0a${t('goto-site', {
+              link:
+                typeof window !== 'undefined' ? window.location.origin : '',
+            })}`}
           >
             <ShareIcon className="text-green-400 w-7 h-7  inline" />
           </a>
