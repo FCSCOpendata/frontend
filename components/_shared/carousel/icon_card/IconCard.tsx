@@ -14,9 +14,9 @@ const IconCard: React.FC<IconCardProps> = ({
   isActive,
   color,
 }) => {
-  const style: {color?: string} = {};
-  
-  if(color && isActive) {
+  const style: { color?: string } = {};
+
+  if (color && isActive) {
     style.color = color || 'inherit';
   }
 
