@@ -75,12 +75,12 @@ const Organization: React.FC<any> = ({ variables }) => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <ScrollIndicator
           firstImage={{
-            url: '/images/scroll_indicator_icon_1.svg',
+            url: activeOrg?.org?.icon?.url || '/images/no_icon_org.svg',
             alt: 'First stop',
           }}
           lastImage={{
-            url: activeOrg?.org?.icon?.url || '/images/no_icon_org.svg',
-            alt: 'First stop',
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'Last stop',
           }}
           stops={[
             { id: 'organizations' },

@@ -253,7 +253,7 @@ Tags are a way of categorizing items. Whenever in GhostCMS you create an item, s
   - This tag _must_ be applied to _posts_ (or news) that are written in Arabic and are meant to be listed only when the language is set to 'ar'. If a post doesn't have this tag, it's assumed that the post is written in English and that it should be displayed when the language is set to 'en'.
   - It's recommended to also use this tag for pages that are written in Arabic.
 - `#hero-section`
-  - TODO
+  - This tag should be applied to a page and is used to customize the images that are displayed on the hero section on the home page. If no page with this tag is found, the default images are displayed. To change the images, simple put from 1 to 4 images on the page in the desired order.
 
 To create a tag, simply:
 
