@@ -132,54 +132,6 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             />
           </div>
         </div>
-
-        {/* Cite */}
-        <div
-          className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR(
-            'pr-0',
-            'pl-0'
-          )} w-full grid-cols-1 sm:gap-y-1`}
-        >
-          <div
-            className={`md:col-start-2 md:col-span-6 ${AR(
-              'md:-mr-4',
-              'md:-ml-4'
-            )}`}
-          >
-            <Citation dtype={t('dataset')} title={result.title} />
-          </div>
-        </div>
-        {/* Cite */}
-        <div
-          className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR(
-            'pr-0',
-            'pl-0'
-          )} w-full grid-cols-1 sm:gap-y-1`}
-        >
-          <div
-            className={`md:col-start-2 md:col-span-6 ${AR(
-              'md:-mr-4',
-              'md:-ml-4'
-            )}`}
-          >
-            <Share title={result.title} />
-          </div>
-        </div>
-        <div
-          className={`mb-12 grid xl:grid-cols-6 gap-1 ${AR(
-            'pr-0',
-            'pl-0'
-          )} w-full grid-cols-1 sm:gap-y-1`}
-        >
-          <div
-            className={`md:col-start-2 md:col-span-6 ${AR(
-              'md:-mr-4',
-              'md:-ml-4'
-            )}`}
-          >
-            <Rate title={result.title} id={result.id} />
-          </div>
-        </div>
         {/* Similar Dataset */}
         <div className="w-full" id="similar-datasets">
           <SimilarDatasets variables={variables} />
