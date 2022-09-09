@@ -4,7 +4,7 @@ const Title: React.FC<any> = ({ icon, color, children }) => {
   return (
     <>
       <h1
-        className="text-2xl sm:text-3xl font-avenir font-extrabold flex mb-6"
+        className="text-2xl sm:text-3xl font-avenir font-extrabold flex mb-6 h-[2em]"
         style={{ color: color || '#22B373' }}
       >
         {icon?.url && (
