@@ -98,5 +98,16 @@
   "no-rating": "(no rating given)",
   "share": "Share",
   "cited": "Cite",
-  "rate": "Rate"
+  "rate": "Rate",
+  "contact-descp": "Please fill out the form below to get in touch with us",
+  "contact-us": "Contact Us",
+  "name": "Name",
+  "email": "Email",
+  "message": "Type Your Inquiry here",
+  "submit": "Submit",
+  "success": "Success",
+  "failed": "Failed",
+  "email-err": "email should not be empty and must be a valid email",
+  "name-err": "name should not be empty",
+  "message-err": "message should not be empty and must not be more than 1000 character"
 }

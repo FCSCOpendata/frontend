@@ -21,6 +21,13 @@
   height: 750px;
 }
 
+.bg-contact {
+  background-size: cover;
+  background-image: url('/images/hero-background.svg');
+  background-position: 40% 50%;
+  height: 750px;
+}
+
 .vertical-text {
   transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
