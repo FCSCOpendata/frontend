@@ -5,6 +5,11 @@ module.exports = (phase, { defaultConfig }) => {
   const dms = process.env.DMS;
   const cms = process.env.CMS;
   const cmsKey = process.env.CMS_KEY;
+  const MAIL_PORT = process.env.EMAIL_PORT;
+  const MAIL_SERVER = process.env.MAIL_SERVER;
+  const MAIL_PASSWORD = process.env.MAIL_PASSWORD;
+  const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
+  const MAIL_ACCOUNT = process.env.MAIL_ACCOUNT;
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     if (dms) {
       console.log('\nYou are running the app in dev mode 🌀');
@@ -32,6 +37,16 @@ module.exports = (phase, { defaultConfig }) => {
         CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
         CMS_KEY: cmsKey,
       },
+      serverRuntimeConfig: {
+        DMS: dms ? dms.replace(/\/?$/, '') : 'http://mock.ckan',
+        CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
+        CMS_KEY: cmsKey,
+        MAIL_PORT,
+        MAIL_PASSWORD,
+        MAIL_SERVER,
+        CONTACT_EMAIL,
+        MAIL_ACCOUNT,
+      },
       async rewrites() {
         return {
           afterFiles: [
@@ -56,6 +71,16 @@ module.exports = (phase, { defaultConfig }) => {
       CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
       CMS_KEY: cmsKey,
     },
+    serverRuntimeConfig: {
+      DMS: dms ? dms.replace(/\/?$/, '') : 'https://demo.dev.datopian.com',
+      CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
+      CMS_KEY: cmsKey,
+      MAIL_PORT,
+      MAIL_PASSWORD,
+      MAIL_SERVER,
+      CONTACT_EMAIL,
+      MAIL_ACCOUNT,
+    },
     async rewrites() {
       return {
         afterFiles: [
@@ -69,5 +94,8 @@ module.exports = (phase, { defaultConfig }) => {
       };
     },
     output: 'standalone',
+    images: {
+      domains: [dms.replace(/\/?$/, '').replace(/https:\/\//, '')],
+    },
   });
 };
