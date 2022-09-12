@@ -45,6 +45,9 @@ module.exports = (phase, { defaultConfig }) => {
           ],
         };
       },
+      images: {
+        domains: [dms.replace(/\/?$/, '').replace(/https:\/\//, '')],
+      },
     });
   }
   return nextTranslate({
