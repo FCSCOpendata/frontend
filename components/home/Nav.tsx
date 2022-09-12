@@ -6,7 +6,14 @@ import { useRouter } from 'next/router';
 //  are not related to CMS pages.  Furthermore,
 //  This is needed to check if there should  be
 //  a /p/ at the final URL or not.
-export const dynamicPages = ['search', 'organization', 'topic', 'news'];
+export const dynamicPages = [
+  'search',
+  'organization',
+  'topic',
+  'news',
+  'contact',
+  'request-form',
+];
 
 const NavBar: React.FC<any> = ({ settings }) => {
   const { locale } = useRouter();
@@ -20,6 +27,7 @@ const NavBar: React.FC<any> = ({ settings }) => {
     { title: t('topics'), path: '/topic' },
     { title: t('opendata'), path: '/p/open-data-101' },
     { title: t('news'), path: '/news' },
+    { title: t('request-dataset'), path: '/request-form' },
   ]);
 
   useEffect(() => {
