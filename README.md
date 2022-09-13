@@ -74,6 +74,7 @@ These are the default routes set up in the "starter" app.
 ### New Routes
 
 In this project, there are also some new routes:
+
 - News `/news`
 - News post `/news/:slug`
 
