@@ -95,6 +95,13 @@ const Contacts: React.FC = () => {
             email: '',
             text: '',
           });
+          setTimeout(() => {
+            setStatus({
+              enabled: false,
+              message: '',
+              code: false,
+            });
+          }, 3000);
         } else {
           setSubmitting(false);
           setStatus({
@@ -102,6 +109,13 @@ const Contacts: React.FC = () => {
             message: t('failed'),
             code: false,
           });
+          setTimeout(() => {
+            setStatus({
+              enabled: false,
+              message: '',
+              code: false,
+            });
+          }, 3000);
         }
       })
       .catch((e) => {
@@ -111,6 +125,13 @@ const Contacts: React.FC = () => {
           message: t('failed'),
           code: false,
         });
+        setTimeout(() => {
+          setStatus({
+            enabled: false,
+            message: '',
+            code: false,
+          });
+        }, 3000);
       });
   };
 
