@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { AR } from '../../hooks/locale';
 
-const Contacts: React.FC = () => {
+const RequestData: React.FC = () => {
   const { t } = useTranslation('common');
   const [count, setCount] = useState(0);
   const [status, setStatus] = useState({
@@ -69,6 +69,7 @@ const Contacts: React.FC = () => {
       email: emailRef.current.value,
       name: nameRef.current.value,
       message: textRef.current.value,
+      rtype: 'request',
     };
     fetch('/api/contact', {
       method: 'POST',
@@ -152,10 +153,10 @@ const Contacts: React.FC = () => {
         )}
         <div className="xl:w-4/5">
           <div className="text-center font-avenir text-[36px] font-extrabold  text-[#4D4D4D]">
-            <h1>{t('contact-us')}</h1>
+            <h1>{t('request-header')}</h1>
           </div>
           <p className="pl-2 text-center font-avenir font-normal text-[18px] text-[#7C7C7C] leading-[1.375rem] mb-8">
-            {t('contact-descp')}
+            {t('request-descrp')}
           </p>
           <div className="flex pl-2 py-2 rounded-lg bg-white font-avenir text-[18px] font-normal text-[#858585] mb-4 hover:border-b-4 hover:rounded-b-xl hover:border-b-[#22B373]">
             <img src="/images/profile.svg" alt="profile" className="mr-2" />
@@ -189,7 +190,7 @@ const Contacts: React.FC = () => {
           )}
           <div className="px-2 h-60 mt-4 rounded-lg bg-white font-avenir font-normal text-[18px] text-[#858585] mb-8 hover:border-b-4 hover:rounded-b-xl hover:border-b-[#22B373]">
             <textarea
-              placeholder={t('message')}
+              placeholder={t('request-msg')}
               className="w-full h-48 border-none focus:ring-0 focus:border-white"
               onChange={(e) => {
                 setCount(e.target.value.length);
@@ -237,4 +238,4 @@ const Contacts: React.FC = () => {
   );
 };
 
-export default Contacts;
+export default RequestData;
