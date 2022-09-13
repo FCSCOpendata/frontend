@@ -96,6 +96,7 @@ const Contacts: React.FC = () => {
             text: '',
           });
         } else {
+          setSubmitting(false);
           setStatus({
             enabled: true,
             message: t('failed'),
