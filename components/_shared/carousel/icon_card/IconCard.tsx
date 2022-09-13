@@ -24,7 +24,11 @@ const IconCard: React.FC<IconCardProps> = ({
 
   return (
     <>
-      <div className={`${isActive ? 'text-[#22B373]' : ''} flex flex-col items-center`}>
+      <div
+        className={`${
+          isActive ? 'text-[#22B373]' : ''
+        } flex flex-col items-center`}
+      >
         <div className="h-[60px] w-[60px]">
           <Image
             width={60}
