@@ -166,9 +166,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      //  Had to comment that out because otherwise
-      //  query result set causes an typename error
-      //  initialApolloState: apolloClient?.cache?.extract(),
+      initialApolloState: apolloClient?.cache?.extract(),
       variables,
     },
   };
