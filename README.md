@@ -7,7 +7,7 @@
 ## Live instances
 
 - Development: https://frontend.fcsc.develop.datopian.com/
-- Production: https://frontend.fcsc.production.datopian.com (note this is going to be updated to https://opendata.fcsc.gov.ae)
+- Production: https://opendata.fcsc.gov.ae (mirror: https://frontend.fcsc.production.datopian.com)
 
 ## Getting Started
 
@@ -68,12 +68,15 @@ These are the default routes set up in the "starter" app.
 - Organization `/@org`
 - Dataset `organization/@org/dataset`
 - Resource `organization/@org/dataset/r/resource`
-- Topics (aka group in CKAN or categories here) - `/topic`
+- Topics (aka group in CKAN or categories here) `/topic`
 - Static pages, eg, `/p/about` etc. from CMS or can do it without external CMS, e.g., in Next.js
 
 ### New Routes
 
-TODO
+In this project, there are also some new routes:
+
+- News `/news`
+- News post `/news/:slug`
 
 ### Data fetching
 
@@ -87,18 +90,21 @@ For development/debugging purposes, we suggest installing the Chrome extension -
 
 #### i18n configuration
 
-Portal.js is configured by default to support both `English` and `French` subpath for language translation. But for subsequent users, this following steps can be used to configure i18n for other languages;
+Portal.js is configured by default to support multiple subpaths for language translation. In this specific project `English` and `Arabic` are supported. When switching to `Arabic`, this portal also changes all the content flow from `LTR` to `RTL`. But for subsequent users, this following steps can be used to configure i18n for other languages;
 
-1.  Update `next.config.js`, to add more languages to the i18n locales
+1.  Update `i18n.json`, to add more languages to the i18n locales
 
 ```js
-i18n: {
-  locales: ['en', 'fr', 'nl-NL'], // add more language to the list
-  defaultLocale: 'en',  // set the default language to use
-},
+{
+  "locales": ["en", "ar", "pt-br"], // Add the new language code here
+  "defaultLocale": "en",  // Set the default language
+  "pages": {
+    "*": ["common"]
+  }
+}
 ```
 
-2. Create a folder for the language in `locales` --> `locales/en-Us`
+2. Create a folder for the language in `locales` using the language code as the name. E.g. `locales/pt-br`.
 
 3. In the language folder, different namespace files (json) can be created for each translation. For the `index.js` use-case, I named it `common.json`
 
@@ -108,9 +114,9 @@ i18n: {
    "title" : "Portal js in English",
 }
 
-// locales/fr/common.json
+// locales/ar/common.json
 {
-   "title" : "Portal js in French",
+   "title" : "Portal js in Arabic",
 }
 ```
 
@@ -121,9 +127,9 @@ import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
 
 const Home: React.FC = ()=> {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   return (
-    <div>{t(`common:title`)}</div> // we use common and title base on the common.json data
+    <div>{t(`title`)}</div> // we use title based on the common.json data
   );
 };
 
@@ -138,7 +144,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
 ```
 
-5. Go to the browser and view the changes using language subpath like this `http://localhost:3000` and `http://localhost:3000/fr`. **Note** The subpath also activate chrome language Translator
+5. Go to the browser and view the changes using language subpath like this `http://localhost:3000` and `http://localhost:3000/ar`. **Note** The subpath also activates Chrome language translator
 
 #### Pre-fetch data in the server-side
 
