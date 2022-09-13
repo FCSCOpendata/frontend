@@ -63,7 +63,8 @@ module.exports = (phase, { defaultConfig }) => {
       images: {
         domains: [dms.replace(/\/?$/, '').replace(/https:\/\//, '')],
         dangerouslyAllowSVG: true,
-        contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+        contentSecurityPolicy:
+          "default-src 'self'; script-src 'none'; sandbox;",
       },
     });
   }
