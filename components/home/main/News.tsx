@@ -37,7 +37,7 @@ export default function News() {
         <div className="flex flex-wrap w-full">
           <div className="flex flex-wrap w-1/3 px-1">
             <a
-              href={posts[0] ? `/news/${posts[0]?.slug}` : ''}
+              href={posts[0] ? `${AR('/ar')}/news/${posts[0]?.slug}` : ''}
               onClick={(e) => (!posts[0] ? e.preventDefault() : null)}
               className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
             >
@@ -60,7 +60,7 @@ export default function News() {
           </div>
           <div className="flex flex-wrap w-1/3 px-1">
             <a
-              href={posts[1] ? `/news/${posts[1]?.slug}` : ''}
+              href={posts[1] ? `${AR('/ar')}/news/${posts[1]?.slug}` : ''}
               onClick={(e) => (!posts[1] ? e.preventDefault() : null)}
               className={`${posts[1] ? 'group' : 'cursor-auto'} w-full`}
             >
@@ -85,7 +85,7 @@ export default function News() {
               </div>
             </a>
             <a
-              href={posts[2] ? `/news/${posts[2]?.slug}` : ''}
+              href={posts[2] ? `${AR('/ar')}/news/${posts[2]?.slug}` : ''}
               onClick={(e) => (!posts[2] ? e.preventDefault() : null)}
               className={`${posts[2] ? 'group' : 'cursor-auto'} w-full`}
             >
@@ -108,7 +108,7 @@ export default function News() {
           </div>
           <div className="flex flex-wrap w-1/3 px-1">
             <a
-              href={posts[3] ? `/news/${posts[3]?.slug}` : ''}
+              href={posts[3] ? `${AR('/ar')}/news/${posts[3]?.slug}` : ''}
               onClick={(e) => (!posts[3] ? e.preventDefault() : null)}
               className={`${posts[3] ? 'group' : 'cursor-auto'} w-full`}
             >
@@ -129,7 +129,7 @@ export default function News() {
               </div>
             </a>
             <a
-              href={posts[4] ? `/news/${posts[4]?.slug}` : ''}
+              href={posts[4] ? `${AR('/ar')}/news/${posts[4]?.slug}` : ''}
               onClick={(e) => (!posts[4] ? e.preventDefault() : null)}
               className={`${posts[4] ? 'group' : 'cursor-auto'} w-full`}
             >
@@ -153,11 +153,9 @@ export default function News() {
         </div>
       </div>
       <div className="mt-12 font-avenir text-lg text-center">
-        <Link href="/news">
-          <a href="/news">
-            {t('hm-a-see')} <ArrowRightIcon className="inline w-4 ml-4" />
-          </a>
-        </Link>
+        <a href={`${AR('/ar')}/news`}>
+          {t('hm-a-see')} <ArrowRightIcon className="inline w-4 ml-4" />
+        </a>
       </div>
     </>
   );
