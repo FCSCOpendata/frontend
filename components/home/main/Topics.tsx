@@ -3,6 +3,7 @@ import { GET_TOPICS_BY_DATASETS_COUNT_QUERY } from '../../../graphql/queries';
 import { ErrorMessage, Spinner } from '../../_shared';
 import useTranslation from 'next-translate/useTranslation';
 import { AR, fixTranslations } from '../../../hooks/locale';
+import Image from 'next/image';
 
 export default function Topics() {
   const { t } = useTranslation('common');
@@ -45,12 +46,16 @@ export default function Topics() {
                   href={`${AR('/ar')}/topic/${topic.name}`}
                   className="group h-full w-full flex flex-stretch"
                 >
-                  <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden">
+                  <div className="relative bg-gray-200 w-full rounded-lg overflow-hidden">
                     <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
-                    <img
+                    <Image
                       src={topic.image_display_url}
+                      priority={false}
+                      width={909}
+                      height={655}
+                      layout="responsive"
                       alt={topic.title}
-                      className="w-full h-full object-center object-scale-down"
+                      className="w-full h-full object-center object-contain"
                     />
                     <p className="absolute py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
                       {topic.title}

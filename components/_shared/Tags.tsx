@@ -21,7 +21,7 @@ const Tags: React.FC<{ tags: any[]; style: string }> = ({ tags, style }) => {
     return `inline-flex items-center ${AR(
       'ml-3',
       `mr-3`
-    )} px-5 py-1.5 border border-transparent text-xs rounded-full text-[${
+    )} px-5 py-1.5 mb-3 border border-transparent text-xs rounded-full text-[${
       colors[index].text
     }] bg-[${colors[index].color}]`;
   };
