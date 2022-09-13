@@ -18,7 +18,7 @@ const Footer: React.FC<any> = ({ settings }) => {
       { name: t('about'), href: '/p/about' },
       { name: t('terms'), href: '/p/terms-of-use' },
       { name: t('contact'), href: '/contact' },
-      { name: t('request-dataset'), href: '/request-form' },
+      { name: t('request-header'), href: '/request-form' },
     ],
     social: [],
   });
