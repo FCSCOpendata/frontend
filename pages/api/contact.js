@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import getConfig from 'next/config';
 
 export default async (req, res) => {
-  const { name, email, message } = req.body;
+  const { rtype, email, message } = req.body;
   const { MAIL_ACCOUNT, MAIL_PASSWORD, CONTACT_EMAIL } =
     getConfig().serverRuntimeConfig;
 
@@ -23,7 +23,9 @@ export default async (req, res) => {
     const mailData = {
       from: email,
       to: CONTACT_EMAIL,
-      subject: `Inquiry - ${'bayanate.ae open portal'}`,
+      subject: `${
+        rtype ? 'Request Dataset' : 'Inquiry'
+      } - ${'bayanat.ae open portal'}`,
       text: message,
     };
 
