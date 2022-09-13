@@ -52,7 +52,7 @@ export default function SimilarDatasets({ variables }) {
               <img
                 src="/images/edu-icon.svg"
                 alt="orgs"
-                className="w-4 h-4 mr-2"
+                className={`w-4 h-4 ${AR('ml-2', 'mr-2')}`}
               />
               {result.groups[0]?.title} {t('topic')}
             </button>
@@ -63,7 +63,7 @@ export default function SimilarDatasets({ variables }) {
               <img
                 src="/images/ball-icon.svg"
                 alt="orgs"
-                className="w-4 h-4 text-white mr-2"
+                className={`w-4 h-4 text-white ${AR('ml-2', 'mr-2')}`}
               />
               {result.tags[0]?.title} {t('keyword')}
             </button>
@@ -74,7 +74,7 @@ export default function SimilarDatasets({ variables }) {
               <img
                 src="/images/library-icon.svg"
                 alt="orgs"
-                className="w-4 h-4 text-white mr-2"
+                className={`w-4 h-4 text-white ${AR('ml-2', 'mr-2')}`}
               />
               {result.organization.title}
             </button>
