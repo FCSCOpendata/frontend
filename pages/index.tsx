@@ -108,61 +108,57 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <div
           className={`absolute
           ${AR(
-            '2xl:left-[32%] 2xl:top-[2%] xl:left-[26%] xl:top-[5%] lg:left-[18%] lg:top-[5%]',
-            '2xl:right-[32%] 2xl:top-[2%] xl:right-[26%] xl:top-[5%] lg:right-[18%] lg:top-[5%]'
+            'right-[calc(68vw-(100vw-1024px)/4)] 3xl:right-[calc(57vw+(100vw-1600px)/8)] top-[8%] 3xl:top-[calc(8%-(100vw-1600px)/5)]',
+            'left-[calc(68vw-(100vw-1024px)/4)] 3xl:left-[calc(57vw+(100vw-1600px)/8)] top-[8%] 3xl:top-[calc(8%-(100vw-1600px)/5)]'
           )}
           hidden lg:block`}
         >
           <img
             src={heroImages[0].url}
-            className="rounded-2xl"
+            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
             alt={heroImages[0].alt}
-            width={164}
           />
         </div>
         <div
-          className={`absolute
+          className={`absolute w-full
           ${AR(
-            '2xl:left-[17%] 2xl:top-[15%] xl:left-[10%] xl:top-[22%] lg:left-[-2%] lg:top-[22%]',
-            '2xl:right-[17%] 2xl:top-[15%] xl:right-[10%] xl:top-[22%] lg:right-[-2%] lg:top-[22%]'
+            'right-[calc(92vw-(100vw-1024px)/2)] 3xl:right-[calc(72vw+(100vw-1600px)/8)] top-[18%] 3xl:top-[calc(21%-(100vw-1600px)/5)]',
+            'left-[calc(92vw-(100vw-1024px)/2)] 3xl:left-[calc(72vw+(100vw-1600px)/8)] top-[18%] 3xl:top-[calc(21%-(100vw-1600px)/5)]'
           )}
           hidden lg:block`}
         >
           <img
             src={heroImages[1].url}
-            className="rounded-2xl"
+            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
             alt={heroImages[1].alt}
-            width={164}
           />
         </div>
         <div
           className={`absolute
           ${AR(
-            '2xl:left-[35%] 2xl:top-[45%] xl:left-[30%] xl:top-[45%] lg:left-[24%] lg:top-[48%]',
-            '2xl:right-[35%] 2xl:top-[45%] xl:right-[30%] xl:top-[45%] lg:right-[24%] lg:top-[48%]'
+            'right-[calc(64vw-(100vw-1024px)/4)] 3xl:right-[calc(53vw+(100vw-1600px)/8)] top-[49%] 3xl:top-[calc(58%-(100vw-1600px)/5)]',
+            'left-[calc(64vw-(100vw-1024px)/4)] 3xl:left-[calc(53vw+(100vw-1600px)/8)] top-[49%] 3xl:top-[calc(58%-(100vw-1600px)/5)]'
           )}
           hidden lg:block`}
         >
           <img
             src={heroImages[2].url}
-            className="rounded-2xl"
+            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
             alt={heroImages[2].alt}
-            width={164}
           />
         </div>
         <div
-          className={`absolute
+          className={`absolute w-full
           ${AR(
-            '2xl:left-[20%] 2xl:top-[70%] xl:left-[15%] xl:top-[70%] lg:left-[12%] lg:top-[78%]',
-            '2xl:right-[20%] 2xl:top-[70%] xl:right-[15%] xl:top-[70%] lg:right-[12%] lg:top-[78%]'
+            'right-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:right-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/20)]',
+            'left-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:left-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/20)]'
           )}
           hidden lg:block`}
         >
           <img
             src={heroImages[3].url}
-            className="rounded-2xl"
+            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
             alt={heroImages[3].alt}
-            width={164}
           />
         </div>
 

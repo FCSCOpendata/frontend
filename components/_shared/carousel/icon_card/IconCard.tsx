@@ -14,21 +14,21 @@ const IconCard: React.FC<IconCardProps> = ({
   isActive,
   color,
 }) => {
-  color = color || 'inherit';
+  const style: { color?: string } = {};
+
+  if (color && isActive) {
+    style.color = color || 'inherit';
+  }
+
   return (
     <>
       <div className={`${isActive ? 'text-[#22B373]' : ''}`}>
-        <div className="h-10 flex justify-center">
-          <img
-            //  TODO: check what blank image to put when
-            //  there's no image
-            src={icon.url || '/images/no-image.svg'}
-            alt={icon.alt}
-          />
+        <div className="h-[60px] flex justify-center">
+          <img src={icon.url || '/images/no-image.svg'} alt={icon.alt} />
         </div>
         <h3
           className="font-avenir font-medium text-md text-center mt-4"
-          style={{ color }}
+          style={style}
         >
           {title}
         </h3>

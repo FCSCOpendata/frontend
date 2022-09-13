@@ -74,14 +74,14 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
       <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
         <ScrollIndicator
           firstImage={{
-            url: '/images/scroll_indicator_icon_1.svg',
-            alt: 'First stop',
-          }}
-          lastImage={{
             url:
               activeTopic.topic?.icon?.url ||
               '/images/scroll_indicator_icon_1.svg',
             alt: 'First stop',
+          }}
+          lastImage={{
+            url: '/images/scroll_indicator_icon_1.svg',
+            alt: 'Last stop',
           }}
           stops={[
             { id: 'topics' },

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { SearchIcon, ViewGridIcon } from '@heroicons/react/outline';
 import FiltersBar from './FiltersBar';
 import useTranslation from 'next-translate/useTranslation';
+import { AR } from '../../hooks/locale';
 
 const SearchForm: React.FC<{
   variables: any;
@@ -59,7 +60,10 @@ const SearchForm: React.FC<{
             onKeyPress={handlekeyEvent}
             placeholder={t('ds-bt-searc')}
             defaultValue={variables.q}
-            className="flex-1 bg-white appearance-none focus:ring-0 border-0 ml-2 rounded-xl"
+            className={`flex-1 bg-white appearance-none focus:ring-0 border-0 ${AR(
+              'mr-2',
+              'ml-2'
+            )} rounded-xl`}
           />
         </form>
         <p className="text-lg text-center xl:text-left bg-button-gradient bg-clip-text text-transparent">
@@ -77,7 +81,7 @@ const SearchForm: React.FC<{
                 type="button"
                 value={t('topics')}
                 onClick={handleClick}
-                className="cursor-pointer"
+                className={`cursor-pointer ${AR('!mr-1', '!ml-1')}`}
               />
             </div>
             <div
@@ -94,7 +98,7 @@ const SearchForm: React.FC<{
                 type="button"
                 value={t('organization')}
                 onClick={handleClick}
-                className="cursor-pointer"
+                className={`cursor-pointer ${AR('!mr-1', '!ml-1')}`}
               />
             </div>
             <div
@@ -111,7 +115,7 @@ const SearchForm: React.FC<{
                 type="button"
                 value={t('ds-bt-time')}
                 onClick={handleClick}
-                className="cursor-pointer"
+                className={`cursor-pointer ${AR('!mr-1', '!ml-1')}`}
               />
             </div>
           </div>

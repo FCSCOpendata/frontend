@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { AR } from '../../../hooks/locale';
 import Badge from './Badge';
 import Title from './Title';
@@ -33,27 +34,31 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
               bg-center bg-no-repeat bg-cover"
             `}
           >
-            <img
-              src={image.url}
-              alt={`${title}`}
-              height="100%"
-              className={`object-center object-cover w-full 
-                w-[calc(100%+5rem)] xl:w-[calc(100%+10rem)]
+            <div className="w-[100vw] xl:w-[calc(100%+10rem)] relative h-full">
+              <Image
+                src={image.url}
+                alt={`${title}`}
+                layout="responsive"
+                priority={true}
+                width={909}
+                height={655}
+                className={`xl:object-contain
                 ${AR('xl:rounded-l-[40px]', 'xl:rounded-r-[40px]')}
               `}
-            />
+              />
+            </div>
           </div>
         </div>
         <div className="w-full">
           <div
-            className={`h-full w-full xl:pt-[50px] pb-[50px] ${AR(
+            className={`h-full w-full xl:pt-[40px] pb-[40px] ${AR(
               'ml-[10rem]',
               'mr-[10rem]'
             )} z-0 overflow-visible`}
           >
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div
-              className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full 
+              className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full
              ${AR(
                'mr-[-2.5rem] md:mr-[-7rem] xl:mr-[-3.0rem]',
                'ml-[-2.5rem] md:ml-[-7rem] xl:ml-[-3.0rem]'
@@ -69,7 +74,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                 <Title icon={icon} color={color}>
                   {title}
                 </Title>
-                <p className="mb-8 w-full 2xl:w-[85%] text-[#7C7C7C] grow">
+                <p className="mb-8 w-full 2xl:w-[85%] text-[#7C7C7C] line-clamp-5 ">
                   {children}
                 </p>
                 <div className="mb-8">

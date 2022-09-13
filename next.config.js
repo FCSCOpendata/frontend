@@ -60,6 +60,9 @@ module.exports = (phase, { defaultConfig }) => {
           ],
         };
       },
+      images: {
+        domains: [dms.replace(/\/?$/, '').replace(/https:\/\//, '')],
+      },
     });
   }
   return nextTranslate({
@@ -91,5 +94,8 @@ module.exports = (phase, { defaultConfig }) => {
       };
     },
     output: 'standalone',
+    images: {
+      domains: [dms.replace(/\/?$/, '').replace(/https:\/\//, '')],
+    },
   });
 };
