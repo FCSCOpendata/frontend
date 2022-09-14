@@ -347,6 +347,24 @@ We use Cypress tests as well
 npm run e2e
 ```
 
+## Contact and Request Dataset form Config
+
+if using `gmail` service
+
+```
+MAIL_ACCOUNT= email adress
+MAIL_PASSWORD= generated app password
+CONTACT_EMAIL= contact email recipient
+REQUEST_DATA_EMAIL = email recipient
+```
+
+using `smtp`, following should be added to the above
+
+```
+MAIL_PORT = smtp port e.g 2525
+MAIL_SERVER = smtp server e.g smtp.mailtrap.io
+```
+
 ### Architecture
 
 - Language: Javascript.
