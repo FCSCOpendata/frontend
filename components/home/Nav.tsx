@@ -27,7 +27,7 @@ const NavBar: React.FC<any> = ({ settings }) => {
     { title: t('topics'), path: '/topic' },
     { title: t('opendata'), path: '/p/open-data-101' },
     { title: t('news'), path: '/news' },
-    { title: t('request-dataset'), path: '/request-form' },
+    { title: t('request-header'), path: '/request-form' },
   ]);
 
   useEffect(() => {
