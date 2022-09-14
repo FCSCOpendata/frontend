@@ -10,6 +10,7 @@ module.exports = (phase, { defaultConfig }) => {
   const MAIL_PASSWORD = process.env.MAIL_PASSWORD;
   const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
   const MAIL_ACCOUNT = process.env.MAIL_ACCOUNT;
+  const REQUEST_DATA_EMAIL = process.env.REQUEST_DATA_EMAIL;
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     if (dms) {
       console.log('\nYou are running the app in dev mode 🌀');
@@ -46,6 +47,7 @@ module.exports = (phase, { defaultConfig }) => {
         MAIL_SERVER,
         CONTACT_EMAIL,
         MAIL_ACCOUNT,
+        REQUEST_DATA_EMAIL,
       },
       async rewrites() {
         return {
@@ -83,6 +85,7 @@ module.exports = (phase, { defaultConfig }) => {
       MAIL_SERVER,
       CONTACT_EMAIL,
       MAIL_ACCOUNT,
+      REQUEST_DATA_EMAIL,
     },
     async rewrites() {
       return {
