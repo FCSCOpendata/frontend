@@ -30,14 +30,13 @@ const Carousel: React.FC<CarouselProps> = ({
   active,
   itemOnClick,
   identifier,
-  maxItems
+  maxItems,
 }) => {
   const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
   const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
   const [swiper, setSwiper] = useState(null);
 
-  if(!maxItems || maxItems < 8)
-    maxItems = 10;
+  if (!maxItems || maxItems < 8) maxItems = 10;
 
   return (
     <div className="group relative">
