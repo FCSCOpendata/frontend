@@ -70,14 +70,16 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
              w-[calc(100%+5rem)] xl:w-[calc(100%+10rem)]
            `}
             >
-              <div className="pt-[3rem] flex flex-col h-full">
-                <Title icon={icon} color={color}>
-                  {title}
-                </Title>
-                <p className="mb-8 w-full 2xl:w-[85%] text-[#7C7C7C] line-clamp-5 ">
-                  {children}
-                </p>
-                <div className="mb-8">
+              <div className="pt-[3rem] flex flex-col h-full justify-between">
+                <div className="h-[13em]">
+                  <Title icon={icon} color={color}>
+                    {title}
+                  </Title>
+                  <p className="w-full 2xl:w-[85%] text-[#7C7C7C] line-clamp-5 ">
+                    {children}
+                  </p>
+                </div>
+                <div className="pb-[3rem]">
                   <Badge text={badgeText} />
                 </div>
               </div>
