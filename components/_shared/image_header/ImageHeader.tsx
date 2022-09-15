@@ -80,7 +80,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                   </p>
                 </div>
                 <div className="pb-[3rem]">
-                  <Badge text={badgeText} />
+                  <Badge text={badgeText} color={color} />
                 </div>
               </div>
             </div>

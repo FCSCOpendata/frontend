@@ -152,13 +152,15 @@ const MainOptions: React.FC<any> = ({
   fixTranslations(activeTopic);
   subtopics.forEach((subtopic) => fixTranslations(subtopic));
 
+  const color = configs?.filter((el) => el.name == topic)[0]?.color;
+
   return (
     <>
       <div className="mb-20" id="header">
         <TopicHeader
           topic={activeTopic}
           datasetsCount={activeTopic.package_count}
-          color={configs?.filter((el) => el.name == topic)[0]?.color}
+          color={color}
         />
       </div>
       {subtopics?.length > 0 && (
@@ -167,6 +169,7 @@ const MainOptions: React.FC<any> = ({
           <SubtopicsCarousel
             subtopics={subtopics}
             subtopicOnClick={onSutopicClick}
+            color={color}
           />
         </div>
       )}
