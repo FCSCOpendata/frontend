@@ -2,7 +2,6 @@ const Badge: React.FC<{ text: string; color?: string }> = ({
   text,
   color,
 }) => {
-
   return (
     <>
       <span

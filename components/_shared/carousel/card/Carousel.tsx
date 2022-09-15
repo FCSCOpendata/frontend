@@ -31,11 +31,11 @@ const Carousel: React.FC<{
   const nextEl = '.nav-next-button';
 
   let css;
-  if(color) {
+  if (color) {
     css = `
     .swiper-bullet-active {
       background: ${color} !important;
-    }`
+    }`;
   }
 
   return (
