@@ -22,6 +22,7 @@ interface CarouselProps {
   active: { name: string };
   itemOnClick: (item: any) => any;
   identifier: string;
+  maxItems?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -29,10 +30,14 @@ const Carousel: React.FC<CarouselProps> = ({
   active,
   itemOnClick,
   identifier,
+  maxItems
 }) => {
   const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
   const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
   const [swiper, setSwiper] = useState(null);
+
+  if(!maxItems || maxItems < 8)
+    maxItems = 10;
 
   return (
     <div className="group relative">
@@ -60,20 +65,20 @@ const Carousel: React.FC<CarouselProps> = ({
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
+            slidesPerView: maxItems - 7,
+            slidesPerGroup: maxItems - 7,
           },
           460: {
-            slidesPerView: 4,
-            slidesPerGroup: 4,
+            slidesPerView: maxItems - 6,
+            slidesPerGroup: maxItems - 6,
           },
           720: {
-            slidesPerView: 6,
-            slidesPerGroup: 6,
+            slidesPerView: maxItems - 4,
+            slidesPerGroup: maxItems - 4,
           },
           1200: {
-            slidesPerView: 10,
-            slidesPerGroup: 10,
+            slidesPerView: maxItems,
+            slidesPerGroup: maxItems,
           },
         }}
         initialSlide={items.findIndex((item) => item.name == active.name)}
@@ -88,6 +93,7 @@ const Carousel: React.FC<CarouselProps> = ({
         {items.map((item, index) => (
           <SwiperSlide key={index}>
             <a
+              title={item.title}
               href={item.link}
               onClick={(e) => {
                 const slidesPerView = swiper.params.slidesPerView;
