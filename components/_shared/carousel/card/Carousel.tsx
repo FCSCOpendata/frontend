@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import NavButton from '../NavButton';
 import { AR } from '../../../../hooks/locale';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface Item {
   title: string;
@@ -27,8 +29,23 @@ const Carousel: React.FC<{
   itemOnClick: (item: any) => any;
   color?: string;
 }> = ({ items, itemOnClick, color }) => {
+  const { locale } = useRouter();
+
   const prevEl = '.nav-prev-button';
   const nextEl = '.nav-next-button';
+  const [swiper, setSwiper] = useState(null);
+
+  useEffect(() => {
+    if (swiper) {
+      //  Changes the lang direction and updates
+      swiper.changeLanguageDirection(AR('rtl', 'ltr', locale), false);
+
+      //  Recreates navigation
+      swiper.navigation.destroy();
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
+  }, [locale]);
 
   let css;
   if (color) {
@@ -49,11 +66,11 @@ const Carousel: React.FC<{
         </div>
 
         <Swiper
-          dir={`${AR('rtl', 'ltr')}`}
           modules={[Navigation, Pagination]}
+          onSwiper={(instance) => setSwiper(instance)}
           navigation={{
-            prevEl: AR(nextEl, prevEl) as string,
-            nextEl: AR(prevEl, nextEl) as string,
+            prevEl: AR(nextEl, prevEl, locale) as string,
+            nextEl: AR(prevEl, nextEl, locale) as string,
           }}
           pagination={{
             el: '.pagination',
