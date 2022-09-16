@@ -25,9 +25,18 @@ interface Item {
 const Carousel: React.FC<{
   items: Item[];
   itemOnClick: (item: any) => any;
-}> = ({ items, itemOnClick }) => {
+  color?: string;
+}> = ({ items, itemOnClick, color }) => {
   const prevEl = '.nav-prev-button';
   const nextEl = '.nav-next-button';
+
+  let css;
+  if (color) {
+    css = `
+    .swiper-bullet-active {
+      background: ${color} !important;
+    }`;
+  }
 
   return (
     <>
@@ -86,6 +95,7 @@ const Carousel: React.FC<{
             </SwiperSlide>
           ))}
         </Swiper>
+        <style>{css}</style>
         <div className="pagination text-center" />
       </div>
     </>

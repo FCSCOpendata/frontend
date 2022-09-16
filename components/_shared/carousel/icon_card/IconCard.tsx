@@ -39,7 +39,7 @@ const IconCard: React.FC<IconCardProps> = ({
           />
         </div>
         <h3
-          className="font-avenir font-medium text-md text-center mt-4"
+          className="font-avenir font-medium text-md text-center mt-4 line-clamp-2"
           style={style}
         >
           {title}

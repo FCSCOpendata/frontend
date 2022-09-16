@@ -1,6 +1,10 @@
 import Carousel from '../_shared/carousel/card/Carousel';
 
-const SubtopicsCarousel: React.FC<any> = ({ subtopics, subtopicOnClick }) => {
+const SubtopicsCarousel: React.FC<any> = ({
+  subtopics,
+  subtopicOnClick,
+  color,
+}) => {
   const items = subtopics.map((subtopic) => {
     return {
       name: subtopic.name,
@@ -22,7 +26,7 @@ const SubtopicsCarousel: React.FC<any> = ({ subtopics, subtopicOnClick }) => {
 
   return (
     <>
-      <Carousel items={items} itemOnClick={subtopicOnClick} />
+      <Carousel color={color} items={items} itemOnClick={subtopicOnClick} />
     </>
   );
 };

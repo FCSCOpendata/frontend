@@ -1,7 +1,17 @@
-const Badge: React.FC<{ text: string }> = ({ text }) => {
+const Badge: React.FC<{ text: string; color?: string }> = ({
+  text,
+  color,
+}) => {
   return (
     <>
-      <span className="bg-[#80E47E]  px-6  py-2  rounded-full">{text}</span>
+      <span
+        className={`px-6  py-2  rounded-full font-medium ${
+          color ? 'text-white' : ''
+        }`}
+        style={{ backgroundColor: color || '#80E47E' }}
+      >
+        {text}
+      </span>
     </>
   );
 };

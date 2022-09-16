@@ -104,7 +104,7 @@ export default function SimilarDatasets({ variables }) {
                   className="group"
                 >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">
-                    <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+                    <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-l z-10" />
                     <div className="min-h-[12vw]">
                       <img
                         src={
@@ -118,7 +118,7 @@ export default function SimilarDatasets({ variables }) {
                         className="w-full h-full object-center object-scale-down rounded-xl"
                       />
                     </div>
-                    <p className="absolute bottom-0 left-0 transition-all w-full p-4 text-sm text-white leading-4 font-avenir font-semibold group-hover:bg-slate-200 group-hover:opacity-75  group-hover:text-black">
+                    <p className="absolute bottom-0 left-0 transition-all w-full p-4 text-sm text-white leading-4 font-avenir font-semibold bg-slate-200 opacity-75 text-black group-hover:opacity-90">
                       {item.title}
                     </p>
                   </div>

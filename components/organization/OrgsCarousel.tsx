@@ -20,6 +20,7 @@ const OrgsCarousel: React.FC<any> = ({ orgs, active, orgOnClick }) => {
         active={active}
         itemOnClick={orgOnClick}
         identifier="orgs-carousel"
+        maxItems={9}
       />
     </>
   );
