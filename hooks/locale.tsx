@@ -2,9 +2,13 @@ import { useRouter } from 'next/router';
 
 export const AR = (
   ifTrue: string | HTMLElement | boolean = null,
-  ifFalse: string | HTMLElement | boolean = null
+  ifFalse: string | HTMLElement | boolean = null,
+  locale = null
 ) => {
-  const { locale } = useRouter();
+  if (!locale) {
+    const router = useRouter();
+    locale = router.locale;
+  }
 
   const isAR = locale.toLocaleLowerCase() == 'ar';
 

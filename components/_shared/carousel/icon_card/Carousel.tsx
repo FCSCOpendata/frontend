@@ -1,10 +1,11 @@
 import IconCard from './IconCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigation } from 'swiper';
 import NavButton from '../NavButton';
 import { AR } from '../../../../hooks/locale';
+import { useRouter } from 'next/router';
 
 interface Item {
   title: string;
@@ -32,11 +33,28 @@ const Carousel: React.FC<CarouselProps> = ({
   identifier,
   maxItems,
 }) => {
+  const { locale } = useRouter();
+
   const prevEl = `.nav-prev-button${identifier ? '--' + identifier : ''}`;
   const nextEl = `.nav-next-button${identifier ? '--' + identifier : ''}`;
   const [swiper, setSwiper] = useState(null);
 
   if (!maxItems || maxItems < 8) maxItems = 10;
+
+  //  This handles direction switching when the
+  //  language changes
+  useEffect(() => {
+    if (swiper) {
+      //  Changes the lang direction and updates
+      swiper.slideTo(items.findIndex((item) => item.name == active.name));
+      swiper.changeLanguageDirection(AR('rtl', 'ltr', locale));
+
+      //  Recreates navigation
+      swiper.navigation.destroy();
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
+  }, [locale]);
 
   return (
     <div className="group relative">
@@ -85,8 +103,8 @@ const Carousel: React.FC<CarouselProps> = ({
         //  it's needed to have different  identifiers  for
         //  each instance
         navigation={{
-          prevEl: AR(nextEl, prevEl) as string,
-          nextEl: AR(prevEl, nextEl) as string,
+          prevEl: AR(nextEl, prevEl, locale) as string,
+          nextEl: AR(prevEl, nextEl, locale) as string,
         }}
       >
         {items.map((item, index) => (
