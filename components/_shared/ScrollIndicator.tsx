@@ -77,7 +77,7 @@ const ScrollIndicator: React.FC<{
                     <div
                       className={`transition-opacity ease-in-out duration-150 w-[6px] h-[6px] ${
                         active == index ? ' opacity-100' : 'opacity-0'
-                      } bg-[#22B373] rounded-full`}
+                      } bg-nav-underline rounded-full`}
                     ></div>
                   </button>
                 ))}
