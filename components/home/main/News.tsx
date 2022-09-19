@@ -26,7 +26,7 @@ export default function News() {
       <p
         className="absolute bottom-0 
         p-8 py-2 inset-x-0 line-clamp-2 
-        text-lg font-avenir font-medium text-[#464646] group-hover:text-black
+        text-lg font-avenir font-medium text-[#464646] group-hover:text-black group-hover:font-bold
         bg-slate-200 opacity-75 group-hover:opacity-90 
         transition-all leading-snug
       "
