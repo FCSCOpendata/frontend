@@ -80,6 +80,7 @@ const Carousel: React.FC<CarouselProps> = ({
         dir={`${AR('rtl', 'ltr')}`}
         modules={[Navigation]}
         onSwiper={(instance) => setSwiper(instance)}
+        spaceBetween={15}
         breakpoints={{
           1: {
             slidesPerView: maxItems - 7,
