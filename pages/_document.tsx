@@ -31,6 +31,8 @@ export default class CustomDocument extends Document {
             `,
             }}
           />
+          <link rel="image_src" href="/images/bayanat-logo.svg" />
+          <meta name="og:image" content="/images/bayanat-logo.svg" />
         </Head>
         <body>
           <Main />
