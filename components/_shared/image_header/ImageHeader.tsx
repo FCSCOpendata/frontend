@@ -21,11 +21,9 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   children,
   color,
 }) => {
-  let scrollbarCss;
-  if (color)
-    scrollbarCss = `
+  const scrollbarCss = `
     .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
-      background: ${color} !important;
+      background: ${color || '#22B373'} !important;
       opacity: 0.5;
     }
   `;
