@@ -24,12 +24,12 @@ export default function News() {
   const headline = (text) => {
     return (
       <p
-        className="absolute bottom-0 
+        className={`absolute bottom-0 
         p-8 py-2 inset-x-0 line-clamp-2 
         text-lg font-avenir font-medium text-[#464646] group-hover:text-black group-hover:font-bold
-        bg-slate-200 opacity-75 group-hover:opacity-90 
+        ${text ? 'bg-slate-200' : ''} opacity-75 group-hover:opacity-90 
         transition-all leading-snug
-      "
+      `}
       >
         {text}
       </p>
@@ -51,10 +51,16 @@ export default function News() {
               href={posts[0] ? `${AR('/ar')}/news/${posts[0]?.slug}` : ''}
               onClick={(e) => (!posts[0] ? e.preventDefault() : null)}
               className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
-              title={posts[0].title}
+              title={posts[0]?.title}
             >
               <div className="relative w-full h-full">
-                <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-lg z-10" />
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                  ${
+                    posts[0] ? 'border-b-4  border-[#22B373]' : ''
+                  } rounded-b-lg 
+                `}
+                />
                 {posts[0] ? (
                   <img
                     alt={posts[0]?.title}
@@ -73,13 +79,15 @@ export default function News() {
               href={posts[1] ? `${AR('/ar')}/news/${posts[1]?.slug}` : ''}
               onClick={(e) => (!posts[1] ? e.preventDefault() : null)}
               className={`${posts[1] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[1].title}
+              title={posts[1]?.title}
             >
               <div className="relative w-full pb-1">
                 <span
-                  className={`absolute left-0 bottom-0 w-full h-full border-b-4 ${
-                    posts[1] ? 'border-[#22B373]' : ''
-                  } rounded-b-lg z-10`}
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                 ${
+                   posts[1] ? 'border-b-4  border-[#22B373]' : ''
+                 } rounded-b-lg 
+               `}
                 />
                 {posts[1] ? (
                   <img
@@ -97,10 +105,16 @@ export default function News() {
               href={posts[2] ? `${AR('/ar')}/news/${posts[2]?.slug}` : ''}
               onClick={(e) => (!posts[2] ? e.preventDefault() : null)}
               className={`${posts[2] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[2].title}
+              title={posts[2]?.title}
             >
               <div className="relative w-full pt-1">
-                <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-lg z-10" />
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                  ${
+                    posts[2] ? 'border-b-4  border-[#22B373]' : ''
+                  } rounded-b-lg 
+                `}
+                />
                 {posts[2] ? (
                   <img
                     alt={posts[2]?.title}
@@ -119,10 +133,16 @@ export default function News() {
               href={posts[3] ? `${AR('/ar')}/news/${posts[3]?.slug}` : ''}
               onClick={(e) => (!posts[3] ? e.preventDefault() : null)}
               className={`${posts[3] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[3].title}
+              title={posts[3]?.title}
             >
               <div className="relative w-full pb-1">
-                <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-lg z-10" />
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                  ${
+                    posts[3] ? 'border-b-4  border-[#22B373]' : ''
+                  } rounded-b-lg 
+                `}
+                />
                 {posts[3] ? (
                   <img
                     alt={posts[3]?.title}
@@ -139,10 +159,16 @@ export default function News() {
               href={posts[4] ? `${AR('/ar')}/news/${posts[4]?.slug}` : ''}
               onClick={(e) => (!posts[4] ? e.preventDefault() : null)}
               className={`${posts[4] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[4].title}
+              title={posts[4]?.title}
             >
               <div className="relative w-full pt-1">
-                <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-lg z-10" />
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                  ${
+                    posts[4] ? 'border-b-4  border-[#22B373]' : ''
+                  } rounded-b-lg 
+                `}
+                />
                 {posts[4] ? (
                   <img
                     alt={posts[4]?.title}
