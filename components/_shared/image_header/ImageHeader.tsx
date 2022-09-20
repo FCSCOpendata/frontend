@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Scrollbar from 'react-scrollbars-custom';
 import { AR } from '../../../hooks/locale';
 import Badge from './Badge';
 import Title from './Title';
@@ -20,6 +21,15 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   children,
   color,
 }) => {
+  let scrollbarCss;
+  if (color)
+    scrollbarCss = `
+    .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+      background: ${color} !important;
+      opacity: 0.5;
+    }
+  `;
+
   return (
     <>
       <div className={image?.url ? `xl:grid xl:grid-cols-2` : ''}>
@@ -71,13 +81,18 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
            `}
             >
               <div className="pt-[3rem] flex flex-col h-full justify-between">
-                <div className="h-[13em]">
+                <div className="h-[13em] group">
                   <Title icon={icon} color={color}>
                     {title}
                   </Title>
-                  <p className="w-full 2xl:w-[85%] text-[#7C7C7C] line-clamp-5 ">
-                    {children}
-                  </p>
+                  <div className="w-full 2xl:w-[85%]">
+                    <style>{scrollbarCss}</style>
+                    <Scrollbar style={{ height: '7.5em' }}>
+                      <p className="text-[#7C7C7C] w-[99%] line-clamp-5 group-hover:line-clamp-none transition-all">
+                        {children}
+                      </p>
+                    </Scrollbar>
+                  </div>
                 </div>
                 <div className="pb-[3rem]">
                   <Badge text={badgeText} color={color} />
