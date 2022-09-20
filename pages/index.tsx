@@ -45,29 +45,32 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
     },
   ];
 
-  if (Object.keys(page).length) {
+  if (Object.keys(page).length > 0) {
     const html = page.html;
     const regexp = /(?<=<img).*?(?=>)/g;
-    const images = html.match(regexp);
 
-    const getProps = (entry) => {
-      let url = entry.match(/(?<=src=").*?(?=")/);
-      let alt = entry.match(/(?<=alt=").*?(?=")/);
+    if (html) {
+      const images = html.match(regexp);
 
-      url = url ? url[0] : null;
-      alt = alt ? alt[0] : '';
+      const getProps = (entry) => {
+        let url = entry.match(/(?<=src=").*?(?=")/);
+        let alt = entry.match(/(?<=alt=").*?(?=")/);
 
-      return {
-        url,
-        alt,
+        url = url ? url[0] : null;
+        alt = alt ? alt[0] : '';
+
+        return {
+          url,
+          alt,
+        };
       };
-    };
 
-    let i;
-    const max =
-      heroImages.length < images.length ? heroImages.length : images.length;
-    for (i = 0; i < max; i++) {
-      heroImages[i] = getProps(images[i]);
+      let i;
+      const max =
+        heroImages.length < images.length ? heroImages.length : images.length;
+      for (i = 0; i < max; i++) {
+        heroImages[i] = getProps(images[i]);
+      }
     }
   }
 
