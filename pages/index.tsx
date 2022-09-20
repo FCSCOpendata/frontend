@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { GET_PAGES_BY_TAG_QUERY } from '../graphql/queries';
 import { useQuery } from '@apollo/react-hooks';
 import { AR } from '../hooks/locale';
+import Image from 'next/image';
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
   //  This gets the CMS page that has the tag
@@ -114,11 +115,14 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             'right-[calc(68vw-(100vw-1024px)/4)] 3xl:right-[calc(57vw+(100vw-1600px)/8)] top-[8%] 3xl:top-[calc(8%-(100vw-1600px)/5)]',
             'left-[calc(68vw-(100vw-1024px)/4)] 3xl:left-[calc(57vw+(100vw-1600px)/8)] top-[8%] 3xl:top-[calc(8%-(100vw-1600px)/5)]'
           )}
-          hidden lg:block`}
+          hidden lg:block w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)]`}
         >
-          <img
+          <Image
+            layout="responsive"
+            width={170}
+            height={170}
             src={heroImages[0].url}
-            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
+            className="rounded-[35px] border-white border-[10px] box-content"
             alt={heroImages[0].alt}
           />
         </div>
@@ -128,11 +132,14 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             'right-[calc(92vw-(100vw-1024px)/2)] 3xl:right-[calc(72vw+(100vw-1600px)/8)] top-[18%] 3xl:top-[calc(21%-(100vw-1600px)/5)]',
             'left-[calc(92vw-(100vw-1024px)/2)] 3xl:left-[calc(72vw+(100vw-1600px)/8)] top-[18%] 3xl:top-[calc(21%-(100vw-1600px)/5)]'
           )}
-          hidden lg:block`}
+          hidden lg:block w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)]`}
         >
-          <img
+          <Image
+            layout="responsive"
+            width={170}
+            height={170}
             src={heroImages[1].url}
-            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
+            className="rounded-[35px] border-white border-[10px] box-content"
             alt={heroImages[1].alt}
           />
         </div>
@@ -142,25 +149,31 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             'right-[calc(64vw-(100vw-1024px)/4)] 3xl:right-[calc(53vw+(100vw-1600px)/8)] top-[49%] 3xl:top-[calc(58%-(100vw-1600px)/5)]',
             'left-[calc(64vw-(100vw-1024px)/4)] 3xl:left-[calc(53vw+(100vw-1600px)/8)] top-[49%] 3xl:top-[calc(58%-(100vw-1600px)/5)]'
           )}
-          hidden lg:block`}
+          hidden lg:block w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)]`}
         >
-          <img
+          <Image
+            layout="responsive"
+            width={170}
+            height={170}
             src={heroImages[2].url}
-            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
+            className="rounded-[35px] border-white border-[10px] box-content"
             alt={heroImages[2].alt}
           />
         </div>
         <div
           className={`absolute w-full
           ${AR(
-            'right-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:right-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/20)]',
-            'left-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:left-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/20)]'
+            'right-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:right-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/30)]',
+            'left-[calc(90vw-(100vw-1024px)/2)] top-[59%] 3xl:left-[calc(70vw+(100vw-1600px)/8)] 3xl:top-[calc(65%-(100vw-1600px)/30)]'
           )}
-          hidden lg:block`}
+          hidden lg:block w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)]`}
         >
-          <img
+          <Image
+            layout="responsive"
+            width={170}
+            height={170}
             src={heroImages[3].url}
-            className="rounded-[35px] w-[150px] 3xl:w-[calc(155px+(100vw-1600px)/30)] border-white border-[10px] box-content"
+            className="rounded-[35px] border-white border-[10px] box-content"
             alt={heroImages[3].alt}
           />
         </div>
