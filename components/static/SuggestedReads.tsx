@@ -49,11 +49,13 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
                     className="z-10 object-cover mx-auto"
                   />
                 </div>
-                <h1 className="absolute bottom-0 left-0 z-20
+                <h1
+                  className="absolute bottom-0 left-0 z-20
                   p-8 py-1 inset-x-0 line-clamp-2 bg-slate-200
                   text-lg font-avenir font-medium text-[#464646] group-hover:text-black group-hover:font-bold
                   opacity-75 group-hover:opacity-90 transition-all leading-snug
-                ">
+                "
+                >
                   {suggestion.title}
                 </h1>
               </a>
