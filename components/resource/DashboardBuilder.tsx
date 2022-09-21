@@ -19,7 +19,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
           url: `${
             typeof window !== 'undefined'
               ? window.location.origin +
-                '/api/datastore/odata3.0/' +
+                '/api/datastore/odata/' +
                 resource.id
               : ''
           }`,

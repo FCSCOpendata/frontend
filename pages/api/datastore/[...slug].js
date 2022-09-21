@@ -1,13 +1,16 @@
+import getConfig from 'next/config';
 import axios from 'axios';
 
 export default async function handler(req, res) {
   const { slug } = req.query;
 
+  const { DMS } = getConfig().serverRuntimeConfig;
+
   if (slug.includes('odata')) {
     try {
       const data = await axios
         .get(
-          `https://ckan.fcsc.develop.datopian.com/datastore/odata3.0/${slug[1]}`
+          `${DMS}/datastore/odata3.0/${slug[1]}`
         )
         .then((res) => res);
 
@@ -24,7 +27,7 @@ export default async function handler(req, res) {
     try {
       const response = await axios
         .get(
-          `https://ckan.fcsc.develop.datopian.com/api/3/action/datastore_search?resource_id=${slug[1]}`
+          `${DMS}/api/3/action/datastore_search?resource_id=${slug[1]}`
         )
         .then((res) => res);
 
