@@ -18,7 +18,7 @@ const DashboardBuilder: React.FC<{ resource: any }> = ({ resource }) => {
           text: 'Copy and paste OData URL for desired resource, see the sample',
           url: `${
             typeof window !== 'undefined'
-              ? window.location.origin + '/api/datastore/odata/' + resource.id
+              ? window.location.origin + '/api/datastore/odata3.0/' + resource.id
               : ''
           }`,
         },
