@@ -38,9 +38,10 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
               <a
                 key={index}
                 href={`${AR('/ar')}/news/${suggestion.slug}`}
-                className="m-1 relative"
+                className="m-1 relative group border-b-4  border-[#22B373] rounded-lg"
+                title={suggestion.title}
               >
-                <div className="aspect-w-16 aspect-h-9 m-1 relative">
+                <div className="aspect-w-16 aspect-h-9 relative">
                   <img
                     src={suggestion.image}
                     width="100%"
@@ -48,7 +49,11 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
                     className="z-10 object-cover mx-auto"
                   />
                 </div>
-                <h1 className="absolute bottom-2 left-1 z-20 font-semibold text-[#fff] px-4 lg:pb-2">
+                <h1 className="absolute bottom-0 left-0 z-20
+                  p-8 py-1 inset-x-0 line-clamp-2 bg-slate-200
+                  text-lg font-avenir font-medium text-[#464646] group-hover:text-black group-hover:font-bold
+                  opacity-75 group-hover:opacity-90 transition-all leading-snug
+                ">
                   {suggestion.title}
                 </h1>
               </a>

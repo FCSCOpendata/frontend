@@ -102,6 +102,7 @@ export default function SimilarDatasets({ variables }) {
                   key={index}
                   href={`${AR('/ar')}/@${item.organization.name}/${item.name}`}
                   className="group"
+                  title={item.title}
                 >
                   <div className="relative w-full bg-gray-200 rounded-lg overflow-hidden w-4/5">
                     <span className="absolute left-0 bottom-0 w-full h-full border-b-4 border-[#22B373] rounded-b-l z-10" />
@@ -118,7 +119,7 @@ export default function SimilarDatasets({ variables }) {
                         className="w-full h-full object-center object-scale-down rounded-xl"
                       />
                     </div>
-                    <p className="absolute bottom-0 left-0 transition-all w-full p-4 text-sm text-white leading-4 font-avenir font-semibold bg-slate-200 opacity-75 text-black group-hover:opacity-90">
+                    <p className="absolute bottom-0 left-0 transition-all w-full p-5 py-1 text-sm text-white leading-snug font-avenir font-medium text-lg bg-slate-200 opacity-75 text-black group-hover:opacity-90 group-hover:font-bold line-clamp-2">
                       {item.title}
                     </p>
                   </div>
