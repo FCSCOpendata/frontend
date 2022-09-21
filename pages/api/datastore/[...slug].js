@@ -9,9 +9,7 @@ export default async function handler(req, res) {
   if (slug.includes('odata')) {
     try {
       const data = await axios
-        .get(
-          `${DMS}/datastore/odata3.0/${slug[1]}`
-        )
+        .get(`${DMS}/datastore/odata3.0/${slug[1]}`)
         .then((res) => res);
 
       res.setHeader(
@@ -26,9 +24,7 @@ export default async function handler(req, res) {
   } else {
     try {
       const response = await axios
-        .get(
-          `${DMS}/api/3/action/datastore_search?resource_id=${slug[1]}`
-        )
+        .get(`${DMS}/api/3/action/datastore_search?resource_id=${slug[1]}`)
         .then((res) => res);
 
       res.send(JSON.stringify(response.data.result));
