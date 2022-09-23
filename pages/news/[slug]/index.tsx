@@ -9,7 +9,7 @@ import { initializeApollo } from '../../../lib/apolloClient';
 
 const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
   const { t } = useTranslation('common');
-  
+
   const { data } = useQuery(GET_POST_QUERY, {
     variables: { slug },
   });
@@ -25,7 +25,7 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Post slug={slug} />
-      { post && <SuggestedReads from={post} /> }
+      {post && <SuggestedReads from={post} />}
     </>
   );
 };

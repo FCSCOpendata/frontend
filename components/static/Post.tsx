@@ -8,9 +8,7 @@ import { GET_POST_QUERY } from '../../graphql/queries';
 import { useEffect } from 'react';
 import { AR } from '../../hooks/locale';
 
-const Post: React.FC<{ slug: string; }> = ({
-  slug,
-}) => {
+const Post: React.FC<{ slug: string }> = ({ slug }) => {
   const { loading, error, data } = useQuery(GET_POST_QUERY, {
     variables: { slug },
     // Setting this value to true will make the component rerender when

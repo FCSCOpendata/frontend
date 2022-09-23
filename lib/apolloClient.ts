@@ -72,7 +72,7 @@ const restLink = new RestLink({
     Post: (data: any): any => {
       if (data.posts != null) {
         data.posts = data.posts.map((item) => {
-          return { __typename: 'Post', ...item }
+          return { __typename: 'Post', ...item };
         });
       }
 
