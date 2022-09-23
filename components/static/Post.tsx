@@ -8,9 +8,8 @@ import { GET_POST_QUERY } from '../../graphql/queries';
 import { useEffect } from 'react';
 import { AR } from '../../hooks/locale';
 
-const Post: React.FC<{ slug: string; setPost: (post: any) => void }> = ({
+const Post: React.FC<{ slug: string; }> = ({
   slug,
-  setPost,
 }) => {
   const { loading, error, data } = useQuery(GET_POST_QUERY, {
     variables: { slug },
@@ -20,11 +19,7 @@ const Post: React.FC<{ slug: string; setPost: (post: any) => void }> = ({
     notifyOnNetworkStatusChange: true,
   });
 
-  useEffect(() => {
-    if (setPost && data) setPost(data.post.posts[0]);
-  }, [data]);
-
-  if (error) return <ErrorMessage message="Error loading search results." />;
+  if (error) return <ErrorMessage message="Error loading post." />;
   if (loading) return <Spinner />;
   if (!data.post) return <ErrorPage statusCode={404} />;
 
