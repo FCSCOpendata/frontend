@@ -335,6 +335,7 @@ All the above works exactly the same for footer links.
 GhostCMS supports snippets that work as custom widgets. These can be used in `Pages` and `Posts`.
 
 ##### Card Grid
+
 ```
 <!-- Card Grid Snippet -->
 
@@ -446,7 +447,9 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
 
 </style>
 ```
+
 ##### Link Card Grid
+
 ```
 <!-- Link Card Grid Snippet -->
 
@@ -459,7 +462,7 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
         <div style="margin-bottom: 25px; display: flex; align-items: center;">
             <div class="image-wrapper">
                 <!-- Change this URL to add a new image to the card -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
             </div>
             <div style="text-align: left; margin-left: 20px;">
                 <!-- Change this URL to change the link -->
@@ -472,7 +475,7 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
         <div style="margin-bottom: 25px; display: flex; align-items: center;">
             <div class="image-wrapper">
                 <!-- Change this URL to add a new image to the card -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
             </div>
             <div style="text-align: left; margin-left: 20px;">
                 <!-- Change this URL to change the link -->
@@ -485,7 +488,7 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
         <div style="margin-bottom: 25px; display: flex; align-items: center;">
             <div class="image-wrapper">
                 <!-- Change this URL to add a new image to the card -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
             </div>
             <div style="text-align: left; margin-left: 20px;">
                 <!-- Change this URL to change the link -->
@@ -498,7 +501,7 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
         <div style="margin-bottom: 25px; display: flex; align-items: center;">
             <div class="image-wrapper">
                 <!-- Change this URL to add a new image to the card -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
             </div>
             <div style="text-align: left; margin-left: 20px;">
                 <!-- Change this URL to change the link -->
@@ -536,7 +539,7 @@ GhostCMS supports snippets that work as custom widgets. These can be used in `Pa
         padding: 0 15px;
         text-align: center;
     }
-    
+
     .link-card-grid .grid div.image-wrapper img {
         margin: 0;
         max-width: 75px;
