@@ -330,6 +330,234 @@ This example in GhostCMS would look like:
 
 All the above works exactly the same for footer links.
 
+#### Custom Snippets
+
+GhostCMS supports snippets that work as custom widgets. These can be used in `Pages` and `Posts`.
+
+##### Card Grid
+```
+<!-- Card Grid Snippet -->
+
+<!-- You can change the amount of columns in the line below. It accepts 2, 3, 4 and 5 columns. E.g. to display 3 columns, change 'grid-cols-2' to 'grid-cols-3'.  -->
+<div class="card-grid">
+    <div class="grid grid-cols-2" style="text-align: center">
+        <!-- Here you can modify, add or remove cards. To modify a card, 	 simply change the 'src' (source) attribute of the <img> tag or 	change the content of the <h1> and <p> tags. -->
+
+        <!-- Card -->
+        <div style="margin-bottom: 25px;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
+            </div>
+            <!-- You can change 'Title' to the desired title -->
+            <h5 style="margin: 0">Title</h5>
+            <!-- You can change 'Description' to the desired text -->
+            <p style="margin: 0">Description</p>
+        </div>
+        <!-- End of Card -->
+
+        <!-- Card -->
+        <div style="margin-bottom: 25px;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
+            </div>
+            <!-- You can change 'Title' to the desired title -->
+            <h5 style="margin: 0">Title</h5>
+            <!-- You can change 'Description' to the desired text -->
+            <p style="margin: 0">Description</p>
+        </div>
+        <!-- End of Card -->
+
+        <!-- Card -->
+        <div style="margin-bottom: 25px;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
+            </div>
+            <!-- You can change 'Title' to the desired title -->
+            <h5 style="margin: 0">Title</h5>
+            <!-- You can change 'Description' to the desired text -->
+            <p style="margin: 0">Description</p>
+        </div>
+        <!-- End of Card -->
+
+        <!-- Card -->
+        <div style="margin-bottom: 25px;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%">
+            </div>
+            <!-- You can change 'Title' to the desired title -->
+            <h5 style="margin: 0">Title</h5>
+            <!-- You can change 'Description' to the desired text -->
+            <p style="margin: 0">Description</p>
+        </div>
+        <!-- End of Card -->
+
+    </div>
+</div>
+
+<!-- Do not modify the content below -->
+<style>
+    .card-grid .grid {
+        display: grid;
+    }
+
+    .card-grid .grid-cols-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-grid .grid-cols-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .card-grid .grid-cols-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .card-grid .grid-cols-5 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .card-grid .grid > div {
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    .card-grid .grid div.image-wrapper img {
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 200px;
+    }
+
+    .card-grid .grid h1 {
+        font-weight: 700;
+        font-size: 18px !important;
+    }
+
+    .card-grid .grid p {
+        font-size: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+</style>
+```
+##### Link Card Grid
+```
+<!-- Link Card Grid Snippet -->
+
+<!-- You can change the amount of columns in the line below. It accepts 2, 3, 4 and 5 columns. E.g. to display 4 columns, change 'grid-cols-2' to 'grid-cols-4'.  -->
+<div class="link-card-grid">
+    <div class="grid grid-cols-2">
+        <!-- Here you can modify, add or remove cards. To modify a card, 	 simply change the 'src' (source) attribute of the <img> tag or 	change the content of the <h1> and <p> tags. -->
+
+        <!-- Card -->
+        <div style="margin-bottom: 25px; display: flex; align-items: center;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+            </div>
+            <div style="text-align: left; margin-left: 20px;">
+                <!-- Change this URL to change the link -->
+                <a href="http://www.google.com" target="_blank">Click here</a>
+            </div>
+        </div>
+        <!-- End of Card -->
+
+            <!-- Card -->
+        <div style="margin-bottom: 25px; display: flex; align-items: center;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+            </div>
+            <div style="text-align: left; margin-left: 20px;">
+                <!-- Change this URL to change the link -->
+                <a href="http://www.google.com" target="_blank">Click here</a>
+            </div>
+        </div>
+        <!-- End of Card -->
+
+            <!-- Card -->
+        <div style="margin-bottom: 25px; display: flex; align-items: center;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+            </div>
+            <div style="text-align: left; margin-left: 20px;">
+                <!-- Change this URL to change the link -->
+                <a href="http://www.google.com" target="_blank">Click here</a>
+            </div>
+        </div>
+        <!-- End of Card -->
+
+            <!-- Card -->
+        <div style="margin-bottom: 25px; display: flex; align-items: center;">
+            <div class="image-wrapper">
+                <!-- Change this URL to add a new image to the card -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" height="100%"> 
+            </div>
+            <div style="text-align: left; margin-left: 20px;">
+                <!-- Change this URL to change the link -->
+                <a href="http://www.google.com" target="_blank">Click here</a>
+            </div>
+        </div>
+        <!-- End of Card -->
+
+    </div>
+</div>
+
+<!-- Do not modify the content below -->
+<style>
+    .link-card-grid .grid {
+        display: grid;
+    }
+
+    .link-card-grid .grid-cols-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .link-card-grid .grid-cols-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .link-card-grid .grid-cols-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .link-card-grid .grid-cols-5 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .link-card-grid .grid > div {
+        padding: 0 15px;
+        text-align: center;
+    }
+    
+    .link-card-grid .grid div.image-wrapper img {
+        margin: 0;
+        max-width: 75px;
+    }
+
+    .link-card-grid .grid h1 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-size: 18px !important;
+    }
+
+    .link-card-grid .grid p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+</style>
+
+
+```
+
 ### Tests
 
 We use Jest for running tests:
