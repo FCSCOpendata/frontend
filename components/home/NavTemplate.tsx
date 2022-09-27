@@ -46,15 +46,15 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                   </Link>
                 </div>
                 <div
-                  className={`hidden lg:flex lg:space-x-6 ${
-                    AR() ? 'lg:mr-8' : 'lg:ml-8 '
+                  className={`hidden lg:flex lg:space-x-1 2xl:space-x-4 ${
+                    AR() ? 'xl:mr-8' : 'xl:ml-8 '
                   }`}
                 >
                   {menu.map((item, index) => (
                     <Link key={'menu-link' + index} href={item.path}>
                       <a
                         href={item.path}
-                        className="group relative self-center h-fit text-black inline-flex items-center px-2 pt-1 text-[13px] leading--[0] tracking-widest uppercase font-poppins font-medium"
+                        className="group relative self-center h-fit text-black inline-flex items-center px-0.5 xl:px-2 pt-1 text-[13px] leading--[0] tracking-widest uppercase font-poppins font-medium"
                       >
                         {item.title}
                         <span
