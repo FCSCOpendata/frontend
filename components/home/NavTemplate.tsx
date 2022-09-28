@@ -26,7 +26,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
     <Disclosure as="nav" className={`bg-white`}>
       {({ open }) => (
         <>
-          <div className="mx-auto px-2 sm:px-4 lg:px-14">
+          <div className="mx-auto px-2 sm:px-4 2xl:px-14">
             <div className="flex justify-between h-24">
               <div className="flex px-2 lg:px-0">
                 <div className="flex-shrink-0 flex items-center">
@@ -46,15 +46,15 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                   </Link>
                 </div>
                 <div
-                  className={`hidden lg:flex lg:space-x-1 2xl:space-x-4 ${
-                    AR() ? 'xl:mr-8' : 'xl:ml-8 '
+                  className={`hidden lg:flex lg:space-x-1 2xl:space-x-4 text-center ${
+                    AR() ? 'mr-4 xl:mr-8' : 'ml-4 xl:ml-8 '
                   }`}
                 >
                   {menu.map((item, index) => (
                     <Link key={'menu-link' + index} href={item.path}>
                       <a
                         href={item.path}
-                        className="group relative self-center h-fit text-black inline-flex items-center px-0.5 xl:px-2 pt-1 text-[13px] leading--[0] tracking-widest uppercase font-poppins font-medium"
+                        className="group relative self-center h-fit text-black inline-flex items-center px-1 2xl:px-2 pt-1 leading--[0] tracking-widest uppercase font-poppins text-xs"
                       >
                         {item.title}
                         <span

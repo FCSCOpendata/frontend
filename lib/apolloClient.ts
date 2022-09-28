@@ -78,6 +78,15 @@ const restLink = new RestLink({
 
       return data;
     },
+    Page: (data: any): any => {
+      if (data.pages != null) {
+        data.pages = data.pages.map((item) => {
+          return { __typename: 'Page', ...item };
+        });
+      }
+
+      return data;
+    },
   },
 });
 
