@@ -178,7 +178,7 @@ export default function News() {
                 ) : (
                   <div className="w-full h-36" />
                 )}
-                {headline(posts[3]?.title)}
+                {headline(posts[4]?.title)}
               </div>
             </a>
           </div>
