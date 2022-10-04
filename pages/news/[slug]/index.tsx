@@ -9,13 +9,14 @@ import SuggestedReads from '../../../components/static/SuggestedReads';
 import { GET_POST_QUERY } from '../../../graphql/queries';
 import { initializeApollo } from '../../../lib/apolloClient';
 
-const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
+const PageItem: React.FC<{
+  slug: string;
+  variables: any;
+}> = ({ slug, variables }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
 
-  const { data } = useQuery(GET_POST_QUERY, {
-    variables: { slug },
-  });
+  const { data } = useQuery(GET_POST_QUERY, { variables });
 
   //  Ensures that the URL is right after
   //  switching language
@@ -34,7 +35,7 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
         </title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Post slug={slug} />
+      <Post variables={{ slug }} />
       {post && <SuggestedReads from={post} />}
     </>
   );
@@ -43,31 +44,58 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let slug = context.query.slug as string;
 
-  //  It's needed to ensure that when the language
-  //  is set to Arabic the Arabic posts are pulled
-  if (context.locale.toLowerCase() == 'ar') {
-    //  Checks if current slug starts with 'ar-'
-    if (!slug.startsWith('ar-')) {
-      slug = `ar-${slug}`;
-    }
-  } else {
-    if (slug.startsWith('ar-')) {
-      slug = slug.replace('ar-', '');
-    }
-  }
+  //  The posts might not have  a  translation,
+  //  in this case, the equivalent post should
+  //  be displayed
+  const slugEn = slug.replace(/^ar-/, '');
+  const slugAr = 'ar-' + slugEn;
 
   const apolloClient = initializeApollo();
 
-  const queryParams = {
-    query: GET_POST_QUERY,
-    variables: { slug },
+  const variablesEn = {
+    slug: slugEn,
   };
 
-  await apolloClient.query(queryParams);
+  const variablesAr = {
+    slug: slugAr,
+  };
+
+  await apolloClient.query({ query: GET_POST_QUERY, variables: variablesEn });
+  await apolloClient.query({ query: GET_POST_QUERY, variables: variablesAr });
+
+  const dataEn = apolloClient.readQuery({
+    query: GET_POST_QUERY,
+    variables: variablesEn,
+  });
+
+  const dataAr = apolloClient.readQuery({
+    query: GET_POST_QUERY,
+    variables: variablesAr,
+  });
+
+  let variables = variablesEn;
+  if (context.locale.toLowerCase() == 'ar') {
+    if (dataAr.post?.posts) {
+      variables = variablesAr;
+      slug = slugAr;
+    } else {
+      variables = variablesEn;
+      slug = slugEn;
+    }
+  } else {
+    if (dataEn.post?.posts) {
+      variables = variablesEn;
+      slug = slugEn;
+    } else {
+      variables = variablesAr;
+      slug = slugAr;
+    }
+  }
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
+      variables,
       slug,
     },
   };
