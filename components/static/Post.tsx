@@ -5,12 +5,11 @@ import * as timeago from 'timeago.js';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_POST_QUERY } from '../../graphql/queries';
-import { useEffect } from 'react';
 import { AR } from '../../hooks/locale';
 
-const Post: React.FC<{ slug: string }> = ({ slug }) => {
+const Post: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_POST_QUERY, {
-    variables: { slug },
+    variables,
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
     // more data
@@ -23,11 +22,15 @@ const Post: React.FC<{ slug: string }> = ({ slug }) => {
 
   const { title, html, image, readingTime, published } = data.post.posts[0];
 
+  const dir = variables.slug.startsWith('ar-') ? 'rtl' : 'ltr';
+
   return (
     <>
       <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-6 overflow-hidden">
         <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
-        <h1 className="text-3xl font-extrabold z-10">{title}</h1>
+        <h1 className="text-3xl font-extrabold z-10" dir={dir}>
+          {title}
+        </h1>
         <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
           <div className={`${AR('ml-4', 'mr-4')}`}>
             <img
@@ -52,7 +55,7 @@ const Post: React.FC<{ slug: string }> = ({ slug }) => {
       <div className="my-10 grid place-content-center font-avenir">
         <article className="prose prose-stone md:prose-lg lg:prose-xl">
           {image && <img src={image} className="mb-6" alt={title} />}
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div dangerouslySetInnerHTML={{ __html: html }} dir={dir} />
         </article>
       </div>
     </>
