@@ -53,7 +53,7 @@ export default function News() {
               className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
               title={posts[0]?.title}
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-[24.5rem]">
                 <span
                   className={`absolute left-0 bottom-0 w-full h-full z-10 
                   ${
