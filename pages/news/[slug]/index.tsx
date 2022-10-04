@@ -47,8 +47,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //  The posts might not have  a  translation,
   //  in this case, the equivalent post should
   //  be displayed
-  let slugEn = slug.replace(/^ar-/, '');
-  let slugAr = 'ar-' + slugEn;
+  const slugEn = slug.replace(/^ar-/, '');
+  const slugAr = 'ar-' + slugEn;
 
   const apolloClient = initializeApollo();
 
