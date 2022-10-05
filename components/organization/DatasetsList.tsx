@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import SharedDatasetsList from '../_shared/DatasetsList';
 
 const DatasetsList: React.FC<any> = ({ org, onPageChange, page }) => {
-  const fq = `organization:${org}`;
+  const [fq, setFq] = useState(`organization:${org.name}`);
 
   return (
     <>
