@@ -34,8 +34,6 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   fixTranslations(result.organization);
   fixTranslations(resource);
 
-  console.log(result);
-
   if (!resource)
     return <ErrorMessage message="Error loading data"></ErrorMessage>;
 
