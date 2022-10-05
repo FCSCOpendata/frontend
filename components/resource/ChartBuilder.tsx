@@ -36,7 +36,9 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
   };
   // Remove internally generated fields such as `_id`
-  const dimensionFields = result.fields.filter((field) => !(field.id === '_id'));
+  const dimensionFields = result.fields.filter(
+    (field) => !(field.id === '_id')
+  );
   let measureFields = result.fields.filter((field) => !(field.id === '_id'));
 
   const handleChartTypeChange = (event) => {
@@ -49,9 +51,9 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
     const newView = JSON.parse(JSON.stringify(view));
     newView.spec.group = event.target.value;
     newView.spec.series[0] = '';
-    measureFields = measureFields.forEach(field => {
+    measureFields = measureFields.forEach((field) => {
       field.disabled = false;
-      if(field.id == event.target.value) {
+      if (field.id == event.target.value) {
         field.disabled = true;
       }
     });
@@ -164,7 +166,11 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                   {t('select')}
                 </option>
                 {measureFields.map((field, index) => (
-                  <option key={`measure-${index}`} value={field.id} disabled={field.disabled}>
+                  <option
+                    key={`measure-${index}`}
+                    value={field.id}
+                    disabled={field.disabled}
+                  >
                     {field.id}
                   </option>
                 ))}
