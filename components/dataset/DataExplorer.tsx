@@ -202,9 +202,15 @@ const DataExplorer: React.FC<{
             </p>
           </div>
           <div className="grid xl:justify-items-end align-middle justify-items-start ">
-            <Link href={`${router.asPath}/r/${encodeURIComponent(resources[activeTable].name)}`}>
+            <Link
+              href={`${router.asPath}/r/${encodeURIComponent(
+                resources[activeTable].name
+              )}`}
+            >
               <a
-                href={`${router.asPath}/r/${encodeURIComponent(resources[activeTable].name)}`}
+                href={`${router.asPath}/r/${encodeURIComponent(
+                  resources[activeTable].name
+                )}`}
                 className="rounded-xl bg-button-gradient p-3 text-white font-avenir font-medium text-[20px] h-fit"
               >
                 <ExternalLinkIcon
