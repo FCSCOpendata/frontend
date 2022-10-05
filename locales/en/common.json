@@ -112,5 +112,6 @@
   "message-err": "message should not be empty and must not be more than 1000 character",
   "request-msg": "Type the details of the requested dataset",
   "request-descrp": "Please fill out the form below to request the dataset you would like to see on the portal",
-  "request-header": "Request Dataset"
+  "request-header": "Request Dataset",
+  "missing-translation": "Sorry, there is no English version for this page right now"
 }
