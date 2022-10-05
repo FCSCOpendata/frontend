@@ -150,8 +150,9 @@ const MainOptions: React.FC<any> = ({
           {t('og-h-expl', { count: activeOrg?.package_count })}
         </h1>
         <DatasetsList
+          key={activeOrg.name}
           // TODO: improve this logic
-          org={activeOrg?.name}
+          org={{ name: activeOrg.name }}
           onPageChange={(page) => {
             router.query.searchPage = page + '';
             router.push(router, undefined, { shallow: true });
