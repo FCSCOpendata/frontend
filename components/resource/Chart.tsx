@@ -59,7 +59,7 @@ const Chart: React.FC<{ view: any }> = ({ view }) => {
   };
 
   return (
-    <div className="card-custom w-full h-64">
+    <div className="card-custom w-full h-full">
       {view.spec.type === 'bar' ? (
         <Bar data={chartData} height={300} options={options} />
       ) : (

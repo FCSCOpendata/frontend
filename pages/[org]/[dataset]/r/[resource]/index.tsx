@@ -13,12 +13,17 @@ import ScrollIndicator from '../../../../../components/_shared/ScrollIndicator';
 import Citation from '../../../../../components/_shared/Citation';
 import { fixTranslations } from '../../../../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
+import { ErrorMessage } from '../../../../../components/_shared';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
-  const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
+  const { data, loading, error } = useQuery(GET_DATASET_QUERY, {
+    variables,
+    notifyOnNetworkStatusChange: true,
+  });
 
   if (loading) return <div>Loading</div>;
+  if (error) return <ErrorMessage message="Error loading data"></ErrorMessage>;
   const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
@@ -28,6 +33,9 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   fixTranslations(result);
   fixTranslations(result.organization);
   fixTranslations(resource);
+
+  if (!resource)
+    return <ErrorMessage message="Error loading data"></ErrorMessage>;
 
   return (
     <>
