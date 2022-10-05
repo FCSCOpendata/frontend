@@ -179,6 +179,7 @@ const MainOptions: React.FC<any> = ({
           {t('tp-h-expl', { count: activeTopic.package_count })}
         </h1>
         <DatasetsList
+          key={activeTopic.name}
           topic={activeTopic?.name}
           onPageChange={(page) => {
             router.query.searchPage = page + '';
