@@ -85,7 +85,10 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                   </Title>
                   <div className="w-full 2xl:w-[85%]">
                     <style>{scrollbarCss}</style>
-                    <Scrollbar style={{ height: '7.5em' }}>
+                    <Scrollbar
+                      rtl={AR(true, false) as boolean}
+                      style={{ height: '7.5em' }}
+                    >
                       <p className="text-[#7C7C7C] w-[99%] line-clamp-5 group-hover:line-clamp-none transition-all">
                         {children}
                       </p>
