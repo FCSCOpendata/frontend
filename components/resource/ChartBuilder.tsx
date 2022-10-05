@@ -14,7 +14,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
     resources,
     specType: 'simple',
     spec: {
-      type: 'bar',
+      type: '',
       group: '',
       series: [],
     },
@@ -36,7 +36,8 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
   };
   // Remove internally generated fields such as `_id`
-  const fields = result.fields.filter((field) => !(field.id === '_id'));
+  const dimensionFields = result.fields.filter((field) => !(field.id === '_id'));
+  let measureFields = result.fields.filter((field) => !(field.id === '_id'));
 
   const handleChartTypeChange = (event) => {
     const newView = JSON.parse(JSON.stringify(view));
@@ -47,6 +48,13 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
   const handleDimensionChange = (event) => {
     const newView = JSON.parse(JSON.stringify(view));
     newView.spec.group = event.target.value;
+    newView.spec.series[0] = '';
+    measureFields = measureFields.forEach(field => {
+      field.disabled = false;
+      if(field.id == event.target.value) {
+        field.disabled = true;
+      }
+    });
     setView(newView);
   };
 
@@ -115,6 +123,9 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 onChange={handleChartTypeChange}
                 className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
+                <option value="" disabled selected>
+                  {t('select')}
+                </option>
                 <option value="bar">{t('bar-chart')}</option>
                 <option value="line">{t('line-chart')}</option>
               </select>
@@ -126,9 +137,13 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
               <select
                 value={view.spec.group}
                 onChange={handleDimensionChange}
+                disabled={!view.spec.type}
                 className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
-                {fields.map((field, index) => (
+                <option value="" disabled selected>
+                  {t('select')}
+                </option>
+                {dimensionFields.map((field, index) => (
                   <option key={`dimension-${index}`} value={field.id}>
                     {field.id}
                   </option>
@@ -142,10 +157,14 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
               <select
                 value={view.spec.series[0] || ''}
                 onChange={handleMeasureChange}
+                disabled={!view.spec.type || !view.spec.group}
                 className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
               >
-                {fields.map((field, index) => (
-                  <option key={`measure-${index}`} value={field.id}>
+                <option value="" disabled selected>
+                  {t('select')}
+                </option>
+                {measureFields.map((field, index) => (
+                  <option key={`measure-${index}`} value={field.id} disabled={field.disabled}>
                     {field.id}
                   </option>
                 ))}
