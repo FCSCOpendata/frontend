@@ -180,13 +180,14 @@ export const GET_DATASET_QUERY = gql`
           id
           name
           title: name
-          description
           path: url
           format
           created
           updated: metadata_modified
           size
           title_translated: name_translated
+          description: notes
+          description_translated: notes_translated
         }
         organization {
           name
