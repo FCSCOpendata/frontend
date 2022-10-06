@@ -68,6 +68,14 @@ const Search: React.FC<Props> = ({ variables }) => {
           setQvariables={setQvariables}
           setSideFilter={setSideFilter}
           sideFilter={sideFilter}
+          onPageChange={(page) => {
+            router.query.searchPage = page + '';
+            router.push(router, undefined, { shallow: true });
+            setDestination(document.location.href);
+            document
+              .getElementById('datasets')
+              .scrollIntoView({ behavior: 'smooth' });
+          }}
         />
         <div className="mb-12 mx-10 md:mx-28 mt-12">
           <div className="px-4">

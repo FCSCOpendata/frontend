@@ -23,6 +23,7 @@ export default function FiltersBar({
   setSideFilter,
   filters,
   sideFilter,
+  onPageChange,
 }) {
   const { t } = useTranslation('common');
   const { query } = useRouter();
@@ -80,12 +81,14 @@ export default function FiltersBar({
         });
         return newFilter;
       });
+      onPageChange(1);
     } else if (btnType === 'keyword') {
       const fq = `tags:${item}`;
       setQvariables((prev) => ({
         ...prev,
         fq: fq,
       }));
+      onPageChange(1);
     } else {
       setSideFilter((prev) => {
         const newFilter = { ...prev };
@@ -101,6 +104,7 @@ export default function FiltersBar({
         });
         return newFilter;
       });
+      onPageChange(1);
     }
   };
 
