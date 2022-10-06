@@ -48,17 +48,21 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
 
   if (Object.keys(page).length > 0) {
     const html = page.html;
-    const regexp = /(?<=<img).*?(?=>)/g;
+    const regexp = /<img.*?>/g;
 
     if (html) {
       const images = html.match(regexp);
 
       const getProps = (entry) => {
-        let url = entry.match(/(?<=src=").*?(?=")/);
-        let alt = entry.match(/(?<=alt=").*?(?=")/);
+        let url = entry.match(/src=".*?"/);
+
+        let alt = entry.match(/alt=".*?"/);
 
         url = url ? url[0] : null;
         alt = alt ? alt[0] : '';
+
+        if (url) url = url.replace('src="', '').replace('"', '');
+        if (alt) alt = alt.replace('alt="', '').replace('"', '');
 
         return {
           url,
