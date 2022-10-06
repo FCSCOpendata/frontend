@@ -27,7 +27,12 @@ const SuggestedReads: React.FC<any> = ({ from }) => {
       <div className="my-20 py-20 mx-5 md:mx-28">
         <div className="block mx-auto">
           <h1 className="font-semibold text-2xl px-1">{t('next-reads')}</h1>
-          {error && <ErrorMessage error={error} message="Error loading suggested reads" />}
+          {error && (
+            <ErrorMessage
+              error={error}
+              message="Error loading suggested reads"
+            />
+          )}
           {loading && (
             <div className="w-full flex justify-center">
               <Spinner className="mt-10" size="10" />

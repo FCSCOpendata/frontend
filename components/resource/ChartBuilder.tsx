@@ -29,7 +29,8 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
   });
   const [switchTab, setswitchTab] = useState(true);
 
-  if (error) return <ErrorMessage error={error} message="Error loading dataset" />;
+  if (error)
+    return <ErrorMessage error={error} message="Error loading dataset" />;
   if (loading) return <Spinner />;
 
   const { result } = data.datastore || {

@@ -13,11 +13,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
 
-
   if (loading) return <div>Loading</div>;
 
   //  Displays error if no results, as dataset should exist
-  if (error || !data?.dataset) return <ErrorMessage error={error} message="Error loading dataset" />;
+  if (error || !data?.dataset)
+    return <ErrorMessage error={error} message="Error loading dataset" />;
   const { result } = data.dataset;
 
   result.tags.forEach((el) => fixTranslations(el));

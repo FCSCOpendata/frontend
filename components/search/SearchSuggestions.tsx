@@ -9,7 +9,9 @@ const SearchSuggestions: React.FC = () => {
 
   if (loading) return <div>Loading Search Suggestions</div>;
   if (error)
-    return <ErrorMessage error={error} message="Error loading search suggestions" />;
+    return (
+      <ErrorMessage error={error} message="Error loading search suggestions" />
+    );
 
   const result = data.popular.result.results;
 

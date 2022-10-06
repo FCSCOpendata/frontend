@@ -24,7 +24,7 @@ const Post: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (error) return <ErrorMessage message="Error loading post." />;
   if (loading) return <Spinner />;
-  if (!data.post) return <FourOhFour></FourOhFour>;
+  if (!data?.post) return <FourOhFour></FourOhFour>;
 
   const { title, html, image, readingTime, published } = data.post.posts[0];
 

@@ -106,8 +106,12 @@ const MainOptions: React.FC<any> = ({
       </div>
     );
   if (subOrgsError || orgError || !orgData?.org)
-    return <ErrorMessage error={subOrgsError || orgError} message="Error loading organization." />;
-      
+    return (
+      <ErrorMessage
+        error={subOrgsError || orgError}
+        message="Error loading organization."
+      />
+    );
 
   const activeOrg = orgData?.org?.result;
   const subOrgs = subOrgsData?.orgs?.result;

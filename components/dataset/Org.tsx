@@ -13,7 +13,7 @@ const OrgInfo: React.FC<{ variables: any }> = ({ variables }) => {
   });
 
   if (loading) return <Spinner />;
-  
+
   //  Shows error if no results, as org should exist
   if (error || !data?.dataset)
     return <ErrorMessage error={error} message="Error loading organization" />;

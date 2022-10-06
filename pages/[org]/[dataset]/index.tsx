@@ -33,7 +33,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (loading) return <div>Loading</div>;
   if (error) return <ErrorMessage message="Error loading dataset" />;
-  if (!data.dataset) return <FourOhFour></FourOhFour>
+  if (!data?.dataset) return <FourOhFour></FourOhFour>;
   const { result } = data.dataset;
 
   const downloadAll = () => {
