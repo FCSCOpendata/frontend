@@ -31,6 +31,7 @@ const Code: React.FC<any> = ({ language, children }) => {
               padding: '10px',
               paddingLeft: '40px',
               paddingRigth: '20px',
+              paddingTop: '35px'
             }}
           >
             {children}
