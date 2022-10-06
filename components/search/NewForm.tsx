@@ -11,7 +11,14 @@ const SearchForm: React.FC<{
   setQvariables: any;
   setSideFilter: any;
   sideFilter: any;
-}> = ({ variables, setQvariables, setSideFilter, sideFilter }) => {
+  onPageChange?: (page: number) => void;
+}> = ({
+  variables,
+  setQvariables,
+  setSideFilter,
+  sideFilter,
+  onPageChange,
+}) => {
   const { t } = useTranslation('common');
   const searchQueryRef = useRef<HTMLInputElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,6 +40,7 @@ const SearchForm: React.FC<{
       };
       return newdata;
     });
+    onPageChange(1);
   };
   const handlekeyEvent = (e) => (e.key === 'Enter' ? handleSubmit(e) : null);
 
@@ -128,6 +136,7 @@ const SearchForm: React.FC<{
           setSideFilter={setSideFilter}
           filters={filter}
           sideFilter={sideFilter}
+          onPageChange={onPageChange}
         />
       </div>
     </div>
