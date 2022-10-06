@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+  /* 
+    This serves a simple way to make sure footer is not close 
+    to the navbar when the page doesn't have much content 
+  */
+  min-height: calc(100vh - 146px - 96px);
+}
+
 .bg-hero {
   background-size: cover;
   background-image: url('/images/hero-dashed-line.svg'),
@@ -344,4 +352,44 @@ svg.star-svg {
   color: #7c7c82 !important;
   margin-left: 8px !important;
   padding: 0px !important;
+}
+
+/* 404 Page */
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #888;
+  margin: 0;
+}
+
+.fof-main {
+  display: table;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.fof {
+  display: table-cell;
+  vertical-align: middle;
+  transition: all 0.6s;
+}
+
+.fof h1 {
+  font-size: 75px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type 0.5s alternate infinite;
+}
+
+@keyframes type {
+  from {
+    box-shadow: inset -3px 0px 0px #888;
+  }
+  to {
+    box-shadow: inset -3px 0px 0px transparent;
+  }
 }

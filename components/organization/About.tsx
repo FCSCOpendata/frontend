@@ -12,8 +12,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <Spinner />;
+  if (error || !data.org)
+    return (
+      <ErrorMessage error={error} message="Error loading organization." />
+    );
 
   const { result } = data.org;
 

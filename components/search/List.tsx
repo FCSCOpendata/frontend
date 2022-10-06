@@ -35,6 +35,12 @@ const List: React.FC<{
     notifyOnNetworkStatusChange: true,
   });
 
+  if (errorSearch)
+    <ErrorMessage
+      error={errorSearch}
+      message="Error loading search"
+    ></ErrorMessage>;
+
   const searchResults = dataSearch?.search.result;
 
   useEffect(() => {

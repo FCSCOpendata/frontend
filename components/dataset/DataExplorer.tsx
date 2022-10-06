@@ -31,7 +31,12 @@ const DataExplorer: React.FC<{
     variables: { resource_id: resources[activeTable].id },
   });
   if (loading) return <Spinner />;
-  if (error) return <ErrorMessage message="Error loading datastore" />;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading data explorer" />
+    );
+
+  //  Display empty data explorer if no results
   const { result } = data.datastore || {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
   };

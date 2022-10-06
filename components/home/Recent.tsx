@@ -19,8 +19,11 @@ const RecentDataset: React.FC = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <div>Loading</div>;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading search results." />
+    );
 
   const { result } = data.search;
 

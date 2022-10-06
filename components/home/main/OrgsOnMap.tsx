@@ -33,8 +33,14 @@ export default function Orgs() {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading organizations." />;
   if (loading) return <Spinner />;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading organizations." />
+    );
+
+  //  If no results, return empty component
+  if (!data?.orgs) return <></>;
 
   const result = data.orgs.result.filter((org) => org.total > 0);
 

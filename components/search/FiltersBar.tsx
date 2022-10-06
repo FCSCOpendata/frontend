@@ -57,15 +57,26 @@ export default function FiltersBar({
     { loading: loadTopics, error: errorTopics, data: dataTopics },
   ] = queryMultiple();
 
-  if (errorOrg) return <ErrorMessage message="Error loading organizations" />;
+  if (errorOrg)
+    return (
+      <ErrorMessage error={errorOrg} message="Error loading organizations" />
+    );
   if (loadOrgs) return <Spinner />;
   if (errorCollections)
-    return <ErrorMessage message="Error loading Collections" />;
+    return (
+      <ErrorMessage
+        error={errorCollections}
+        message="Error loading Collections"
+      />
+    );
   if (loadCollections) return <Spinner />;
-  if (errorTopics) return <ErrorMessage message="Error loading topics tree" />;
+  if (errorTopics)
+    return (
+      <ErrorMessage error={errorTopics} message="Error loading topics tree" />
+    );
   if (loadTopics) return <Spinner />;
-  const orgsResults = dataOrgs.orgs.result;
-  const collectionsResults = dataCollections.collections.result;
+  const orgsResults = dataOrgs?.orgs?.result;
+  const collectionsResults = dataCollections?.collections?.result;
 
   const filterSearch = (event, btnType, item) => {
     if (event.target.id !== 'true') {

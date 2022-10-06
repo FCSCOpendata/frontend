@@ -1,12 +1,10 @@
 import Head from 'next/head';
-import ErrorPage from 'next/error';
-import { useQuery } from '@apollo/react-hooks';
-import * as timeago from 'timeago.js';
-import { CalendarIcon } from '@heroicons/react/outline';
 import { ErrorMessage, Spinner } from '../_shared';
 import { GET_PAGE_QUERY } from '../../graphql/queries';
 import { AR } from '../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
+import FourOhFour from '../../pages/404';
+import { useQuery } from '@apollo/react-hooks';
 
 const Page: React.FC<{ slug: string }> = ({ slug }) => {
   const { t } = useTranslation('common');
@@ -19,9 +17,10 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading the page." />;
+  if (error)
+    return <ErrorMessage error={error} message="Error loading the page." />;
   if (loading) return <Spinner />;
-  if (!data.page) return <ErrorPage statusCode={404} />;
+  if (!data?.page) return <FourOhFour></FourOhFour>;
 
   const { title, html, image, readingTime, published } = data.page.pages[0];
 
