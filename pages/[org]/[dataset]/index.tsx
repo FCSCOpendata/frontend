@@ -20,6 +20,7 @@ import { AR, fixTranslations } from '../../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 import Share from '../../../components/_shared/Share';
 import Rate from '../../../components/dataset/Rate';
+import FourOhFour from '../../404';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -32,6 +33,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (loading) return <div>Loading</div>;
   if (error) return <ErrorMessage message="Error loading dataset" />;
+  if (!data.dataset) return <FourOhFour></FourOhFour>
   const { result } = data.dataset;
 
   const downloadAll = () => {

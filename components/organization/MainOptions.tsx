@@ -41,7 +41,7 @@ const MainOptions: React.FC<any> = ({
   });
 
   useEffect(() => {
-    if (orgData) {
+    if (orgData?.org) {
       const tmp = orgData.org.result;
       setActiveOrg({
         org: {
@@ -105,8 +105,9 @@ const MainOptions: React.FC<any> = ({
         <Spinner className="mt-10" size="10" id="loading" />
       </div>
     );
-  if (subOrgsError || orgError)
-    return <ErrorMessage message="Error loading organization." />;
+  if (subOrgsError || orgError || !orgData?.org)
+    return <ErrorMessage error={subOrgsError || orgError} message="Error loading organization." />;
+      
 
   const activeOrg = orgData?.org?.result;
   const subOrgs = subOrgsData?.orgs?.result;

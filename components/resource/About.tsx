@@ -14,14 +14,23 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <Spinner />;
+  if (error || !data?.dataset)
+    return <ErrorMessage error={error} message="Error loading dataset" />;
 
   const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
+
+  if (!resource?.id)
+    return (
+      <ErrorMessage
+        error="Resource not found in dataset"
+        message="Error loading resource data"
+      ></ErrorMessage>
+    );
 
   fixTranslations(result);
   fixTranslations(resource);

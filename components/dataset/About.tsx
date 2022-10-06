@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import * as timeago from 'timeago.js';
 import { useQuery } from '@apollo/react-hooks';
 import { ErrorMessage, Tags } from '../../components/_shared';
 import { GET_DATASET_QUERY } from '../../graphql/queries';
@@ -14,8 +13,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, { variables });
 
+
   if (loading) return <div>Loading</div>;
-  if (error) return <ErrorMessage message="Error loading dataset" />;
+
+  //  Displays error if no results, as dataset should exist
+  if (error || !data?.dataset) return <ErrorMessage error={error} message="Error loading dataset" />;
   const { result } = data.dataset;
 
   result.tags.forEach((el) => fixTranslations(el));

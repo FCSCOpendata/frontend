@@ -96,7 +96,7 @@ const MainOptions: React.FC<any> = ({
   }, [topicData]);
 
   if (topicError || subtopicsError)
-    return <ErrorMessage message="Error loading topics." />;
+    return <ErrorMessage error={topicError || subtopicsError} message="Error loading topic" />;
   if (topicLoading || subtopicsLoading)
     return (
       <div className="w-full flex justify-center">

@@ -15,10 +15,13 @@ const Preview: React.FC<{ view: any }> = ({ view }) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <Spinner />;
+  if (error)
+    return <ErrorMessage error={error} message="Error loading data." />;
 
-  const { result } = data.datastore;
+  const { result } = data.datastore || {
+    result: { sample: [], count: 0, fields: [] },
+  };
 
   // Assuming for now it is always a table view
   const columns = result.fields.map((field) => ({

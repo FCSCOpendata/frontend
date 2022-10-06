@@ -16,7 +16,7 @@ export default function News() {
     // more data
     notifyOnNetworkStatusChange: true,
   });
-  if (error) return <ErrorMessage message="Error loading dataset." />;
+  if (error) return <ErrorMessage error={error} message="Error loading dataset" />;
   if (loading) return <Spinner />;
 
   const { posts } = data.posts;

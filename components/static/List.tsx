@@ -30,7 +30,8 @@ const List: React.FC = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading search results." />;
+  if (error)
+    return <ErrorMessage error={error} message="Error loading posts." />;
   if (loading) return <Spinner />;
   const { posts, meta } = data.posts;
 

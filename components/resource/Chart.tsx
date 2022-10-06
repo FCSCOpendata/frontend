@@ -33,7 +33,7 @@ const Chart: React.FC<{ view: any }> = ({ view }) => {
     variables: { resource_id: view.resources[0].id },
   });
   if (loading) return <Spinner />;
-  if (error) return <ErrorMessage message="Error loading datastore" />;
+  if (error) return <ErrorMessage error={error} message="Error loading chart" />;
   const { result } = data.datastore || {
     result: { sample: [], count: 0, fields: [] }, // this is needed when datastore is inactive
   };
