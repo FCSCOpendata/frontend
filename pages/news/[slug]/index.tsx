@@ -9,6 +9,7 @@ import SuggestedReads from '../../../components/static/SuggestedReads';
 import { GET_POST_QUERY } from '../../../graphql/queries';
 import { initializeApollo } from '../../../lib/apolloClient';
 import FourOhFour from '../../404';
+import initCMS from '../../../cms';
 
 const PageItem: React.FC<{
   slug: string;
@@ -25,6 +26,10 @@ const PageItem: React.FC<{
     router.query.slug = slug;
     router.push(router, null, { shallow: true });
   }, [router.locale]);
+
+  useEffect(() => {
+    initCMS();
+  }, []);
 
   const post = data?.post?.posts[0];
 
