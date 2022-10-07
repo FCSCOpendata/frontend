@@ -43,7 +43,9 @@ const List: React.FC = () => {
           'md:text-left'
         )}`}
       >
-        {meta.pagination.total} {t('article-found')}
+        {t(meta.pagination.total == 1 ? 'article-found' : 'articles-found', {
+          count: meta.pagination.total,
+        })}
       </h2>
       <ul className="mb-10">
         {posts.map((post, index) => (
