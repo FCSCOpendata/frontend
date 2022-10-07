@@ -20,7 +20,6 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
   if (error)
     return <ErrorMessage error={error} message="Error loading the page." />;
   if (loading) return <Spinner />;
-  if (!data?.page) return <FourOhFour></FourOhFour>;
 
   const { title, html, image, readingTime, published } = data.page.pages[0];
 
