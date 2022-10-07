@@ -1,7 +1,7 @@
-import initToggle from "./toggle";
+import initToggle from './toggle';
 
 const initCMS = () => {
-    initToggle();
-}
+  initToggle();
+};
 
-export default initCMS
+export default initCMS;
