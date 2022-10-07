@@ -12,8 +12,15 @@ export default function SimilarDatasets({ variables }) {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading similar datasets" />;
   if (loading) return <Spinner />;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading similar datasets" />
+    );
+
+  //  Returns empty component if no results
+  if (!data?.dataset) return <></>;
+
   const { result } = data.dataset;
 
   // Fetch datasets within given topic for similar datasets section

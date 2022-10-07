@@ -113,5 +113,8 @@
   "request-msg": "Type the details of the requested dataset",
   "request-descrp": "Please fill out the form below to request the dataset you would like to see on the portal",
   "request-header": "Request Dataset",
-  "missing-translation": "Sorry, there is no English version for this page right now"
+  "missing-translation": "Sorry, there is no English version for this page right now",
+  "error-404-t": "Error 404",
+  "error-404-m": "The page you are looking for could not be found",
+  "error-404-l": "Click here to go back"
 }

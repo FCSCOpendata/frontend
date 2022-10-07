@@ -14,6 +14,7 @@ import Citation from '../../../../../components/_shared/Citation';
 import { fixTranslations } from '../../../../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 import { ErrorMessage } from '../../../../../components/_shared';
+import FourOhFour from '../../../../404';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -23,12 +24,18 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   });
 
   if (loading) return <div>Loading</div>;
-  if (error) return <ErrorMessage message="Error loading data"></ErrorMessage>;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading data"></ErrorMessage>
+    );
+  if (!data?.dataset) return <FourOhFour></FourOhFour>;
   const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
+
+  if (!resource) return <FourOhFour></FourOhFour>;
 
   fixTranslations(result);
   fixTranslations(result.organization);

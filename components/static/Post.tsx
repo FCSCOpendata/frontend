@@ -7,6 +7,7 @@ import { GET_POST_QUERY } from '../../graphql/queries';
 import { AR } from '../../hooks/locale';
 import { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
+import FourOhFour from '../../pages/404';
 
 const Post: React.FC<{ variables: any }> = ({ variables }) => {
   const { t } = useTranslation('common');
@@ -23,7 +24,7 @@ const Post: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (error) return <ErrorMessage message="Error loading post." />;
   if (loading) return <Spinner />;
-  if (!data.post) return <ErrorPage statusCode={404} />;
+  if (!data?.post) return <FourOhFour></FourOhFour>;
 
   const { title, html, image, readingTime, published } = data.post.posts[0];
 

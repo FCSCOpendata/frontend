@@ -13,8 +13,14 @@ const HomeTags: React.FC = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <Spinner />;
+  if (error)
+    return (
+      <ErrorMessage error={error} message="Error loading search results." />
+    );
+
+  //  Returns empty component if no results
+  if (!data?.keywords?.result?.search_facets?.tags) return <></>;
 
   const { tags } = data.keywords.result.search_facets;
   const tagsToShow =

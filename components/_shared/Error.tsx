@@ -1,4 +1,9 @@
-const ErrorMessage: React.FC<{ message: any }> = ({ message }) => {
+const ErrorMessage: React.FC<{ message: any; error?: any }> = ({
+  message,
+  error,
+}) => {
+  if (error) console.error(error);
+
   return (
     <aside>
       {message}

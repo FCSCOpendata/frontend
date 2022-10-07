@@ -8,6 +8,7 @@ import Post from '../../../components/static/Post';
 import SuggestedReads from '../../../components/static/SuggestedReads';
 import { GET_POST_QUERY } from '../../../graphql/queries';
 import { initializeApollo } from '../../../lib/apolloClient';
+import FourOhFour from '../../404';
 
 const PageItem: React.FC<{
   slug: string;
@@ -26,6 +27,8 @@ const PageItem: React.FC<{
   }, [router.locale]);
 
   const post = data?.post?.posts[0];
+
+  if (!post) return <FourOhFour></FourOhFour>;
 
   return (
     <>

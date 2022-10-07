@@ -6,6 +6,7 @@ import Page from '../../../components/static/Page';
 import { GET_PAGE_QUERY } from '../../../graphql/queries';
 import { AR } from '../../../hooks/locale';
 import { initializeApollo } from '../../../lib/apolloClient';
+import FourOhFour from '../../404';
 
 const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
   const { t } = useTranslation('common');
@@ -15,6 +16,8 @@ const PageItem: React.FC<{ slug: string }> = ({ slug }) => {
   });
 
   const page = data?.page?.pages[0];
+
+  if (!page) return <FourOhFour></FourOhFour>;
 
   return (
     <>
