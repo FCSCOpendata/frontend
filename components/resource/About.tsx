@@ -63,8 +63,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           </h1>
         </div>
         <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
-          {resource.description?.replace(/<[^>]*>?/gm, '') ||
-            t('default-rdescrp')}
+          {resource.description?.replace(/<[^>]*>?/gm, '') || ''}
         </article>
       </div>
     </>
