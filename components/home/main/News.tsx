@@ -43,7 +43,7 @@ export default function News() {
         {t('hm-h-what')}
       </h2>
       <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
-        {t('hm-p-our-data')}
+        {t('hm-p-news-text')}
       </p>
       <div className="container mx-auto flex flex-wrap h-96">
         <div className="flex flex-wrap w-full">

@@ -10,7 +10,7 @@ export default function Map() {
           {t('hm-h-expl')}
         </h2>
         <p className="mt-3 mb-8 text-center text-base text-gray font-normal">
-          {t('hm-p-our-data')}
+          {t('hm-p-expl-text')}
         </p>
 
         <div className="relative">

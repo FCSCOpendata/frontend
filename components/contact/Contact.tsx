@@ -208,15 +208,15 @@ const Contacts: React.FC = () => {
           )}
           <div className="flex flex-col items-center font-avenir mt-8">
             <button
-              className="bg-button-gradient w-1/4 rounded-xl py-2"
+              className="bg-button-gradient rounded-xl py-2 px-8 flex items-center"
               onClick={handleSubmit}
             >
               <img
                 src="/images/btn-arrow.svg"
                 alt="submit-icon"
-                className=" mr-2 inline relative -top-1"
+                className={`${AR('ml-2', 'mr-2')} `}
               />
-              <span className=" text-white font-extrabold text-[20px]">
+              <span className="text-white font-extrabold text-[20px]">
                 {t('submit')}
               </span>
             </button>

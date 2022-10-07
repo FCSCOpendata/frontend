@@ -6,6 +6,7 @@ import { applyTheme } from '../themes/utils';
 import I18nProvider from 'next-translate/I18nProvider';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
+import '../cms/styles.css';
 import Layout from '../components/home/Layout';
 import NProgress from 'nprogress';
 import Router from 'next/router';
