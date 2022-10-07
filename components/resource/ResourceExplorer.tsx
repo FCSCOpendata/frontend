@@ -150,7 +150,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
           </div>
         </div>
 
-        <div className="flex flex-row mt-5 mb-4">
+        <div className="flex flex-row mt-5 mb-4 h-[46px]">
           <button
             className={`${
               previewMode &&

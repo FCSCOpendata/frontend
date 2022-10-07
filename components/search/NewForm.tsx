@@ -77,7 +77,7 @@ const SearchForm: React.FC<{
         <p className="text-lg text-center xl:text-left bg-button-gradient bg-clip-text text-transparent">
           {t('ds-p-filt')}
         </p>
-        <div className="flex flex-wrap xl:flex-nowrap justify-center xl:justify-between bg-white w-fit !mx-auto xl:!ml-4 p-2 rounded-xl">
+        <div className="flex flex-wrap xl:flex-nowrap justify-center xl:justify-between bg-white w-fit !mx-auto xl:!ml-4 p-2 h-[56px] rounded-xl">
           <div className="flex text-sm">
             <div
               className={`flex space-x-1 ${
