@@ -141,7 +141,15 @@ const MainOptions: React.FC<any> = ({
   return (
     <>
       <div className="mb-20">
-        <OrgHeader org={activeOrg} datasetsCount={activeOrg?.package_count} />
+        <OrgHeader
+          org={activeOrg}
+          datasetsCount={activeOrg?.package_count}
+          badgeOnClick={() => {
+            document
+              .getElementById('explore-top-datasets')
+              ?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
       </div>
       {children?.length > 0 && (
         <div className="mb-20">

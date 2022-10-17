@@ -166,6 +166,11 @@ const MainOptions: React.FC<any> = ({
           topic={activeTopic}
           datasetsCount={activeTopic.package_count}
           color={color}
+          badgeOnClick={() => {
+            document
+              .getElementById('explore-top-datasets')
+              ?.scrollIntoView({ behavior: 'smooth' });
+          }}
         />
       </div>
       {subtopics?.length > 0 && (
