@@ -11,6 +11,7 @@ interface ImageHeaderProps {
   badgeText?: string;
   children: React.ReactNode;
   color?: string;
+  badgeOnClick?: () => void;
 }
 
 const ImageHeader: React.FC<ImageHeaderProps> = ({
@@ -20,6 +21,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   badgeText,
   children,
   color,
+  badgeOnClick,
 }) => {
   const scrollbarCss = `
     .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
@@ -96,7 +98,11 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                   </div>
                 </div>
                 <div className="pb-[3rem]">
-                  <Badge text={badgeText} color={color} />
+                  <Badge
+                    text={badgeText}
+                    color={color}
+                    onClick={badgeOnClick}
+                  />
                 </div>
               </div>
             </div>

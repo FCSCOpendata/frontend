@@ -1,7 +1,12 @@
 import useTranslation from 'next-translate/useTranslation';
 import ImageHeader from '../_shared/image_header/ImageHeader';
 
-const Header: React.FC<any> = ({ topic, datasetsCount, color }) => {
+const Header: React.FC<any> = ({
+  topic,
+  datasetsCount,
+  color,
+  badgeOnClick,
+}) => {
   const { t } = useTranslation('common');
 
   const icon = {
@@ -27,6 +32,7 @@ const Header: React.FC<any> = ({ topic, datasetsCount, color }) => {
         badgeText={badgeText}
         image={image}
         color={color}
+        badgeOnClick={badgeOnClick}
       >
         {description}
       </ImageHeader>
