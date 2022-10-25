@@ -4,8 +4,14 @@ import getConfig from 'next/config';
 
 export default async (req, res) => {
   const { name, rtype, email, message } = req.body;
-  const { MAIL_ACCOUNT, MAIL_PASSWORD, CONTACT_EMAIL, REQUEST_DATA_EMAIL } =
-    getConfig().serverRuntimeConfig;
+  const {
+    MAIL_PORT,
+    MAIL_SERVER,
+    MAIL_ACCOUNT,
+    MAIL_PASSWORD,
+    CONTACT_EMAIL,
+    REQUEST_DATA_EMAIL,
+  } = getConfig().serverRuntimeConfig;
 
   if (!email || !message) {
     return res.status(400).json({ error: 'Email and message are required' });
@@ -13,11 +19,13 @@ export default async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      port: MAIL_PORT,
+      host: MAIL_SERVER,
       auth: {
         user: MAIL_ACCOUNT,
         pass: MAIL_PASSWORD,
       },
+      secure: false,
     });
 
     const mailData = {
