@@ -5,7 +5,7 @@ const SubtopicsCarousel: React.FC<any> = ({
   subtopicOnClick,
   color,
 }) => {
-  const items = subtopics.map((subtopic) => {
+  let items = subtopics.map((subtopic) => {
     return {
       name: subtopic.name,
       title: subtopic.title || subtopic.display_url || subtopic.name,
@@ -23,6 +23,21 @@ const SubtopicsCarousel: React.FC<any> = ({
       link: `/topic/${subtopic.name}`,
     };
   });
+
+  items = items.sort((a, b) => {
+    const getN = (item) => {
+      var r = /\d+/;
+      var match = item.name.match(r);
+      if(match) {
+        return match[0];
+      }
+      return -1;
+    }
+    const valueA = getN(a);
+    const valueB = getN(b);
+
+    return valueA - valueB;
+  })
 
   return (
     <>
