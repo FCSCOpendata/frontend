@@ -26,18 +26,18 @@ const SubtopicsCarousel: React.FC<any> = ({
 
   items = items.sort((a, b) => {
     const getN = (item) => {
-      var r = /\d+/;
-      var match = item.name.match(r);
-      if(match) {
+      const r = /\d+/;
+      const match = item.name.match(r);
+      if (match) {
         return match[0];
       }
       return -1;
-    }
+    };
     const valueA = getN(a);
     const valueB = getN(b);
 
     return valueA - valueB;
-  })
+  });
 
   return (
     <>
