@@ -180,6 +180,7 @@ const MainOptions: React.FC<any> = ({
             subtopics={subtopics}
             subtopicOnClick={onSutopicClick}
             color={color}
+            topic={topic}
           />
         </div>
       )}
