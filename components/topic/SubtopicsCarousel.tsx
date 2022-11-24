@@ -4,7 +4,7 @@ const SubtopicsCarousel: React.FC<any> = ({
   subtopics,
   subtopicOnClick,
   color,
-  topic
+  topic,
 }) => {
   let items = subtopics.map((subtopic) => {
     return {
