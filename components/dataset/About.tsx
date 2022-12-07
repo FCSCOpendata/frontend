@@ -64,7 +64,10 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           <span>{result.license_title}</span>
         </div>
         {result.total_downloads > 0 ? (
-          <div className="font-avenir flex text-sm py-2 items-baseline" title={t('download-count')}>
+          <div
+            className="font-avenir flex text-sm py-2 items-baseline"
+            title={t('download-count')}
+          >
             <CloudDownloadIcon className={`w-5  h-3`} />
             <span>{result.total_downloads}</span>
           </div>
