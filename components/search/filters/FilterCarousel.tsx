@@ -22,8 +22,8 @@ const FilterCarousel: React.FC<{ identifier: string }> = ({
         onSwiper={(instance) => setSwiper(instance)}
         breakpoints={{
           1: {
-            slidesPerView: 2,
-            slidesPerGroup: 2,
+            slidesPerView: 3,
+            slidesPerGroup: 3,
           },
           460: {
             slidesPerView: 3,

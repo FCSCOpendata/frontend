@@ -77,46 +77,48 @@ const Search: React.FC<Props> = ({ variables }) => {
               .scrollIntoView({ behavior: 'smooth' });
           }}
         />
-        <div className="mb-12 mx-10 md:mx-16 lg:mx-28 mt-12">
-          <div className="px-4">
-            <h1 className="font-semibold text-xl sm:text-2xl">
-              {amount}{' '}
-              {amount == 1 ? t('dataset-single') : t('dataset-plural')}
-            </h1>
+        <div className="container mx-auto">
+          <div className="mb-12 mx-10 md:mx-16 lg:mx-28 mt-12">
+            <div className="px-4">
+              <h1 className="font-semibold text-xl sm:text-2xl">
+                {amount}{' '}
+                {amount == 1 ? t('dataset-single') : t('dataset-plural')}
+              </h1>
 
-            <List
-              variables={qvariables}
-              noXMargin={true}
-              setQvariables={setQvariables}
-              show_amount={false}
-              setCount={setAmount}
-              onPageChange={(page) => {
-                router.query.searchPage = page + '';
-                router.push(router, undefined, { shallow: true });
-                setDestination(document.location.href);
-                document
-                  .getElementById('datasets')
-                  .scrollIntoView({ behavior: 'smooth' });
-              }}
-              page={searchPage ? Number(searchPage) : undefined}
+              <List
+                variables={qvariables}
+                noXMargin={true}
+                setQvariables={setQvariables}
+                show_amount={false}
+                setCount={setAmount}
+                onPageChange={(page) => {
+                  router.query.searchPage = page + '';
+                  router.push(router, undefined, { shallow: true });
+                  setDestination(document.location.href);
+                  document
+                    .getElementById('datasets')
+                    .scrollIntoView({ behavior: 'smooth' });
+                }}
+                page={searchPage ? Number(searchPage) : undefined}
+              />
+            </div>
+          </div>
+          <div className="mx-10 md:mx-28" id="dev-exp">
+            <DeveloperExperience
+              api={
+                typeof window !== 'undefined'
+                  ? qvariables.q || qvariables.fq
+                    ? `${window.location.origin}/api/search?q=${
+                        qvariables.q ? encodeURI(qvariables.q) : ''
+                      }&fq=${qvariables.fq}`
+                    : `${window.location.origin}/api/search?q=dataset_name`
+                  : ''
+              }
             />
           </div>
         </div>
       </div>
 
-      <div className="mx-10 md:mx-28" id="dev-exp">
-        <DeveloperExperience
-          api={
-            typeof window !== 'undefined'
-              ? qvariables.q || qvariables.fq
-                ? `${window.location.origin}/api/search?q=${
-                    qvariables.q ? encodeURI(qvariables.q) : ''
-                  }&fq=${qvariables.fq}`
-                : `${window.location.origin}/api/search?q=dataset_name`
-              : ''
-          }
-        />
-      </div>
       <div id="open-data-101">
         <OpenData101 />
       </div>
