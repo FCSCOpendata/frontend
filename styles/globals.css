@@ -389,17 +389,17 @@ svg.star-svg {
 
 
 /*header menu scrollbar*/
-/* width */
-.header-menu::-webkit-scrollbar {
-  height: 6px;
-}
 
-/* Track */
 
- 
+
 /* Handle */
 @media (min-width:1024px) {
 
+  .header-menu::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  
   .header-menu::-webkit-scrollbar-thumb {
     background: whitesmoke
   }
