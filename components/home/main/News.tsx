@@ -46,7 +46,7 @@ export default function News() {
         {t('hm-p-news-text')}
       </p>
 
-      <div className="grid grid-cols-1 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 gap-4 container mx-auto ">
         <div className="flex flex-wrap w-full">
           <a
             href={posts[0] ? `${AR('/ar')}/news/${posts[0]?.slug}` : ''}

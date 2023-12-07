@@ -10,7 +10,7 @@ export default function OpenData101(props) {
   }
 
   return (
-    <div className="relative h-fit mb-[70px] sm:mb-10">
+    <div className="relative h-fit mb-[70px] sm:mb-10 container mx-auto ">
       <img
         src="/images/open-data-101.svg"
         alt="Open Data 101"
