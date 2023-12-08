@@ -43,7 +43,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
       {({ open }) => (
         <>
           <div className="mx-auto px-2 sm:px-4 2xl:px-14">
-            <div className="flex h-24">
+            <div className="flex h-24 lg:container lg:mx-auto">
               <div
                 className={`flex px-2 lg:px-0 lg:w-[calc(100%-84px)] ${
                   iseMenuScrollable ? 'is-scrollable relative' : ''
