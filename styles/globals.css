@@ -434,7 +434,8 @@ svg.star-svg {
 
 /* fix applications page rwd issue  #139 */
 @media(max-width:600px){
-  [page-slug="applications"] .card-grid>.grid-cols-2{
+  [page-slug="applications"] .card-grid>.grid-cols-2,
+  [page-slug="real-time-data"] .link-card-grid>.grid-cols-2{
     grid-template-columns: repeat(1, minmax(0, 1fr))!important;
   }
   [page-slug="applications"] h5{
