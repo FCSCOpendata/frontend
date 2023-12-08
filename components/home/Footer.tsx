@@ -93,15 +93,15 @@ const Footer: React.FC<any> = ({ settings }) => {
         <div className="flex flex-col flex-wrap mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
           <div className="w-full text-center md:text-left">
             <p
-              className={`mt-4 mb-4 text-[#001240] text-lg leading-[22px] font-montserrat font-semibold ${
+              className={`text-center md:text-left mt-4 mb-4 text-[#001240] text-lg leading-[22px] font-montserrat font-semibold ${
                 AR() ? 'text-right' : 'text-left'
               }`}
             >
               {t('ft-h-offi')}
             </p>
-            <ul className="flex space-x-6 text-sm list-none">
+            <ul className="flex space-x-4 text-sm list-none flex-col md:flex-row ">
               {navigation.menu.map((item) => (
-                <li key={item.name} className={AR() ? 'ml-5' : ''}>
+                <li key={item.name} className={`${AR() ? 'ml-5' : ''} mt-4`}>
                   <Link href={item.href}>
                     <a
                       href={item.href}
