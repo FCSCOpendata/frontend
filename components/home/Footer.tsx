@@ -81,8 +81,8 @@ const Footer: React.FC<any> = ({ settings }) => {
 
   return (
     <footer className="relative overflow-hidden">
-      <div className="absolute h-full -left-14 right-0 bg-footer-background -z-10" />
-      <div className="mb-10 px-14">
+      <div className="absolute h-full -left-14 right-0 bg-footer-background bg-cover -z-10" />
+      <div className="mb-10 px-14 lg:container lg:mx-auto">
         <div className="flex flex-col flex-wrap mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
           <img
             className="h-8"
