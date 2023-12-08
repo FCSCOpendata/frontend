@@ -29,11 +29,11 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
         }/${dataset.name}`}
       >
         {/* eslint-disable-next-line */}
-        <a className="group relative bg-[#F7FAFC] min-w-0 flex-1 xl:flex sm:items-center sm:justify-between mt-6 py-4 px-8 rounded-xl h-fit">
-          <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-xl z-0 ease-in-out duration-150" />
-          <div className="flex flex-cols items-center h-full z-10">
+        <a className="group relative bg-[#F7FAFC] min-w-0 flex-1 flex flex-col lg:flex-row md:items-start lg:items-center justify-start sm:justify-between mt-6 py-4 px-4 sm:px-8 rounded-lg h-fit">
+          <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-lg z-0 ease-in-out duration-150" />
+          <div className="md:w-[80%] lg:w-auto flex flex-col sm:flex-row items-start lg:items-center h-full z-10">
             {/* Image */}
-            <div className="min-w-[7rem] w-28 rounded-xl bg-gray-200">
+            <div className=" min-w-full sm:min-w-[6rem] sm:w-28 rounded-lg bg-gray-200">
               <img
                 src={
                   dataset.organization.image ||
@@ -42,22 +42,22 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                   )}.png`
                 }
                 alt={dataset.organization.title}
-                className="w-full object-scale-down object-center rounded-md"
+                className="w-full h-[150px] h:sm-auto object-cover sm:object-scale-down object-center rounded-md"
               />
             </div>
             {/* Title, description & org */}
-            <div className="px-6 flex flex-col sm:justify-between h-full space-y-4 sm:space-y-0">
+            <div className="sm:px-6 flex flex-col sm:justify-between h-full space-y-4 sm:space-y-0">
               {/* eslint-disable-next-line */}
-              <a className="block focus:outline-none space-y-2 xl:space-y-0">
+              <a className="mt-3 sm:mt-0 block focus:outline-none space-y-2 lg:space-y-0">
                 <h1
-                  className={`text-lg font-semibold text-[#202020] text-center sm:text-left max-w-xl ${AR(
+                  className={`text-lg font-semibold text-[#202020]  sm:text-left max-w-lg ${AR(
                     'sm:text-right'
                   )}`}
                 >
                   {dataset.title}
                 </h1>
                 <p
-                  className={`text-sm font-medium text-[#7C7C7C] h-[2.5rem] line-clamp-2 text-center sm:text-left ${AR(
+                  className={`text-sm font-medium text-[#7C7C7C] sm:h-[2.5rem] line-clamp-2  sm:text-left ${AR(
                     'sm:text-right'
                   )}`}
                 >
@@ -67,21 +67,21 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                     : ''}
                 </p>
               </a>
-              <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
+              <div className="inline-flex items-center justify-start lg:justify-start sm:py-1 lg:py-2 space-x-2 text-[#7C7C7C]">
                 <img
                   src="/images/library-icon.svg"
                   alt="orgs"
                   className={`w-4 mb-1 grayscale ${AR('ml-2')}`}
                 />
-                <span className="text-xs text-center sm:text-left capitalize">
+                <span className="text-xs text-left sm:text-left capitalize">
                   {dataset.organization.title || dataset.organization.name}
                 </span>
               </div>
             </div>
           </div>
-          <div className="sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
+          <div className="w-full lg:w-auto sm:pl-[96px] lg:pl-0 sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
             {/* dataset info on hover */}
-            <div className="flex xl:flex-col items-center xl:items-start pl-6 pt-4 xl:pt-0 xl:px-4 space-x-4 xl:space-x-0 xl:border-l-2 border-[#E6E6E6] h-full xl:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
+            <div className="flex flex-row flex-wrap sm:flex-row lg:flex-col sm:items-center lg:items-start sm:pl-6 pt-4 lg:pt-0 lg:px-4 space-x-4 lg:space-x-0 lg:border-l-2 border-[#E6E6E6] h-full lg:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
               <div className="whitespace-nowrap">
                 <img
                   src="/images/page.svg"
@@ -95,7 +95,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                     : t('resource-plural')}
                 </span>
               </div>
-              <div className="whitespace-nowrap">
+              <div className="whitespace-nowrap ">
                 <img
                   src="/images/time.svg"
                   alt="t"
@@ -125,7 +125,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               )}
             </div>
             {/* file icons */}
-            <div className="grid grid-flow-col xl:grid-flow-row gap-4 xl:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 xl:ml-8 h-full xl:border-l-2 border-[#E6E6E6]">
+            <div className="sm:absolute top-0 right-0 lg:relative lg:top-auto lg:right-auto grid grid-flow-col lg:grid-flow-row gap-4 lg:gap-0 items-center justify-center pt-4 sm:pt-0 sm:px-8 lg:ml-8 h-full lg:border-l-2 border-[#E6E6E6]">
               {datasetFiles
                 .filter((file) => {
                   return availableFormats.includes(file.name);

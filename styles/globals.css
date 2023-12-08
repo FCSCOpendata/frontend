@@ -386,3 +386,47 @@ svg.star-svg {
     box-shadow: inset -3px 0px 0px transparent;
   }
 }
+
+
+/*header menu scrollbar*/
+
+
+
+/* Handle */
+@media (min-width:1024px) {
+
+  .header-menu::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  
+  .header-menu::-webkit-scrollbar-thumb {
+    background: whitesmoke
+  }
+  
+  /* Handle on hover */
+  .header-menu::-webkit-scrollbar-thumb:hover {
+    background: #3f7fb351; 
+  }
+
+  .menu-scrollable-indicator{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80px; /* Adjust the width of the transparent area */
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* Adjust the colors and opacity as needed */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks to pass through the transparent area */
+  }
+  
+}
+
+.scrollbar-invisible::-webkit-scrollbar{
+    height: 0;
+}
+
+.scrollbar-invisible::-webkit-scrollbar-thumb{
+  display: none;
+}

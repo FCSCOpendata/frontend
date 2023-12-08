@@ -137,8 +137,8 @@ const RequestData: React.FC = () => {
   };
 
   return (
-    <div className="bg-contact">
-      <div className="relative mx-auto pt-20 xl:px-20 w-1/2">
+    <div className="bg-contact px-4 mb-[70px] md:mb-0">
+      <div className="relative pt-20 xl:px-20 mx-10 md:mx-auto  md:w-1/2">
         {status.enabled && (
           <div
             className={`-mt-20 absolute mx-auto text-center ${AR(
@@ -151,7 +151,7 @@ const RequestData: React.FC = () => {
             {status.message}
           </div>
         )}
-        <div className="xl:w-4/5">
+        <div className="xl:w-full">
           <div className="text-center font-avenir text-[36px] font-extrabold  text-[#4D4D4D]">
             <h1>{t('request-header')}</h1>
           </div>

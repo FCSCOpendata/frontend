@@ -32,7 +32,7 @@ export default function Footer() {
                 >
                   {t(`description`)}
                 </p>
-                <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 mb-8">
+                <div className="mt-8 sm:max-w-lg sm:mx-auto flex sm:justify-center lg:justify-start sm:text-center lg:text-left lg:mx-0 mb-8">
                   <SearchForm />
                 </div>
                 <div className="pt-4 max-w-lg">

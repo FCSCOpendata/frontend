@@ -54,11 +54,13 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
           </div>
         </div> */}
       </div>
-      <div className="my-10 grid place-content-center font-avenir">
-        <article className="prose prose-stone md:prose-lg lg:prose-xl">
-          {image && <img src={image} className="mb-6" alt={title} />}
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </article>
+      <div className="px-4">
+        <div className="my-10 md:grid  place-content-center font-avenir">
+          <article className="prose prose-stone md:prose-lg lg:prose-xl break-words m-auto">
+            {image && <img src={image} className="mb-6" alt={title} />}
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </article>
+        </div>
       </div>
     </>
   );
