@@ -81,7 +81,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
           </div>
           <div className="w-full lg:w-auto sm:pl-[96px] lg:pl-0 sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
             {/* dataset info on hover */}
-            <div className="flex flex-row flex-wrap sm:flex-row lg:flex-col sm:items-center lg:items-start sm:pl-6 pt-4 lg:pt-0 lg:px-4 space-x-4 lg:space-x-0 lg:border-l-2 border-[#E6E6E6] h-full lg:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
+            <div className="flex flex-col flex-wrap sm:flex-row lg:flex-col sm:items-center lg:items-start sm:pl-6 pt-4 lg:pt-0 lg:px-4 sm:space-x-4 lg:space-x-0 lg:border-l-2 border-[#E6E6E6] h-full lg:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
               <div className="whitespace-nowrap">
                 <img
                   src="/images/page.svg"

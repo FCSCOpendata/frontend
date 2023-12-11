@@ -81,7 +81,7 @@ const List: React.FC<{
               <ListCard key={index} dataset={dataset} />
             ))}
         </ul>
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-auto hoverable-scroll">
           <Pagination
             count={searchResults?.count}
             setQvariables={setQvariables}

@@ -173,34 +173,36 @@ const MainOptions: React.FC<any> = ({
           }}
         />
       </div>
-      {subtopics?.length > 0 && (
-        <div className="mb-20" id="subtopics">
-          <h1 className="font-semibold text-3xl mb-6">{t('tp-h-sub')}</h1>
-          <SubtopicsCarousel
-            subtopics={subtopics}
-            subtopicOnClick={onSutopicClick}
-            color={color}
-            topic={topic}
+      <div className="lg:container lg:mx-auto">
+        {subtopics?.length > 0 && (
+          <div className="mb-20" id="subtopics">
+            <h1 className="font-semibold text-3xl mb-6">{t('tp-h-sub')}</h1>
+            <SubtopicsCarousel
+              subtopics={subtopics}
+              subtopicOnClick={onSutopicClick}
+              color={color}
+              topic={topic}
+            />
+          </div>
+        )}
+
+        <div className="mb-20" id="explore-top-datasets">
+          <h1 className="font-semibold text-2xl sm:text-3xl">
+            {t('tp-h-expl', { count: activeTopic.package_count })}
+          </h1>
+          <DatasetsList
+            key={activeTopic.name}
+            topic={activeTopic?.name}
+            onPageChange={(page) => {
+              router.query.searchPage = page + '';
+              router.push(router, undefined, { shallow: true });
+              document
+                .getElementById('explore-top-datasets')
+                .scrollIntoView({ behavior: 'smooth' });
+            }}
+            page={searchPage}
           />
         </div>
-      )}
-
-      <div className="mb-20" id="explore-top-datasets">
-        <h1 className="font-semibold text-2xl sm:text-3xl">
-          {t('tp-h-expl', { count: activeTopic.package_count })}
-        </h1>
-        <DatasetsList
-          key={activeTopic.name}
-          topic={activeTopic?.name}
-          onPageChange={(page) => {
-            router.query.searchPage = page + '';
-            router.push(router, undefined, { shallow: true });
-            document
-              .getElementById('explore-top-datasets')
-              .scrollIntoView({ behavior: 'smooth' });
-          }}
-          page={searchPage}
-        />
       </div>
     </>
   );

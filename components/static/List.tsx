@@ -123,7 +123,7 @@ const List: React.FC = () => {
             </li>
           ))}
         </ul>
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-auto hoverable-scroll">
           <Pagination
             count={meta?.pagination.total}
             //  TODO: pagination component should be more

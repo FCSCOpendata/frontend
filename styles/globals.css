@@ -420,7 +420,6 @@ svg.star-svg {
     z-index: 1;
     pointer-events: none; /* Allows clicks to pass through the transparent area */
   }
-  
 }
 
 .scrollbar-invisible::-webkit-scrollbar{
@@ -431,6 +430,9 @@ svg.star-svg {
   display: none;
 }
 
+.hoverable-scroll:not(:hover)::-webkit-scrollbar{
+  display: none;
+}
 
 /* fix applications page rwd issue  #139 */
 @media(max-width:600px){
