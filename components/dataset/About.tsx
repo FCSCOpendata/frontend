@@ -24,8 +24,8 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
 
   return (
     <div className="flex flex-col mb-10">
-      <div className="flex flex-row mb-4 text-[#4D4D4D] font-avenir font-extrabold text-[36px]">
-        <h1 className={`inline ${AR('ml-4', 'mr-4')}`}>
+      <div className="flex flex-row mb-4 text-[#4D4D4D] font-avenir font-extrabold text-2xl lg:text-[36px] lg:leading-[56px]">
+        <h1 className={`inline ${AR('ml-4', 'mr-4')} `}>
           {result.title}{' '}
           <img
             src="/images/plant-icon.svg"
@@ -34,7 +34,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           />
         </h1>
       </div>
-      <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
+      <div className="flex flex-col lg:flex-row justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <img src="/images/library-icon.svg" alt="orgs" className="w-5 h-3" />
           <Link href={`/@${result.organization.name}`}>
@@ -75,7 +75,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           ''
         )}
       </div>
-      <div className="flex justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal items-baseline">
+      <div className="flex justify-start gap-x-4 md:gap-x-8 mb-4 text-[#787878] text-[20px] font-normal items-baseline">
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <span>{t('share')}: </span>
           <Share title={result.title} />

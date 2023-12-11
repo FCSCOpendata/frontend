@@ -133,14 +133,9 @@ const DataExplorer: React.FC<{
   resources.forEach((el) => fixTranslations(el));
 
   return (
-    <div className="grid xl:grid-cols-12 pl-0 w-full grid-cols-1 sm:gap-y-1">
-      <div
-        className={`xl:col-span-3  w-1/2 h-[718px] overflow-y-auto pt-4 ${AR(
-          'pl-2 ml-4',
-          'pr-2 mr-4'
-        )} overflow-x-hidden`}
-      >
-        <div className="flex-col">
+    <div className="grid lg:grid-cols-12 w-full grid-cols-1 gap-x-3">
+      <div className="lg:col-span-3">
+        <div className="flex flex-col gap-x-3 md:flex-row lg:flex-col">
           {resources.map((resource, i) => {
             return (
               <>
@@ -193,16 +188,10 @@ const DataExplorer: React.FC<{
           })}
         </div>
       </div>
-      {/* Preview: show Data Explorer if tabular data + datastore active */}
-      <div
-        className={`xl:col-span-9 p-10 bg-[#F7FAFC] rounded-2xl ${AR(
-          'xl:-mr-40',
-          'xl:-ml-40'
-        )}`}
-      >
-        <div className="flex xl:flex-row flex-col justify-between mb-4">
-          <div className="w-2/3">
-            <p className="font-medium mb-2 font-avenir text-[30px] text-[#4D4D4D]">
+      <div className="lg:col-span-9 p-6 lg:p-10 bg-[#F7FAFC] rounded-2xl">
+        <div className="flex flex-col md:flex-row justify-between mb-4">
+          <div className="md:w-2/3">
+            <p className="font-medium font-avenir text-2xl mb-5 text-[#4D4D4D]">
               {resources[activeTable].title || resources[activeTable].name}
             </p>
           </div>
@@ -231,7 +220,7 @@ const DataExplorer: React.FC<{
           className={`flex font-avenir text-[20px] text-[#808080] font-normal ${AR(
             'pr-4',
             'pl-4'
-          )}`}
+          )} flex-col sm:flex-row`}
         >
           <div className={`flex items-baseline ${AR('ml-3', 'mr-3')}`}>
             <button
@@ -244,7 +233,12 @@ const DataExplorer: React.FC<{
               {t('download')}
             </button>
           </div>
-          <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
+          <div
+            className={`${AR(
+              'ml-3',
+              'mr-3'
+            )} text-[#C4C4C4] text-1 hidden sm:block`}
+          >
             |
           </div>
           <div className={`flex ${AR('ml-3', 'mr-3')}`}>
@@ -252,7 +246,12 @@ const DataExplorer: React.FC<{
               {resources[activeTable].count || 'N/A'} {t('rows')}
             </span>
           </div>
-          <div className={`${AR('ml-3', 'mr-3')} text-[#C4C4C4] text-1`}>
+          <div
+            className={`${AR(
+              'ml-3',
+              'mr-3'
+            )} text-[#C4C4C4] text-1 hidden sm:block`}
+          >
             |
           </div>
           <div className={`flex ${AR('ml-3', 'mr-3')}`}>
@@ -262,7 +261,7 @@ const DataExplorer: React.FC<{
             </span>
           </div>
         </div>
-        <div className="flex mt-5 mb-4">
+        <div className="flex mt-5 mb-4 flex-col sm:flex-row">
           <button
             className={`${
               previewMode &&

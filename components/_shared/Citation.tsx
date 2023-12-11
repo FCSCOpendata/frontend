@@ -14,7 +14,7 @@ const Citation: React.FC<{ dtype: string; title: string }> = ({
       </div>
       <div className="font-avenir text-sm p-4">
         {title} -{' '}
-        <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
+        <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}`}>
           {typeof window !== 'undefined' ? window.location.href : ''}
         </span>
         &nbsp;

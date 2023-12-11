@@ -37,10 +37,10 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
           <div
             className={`h-full flex items-center
               ${AR(
-                'mr-[-2.5rem] md:mr-[-7rem] xl:ml-0',
-                'ml-[-2.5rem] md:ml-[-7rem] xl:mr-0'
+                'mr-[-2.5rem] md:mr-[-7rem] md:ml-[-7rem] xl:ml-0',
+                'ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] xl:mr-0'
               )}
-              w-[calc(100%+5rem)] xl:w-[calc(100%+4rem)] 
+              w-[calc(100%+5rem)] xl:w-[calc(100%+4rem)] md:w-auto
               bg-center bg-no-repeat bg-cover"
             `}
           >
@@ -70,14 +70,14 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
             <div
               className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full
              ${AR(
-               'mr-[-2.5rem] md:mr-[-7rem] xl:mr-[-3.0rem]',
-               'ml-[-2.5rem] md:ml-[-7rem] xl:ml-[-3.0rem]'
+               'mr-[-2.5rem] md:mr-[-7rem] md:ml-[-7rem] xl:mr-[-3.0rem]',
+               'ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] xl:ml-[-3.0rem]'
              )}
              ${AR(
                'px-10 md:pl-[4rem] xl:pl-[7rem]',
                'px-10 md:pl-[4rem] xl:pr-[7rem]'
              )} 
-             w-[calc(100%+5rem)] xl:w-[calc(100%+10rem)]
+             w-[calc(100%+5rem)] xl:w-[calc(100%+10rem)] md:w-auto
            `}
             >
               <div className="pt-[3rem] flex flex-col h-full justify-between">

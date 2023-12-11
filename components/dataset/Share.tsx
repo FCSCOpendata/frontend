@@ -14,7 +14,7 @@ const Share: React.FC<{ title: string }> = ({ title }) => {
           link: typeof window !== 'undefined' ? window.location.origin : '',
         })}`}
       >
-        <ShareIcon className="text-green-400 w-5 h-3  inline" />
+        <ShareIcon className="text-green-400 w-[24px] h-[24px]  inline" />
       </a>
     </span>
   );

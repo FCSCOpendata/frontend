@@ -39,167 +39,169 @@ export default function News() {
 
   return (
     <>
-      <h2 className="block text-3xl text-center font-avenir font-extrabold">
-        {t('hm-h-what')}
-      </h2>
-      <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
-        {t('hm-p-news-text')}
-      </p>
+      <div className="max-w-2xl mx-auto  lg:max-w-7xl">
+        <h2 className="block text-3xl text-center font-avenir font-extrabold">
+          {t('hm-h-what')}
+        </h2>
+        <p className="mt-3 mb-6 text-center text-base text-gray font-normal">
+          {t('hm-p-news-text')}
+        </p>
 
-      <div className="grid grid-cols-1 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 gap-4 container mx-auto ">
-        <div className="flex flex-wrap w-full">
-          <a
-            href={posts[0] ? `${AR('/ar')}/news/${posts[0]?.slug}` : ''}
-            onClick={(e) => (!posts[0] ? e.preventDefault() : null)}
-            className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
-            title={posts[0]?.title}
-          >
-            <div className="relative w-full h-60 lg:h-[24.5rem]">
-              <span
-                className={`absolute left-0 bottom-0 w-full h-full z-10 
+        <div className="grid grid-cols-1 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 gap-4 container mx-auto ">
+          <div className="flex flex-wrap w-full">
+            <a
+              href={posts[0] ? `${AR('/ar')}/news/${posts[0]?.slug}` : ''}
+              onClick={(e) => (!posts[0] ? e.preventDefault() : null)}
+              className={`${posts[0] ? 'group' : 'cursor-auto'} h-full w-full`}
+              title={posts[0]?.title}
+            >
+              <div className="relative w-full h-60 lg:h-[24.5rem]">
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-full z-10 
                   ${
                     posts[0] ? 'border-b-4  border-[#22B373]' : ''
                   } rounded-b-lg 
                 `}
-              />
-              {posts[0] ? (
-                <img
-                  alt={posts[0]?.title}
-                  className="object-cover w-full h-full object-center block rounded-lg"
-                  src={posts[0]?.image}
                 />
-              ) : (
-                <div className="w-full h-full" />
-              )}
-              {headline(posts[0]?.title)}
-            </div>
-          </a>
-        </div>
+                {posts[0] ? (
+                  <img
+                    alt={posts[0]?.title}
+                    className="object-cover w-full h-full object-center block rounded-lg"
+                    src={posts[0]?.image}
+                  />
+                ) : (
+                  <div className="w-full h-full" />
+                )}
+                {headline(posts[0]?.title)}
+              </div>
+            </a>
+          </div>
 
-        <div className="md:grid md:grid-cols-2 md:gap-4 lg:block lg:grid-cols-none lg:gap-4">
-          <div className="flex flex-wrap w-full mb-4 lg:mb-0">
-            <a
-              href={posts[1] ? `${AR('/ar')}/news/${posts[1]?.slug}` : ''}
-              onClick={(e) => (!posts[1] ? e.preventDefault() : null)}
-              className={`${posts[1] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[1]?.title}
-            >
-              <div className="relative w-full lg:pb-1">
-                <span
-                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+          <div className="md:grid md:grid-cols-2 md:gap-4 lg:block lg:grid-cols-none lg:gap-4">
+            <div className="flex flex-wrap w-full mb-4 lg:mb-0">
+              <a
+                href={posts[1] ? `${AR('/ar')}/news/${posts[1]?.slug}` : ''}
+                onClick={(e) => (!posts[1] ? e.preventDefault() : null)}
+                className={`${posts[1] ? 'group' : 'cursor-auto'} w-full`}
+                title={posts[1]?.title}
+              >
+                <div className="relative w-full lg:pb-1">
+                  <span
+                    className={`absolute left-0 bottom-0 w-full h-full z-10 
                   ${
                     posts[1] ? 'border-b-4  border-[#22B373]' : ''
                   } rounded-b-lg 
                 `}
-                />
-                {posts[1] ? (
-                  <img
-                    alt={posts[1]?.title}
-                    className="w-full object-cover w-full h-60 lg:h-36 object-center block rounded-lg"
-                    src={posts[1]?.image}
                   />
-                ) : (
-                  <div className="w-full h-60 lg:h-36" />
-                )}
-                {headline(posts[1]?.title)}
-              </div>
-            </a>
-          </div>
+                  {posts[1] ? (
+                    <img
+                      alt={posts[1]?.title}
+                      className="w-full object-cover w-full h-60 lg:h-36 object-center block rounded-lg"
+                      src={posts[1]?.image}
+                    />
+                  ) : (
+                    <div className="w-full h-60 lg:h-36" />
+                  )}
+                  {headline(posts[1]?.title)}
+                </div>
+              </a>
+            </div>
 
-          <div className="flex flex-wrap w-full mb-4 lg:mb-0">
-            <a
-              href={posts[2] ? `${AR('/ar')}/news/${posts[2]?.slug}` : ''}
-              onClick={(e) => (!posts[2] ? e.preventDefault() : null)}
-              className={`${posts[2] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[2]?.title}
-            >
-              <div className="relative w-full lg:pt-1">
-                <span
-                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+            <div className="flex flex-wrap w-full mb-4 lg:mb-0">
+              <a
+                href={posts[2] ? `${AR('/ar')}/news/${posts[2]?.slug}` : ''}
+                onClick={(e) => (!posts[2] ? e.preventDefault() : null)}
+                className={`${posts[2] ? 'group' : 'cursor-auto'} w-full`}
+                title={posts[2]?.title}
+              >
+                <div className="relative w-full lg:pt-1">
+                  <span
+                    className={`absolute left-0 bottom-0 w-full h-full z-10 
                     ${
                       posts[2] ? 'border-b-4  border-[#22B373]' : ''
                     } rounded-b-lg 
                   `}
-                />
-                {posts[2] ? (
-                  <img
-                    alt={posts[2]?.title}
-                    className="w-full object-cover w-full  h-60  object-center block rounded-lg"
-                    src={posts[2]?.image}
                   />
-                ) : (
-                  <div className="w-full  h-60  " />
-                )}
-                {headline(posts[2]?.title)}
-              </div>
-            </a>
+                  {posts[2] ? (
+                    <img
+                      alt={posts[2]?.title}
+                      className="w-full object-cover w-full  h-60  object-center block rounded-lg"
+                      src={posts[2]?.image}
+                    />
+                  ) : (
+                    <div className="w-full  h-60  " />
+                  )}
+                  {headline(posts[2]?.title)}
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div className="md:grid md:grid-cols-2 md:gap-4 lg:block lg:grid-cols-none lg:gap-4">
-          <div className="flex flex-wrap w-full mb-4 lg:mb-0">
-            <a
-              href={posts[3] ? `${AR('/ar')}/news/${posts[3]?.slug}` : ''}
-              onClick={(e) => (!posts[3] ? e.preventDefault() : null)}
-              className={`${posts[3] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[3]?.title}
-            >
-              <div className="relative w-full lg:pb-1">
-                <span
-                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+          <div className="md:grid md:grid-cols-2 md:gap-4 lg:block lg:grid-cols-none lg:gap-4">
+            <div className="flex flex-wrap w-full mb-4 lg:mb-0">
+              <a
+                href={posts[3] ? `${AR('/ar')}/news/${posts[3]?.slug}` : ''}
+                onClick={(e) => (!posts[3] ? e.preventDefault() : null)}
+                className={`${posts[3] ? 'group' : 'cursor-auto'} w-full`}
+                title={posts[3]?.title}
+              >
+                <div className="relative w-full lg:pb-1">
+                  <span
+                    className={`absolute left-0 bottom-0 w-full h-full z-10 
                       ${
                         posts[3] ? 'border-b-4  border-[#22B373]' : ''
                       } rounded-b-lg 
                     `}
-                />
-                {posts[3] ? (
-                  <img
-                    alt={posts[3]?.title}
-                    className="w-full object-cover w-full  h-60  object-center block rounded-lg"
-                    src={posts[3]?.image}
                   />
-                ) : (
-                  <div className="w-full h-60 " />
-                )}
-                {headline(posts[3]?.title)}
-              </div>
-            </a>
-          </div>
-          <div className="flex flex-wrap w-full">
-            <a
-              href={posts[4] ? `${AR('/ar')}/news/${posts[4]?.slug}` : ''}
-              onClick={(e) => (!posts[4] ? e.preventDefault() : null)}
-              className={`${posts[4] ? 'group' : 'cursor-auto'} w-full`}
-              title={posts[4]?.title}
-            >
-              <div className="relative w-full lg:pt-1">
-                <span
-                  className={`absolute left-0 bottom-0 w-full h-full z-10 
+                  {posts[3] ? (
+                    <img
+                      alt={posts[3]?.title}
+                      className="w-full object-cover w-full  h-60  object-center block rounded-lg"
+                      src={posts[3]?.image}
+                    />
+                  ) : (
+                    <div className="w-full h-60 " />
+                  )}
+                  {headline(posts[3]?.title)}
+                </div>
+              </a>
+            </div>
+            <div className="flex flex-wrap w-full">
+              <a
+                href={posts[4] ? `${AR('/ar')}/news/${posts[4]?.slug}` : ''}
+                onClick={(e) => (!posts[4] ? e.preventDefault() : null)}
+                className={`${posts[4] ? 'group' : 'cursor-auto'} w-full`}
+                title={posts[4]?.title}
+              >
+                <div className="relative w-full lg:pt-1">
+                  <span
+                    className={`absolute left-0 bottom-0 w-full h-full z-10 
                       ${
                         posts[4] ? 'border-b-4  border-[#22B373]' : ''
                       } rounded-b-lg 
                     `}
-                />
-                {posts[4] ? (
-                  <img
-                    alt={posts[4]?.title}
-                    className="w-full object-cover w-full h-60 lg:h-36 object-center block rounded-lg"
-                    src={posts[4]?.image}
                   />
-                ) : (
-                  <div className="w-full h-60 lg:h-36" />
-                )}
-                {headline(posts[4]?.title)}
-              </div>
-            </a>
+                  {posts[4] ? (
+                    <img
+                      alt={posts[4]?.title}
+                      className="w-full object-cover w-full h-60 lg:h-36 object-center block rounded-lg"
+                      src={posts[4]?.image}
+                    />
+                  ) : (
+                    <div className="w-full h-60 lg:h-36" />
+                  )}
+                  {headline(posts[4]?.title)}
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-12 font-avenir text-lg text-center">
-        <a href={`${AR('/ar')}/news`}>
-          {t('hm-a-see')} <ArrowRightIcon className="inline w-4 ml-4" />
-        </a>
+        <div className="mt-12 font-avenir text-lg text-center">
+          <a href={`${AR('/ar')}/news`}>
+            {t('hm-a-see')} <ArrowRightIcon className="inline w-4 ml-4" />
+          </a>
+        </div>
       </div>
     </>
   );

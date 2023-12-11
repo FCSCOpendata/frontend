@@ -420,7 +420,6 @@ svg.star-svg {
     z-index: 1;
     pointer-events: none; /* Allows clicks to pass through the transparent area */
   }
-  
 }
 
 .scrollbar-invisible::-webkit-scrollbar{
@@ -429,4 +428,31 @@ svg.star-svg {
 
 .scrollbar-invisible::-webkit-scrollbar-thumb{
   display: none;
+}
+
+.hoverable-scroll:not(:hover)::-webkit-scrollbar{
+  display: none;
+}
+
+.hoverable-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.hoverable-scroll::-webkit-scrollbar-thumb {
+  background: #3f7fb351; 
+}
+/* Handle on hover */
+.hoverable-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3f7fb351; 
+}
+
+/* fix applications page rwd issue  #139 */
+@media(max-width:600px){
+  [page-slug="applications"] .card-grid>.grid-cols-2,
+  [page-slug="real-time-data"] .link-card-grid>.grid-cols-2{
+    grid-template-columns: repeat(1, minmax(0, 1fr))!important;
+  }
+  [page-slug="applications"] h5{
+    font-weight: 600;
+  }
+  
 }

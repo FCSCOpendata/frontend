@@ -109,7 +109,7 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
             setActiveTopic={setActiveTopic}
             configs={topicsConfigs}
           ></MainOptions>
-          <div id="developer-experience">
+          <div id="developer-experience" className="lg:container lg:mx-auto">
             <DeveloperExperience
               api={
                 typeof window !== 'undefined'
