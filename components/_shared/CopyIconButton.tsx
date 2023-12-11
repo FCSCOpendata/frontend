@@ -35,8 +35,8 @@ const CopyIconButton: React.FC<{
         <img
           src="/images/copy.svg"
           alt="copy"
-          className={`transition all ease-in-out duration-400 h-7 w-7 ${
-            size ? size : 'h-7 w-7'
+          className={`transition all ease-in-out duration-400 h-[24px] w-[24px] ${
+            size ? size : 'h-[24px] w-[24px]'
           } opacity-50 hover:opacity-100 mt-1 ${copied ? 'opacity-100' : ''}`}
           data-tip
           data-for={id}

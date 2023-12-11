@@ -5,7 +5,7 @@ import useTranslation from 'next-translate/useTranslation';
 const Citation: React.FC<{ title: string }> = ({ title }) => {
   const { t } = useTranslation('common');
   return (
-    <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
+    <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')} w-[22px]`}>
       <CopyIconButton
         hintBeforeCopy={t('copy-snippet')}
         hintAfterCopy={t('copied')}
