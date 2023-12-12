@@ -332,7 +332,7 @@ div.MuiDataGrid-filterFormDeleteIcon {
 .triangle:before {
   content: '';
   position: absolute;
-  left: 10px;
+  left: 30px;
   bottom: 100%;
   margin: 0 auto;
   width: 0;

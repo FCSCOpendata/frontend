@@ -59,7 +59,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           orgTitle: result.organization.title,
         }}
       />
-      <main className="flex flex-wrap pl-12 pr-20 mb-70">
+      <main className={`flex flex-wrap mb-70 px-5 lg:px-12 lg:mr-10`}>
         <ScrollIndicator
           firstImage={{
             url: '/images/scroll_indicator_icon_1.svg',
@@ -77,7 +77,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
           ]}
         />
         {/* Dataset About section */}
-        <div id="about">
+        <div id="about" className="w-full">
           <About variables={variables} />
         </div>
         {/* Resource display */}

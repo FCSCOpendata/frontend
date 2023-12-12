@@ -54,7 +54,7 @@ const SearchForm: React.FC<{
       <h1 className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10">
         {t('ds-h-sear')}
       </h1>
-      <div className="xl:flex xl:flex-wrap items-center w-full sm:max-w-xl xl:max-w-none xl:w-9/12 px-4 sm:px-0 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
+      <div className="xl:flex xl:flex-wrap items-center w-full sm:max-w-3xl xl:max-w-none xl:w-9/12 px-4 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
         <form
           className="flex flex-1 relative xl:w-1/2 bg-white rounded-xl px-4 py-2 items-center"
           onSubmit={(e) => e.preventDefault()}
@@ -77,7 +77,7 @@ const SearchForm: React.FC<{
         <p className="text-lg text-center xl:text-left bg-button-gradient bg-clip-text text-transparent">
           {t('ds-p-filt')}
         </p>
-        <div className="flex flex-wrap xl:flex-nowrap justify-start sm:justify-center xl:justify-between bg-white w-full sm:w-fit !mx-auto xl:!ml-4 p-2 h-[56px] rounded-xl overflow-auto scrollbar-invisible">
+        <div className="flex w-auto flex-wrap xl:flex-nowrap justify-start sm:justify-center xl:justify-between bg-white w-full  !mx-auto xl:!ml-4 p-2 h-[56px] rounded-xl overflow-auto scrollbar-invisible">
           <div className="flex text-sm">
             <div
               className={`flex space-x-1 ${
@@ -129,7 +129,7 @@ const SearchForm: React.FC<{
           </div>
         </div>
       </div>
-      <div className="mt-4 z-10">
+      <div className="mt-4 z-10 w-full sm:max-w-3xl xl:max-w-none xl:w-9/12  mx-auto">
         <FiltersBar
           qvariables={variables}
           setQvariables={setQvariables}

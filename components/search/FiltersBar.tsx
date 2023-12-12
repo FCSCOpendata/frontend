@@ -261,11 +261,11 @@ export default function FiltersBar({
   sideFilter.organization.forEach((el) => fixTranslations(el));
 
   return (
-    <div className="">
+    <div className="w-full">
       {filters === t('topics') && (
         <>
-          <div className="w-100 max-w-6xl bg-white">
-            <div id="topics">
+          <div className="">
+            <div id="topics" className="mx-5 bg-white rounded-xl py-2">
               <TopicsCarousel
                 items={topics}
                 active={{ name: null }}
@@ -276,7 +276,7 @@ export default function FiltersBar({
             </div>
           </div>
 
-          <div className="w-100 max-w-6xl mt-2">
+          <div className="w-100 max-w-6xl mt-2 mx-auto px-5">
             <div className="relative">
               <div className="peer">
                 <FilterCarousel identifier="sub-topics-carousel">
@@ -336,7 +336,7 @@ export default function FiltersBar({
         </>
       )}
       {filters === t('organization') && (
-        <div className="w-100 max-w-6xl mt-2">
+        <div className="w-100 lg:max-w-6xl mx-5 mt-2">
           <div className="relative">
             <div className="peer">
               <FilterCarousel identifier="orgs-carousel">
@@ -392,26 +392,28 @@ export default function FiltersBar({
       )}
 
       {filters === t('ds-bt-time') && (
-        <div className="w-full can mt-2 bg-white">
-          {Object.keys(timeFrames).map((timeframe, index) => (
-            <button
-              key={index}
-              className={`py-2 px-4 rounded-xl font-avenir ${
-                currentTimeIndex === index
-                  ? 'bg-button-gradient text-white'
-                  : 'text-black'
-              }`}
-              onClick={() => setTimeSearchValue(timeframe, index)}
-            >
-              {timeframe}
-            </button>
-          ))}
+        <div className="min-w-full px-5">
+          <div className="w-full rounded-xl mt-2 can mt-2 bg-white flex flex-col sm:flex-row">
+            {Object.keys(timeFrames).map((timeframe, index) => (
+              <button
+                key={index}
+                className={`py-2 px-4 rounded-xl font-avenir ${
+                  currentTimeIndex === index
+                    ? 'bg-button-gradient text-white'
+                    : 'text-black'
+                }`}
+                onClick={() => setTimeSearchValue(timeframe, index)}
+              >
+                {timeframe}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
       {currentTimeIndex === 0 && filters === t('ds-bt-time') && (
-        <div className="w-full mt-4">
-          <div className="flex flex-col w-1/2  pt-6 px-8 font-[Raleway] bg-white relative rounded-xl triangle">
+        <div className="w-full mt-4 px-5">
+          <div className="flex flex-col w-full lg:w-1/2  pt-6 px-8 font-[Raleway] bg-white relative rounded-xl triangle">
             <div>
               <MultiRangeSlider
                 min={0}
@@ -456,7 +458,7 @@ export default function FiltersBar({
       )}
       {(sideFilter.groups.length > 0 ||
         sideFilter.organization.length > 0) && (
-        <div className="flex flex-col">
+        <div className="flex flex-col mx-5 mt-5">
           <span className="font-bold">{t('active-filters')}</span>
           {sideFilter.groups.length > 0 && (
             <div className="flex w-100 max-w-6xl items-between">
