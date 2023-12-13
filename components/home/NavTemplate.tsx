@@ -9,7 +9,7 @@ const languages = ['ar', 'en'];
 
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   const router = useRouter();
-  const navRef = useRef();
+  const navRef = useRef<null | HTMLDivElement>(null);
   const [iseMenuScrollable, setIsMenuScrollable] = useState(false);
 
   function handleLocale(e: MouseEvent<HTMLButtonElement>) {
@@ -19,7 +19,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   }
 
   function checkScrollableMenu() {
-    const navbar = navRef.current;
+    const navbar: HTMLDivElement = navRef.current;
     if (navbar) setIsMenuScrollable(navbar.scrollWidth > navbar.offsetWidth);
   }
 
