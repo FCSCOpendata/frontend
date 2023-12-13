@@ -153,7 +153,9 @@ const MainOptions: React.FC<any> = ({
       </div>
       {children?.length > 0 && (
         <div className="mb-20">
-          <h1 className="font-semibold text-3xl mb-6">{t('og-h-sub')}</h1>
+          <h1 className="font-semibold text-2xl sm:text-3xl mb-6">
+            {t('og-h-sub')}
+          </h1>
           <SubOrgsCarousel orgs={subOrgs} orgOnClick={onSubOrgClick} />
         </div>
       )}

@@ -129,7 +129,7 @@ const SearchForm: React.FC<{
           </div>
         </div>
       </div>
-      <div className="mt-4 z-10 w-full sm:max-w-3xl xl:max-w-none xl:w-9/12  mx-auto">
+      <div className="mt-4 z-10 xl:flex xl:flex-wrap items-center w-full sm:max-w-3xl xl:max-w-none xl:w-9/12 px-4 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
         <FiltersBar
           qvariables={variables}
           setQvariables={setQvariables}

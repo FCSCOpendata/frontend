@@ -78,7 +78,7 @@ const Search: React.FC<Props> = ({ variables }) => {
           }}
         />
         <div className="container mx-auto">
-          <div className="mb-12 mx-5 md:mx-16 lg:mx-28 mt-12">
+          <div className="mb-12 mx-5 md:mx-12 lg:mx-28 mt-12">
             <div className="px-4">
               <h1 className="font-semibold text-xl sm:text-2xl">
                 {amount}{' '}
@@ -103,7 +103,7 @@ const Search: React.FC<Props> = ({ variables }) => {
               />
             </div>
           </div>
-          <div className="mx-10 md:mx-28" id="dev-exp">
+          <div className="mx-10 md:mx-12 lg:mx-28" id="dev-exp">
             <DeveloperExperience
               api={
                 typeof window !== 'undefined'

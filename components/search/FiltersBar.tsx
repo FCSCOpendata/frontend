@@ -284,7 +284,7 @@ export default function FiltersBar({
                     <SwiperSlide key={index} className="p-1">
                       <button
                         key={sub.id}
-                        className="group relative flex flex-wrap bg-gray-200 h-full w-full rounded-xl overflow-hidden"
+                        className="group relative flex flex-wrap bg-gray-200 h-40 w-full rounded-xl overflow-hidden"
                         onClick={(e) => filterSearch(e, 'groups', sub)}
                       >
                         <img
@@ -294,7 +294,7 @@ export default function FiltersBar({
                           }
                           alt={sub.title}
                           width="100%"
-                          className="top-0 w-full h-full object-scale-down z-0"
+                          className="top-0 w-full h-full object-cover z-0"
                         />
                         <span
                           className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
@@ -344,13 +344,13 @@ export default function FiltersBar({
                   <SwiperSlide key={index} className="p-1">
                     <button
                       key={org.id}
-                      className="group relative flex flex-wrap bg-gray-200 w-40 h-40 rounded-xl overflow-hidden"
+                      className="group relative flex flex-wrap bg-gray-200 w-full h-40 rounded-xl overflow-hidden"
                       onClick={(e) => filterSearch(e, 'organization', org)}
                     >
                       <img
                         src={org.image || '/images/org-default.png'}
                         alt={org.name}
-                        className="absolute left-0 top-0 w-full object-scale-down z-0 rounded-xl"
+                        className="absolute left-0 top-0 w-full h-full  object-cover z-0 rounded-xl"
                       />
                       <span
                         className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 transition-all border-[#22B373] rounded-b-l z-10"
