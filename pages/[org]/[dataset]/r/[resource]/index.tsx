@@ -17,6 +17,7 @@ import { ErrorMessage } from '../../../../../components/_shared';
 import FourOhFour from '../../../../404';
 
 const Resource: React.FC<{ variables: any }> = ({ variables }) => {
+  console.log('======= FRONTEND ERROR LOG ==========');
   const { t } = useTranslation('common');
   const { data, loading, error } = useQuery(GET_DATASET_QUERY, {
     variables,
@@ -28,6 +29,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     return (
       <ErrorMessage error={error} message="Error loading data"></ErrorMessage>
     );
+  console.log('======= FRONTEND ERROR DATASET ==========');
   if (!data?.dataset) {
     console.log('======= FROTEND DATASET NOT AVAILABLE ==========');
     return <FourOhFour></FourOhFour>;
@@ -37,7 +39,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
-
+  console.log('======= FRONTEND ERROR RESOURCE ==========');
   if (!resource) {
     console.log('======= FROTEND RESOURCE NOT AVAILABLE ==========');
     return <FourOhFour></FourOhFour>;
