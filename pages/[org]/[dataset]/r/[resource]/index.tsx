@@ -28,14 +28,20 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     return (
       <ErrorMessage error={error} message="Error loading data"></ErrorMessage>
     );
-  if (!data?.dataset) return <FourOhFour></FourOhFour>;
+  if (!data?.dataset) {
+    console.log('======= FROTEND DATASET NOT AVAILABLE ==========');
+    return <FourOhFour></FourOhFour>;
+  }
   const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
 
-  if (!resource) return <FourOhFour></FourOhFour>;
+  if (!resource) {
+    console.log('======= FROTEND RESOURCE NOT AVAILABLE ==========');
+    return <FourOhFour></FourOhFour>;
+  }
 
   fixTranslations(result);
   fixTranslations(result.organization);
