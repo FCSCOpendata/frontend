@@ -1,5 +1,8 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import {
+  docco,
+  githubGist,
+} from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { AR } from '../../../hooks/locale';
 import CopyIconButton from '../CopyIconButton';
 import useTranslation from 'next-translate/useTranslation';
@@ -24,7 +27,7 @@ const Code: React.FC<any> = ({ language, children }) => {
           <SyntaxHighlighter
             language={language}
             className="syntax"
-            style={docco}
+            style={githubGist}
             customStyle={{
               backgroundColor: '#FEFEFE',
               borderRadius: '25px',

@@ -111,7 +111,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
       {/* Preview: show Data Explorer if tabular data + datastore active */}
       <div className="col-span-12 p-10 bg-[#F7FAFC] rounded-2xl">
         <div className="flex xl:flex-row flex-col justify-between mb-4">
-          <div className="flex font-avenir text-[20px] text-[#808080] font-normal pl-4 w-2/3 xl:flex-row flex-col">
+          <div className="flex font-avenir text-[20px] text-[#545454] font-normal pl-4 w-2/3 xl:flex-row flex-col">
             <div className="flex xl:mr-3 items-baseline mb-2">
               <button
                 onClick={() => download(resources[activeTable].path)}
@@ -121,7 +121,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
                 {t('download')}
               </button>
             </div>
-            <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
+            <div className="mr-3 text-[#545454] text-1 hidden xl:inline">
               |
             </div>
             <div className="flex xl:mr-3 mb-2">
@@ -129,7 +129,7 @@ const DataExplorer: React.FC<{ dataset: any; columnHeaderStyle: any }> = ({
                 {resources[activeTable].count || 'N/A'} {t('rows')}
               </span>
             </div>
-            <div className="mr-3 text-[#C4C4C4] text-1 hidden xl:inline">
+            <div className="mr-3 text-[#545454] text-1 hidden xl:inline">
               |
             </div>
             <div className="flex mr-3">

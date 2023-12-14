@@ -16,7 +16,11 @@ const datasetFiles = [
   { name: 'zip', icon: '/images/resources/zip.svg' },
 ];
 
-const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
+const Card: React.FC<{ dataset: any; index: number }> = ({
+  dataset,
+  index,
+  ...props
+}) => {
   const { t } = useTranslation('common');
   const availableFormats = dataset.resources.map((item) =>
     item.format.toLowerCase()
@@ -41,7 +45,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                     Math.random() * (6 - 1 + 1) + 1
                   )}.png`
                 }
-                alt={dataset.organization.title}
+                alt={`${dataset.organization.title} ${index + 1} `}
                 className="w-full h-[150px] h:sm-auto object-cover sm:object-scale-down object-center rounded-md"
               />
             </div>
@@ -57,7 +61,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                   {dataset.title}
                 </h1>
                 <p
-                  className={`text-sm font-medium text-[#7C7C7C] sm:h-[2.5rem] line-clamp-2  sm:text-left ${AR(
+                  className={`text-sm font-medium text-[#545454] sm:h-[2.5rem] line-clamp-2  sm:text-left ${AR(
                     'sm:text-right'
                   )}`}
                 >
@@ -67,10 +71,10 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
                     : ''}
                 </p>
               </a>
-              <div className="inline-flex items-center justify-start lg:justify-start sm:py-1 lg:py-2 space-x-2 text-[#7C7C7C]">
+              <div className="inline-flex items-center justify-start lg:justify-start sm:py-1 lg:py-2 space-x-2 text-[#545454]">
                 <img
                   src="/images/library-icon.svg"
-                  alt="orgs"
+                  alt={`orgs icon ${index}`}
                   className={`w-4 mb-1 grayscale ${AR('ml-2')}`}
                 />
                 <span className="text-xs text-left sm:text-left capitalize">
@@ -79,13 +83,13 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-auto sm:pl-[96px] lg:pl-0 sm:flex justify-between items-center h-full text-[#7C7C7C] z-10">
+          <div className="w-full lg:w-auto sm:pl-[96px] lg:pl-0 sm:flex justify-between items-center h-full text-[#545454] z-10">
             {/* dataset info on hover */}
             <div className="flex flex-col flex-wrap sm:flex-row lg:flex-col sm:items-center lg:items-start sm:pl-6 pt-4 lg:pt-0 lg:px-4 sm:space-x-4 lg:space-x-0 lg:border-l-2 border-[#E6E6E6] h-full lg:opacity-0 group-hover:opacity-100 ease-in-out duration-150">
               <div className="whitespace-nowrap">
                 <img
                   src="/images/page.svg"
-                  alt="t"
+                  alt={` resources icon ${index + 1}`}
                   className={`inline grayscale ${AR('ml-1', 'mr-1')} w-4`}
                 />
                 <span className="text-xs">
@@ -98,7 +102,7 @@ const Card: React.FC<{ dataset: any }> = ({ dataset, ...props }) => {
               <div className="whitespace-nowrap ">
                 <img
                   src="/images/time.svg"
-                  alt="t"
+                  alt={` time icon ${index + 1}`}
                   className={`inline grayscale ${AR('ml-1', 'mr-1')} w-4`}
                 />
                 <span className="text-xs capitalize">

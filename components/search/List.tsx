@@ -78,7 +78,7 @@ const List: React.FC<{
           )}
           {!loadSearch &&
             searchResults?.results.map((dataset, index) => (
-              <ListCard key={index} dataset={dataset} />
+              <ListCard key={index} index={index} dataset={dataset} />
             ))}
         </ul>
         <div className="flex justify-center overflow-auto hoverable-scroll">

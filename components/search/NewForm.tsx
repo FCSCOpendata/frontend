@@ -51,7 +51,10 @@ const SearchForm: React.FC<{
   return (
     <div className="relative bg-[#F7FAFC] font-avenir flex flex-col items-center justify-center w-full py-12 overflow-hidden">
       <div className="absolute bg-waves bg-cover bg-no-repeat bg-center left-0 right-0 top-[-227%] bottom-[-109%] z-0" />
-      <h1 className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10">
+      <h1
+        className="text-3xl text-center font-extrabold !mt-0 mb-8 capitalize z-10"
+        id="search-title"
+      >
         {t('ds-h-sear')}
       </h1>
       <div className="xl:flex xl:flex-wrap items-center w-full sm:max-w-xl xl:max-w-none xl:w-9/12 px-4 sm:px-0 space-x-4 space-y-2 xl:space-y-0 2xl:max-w-7xl z-10">
@@ -64,6 +67,7 @@ const SearchForm: React.FC<{
             id="search2"
             type="text"
             name="search"
+            aria-labelledby="search-title"
             ref={searchQueryRef}
             onKeyPress={handlekeyEvent}
             placeholder={t('ds-bt-searc')}
@@ -99,7 +103,7 @@ const SearchForm: React.FC<{
             >
               <img
                 src="/images/library-icon.svg"
-                alt="orgs"
+                alt="organizations icon"
                 className="w-5 mb-1"
               />
               <input
@@ -116,7 +120,7 @@ const SearchForm: React.FC<{
             >
               <img
                 src="/images/calender-icon.svg"
-                alt="orgs"
+                alt="calendar icon"
                 className="w-5 mb-1 "
               />
               <input
