@@ -45,12 +45,12 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     return <FourOhFour></FourOhFour>;
   }
 
-  fixTranslations(result);
-  fixTranslations(result.organization);
-  fixTranslations(resource);
+  // fixTranslations(result);
+  // fixTranslations(result.organization);
+  // fixTranslations(resource);
 
-  if (!resource)
-    return <ErrorMessage message="Error loading data"></ErrorMessage>;
+  // if (!resource)
+  //   return <ErrorMessage message="Error loading data"></ErrorMessage>;
 
   return (
     <>
