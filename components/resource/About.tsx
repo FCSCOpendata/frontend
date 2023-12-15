@@ -21,7 +21,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { result } = data.dataset;
   // Find right resource
   const resource = result.resources.find(
-    (item) => item.name === variables.resource
+    (item) => item.name.replace(/\//g, '_') === variables.resource
   );
 
   if (!resource?.id)

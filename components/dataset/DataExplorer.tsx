@@ -198,12 +198,12 @@ const DataExplorer: React.FC<{
           <div className="grid xl:justify-items-end align-middle justify-items-start ">
             <Link
               href={`${router.asPath}/r/${encodeURIComponent(
-                resources[activeTable].name
+                resources[activeTable].name.replace(/\//g, '_')
               )}`}
             >
               <a
                 href={`${router.asPath}/r/${encodeURIComponent(
-                  resources[activeTable].name
+                  resources[activeTable].name.replace(/\//g, '_')
                 )}`}
                 className="rounded-xl bg-button-gradient p-3 text-white font-avenir font-medium text-[20px] h-fit"
               >
