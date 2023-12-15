@@ -40,6 +40,7 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     (item) => item.name === variables.resource
   );
   console.log('======= FRONTEND ERROR RESOURCE ==========');
+  console.log("RESOURCE NAME SERVER: " , variables.resource)
   if (!resource) {
     console.log('======= FROTEND RESOURCE NOT AVAILABLE ==========');
     return <FourOhFour></FourOhFour>;
@@ -126,6 +127,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     id: context.query.dataset,
     resource: context.query.resource,
   };
+  console.log("RESOURCE NAME SERVER: " , context.query.resource)
 
   await apolloClient.query({
     query: GET_DATASET_QUERY,
