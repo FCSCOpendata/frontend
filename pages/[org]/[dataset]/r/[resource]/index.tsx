@@ -39,6 +39,8 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
   const resource = result.resources.find(
     (item) => item.name === variables.resource
   );
+
+  
   console.log('======= FRONTEND ERROR RESOURCE ==========');
   console.log("RESOURCE LIST: " , result.resources)
   console.log("RESOURCE NAME CLIENT: " , variables.resource)
