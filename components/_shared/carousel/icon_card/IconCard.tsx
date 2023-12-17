@@ -26,7 +26,7 @@ const IconCard: React.FC<IconCardProps> = ({
     <>
       <div
         className={`${
-          isActive ? 'text-[#22B373]' : ''
+          isActive ? 'text-[#136541] hover:text-[#22B373]' : ''
         } flex flex-col items-center`}
       >
         <div className="h-[60px] w-[60px]">

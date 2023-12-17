@@ -113,6 +113,7 @@ const Pagination: React.FC<{
               onClick={() => {
                 handleClick(pageNum, pages[pageNum - 1]);
               }}
+              aria-label={`Page ${index + 1}`}
               className={`mx-2 ${
                 pageNum === currentPage
                   ? 'px-3 py-0 rounded-md bg-blue-100'

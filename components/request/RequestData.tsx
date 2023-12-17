@@ -155,7 +155,7 @@ const RequestData: React.FC = () => {
           <div className="text-center font-avenir text-[36px] font-extrabold  text-[#4D4D4D]">
             <h1>{t('request-header')}</h1>
           </div>
-          <p className="pl-2 text-center font-avenir font-normal text-[18px] text-[#7C7C7C] leading-[1.375rem] mb-8">
+          <p className="pl-2 text-center font-avenir font-normal text-[18px] text-[#595959] leading-[1.375rem] mb-8">
             {t('request-descrp')}
           </p>
           <div className="flex pl-2 py-2 rounded-lg bg-white font-avenir text-[18px] font-normal text-[#858585] mb-4 hover:border-b-4 hover:rounded-b-xl hover:border-b-[#22B373]">
@@ -163,6 +163,7 @@ const RequestData: React.FC = () => {
             <input
               type="text"
               placeholder={t('name')}
+              title={t('name')}
               className="w-3/4 border-none focus:ring-0  focus:border-white"
               required
               ref={nameRef}
@@ -177,6 +178,7 @@ const RequestData: React.FC = () => {
             <img src="/images/email.svg" alt="email" className="mr-2" />
             <input
               type="email"
+              title={t('email')}
               placeholder={t('email')}
               className="w-3/4 border-none focus:ring-0  focus:border-white"
               required
@@ -192,13 +194,14 @@ const RequestData: React.FC = () => {
             <textarea
               placeholder={t('request-msg')}
               className="w-full h-48 border-none focus:ring-0 focus:border-white"
+              title={t('request-msg')}
               onChange={(e) => {
                 setCount(e.target.value.length);
               }}
               required
               ref={textRef}
             />
-            <div className="float-right text-[15px] text-[#808080]">
+            <div className="float-right text-[15px] text-[#595959]">
               {count}/1000
             </div>
           </div>

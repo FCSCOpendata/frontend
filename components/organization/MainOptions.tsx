@@ -142,6 +142,7 @@ const MainOptions: React.FC<any> = ({
     <>
       <div className="mb-20">
         <OrgHeader
+          color="#188154"
           org={activeOrg}
           datasetsCount={activeOrg?.package_count}
           badgeOnClick={() => {
