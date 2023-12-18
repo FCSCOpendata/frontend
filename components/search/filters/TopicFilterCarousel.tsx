@@ -34,16 +34,16 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
 
   return (
     <>
-      <div className="relative group">
+      <div className="relative group w-full">
         <div
-          className={`transition-all opacity-0 group-hover:opacity-100 absolute hidden lg:block top-[50%] -translate-y-2/4 ml-[-1.5rem] md:left-0 z-50 nav-prev-button${
+          className={`transition-all opacity-1 md:opacity-0 md:group-hover:opacity-100 absolute  top-[50%] -translate-y-2/4 ml-[-1.5rem] left-[30px] z-50 nav-prev-button${
             identifier ? '--' + identifier : ''
           }`}
         >
           <NavButton size="small" orientation="left" />
         </div>
         <div
-          className={`transition-all opacity-0 group-hover:opacity-100  absolute hidden lg:block top-[50%] -translate-y-2/4 mr-[-1.5rem] md:right-0 z-50 nav-next-button${
+          className={`transition-all  opacity-1 md:opacity-0 md:group-hover:opacity-100 absolute  top-[50%] -translate-y-2/4 mr-[-1.5rem] right-[30px] z-50 nav-next-button${
             identifier ? '--' + identifier : ''
           }`}
         >
@@ -55,24 +55,20 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
           onSwiper={(instance) => setSwiper(instance)}
           breakpoints={{
             1: {
+              slidesPerView: 1,
+              slidesPerGroup: 1,
+            },
+            460: {
               slidesPerView: 2,
               slidesPerGroup: 2,
             },
-            460: {
+            720: {
               slidesPerView: 3,
               slidesPerGroup: 3,
-            },
-            720: {
-              slidesPerView: 5,
-              slidesPerGroup: 5,
             },
             1200: {
               slidesPerView: 5,
               slidesPerGroup: 5,
-            },
-            1280: {
-              slidesPerView: 6,
-              slidesPerGroup: 6,
             },
           }}
           initialSlide={items.findIndex((item) => item.name == active.name)}
@@ -82,8 +78,9 @@ const TopicFilterCarousel: React.FC<CarouselProps> = ({
           }}
         >
           {items.map((item, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="text-center">
               <button
+                className="text-ellipsis overflow-hidden ..."
                 onClick={(e) => {
                   const slidesPerView = swiper.params.slidesPerView;
                   const currentSlide = index; //  or swiper.clickedIndex

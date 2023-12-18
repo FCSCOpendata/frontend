@@ -38,7 +38,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   return (
     <>
       <div className="flex flex-col mb-10">
-        <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-avenir font-extrabold text-[36px] items-baseline">
+        <div className="flex xl:flex-row flex-col mb-4 text-[#4D4D4D] font-avenir font-extrabold  text-2xl lg:text-[36px] lg:leading-[56px] items-baseline">
           {resource.format === 'CSV' ? (
             <img
               src="/images/csv-icon.svg"

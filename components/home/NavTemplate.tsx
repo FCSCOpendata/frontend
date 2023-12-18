@@ -9,7 +9,7 @@ const languages = ['ar', 'en'];
 
 const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   const router = useRouter();
-  const navRef = useRef();
+  const navRef = useRef<null | HTMLDivElement>(null);
   const [iseMenuScrollable, setIsMenuScrollable] = useState(false);
 
   function handleLocale(e: MouseEvent<HTMLButtonElement>) {
@@ -19,7 +19,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
   }
 
   function checkScrollableMenu() {
-    const navbar = navRef.current;
+    const navbar: HTMLDivElement = navRef.current;
     if (navbar) setIsMenuScrollable(navbar.scrollWidth > navbar.offsetWidth);
   }
 
@@ -40,7 +40,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
 
   return (
     <Disclosure as="nav" className={`bg-white`}>
-      {({ open }) => (
+      {({ open, close }) => (
         <>
           <div className="mx-auto px-2 sm:px-4 2xl:px-14">
             <div className="flex h-24 lg:container lg:mx-auto">
@@ -53,7 +53,7 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                   <Link href="/">
                     <a href="/">
                       <img
-                        className="block lg:hidden w-[155px] sm:w-auto sm:h-10"
+                        className="block lg:hidden w-[140px] sm:w-[155px] sm:w-auto sm:h-10"
                         src={logo}
                         alt="bayanat.ae"
                       />
@@ -140,6 +140,9 @@ const NavBar: React.FC<{ menu: any; logo: string }> = ({ menu, logo }) => {
                 <Link key={'mobile-menu-link' + index} href={item.path}>
                   <a
                     href={item.href}
+                    onClick={() => {
+                      close();
+                    }}
                     className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                   >
                     {item.title}

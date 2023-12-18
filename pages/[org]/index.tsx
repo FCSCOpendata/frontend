@@ -72,7 +72,7 @@ const Organization: React.FC<any> = ({ variables }) => {
         <title>{`${t('organization')} | ${t('title')}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="py-12 mx-10 md:mx-28 pb-20 text-[#4D4D4D]">
+      <main className="py-12 mx-5 md:mx-20 pb-20 text-[#4D4D4D]">
         <ScrollIndicator
           firstImage={{
             url: activeOrg?.org?.icon?.url || '/images/no_icon_org.svg',
