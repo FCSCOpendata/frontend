@@ -32,8 +32,16 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
 
   return (
     <>
-      <div className={image?.url ? `lg:grid lg:grid-cols-2` : ''}>
-        <div className={`${image?.url ? 'w-full z-10' : 'hidden'}`}>
+      <div
+        className={`${
+          image?.url ? `lg:grid lg:grid-cols-2` : ''
+        } items-center`}
+      >
+        <div
+          className={`lg:-mx-20 ${
+            image?.url ? 'lg:w-[calc(100%+5rem)] z-10' : 'hidden'
+          }`}
+        >
           <div
             className={`h-full flex items-center
               ${
@@ -42,7 +50,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                 // 'md:ml-[-7rem] md:mr-[-7rem] xl:mr-0'
               }
               w-[calc(100%]  md:w-auto
-              bg-center bg-no-repeat bg-cover"
+              bg-center bg-no-repeat bg-cover
             `}
           >
             <div className="w-full  relative h-full">
@@ -53,7 +61,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                 priority={true}
                 width={909}
                 height={655}
-                className={`xl:object-contain
+                className={`lg:object-cover
                 ${AR('xl:rounded-l-[40px]', 'xl:rounded-r-[40px]')}
               `}
               />
@@ -67,9 +75,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
             //'ml-[-2.5rem] md:ml-[-7rem] md:mr-[-7rem] xl:ml-[-3.0rem]'
           }`}
         >
-          <div
-            className={`h-full w-full xl:pt-[40px] pb-[40px] z-0 overflow-visible`}
-          >
+          <div className={`h-full w-full xl:pt-[40px] z-0 overflow-visible`}>
             {/* 5rem (ml) + 5rem (body padding) = 10rem*/}
             <div
               className={`bg-[#F7FAFC] pb-5 xl:pb-0 h-full
@@ -94,7 +100,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
                     <style>{scrollbarCss}</style>
                     <Scrollbar
                       rtl={AR(true, false) as boolean}
-                      style={{ height: '9em' }}
+                      style={{ height: '7.5em' }}
                     >
                       <p className="text-[#7C7C7C] w-[99%] line-clamp-5 group-hover:line-clamp-none transition-all">
                         {children}
