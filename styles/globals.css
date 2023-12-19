@@ -467,15 +467,8 @@ svg.star-svg {
 }
 
 
-.topic-item:before{
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
+.topic-item:not(:hover) .item-title{
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0));
   z-index: 1;
-  pointer-events: none;
+
 }

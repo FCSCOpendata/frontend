@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
   return (
     <>
       <div className="relative w-full bg-black rounded-lg overflow-hidden group min-h-[100px] topic-item z-10">
-        <span className="absolute left-0 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l z-10" />
+        <span className="absolute left-0 bottom-0 w-full h-full  group-hover:border-b-4 border-[#22B373] rounded-b-l z-30" />
         <div>
           <img
             src={image.url}
@@ -28,9 +28,9 @@ const Card: React.FC<CardProps> = ({ title, icon, image }) => {
           className={`absolute z-20 py-4 bottom-0 inset-x-0 text-white text-m ${AR(
             'pr-5',
             'pl-5'
-          )} leading-4 flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center`}
+          )} leading-4 item-title flex justify-between group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all items-center`}
         >
-          <h3 className="font-avenir font-bold">{title}</h3>
+          <h3 className="font-avenir font-bold ">{title}</h3>
           {!!icon.url && (
             <div
               className={`block overflow-hidden w-[40px] h-[40px] ${AR(

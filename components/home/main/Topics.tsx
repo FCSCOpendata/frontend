@@ -44,9 +44,9 @@ export default function Topics() {
                 <a
                   key={index}
                   href={`${AR('/ar')}/topic/${topic.name}`}
-                  className="group h-full w-full flex flex-stretch"
+                  className="group h-full w-full flex flex-stretch topic-item"
                 >
-                  <div className="relative bg-gray w-full rounded-lg overflow-hidden topic-item">
+                  <div className="relative bg-gray w-full rounded-lg overflow-hidden ">
                     <span className="absolute left-0 z-20 bottom-0 w-full h-full group-hover:border-b-4 border-[#22B373] rounded-b-l " />
                     <Image
                       src={topic.image_display_url}
@@ -57,7 +57,7 @@ export default function Topics() {
                       alt={topic.title}
                       className="w-full h-full object-center object-contain"
                     />
-                    <p className="absolute z-10 py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
+                    <p className="item-title absolute z-10 py-4 bottom-0 inset-x-0 text-white text-sm text-center leading-4 font-poppins font-semibold group-hover:bg-slate-200 group-hover:opacity-75 group-hover:text-black transition-all">
                       {topic.title}
                     </p>
                   </div>
