@@ -64,7 +64,7 @@ const ScrollIndicator: React.FC<{
               <div className="h-full absolute flex flex-col justify-evenly w-full items-center border-[#333333] border-t-[1px] border-b-[1px] w-1">
                 {stops.map((stop, index) => (
                   <button
-                    aria-label="test"
+                    aria-label={`Section ${index + 1}`}
                     className={`transition-all ease-in-out origin-center duration-100 rounded-full border-[1px] border-[#333333] w-[10px] h-[10px] bg-[#fff] ${
                       active == index ? 'scale-150' : ''
                     } flex justify-center items-center`}

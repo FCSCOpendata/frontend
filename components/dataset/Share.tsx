@@ -8,6 +8,7 @@ const Share: React.FC<{ title: string }> = ({ title }) => {
   return (
     <span className={`text-[#1F356C] ${AR('ml-2', 'mr-2')}}`}>
       <a
+        aria-label="Share"
         href={`mailto:?subject=${subject}&body=${title} - ${
           typeof window !== 'undefined' ? window.location.href : ''
         }  %0d%0a %0d%0a ${t('goto-site', {

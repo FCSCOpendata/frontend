@@ -42,13 +42,13 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           {resource.format === 'CSV' ? (
             <img
               src="/images/csv-icon.svg"
-              alt="Dataset title"
+              alt="CSV"
               className="inline w-6 xl:mr-2"
             />
           ) : (
             <img
               src="/images/excel-icon.svg"
-              alt="Dataset title"
+              alt="Excel"
               className="inline w-6 xl:mr-2"
             />
           )}
@@ -62,7 +62,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
             />
           </h1>
         </div>
-        <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal mb-4">
+        <article className="font-avenir text-[#545454] text-[20px] font-normal mb-4">
           {resource.description?.replace(/<[^>]*>?/gm, '') || ''}
         </article>
       </div>

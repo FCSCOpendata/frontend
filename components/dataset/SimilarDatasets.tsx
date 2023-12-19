@@ -49,7 +49,7 @@ export default function SimilarDatasets({ variables }) {
       <div className="flex justify-center w-full xl:p-10">
         <div className="flex flex-col items-between h-full xl:w-2/3 mb-10 w-full">
           <div className="self-center mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
-            <p>{t('explore-s-datasets')}</p>
+            <h2>{t('explore-s-datasets')}</h2>
           </div>
           <div className="flex xl:flex-row flex-col justify-between bg-[#F7FAFC] p-2 rounded-xl">
             <button
@@ -58,7 +58,7 @@ export default function SimilarDatasets({ variables }) {
             >
               <img
                 src="/images/edu-icon.svg"
-                alt="orgs"
+                alt="topic icon"
                 className={`w-4 h-4 ${AR('ml-2', 'mr-2')}`}
               />
               {result.groups[0]?.title} {t('topic')}
@@ -69,7 +69,7 @@ export default function SimilarDatasets({ variables }) {
             >
               <img
                 src="/images/ball-icon.svg"
-                alt="orgs"
+                alt="keywork icon"
                 className={`w-4 h-4 text-white ${AR('ml-2', 'mr-2')}`}
               />
               {result.tags[0]?.title} {t('keyword')}
@@ -80,7 +80,7 @@ export default function SimilarDatasets({ variables }) {
             >
               <img
                 src="/images/library-icon.svg"
-                alt="orgs"
+                alt="org icon"
                 className={`w-4 h-4 text-white ${AR('ml-2', 'mr-2')}`}
               />
               {result.organization.title}

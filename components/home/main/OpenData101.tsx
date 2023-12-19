@@ -10,14 +10,16 @@ export default function OpenData101(props) {
   }
 
   return (
-    <div className="relative h-fit mb-[70px] sm:mb-10 container mx-auto ">
+    <div className="relative h-fit mb-[70px] sm:mb-10 container mx-auto">
       <img
         src="/images/open-data-101.svg"
-        alt="Open Data 101"
+        alt="Open Data 101 Background"
         className="w-full"
       />
       <div className="absolute w-full lg:w-1/2  lg:inset-x-1/4 top-0 sm:top-auto sm:bottom-1/2 text-center">
-        <p className="text-[#54CA59] font-semibold">- {t('hm-p-next')} -</p>
+        <p className="text-[#0E5D15] text-[18px] font-semibold">
+          - {t('hm-p-next')} -
+        </p>
         <a href={`${AR('/ar')}/p/open-data-101`}>
           <h2 className="font-avenir font-extrabold text-2xl lg:text-4xl mb-2">
             {text}
@@ -28,7 +30,7 @@ export default function OpenData101(props) {
         </p>
         <a
           href="#"
-          className="text-[#54CA59] font-medium"
+          className="text-[#0E5D15] font-medium text-[18px]"
           onClick={scrollToTop}
         >
           {t('opendata-a')}

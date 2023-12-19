@@ -34,9 +34,13 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           />
         </h1>
       </div>
-      <div className="flex flex-col lg:flex-row justify-start gap-x-8 mb-4 text-[#787878] text-[20px] font-normal">
+      <div className="flex flex-col lg:flex-row justify-start gap-x-8 mb-4 text-[#595959] text-[20px] font-normal">
         <div className="font-avenir flex text-sm py-2 items-baseline">
-          <img src="/images/library-icon.svg" alt="orgs" className="w-5 h-3" />
+          <img
+            src="/images/library-icon.svg"
+            alt="organization"
+            className="w-5 h-3"
+          />
           <Link href={`/@${result.organization.name}`}>
             <a href={`/@${result.organization.name}`}>
               {result.organization.title}
@@ -44,7 +48,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           </Link>
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
-          <img src="/images/print-icon.svg" alt="orgs" className="w-5 h-3 " />
+          <img
+            src="/images/print-icon.svg"
+            alt="date created"
+            className="w-5 h-3 "
+          />
           <span>
             {t('created') +
               ' ' +
@@ -52,7 +60,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           </span>
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
-          <img src="/images/clock-icon.svg" alt="orgs" className="w-5 h-3" />
+          <img
+            src="/images/clock-icon.svg"
+            alt="date updated"
+            className="w-5 h-3"
+          />
           <span>
             {t('updated') +
               ' ' +
@@ -60,7 +72,11 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           </span>
         </div>
         <div className="font-avenir flex text-sm py-2 items-baseline">
-          <img src="/images/book-icon.svg" alt="orgs" className="w-5  h-3" />
+          <img
+            src="/images/book-icon.svg"
+            alt="license"
+            className="w-5  h-3"
+          />
           <span>{result.license_title}</span>
         </div>
         {result.total_downloads > 0 ? (
@@ -75,7 +91,7 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           ''
         )}
       </div>
-      <div className="flex justify-start gap-x-4 md:gap-x-8 mb-4 text-[#787878] text-[20px] font-normal items-baseline">
+      <div className="flex justify-start gap-x-4 md:gap-x-8 mb-4 text-[#595959] text-[20px] font-normal items-baseline">
         <div className="font-avenir flex text-sm py-2 items-baseline">
           <span>{t('share')}: </span>
           <Share title={result.title} />
@@ -89,10 +105,10 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
           <Rate title={result.title} id={result.id} />
         </div>
       </div>
-      <article className="font-avenir text-[#7C7C7C] text-[20px] font-normal  mb-4">
+      <article className="font-avenir text-[#595959] text-[20px] font-normal  mb-4">
         {result.description?.replace(/<[^>]*>?/gm, '') || ''}
       </article>
-      <div className="flex flex-row font-avenir font-normal text-[15px] text-[#086F06]">
+      <div className="flex flex-row font-avenir font-normal text-[15px] text-[#074106]">
         <Tags
           tags={result.tags}
           style={`rounded-full bg-[#80E47E] py-2 px-4 ${AR('', 'mr-4')}`}

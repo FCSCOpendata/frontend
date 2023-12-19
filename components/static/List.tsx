@@ -82,7 +82,7 @@ const List: React.FC = () => {
                         {post.title}
                       </h1>
                       <p
-                        className={`text-sm font-medium text-[#7C7C7C] line-clamp-2 text-center ${AR(
+                        className={`text-sm font-medium text-[#555555] line-clamp-2 text-center ${AR(
                           'sm:text-right',
                           'sm:text-left'
                         )}`}
@@ -92,7 +92,7 @@ const List: React.FC = () => {
                     </a>
                   </Link>
                   <div className="grow h-full"></div>
-                  <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#7C7C7C]">
+                  <div className="inline-flex items-center justify-center sm:justify-start py-1 xl:py-2 space-x-2 text-[#545454]">
                     <div className={`${AR('ml-4', 'mr-4')}`}>
                       <img
                         src="/images/time.svg"

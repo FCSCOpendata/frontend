@@ -19,7 +19,7 @@ module.exports = {
         darkerbrown: '#964800',
         lightestblue: '#F7FAFC',
         black: '#4D4D4D',
-        gray: '#7C7C7C',
+        gray: '#605e5e',
         primaryGreen: '#22B373',
       },
       fontFamily: {

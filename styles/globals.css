@@ -350,7 +350,7 @@ svg.star-svg {
 
 .react-simple-star-rating-tooltip {
   background-color: white !important;
-  color: #7c7c82 !important;
+  color: #595959 !important;
   margin-left: 8px !important;
   padding: 0px !important;
 }
@@ -464,4 +464,11 @@ svg.star-svg {
     font-weight: 600;
   }
   
+}
+
+
+.topic-item:not(:hover) .item-title{
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0));
+  z-index: 1;
+
 }

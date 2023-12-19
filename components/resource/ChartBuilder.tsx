@@ -72,7 +72,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
       <div className="flex  justify-start w-full py-10 pl-0">
         <div className="flex flex-col items-between h-full w-1/2 mb-10">
           <div className="self-start mb-4 font-avenir text-[30px] font-extrabold text-[#4D4D4D]">
-            <p>{t('create-viz')}</p>
+            <h2>{t('create-viz')}</h2>
           </div>
           <div className="flex xl:flex-row flex-col bg-[#F7FAFC] justify-between p-2 rounded-xl xl:w-4/6">
             <button
@@ -85,7 +85,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
             >
               <img
                 src="/images/pie-icon.svg"
-                alt="orgs"
+                alt="build chart icon"
                 className="w-4  h-4 mr-2"
               />
               {t('build-chart')}
@@ -100,7 +100,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
             >
               <img
                 src="/images/app-icon.svg"
-                alt="orgs"
+                alt="build dashboard icon"
                 className="w-4  h-4 mr-4 text-white"
               />
               {t('build-dashboard')}
@@ -122,6 +122,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 {t('chart-type')}
               </span>
               <select
+                aria-label="Chart type"
                 value={view.spec.type}
                 onChange={handleChartTypeChange}
                 className="rounded-xl outline-none border-none font-avenir font-medium text-[16px] p-4"
@@ -138,6 +139,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 {t('dimension')}
               </span>
               <select
+                aria-label="Dimension"
                 value={view.spec.group}
                 onChange={handleDimensionChange}
                 disabled={!view.spec.type}
@@ -158,6 +160,7 @@ const ChartBuilder: React.FC<{ resources: any }> = ({ resources }) => {
                 {t('measure')}
               </span>
               <select
+                aria-label="Measure"
                 value={view.spec.series[0] || ''}
                 onChange={handleMeasureChange}
                 disabled={!view.spec.type || !view.spec.group}

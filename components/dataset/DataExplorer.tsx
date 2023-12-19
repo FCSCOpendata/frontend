@@ -159,7 +159,7 @@ const DataExplorer: React.FC<{
                   {i === activeTable ? (
                     <img
                       src="/images/checked-icon.svg"
-                      alt="orgs"
+                      alt="org checked"
                       className={`w-5 h-4 mb-4 absolute -top-2 ${AR(
                         'right-2',
                         '-right-2'
@@ -175,7 +175,7 @@ const DataExplorer: React.FC<{
                         ? `/images/${resource.format.toLowerCase()}-icon.svg`
                         : '/images/resources/unknown.svg'
                     }
-                    alt="orgs"
+                    alt={`resource ${i}`}
                     className="w-10 mb-4"
                   />
 
@@ -191,9 +191,9 @@ const DataExplorer: React.FC<{
       <div className="lg:col-span-9 p-6 lg:p-10 bg-[#F7FAFC] rounded-2xl">
         <div className="flex flex-col md:flex-row justify-between mb-4">
           <div className="md:w-2/3">
-            <p className="font-medium font-avenir text-2xl mb-5 text-[#4D4D4D]">
+            <h2 className="font-medium font-avenir text-2xl mb-5 text-[#4D4D4D]">
               {resources[activeTable].title || resources[activeTable].name}
-            </p>
+            </h2>
           </div>
           <div className="grid xl:justify-items-end align-middle justify-items-start ">
             <Link
@@ -217,7 +217,7 @@ const DataExplorer: React.FC<{
         </div>
 
         <div
-          className={`flex font-avenir text-[20px] text-[#808080] font-normal ${AR(
+          className={`flex font-avenir text-[20px] text-[#545454] font-normal ${AR(
             'pr-4',
             'pl-4'
           )} flex-col sm:flex-row`}
@@ -237,7 +237,7 @@ const DataExplorer: React.FC<{
             className={`${AR(
               'ml-3',
               'mr-3'
-            )} text-[#C4C4C4] text-1 hidden sm:block`}
+            )} text-[#545454] text-1 hidden sm:block`}
           >
             |
           </div>
@@ -250,7 +250,7 @@ const DataExplorer: React.FC<{
             className={`${AR(
               'ml-3',
               'mr-3'
-            )} text-[#C4C4C4] text-1 hidden sm:block`}
+            )} text-[#545454] text-1 hidden sm:block`}
           >
             |
           </div>
