@@ -40,8 +40,8 @@ const Resource: React.FC<{ variables: any }> = ({ variables }) => {
     (item) => item.name === variables.resource
   );
   console.log('======= FRONTEND ERROR RESOURCE ==========');
-  console.log("RESOURCE NAME: ", variables.resource)
-  console.log("RESOURCES HERE: ", result.resources)
+  console.log('RESOURCE NAME: ', variables.resource);
+  console.log('RESOURCES HERE: ', result.resources);
   if (!resource) {
     console.log('======= FROTEND RESOURCE NOT AVAILABLE ==========');
     return <FourOhFour></FourOhFour>;
