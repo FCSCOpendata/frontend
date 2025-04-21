@@ -29,6 +29,10 @@ export default async (req, res) => {
       },
       secure: false,
       connectionTimeout: 100 * 1000,
+      requireTLS: true, // Enforces STARTTLS
+      tls: {
+        ciphers: 'SSLv3',
+      },
     });
 
     const mailData = {
