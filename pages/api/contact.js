@@ -40,19 +40,19 @@ export default async (req, res) => {
       text: `Name of Sender: ${name}\n\nEmail of Sender: ${email}\n\n\nDetails/Content: ${message}`,
     };
 
-    console.log(mailData);
-
-    transporter.sendMail(mailData, function (err, info) {
-      console.log('Email sent');
-      if (err) {
-        console.log(err);
-        return res.status(400).send({
-          error: `There was an error sending this email, please contact us at `,
-        });
-      } else {
-        return res.status(200).send();
-      }
+  
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          return reject(err);
+        } else {
+          console.log('Email sent', info);
+          return resolve(info);
+        }
+      });
     });
+    return res.status(200).send({ success: true });
   } catch (error) {
     return res.status(500).send({ error: error.message || error.toString() });
   }
