@@ -18,8 +18,12 @@ export default async (req, res) => {
   }
 
   try {
-
-    console.log("MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD", MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD)
+    console.log(
+      'MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD',
+      MAIL_SERVER,
+      MAIL_ACCOUNT,
+      MAIL_PASSWORD
+    );
     const transporter = nodemailer.createTransport({
       port: MAIL_PORT,
       host: MAIL_SERVER,
@@ -44,7 +48,6 @@ export default async (req, res) => {
       text: `Name of Sender: ${name}\n\nEmail of Sender: ${email}\n\n\nDetails/Content: ${message}`,
     };
 
-  
     await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, (err, info) => {
         if (err) {
