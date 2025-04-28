@@ -32,6 +32,8 @@ export default async (req, res) => {
         pass: MAIL_PASSWORD,
       },
       secure: false,
+      debug: true,
+      logger: true,
       connectionTimeout: 100 * 1000,
       requireTLS: true, // Enforces STARTTLS
       tls: {
