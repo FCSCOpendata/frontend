@@ -25,20 +25,15 @@ export default async (req, res) => {
       MAIL_PASSWORD
     );
     const transporter = nodemailer.createTransport({
-      port: MAIL_PORT,
+      port: MAIL_PORT || 587,
       host: MAIL_SERVER,
       auth: {
         user: MAIL_ACCOUNT,
         pass: MAIL_PASSWORD,
       },
-      secure: false,
       debug: true,
       logger: true,
-      connectionTimeout: 100 * 1000,
-      requireTLS: true, // Enforces STARTTLS
-      tls: {
-        ciphers: 'SSLv3',
-      },
+      secureConnection: true,
     });
 
     const mailData = {
