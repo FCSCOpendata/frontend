@@ -11,6 +11,8 @@ module.exports = (phase, { defaultConfig }) => {
   const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
   const MAIL_ACCOUNT = process.env.MAIL_ACCOUNT;
   const REQUEST_DATA_EMAIL = process.env.REQUEST_DATA_EMAIL;
+  const SENDER_EMAIL = process.env.SENDER_EMAIL;
+
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     if (dms) {
       console.log('\nYou are running the app in dev mode 🌀');
@@ -45,9 +47,10 @@ module.exports = (phase, { defaultConfig }) => {
         MAIL_PORT,
         MAIL_PASSWORD,
         MAIL_SERVER,
-        CONTACT_EMAIL,
+        CONTACT_EMAIL: CONTACT_EMAIL || 'info@fcsc.gov.ae',
         MAIL_ACCOUNT,
-        REQUEST_DATA_EMAIL,
+        REQUEST_DATA_EMAIL: REQUEST_DATA_EMAIL || 'info@fcsc.gov.ae',
+        SENDER_EMAIL: SENDER_EMAIL || 'opendata@fcsc.gov.ae',
       },
       async rewrites() {
         return {
@@ -86,9 +89,10 @@ module.exports = (phase, { defaultConfig }) => {
       MAIL_PORT,
       MAIL_PASSWORD,
       MAIL_SERVER,
-      CONTACT_EMAIL,
+      CONTACT_EMAIL: CONTACT_EMAIL || 'info@fcsc.gov.ae',
       MAIL_ACCOUNT,
-      REQUEST_DATA_EMAIL,
+      REQUEST_DATA_EMAIL: REQUEST_DATA_EMAIL || 'info@fcsc.gov.ae',
+      SENDER_EMAIL: SENDER_EMAIL || 'opendata@fcsc.gov.ae',
     },
     async rewrites() {
       return {

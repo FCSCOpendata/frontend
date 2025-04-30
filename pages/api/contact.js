@@ -11,6 +11,7 @@ export default async (req, res) => {
     MAIL_PASSWORD,
     CONTACT_EMAIL,
     REQUEST_DATA_EMAIL,
+    SENDER_EMAIL,
   } = getConfig().serverRuntimeConfig;
 
   if (!email || !message) {
@@ -31,13 +32,11 @@ export default async (req, res) => {
         user: MAIL_ACCOUNT,
         pass: MAIL_PASSWORD,
       },
-      debug: true,
-      logger: true,
       secureConnection: true,
     });
 
     const mailData = {
-      from: email,
+      from: SENDER_EMAIL,
       to: `${rtype ? REQUEST_DATA_EMAIL : CONTACT_EMAIL}`,
       subject: `${
         rtype ? 'Request Dataset' : 'Inquiry'
