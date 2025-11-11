@@ -28,7 +28,11 @@ import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 import { fixTranslations } from '../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 
-const Topic: React.FC<any> = ({ variables, topicsConfigs, topicLinksConfig }) => {
+const Topic: React.FC<any> = ({
+  variables,
+  topicsConfigs,
+  topicLinksConfig,
+}) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   // eslint-disable-next-line prefer-const
@@ -136,7 +140,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 
   const getTopicLinks = async () => {
-    const filePath = path.join(process.cwd(), '/public/configs/topic-links.json');
+    const filePath = path.join(
+      process.cwd(),
+      '/public/configs/topic-links.json'
+    );
     const data = await fsPromises.readFile(filePath, 'utf8');
     return JSON.parse(data);
   };
@@ -161,7 +168,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     variables,
   });
 
-  console.log("TOPIC LINK", await getTopicLinks());
+  console.log('TOPIC LINK', await getTopicLinks());
 
   return {
     props: {
