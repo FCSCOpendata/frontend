@@ -34,7 +34,6 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
     }
   `;
 
-
   return (
     <>
       <div
