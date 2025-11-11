@@ -605,3 +605,76 @@ MAIL_SERVER = smtp server e.g smtp.mailtrap.io
 ### Key Pages
 
 See https://tech.datopian.com/frontend/.
+
+
+## Adding New Topic Links
+
+To add new topic links for the legislation, you can modify the `topic-links.json` file located at:
+
+[Topic-link.json](./public/configs/topic-links.json)
+
+### Steps to Add a New Topic Link:
+
+1. Open the `topic-links.json` file.
+2. Add a new entry under the `topicLinks` object. The key should be a unique identifier for the topic (e.g., `"new-topic"`), and the value should be the URL for that topic.
+
+   Example:
+   ```json
+   "new-topic": "https://uaelegislation.gov.ae/en/new-topic"
+   ```
+
+3. Save the changes to the file.
+
+### Example of Updated `topic-links.json`:
+
+```json
+{
+  "defaultLink": "https://uaelegislation.gov.ae",
+  "topicLinks": {
+    "economy": "https://uaelegislation.gov.ae/en/economy",
+    "food-security": "https://uaelegislation.gov.ae/en/food-security",
+    "new-topic": "https://uaelegislation.gov.ae/en/new-topic"
+  }
+}
+```
+
+## Updating the Color of the "View Legislations" Button
+
+If you want to change the color of the "View Legislations" button, you can do so in the `ImageHeader.tsx` file located at:
+
+[ImageHeader.tsx](./components/_shared/image_header/ImageHeader.tsx) 
+
+### Steps to Update the Button Color:
+
+1. Open the [ImageHeader.tsx](./components/_shared/image_header/ImageHeader.tsx)  file.
+2. Locate the legislation link button code block, which looks like this:
+
+   ```tsx
+   <a
+     href={legislationLink}
+     target="_blank"
+     rel="noopener noreferrer"
+     className="inline-flex items-center gap-2 px-6 py-2 rounded-full font-avenir font-medium text-[#4D4D4D] bg-[#FAEEC5] hover:bg-[#F5E5B0] transition-all cursor-pointer border border-[#E8D9A8]"
+   >
+     {legislationText}
+     ...
+   </a>
+   ```
+
+3. Change the `bg-[#FAEEC5]` and `hover:bg-[#F5E5B0]` values to your desired color codes.
+
+### Example of Updated Button Color:
+
+```tsx
+<a
+  href={legislationLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 px-6 py-2 rounded-full font-avenir font-medium text-[#4D4D4D] bg-[#FFD700] hover:bg-[#FFC300] transition-all cursor-pointer border border-[#E8D9A8]"
+>
+  {legislationText}
+  ...
+</a>
+```
+
+In this example, the button background color is changed to a shade of gold (`#FFD700`), and the hover color is set to a darker shade (`#FFC300`).
