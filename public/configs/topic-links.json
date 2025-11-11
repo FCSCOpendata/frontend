@@ -1,0 +1,17 @@
+{
+  "defaultLink": "https://uaelegislation.gov.ae",
+  "topicLinks": {
+    "economy": "https://uaelegislation.gov.ae/en/economy",
+    "food-security": "https://uaelegislation.gov.ae/en/food-security",
+    "education": "https://uaelegislation.gov.ae/en/education",
+    "environment": "https://uaelegislation.gov.ae/en/environment",
+    "social": "https://uaelegislation.gov.ae/en/social",
+    "health-care": "https://uaelegislation.gov.ae/en/health-care",
+    "sport": "https://uaelegislation.gov.ae/en/sport",
+    "government": "https://uaelegislation.gov.ae/en/government",
+    "technology": "https://uaelegislation.gov.ae/en/technology",
+    "transport": "https://uaelegislation.gov.ae/en/transport",
+    "infrastructure": "https://uaelegislation.gov.ae/en/infrastructure",
+    "housing": "https://uaelegislation.gov.ae/housing"
+  }
+}

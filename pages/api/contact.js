@@ -18,8 +18,12 @@ export default async (req, res) => {
   }
 
   try {
-
-    console.log("MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD", MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD)
+    console.log(
+      'MAIL_SERVER, MAIL_ACCOUNT, MAIL_PASSWORD',
+      MAIL_SERVER,
+      MAIL_ACCOUNT,
+      MAIL_PASSWORD
+    );
     const transporter = nodemailer.createTransport({
       port: MAIL_PORT,
       host: MAIL_SERVER,
@@ -29,6 +33,10 @@ export default async (req, res) => {
       },
       secure: false,
       connectionTimeout: 100 * 1000,
+      requireTLS: true, // Enforces STARTTLS
+      tls: {
+        ciphers: 'SSLv3',
+      },
     });
 
     const mailData = {
@@ -40,19 +48,18 @@ export default async (req, res) => {
       text: `Name of Sender: ${name}\n\nEmail of Sender: ${email}\n\n\nDetails/Content: ${message}`,
     };
 
-    console.log(mailData);
-
-    transporter.sendMail(mailData, function (err, info) {
-      console.log('Email sent');
-      if (err) {
-        console.log(err);
-        return res.status(400).send({
-          error: `There was an error sending this email, please contact us at `,
-        });
-      } else {
-        return res.status(200).send();
-      }
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          return reject(err);
+        } else {
+          console.log('Email sent', info);
+          return resolve(info);
+        }
+      });
     });
+    return res.status(200).send({ success: true });
   } catch (error) {
     return res.status(500).send({ error: error.message || error.toString() });
   }

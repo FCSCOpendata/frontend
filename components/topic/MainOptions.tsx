@@ -22,6 +22,7 @@ const MainOptions: React.FC<any> = ({
   searchPage,
   setActiveTopic,
   configs,
+  topicLinksConfig,
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
@@ -158,6 +159,10 @@ const MainOptions: React.FC<any> = ({
   subtopics.forEach((subtopic) => fixTranslations(subtopic));
 
   const color = configs?.filter((el) => el.name == topic)[0]?.color;
+  const getLegislationLink = () => {
+    if (!topicLinksConfig) return null;
+    return topicLinksConfig.topicLinks[topic] || topicLinksConfig.defaultLink;
+  };
 
   return (
     <>
@@ -171,6 +176,7 @@ const MainOptions: React.FC<any> = ({
               .getElementById('explore-top-datasets')
               ?.scrollIntoView({ behavior: 'smooth' });
           }}
+          legislationLink={getLegislationLink()}
         />
       </div>
       <div className="lg:container lg:mx-auto">

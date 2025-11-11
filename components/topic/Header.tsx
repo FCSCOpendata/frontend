@@ -6,6 +6,7 @@ const Header: React.FC<any> = ({
   datasetsCount,
   color,
   badgeOnClick,
+  legislationLink,
 }) => {
   const { t } = useTranslation('common');
 
@@ -33,6 +34,8 @@ const Header: React.FC<any> = ({
         image={image}
         color={color}
         badgeOnClick={badgeOnClick}
+        legislationLink={legislationLink}
+        legislationText={t('view-legislation')}
       >
         {description}
       </ImageHeader>

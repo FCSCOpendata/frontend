@@ -28,7 +28,11 @@ import ScrollIndicator from '../../components/_shared/ScrollIndicator';
 import { fixTranslations } from '../../hooks/locale';
 import useTranslation from 'next-translate/useTranslation';
 
-const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
+const Topic: React.FC<any> = ({
+  variables,
+  topicsConfigs,
+  topicLinksConfig,
+}) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   // eslint-disable-next-line prefer-const
@@ -108,6 +112,7 @@ const Topic: React.FC<any> = ({ variables, topicsConfigs }) => {
             searchPage={searchPage}
             setActiveTopic={setActiveTopic}
             configs={topicsConfigs}
+            topicLinksConfig={topicLinksConfig}
           ></MainOptions>
           <div id="developer-experience" className="lg:container lg:mx-auto">
             <DeveloperExperience
@@ -134,6 +139,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return JSON.parse(data)?.topics;
   };
 
+  const getTopicLinks = async () => {
+    const filePath = path.join(
+      process.cwd(),
+      '/public/configs/topic-links.json'
+    );
+    const data = await fsPromises.readFile(filePath, 'utf8');
+    return JSON.parse(data);
+  };
+
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
@@ -154,11 +168,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
     variables,
   });
 
+  console.log('TOPIC LINK', await getTopicLinks());
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       variables,
       topicsConfigs: await getTopicsConfigs(),
+      topicLinksConfig: await getTopicLinks(),
     },
   };
 };
